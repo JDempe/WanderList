@@ -1,6 +1,8 @@
 [![License: MIT license](https://img.shields.io/badge/License-MIT_license-success)](https://opensource.org/licenses/MIT)    
 ![Project status](https://img.shields.io/badge/Status-In%20Development-orange)
 
+# Project 2 Title
+
 ## Description
 
 Text will go here...
