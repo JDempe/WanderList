@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS <database_name>;
+
+-- CREATE DATABASE
+CREATE DATABASE <database_name>;
