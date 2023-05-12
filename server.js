@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // THIS BREAKS EVERYTHING
-// app.use(routes);
+app.use(routes);
 
 app.get("/", (req, res) => {
   //Serves the body of the page aka "home.handlebars" to the container //aka "main.handlebars"

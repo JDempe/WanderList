@@ -1,15 +1,6 @@
 const router = require("express").Router();
 const { Example } = require("../../models");
 
-// GET all examples
-router.get("/", async (req, res) => {
-  try {
-    const exampleData = await Example.findAll();
-    res.status(200).json(exampleData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 // GET one example
 router.get("/:id", async (req, res) => {
