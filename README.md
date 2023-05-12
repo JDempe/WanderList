@@ -58,13 +58,16 @@ The below resources contributed to the project.
 
 #### Data
 
+Here is where we got our data:
+
 - [ChatGPT](https://chat.openai.com/) is a chatbot that uses GPT-3 to generate responses.  The chatbot was used to come up with the site name.
 
 ### Educational
 #### Blog Posts
 
-- [StackOverflow](https://stackoverflow.com/) provided many guides and tutorials for the project.  Below are the links used for key features:
-  - 
+Here are several blogs:
+
+-[StackOverflow](https://stackoverflow.com/) provided many guides and tutorials for the project.  Below are the links used for key features:
 
 #### Tutorials
 
