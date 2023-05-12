@@ -1,7 +1,7 @@
 // Purpose: Export all models
-const Example = require('./<model name>');
+const Destinations = require('./Destinations');
 
 
 module.exports = {
-  Example,
+  Destinations,
 };
