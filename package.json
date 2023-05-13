@@ -1,20 +1,32 @@
 {
   "name": "mvc",
   "version": "1.0.0",
-  "description": "",
+  "description": "[![License: MIT license](https://img.shields.io/badge/License-MIT_license-success)](https://opensource.org/licenses/MIT)    \r ![Project status](https://img.shields.io/badge/Status-In%20Development-orange)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-session-sequelize": "^7.1.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
+    "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "mysql2": "^3.2.4",
-    "sequelize": "^6.31.1"
-  }
+    "sequelize": "^6.31.1",
+    "bcrypt": "5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JDempe/project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JDempe/project2/issues"
+  },
+  "homepage": "https://github.com/JDempe/project2#readme"
 }
