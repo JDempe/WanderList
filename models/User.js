@@ -54,13 +54,13 @@ User.init(
 
 
 // object to test the model. it will be deleted later
-const test = {
-  username: 'olena',
-  email: 'email@email.com',
-  password: 'password',
-}
+// const test = {
+//   username: 'olena',
+//   email: 'email@email.com',
+//   password: 'password',
+// }
 
-User.create(test)
+// User.create(test)
 // end of items to delete
 
 module.exports = User;
