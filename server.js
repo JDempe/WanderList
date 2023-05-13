@@ -1,9 +1,7 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const routes = require('./controllers');
-const hbs = exphbs.create({});
-
-const sequelize = require('./config/connection');
+const express = require("express");
+const { engine } = require("express-handlebars");
+const sequelize = require("./config/connection");
+const routes = require("./controllers");
 
 const app = express();
 
@@ -11,18 +9,25 @@ const PORT = process.env.PORT || 3001;
 
 // setup express so that it knows we're using handlebars as our
 // template engine
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine("handlebars", engine({}));
+app.set("view engine", "handlebars");
+app.set("views", __dirname + "/views");
 
 // Express middleware
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
+
 app.use(routes);
 
+app.get("/", (req, res) => {
+  //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
+  // layout property not necessary since it is default, but included for clarity
+  res.render("landing-page", { layout: "main" });
+});
 
-sequelize.sync({force: false}).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
   });
 });
-
