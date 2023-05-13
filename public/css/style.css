@@ -29,4 +29,31 @@
     flex-grow: 0;
 }
 
+/* Brings footer links closer together */
+footer p {
+    margin-bottom: 0.8rem;
+}
 
+/* Removes footer links underline */
+footer a {
+    text-decoration: none;
+}
+
+/* Adds footer links underline when hovering */
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Gem icon next to website name in footer, 
+makes it smaller and pushes text right */
+.footer-gem {
+    padding-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+
+/* github icon next to contact in footer, 
+pushes text right */
+.footer-contact-github {
+    padding-right: 0.2rem;
+}
