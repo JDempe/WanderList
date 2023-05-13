@@ -1,0 +1,32 @@
+/* Changes the website name font in the navbar, centers it */
+.navbar-brand {
+    width: 100%;
+    margin-right: 0px;
+    padding-left: 12rem;
+    text-align: center;
+    font-family: "Hammersmith One", sans-serif;
+    font-size: 1.8rem;
+  }
+
+
+.navbar-nav {
+    margin-left: auto;
+    padding-right: 1rem;
+}
+
+/* Sets size of ALL navbar icons */
+.navIcon {
+    margin: 0px 0px 5px 5px;
+    font-size: 1.5rem;
+}
+
+.container {
+    margin-left: auto;
+}
+
+/* helps with centering the website name on bigger monitors */
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+
