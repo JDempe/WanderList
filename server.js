@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// THIS BREAKS EVERYTHING
 app.use(routes);
 
 app.get("/", (req, res) => {
