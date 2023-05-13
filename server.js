@@ -21,9 +21,9 @@ app.use(express.static("public"));
 app.use(routes);
 
 app.get("/", (req, res) => {
-  //Serves the body of the page aka "home.handlebars" to the container //aka "main.handlebars"
+  //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
   // layout property not necessary since it is default, but included for clarity
-  res.render("home", { layout: "main" });
+  res.render("landing-page", { layout: "main" });
 });
 
 sequelize.sync({ force: false }).then(() => {

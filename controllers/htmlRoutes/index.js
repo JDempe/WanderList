@@ -1,20 +1,34 @@
 const router = require("express").Router();
 const { Example } = require("../../models");
 
-
-// GET one example
-router.get("/:id", async (req, res) => {
+// GET discovery page
+router.get("/discover", async (req, res) => {
   try {
-    const exampleData = await Example.findByPk(req.params.id);
-    if (!exampleData) {
-      res.status(404).json({ message: "No example found with that id!" });
-      return;
-    }
-    res.status(200).json(exampleData);
+    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
+    // layout property not necessary since it is default, but included for clarity
+    res.render("discovery-page", { layout: "main" });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+// GET user page
+router.get("/user/:id", async (req, res) => {
+  try {
+// Get the current user's info
+    const userData = await user.findByPk(req.params.id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: Post }],
+    });
+    const user = userData.get({ plain: true });
+
+    //Serves the body of the page aka "user-page.hbs" to the container //aka "main.hbs"
+    res.render("user-page");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // CREATE new example
 router.post("/", async (req, res) => {
