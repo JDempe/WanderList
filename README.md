@@ -52,6 +52,8 @@ The below resources contributed to the project.
 
 - [Ian Lunn](https://github.com/IanLunn) created an awesome library called [Hover.css](https://twitter.com/davidmacd) that adds some plug and play css animation classes.  I used this for some of the moving icons on my page.
 
+- [CodyHouse](https://codyhouse.co/) provides a lot of free resources for web developers.  I used their [Modal Window](https://codyhouse.co/gem/modal-window/) for the modal on the page.
+
 #### APIs
 
 - API Links will go here...
