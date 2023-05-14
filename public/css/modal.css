@@ -8,32 +8,28 @@ Primary style
           box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.6rem;
+.body-modal {
+  font-size: 1rem;
   font-family: "PT Sans", sans-serif;
   color: #505260;
   background-color: white;
 }
 
-a {
+.body-modal a {
   color: #2f889a;
   text-decoration: none;
 }
 
-img {
+.body-modal img {
   max-width: 100%;
 }
 
-input, textarea {
+.body-modal input, .body-modal textarea {
   font-family: "PT Sans", sans-serif;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
-input::-ms-clear, textarea::-ms-clear {
+.body-modal input::-ms-clear, .body-modal textarea::-ms-clear {
   display: none;
 }
 
@@ -279,7 +275,7 @@ x sigin/signup popup
 }
 
 .cd-signin-modal__label {
-  font-size: 1.4rem;
+  font-size: 0.875rem;
 }
 
 .cd-signin-modal__label.cd-signin-modal__label--image-replace {
@@ -377,7 +373,7 @@ x sigin/signup popup
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   color: #343642;
 }
 
@@ -390,7 +386,7 @@ x sigin/signup popup
   padding: .8em;
   z-index: 2;
   color: #FFF;
-  font-size: 1.3rem;
+  font-size: 0.8125rem;
   border-radius: 0.25em;
   /* prevent click and touch events */
   pointer-events: none;
@@ -443,7 +439,7 @@ x sigin/signup popup
 
 .cd-signin-modal__message {
   padding: 1.4em 1.4em 0;
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   line-height: 1.4;
   text-align: center;
 }
@@ -460,7 +456,7 @@ x sigin/signup popup
   left: 0;
   bottom: -30px;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 0.875rem;
 }
 
 .cd-signin-modal__bottom-message a {
