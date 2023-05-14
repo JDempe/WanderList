@@ -16,6 +16,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
     />
+
+    <link href="./css/reset.css" rel="stylesheet" />
+    <link href="./css/modal.css" rel="stylesheet" />
     <link href="./css/style.css" rel="stylesheet" />
   </head>
   <body>
@@ -41,6 +44,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
+				<!-- insert more links here -->
+
+        <!-- classes and data-signin can be transferred to any buttons -->
+				<a class="cd-main-nav__item cd-main-nav__item--signin js-signin-modal-trigger" href="#0" data-signin="login">Sign in</a>
+				<a class="cd-main-nav__item cd-main-nav__item--signup js-signin-modal-trigger" href="#0" data-signin="signup">Sign up</a>
+
             <a class="nav-item nav-link active" href="/">
               <!-- HOME ICON / navigates to personal_page.handlebars -->
               <i class="bi bi-house-fill navIcon"></i>
@@ -66,17 +75,19 @@
       {{{body}}}
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
-        <!-- SOCIAL MEDIA / can be eschewed but the block before the footer looks nice -->
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- SOCIAL MEDIA / can be eschewed but the block before the footer looks nice -->
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
         <!-- GET CONNECTED WITH US -->
         <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
+          <span>Get connected with us on social networks:</span>
         </div>
         <!-- EXAMPLE SOCIAL MEDIA ICONS / formatted to the right side of the page, if we use them -->
         <div>
-            <a href="https://github.com/JDempe/project2" class="me-4 text-reset">
-                <i class="bi bi-github"></i>
-            </a>
+          <a href="https://github.com/JDempe/project2" class="me-4 text-reset">
+            <i class="bi bi-github"></i>
+          </a>
         </div>
         </section>
         <!-- The big section Website description / links / contact  -->
@@ -113,12 +124,12 @@
                     </a>
                 </p>
                 <p>
-                    <a href="https://nodejs.org/en" target="_blank" class="text-reset">
+                    <a href="https://www.npmjs.com/package/nodemon" target="_blank" class="text-reset">
                       Node
                     </a>
                 </p>
                 <p>
-                    <a href="https://www.npmjs.com/package/nodemon" target="_blank" class="text-reset">
+                    <a href="https://nodejs.org/en" target="_blank" class="text-reset">
                       Nodemon
                     </a>
                 </p>
@@ -212,21 +223,212 @@
         </div>
         <!-- Copyright -->
     </footer>
+
+    {{! MODAL STUFF }}
+    <!-- Modal -->
+    {{!-- Provide by https://codyhouse.co/gem/loginsignup-modal-window/ --}}
+    <div class="body-modal cd-signin-modal js-signin-modal">
+      <!-- this is the entire modal form, including the background -->
+      <div class="cd-signin-modal__container">
+        <!-- this is the container wrapper -->
+        <ul
+          class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger" style="list-style-type: none"
+        >
+          <li><a href="#0" data-signin="login"  data-type="login">Sign in</a></li>
+          <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+        </ul>
+
+        <div
+          class="cd-signin-modal__block js-signin-modal-block"
+          data-type="login"
+        >
+          <!-- log in form -->
+          <form class="cd-signin-modal__form">
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
+                for="signin-email"
+              >E-mail</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="signin-email"
+                type="email"
+                placeholder="E-mail"
+              />
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
+                for="signin-password"
+              >Password</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="signin-password"
+                type="text"
+                placeholder="Password"
+              />
+              <a
+                href="#0"
+                class="cd-signin-modal__hide-password js-hide-password"
+              >Hide</a>
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked
+                class="cd-signin-modal__input"
+              />
+              <label for="remember-me">Remember me</label>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width"
+                type="submit"
+                value="Login"
+              />
+            </p>
+          </form>
+
+          <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a
+              href="#0"
+              data-signin="reset"
+            >Forgot your password?</a></p>
+        </div>
+        <!-- cd-signin-modal__block -->
+
+        <div
+          class="cd-signin-modal__block js-signin-modal-block"
+          data-type="signup"
+        >
+          <!-- sign up form -->
+          <form class="cd-signin-modal__form">
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace"
+                for="signup-username"
+              >Username</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="signup-username"
+                type="text"
+                placeholder="Username"
+              />
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
+                for="signup-email"
+              >E-mail</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="signup-email"
+                type="email"
+                placeholder="E-mail"
+              />
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
+                for="signup-password"
+              >Password</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="signup-password"
+                type="text"
+                placeholder="Password"
+              />
+              <a
+                href="#0"
+                class="cd-signin-modal__hide-password js-hide-password"
+              >Hide</a>
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <input
+                type="checkbox"
+                id="accept-terms"
+                class="cd-signin-modal__input"
+              />
+              <label for="accept-terms">I agree to the
+                <a href="#0">Terms</a></label>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding"
+                type="submit"
+                value="Create account"
+              />
+            </p>
+          </form>
+        </div>
+        <!-- cd-signin-modal__block -->
+
+        <div
+          class="cd-signin-modal__block js-signin-modal-block"
+          data-type="reset"
+        >
+          <!-- reset password form -->
+          <p class="cd-signin-modal__message">Lost your password? Please enter
+            your email address. You will receive a link to create a new
+            password.</p>
+
+          <form class="cd-signin-modal__form">
+            <p class="cd-signin-modal__fieldset">
+              <label
+                class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
+                for="reset-email"
+              >E-mail</label>
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                id="reset-email"
+                type="email"
+                placeholder="E-mail"
+              />
+              <span class="cd-signin-modal__error">Error message here!</span>
+            </p>
+
+            <p class="cd-signin-modal__fieldset">
+              <input
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding"
+                type="submit"
+                value="Reset password"
+              />
+            </p>
+          </form>
+
+          <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a
+              href="#0"
+              data-signin="login"
+            >Back to log-in</a></p>
+        </div>
+        <!-- cd-signin-modal__block -->
+        <a href="#0" class="cd-signin-modal__close js-close">Close</a>
+      </div>
+      <!-- cd-signin-modal__container -->
+    </div>
+    <!-- cd-signin-modal -->
+
   </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha384-5J2sN CascI0uuomJXfRnE9BQDQTa4FYq7vvc1lq&XxssnP34khXqbOQ3X12Jia"
-    crossorigin="anonymous"
-  ></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
   ></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ZxhFfaaBPHztkCvNz/gRpPqY1P7bqvFn9jf5YO6Uy7Q6+7v3Pe47KofCjPM0f5vW"
-    crossorigin="anonymous"
   ></script>
+  <script src="./js/modal.js"></script>
 
 </html>
