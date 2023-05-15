@@ -20,14 +20,14 @@
     <link href="../../public/css/reset.css" rel="stylesheet" />
     <link href="../../public/css/modal.css" rel="stylesheet" />
     <link href="../../public/css/style.css" rel="stylesheet" />
-    <link href="../../public/css/landing-page.css" rel="stylesheet" />
+    <link href="../../public/css/user-page.css" rel="stylesheet" />
   </head>
   <body>
     <header>
       <!-- NAVBAR / goes in main.handlebars -->
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-          <div class="navbar-brand font-test text-center" href="#">WEBSITE</div>
+          <a class="navbar-brand font-test text-center" href="#">WEBSITE</a>
         </div>
         <button
           class="navbar-toggler"
@@ -67,95 +67,18 @@
       </nav>
     </header>
     <main>
-      <!-- MAIN CONTENT -->
-    <div class="banner">
-      <img src="../../public/images/placeholderbanner.jpg" alt="Banner Image">
-      <div class="card-img-overlay signin-overlay-blurb">
-        <span class="banner-text-blurb">Start planning for your <br>next adventure today<br></span>
-      </div>
-      <div class="card-img-overlay signin-overlay" style="height: 150px">
-        <a class="js-signin-modal-trigger btn btn-light signin-banner-btn" href="#0" data-signin="login">Log in</a>
-        <span class="banner-text">or</span>
-        <a class="js-signin-modal-trigger btn btn-light signin-banner-btn" href="#0" data-signin="signup">Sign up</a>
-      </div>
-    </div>
-    <div class="discover">Discover what's out there</div>
-    <a href="" class="card-link-wrapper">
-      <div class="card-container">
-        <div class="card" style="width: 18rem;">
-          <div class="card bg-dark text-white" style="max-width: 600px;">
-            <img src="../../public/images/card1.jpg" class="card-img card-img-top" alt="Sicily, Italy"/>
-            <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
-              <h5 class="card-title location-text">Sicily, Italy</h5>
-            </div>
-          </div>
+        <div class="card">
           <div class="card-body">
-            <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-            <hr class="hr" />
-            <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-            <hr class="hr" />
-            <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-            <hr class="hr" />
-            <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-            <hr class="hr" />
-            <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-            <!-- <div class="button-container">
-              <a href="#" class="btn btn-primary card-btn">Discover</a>
-            </div> -->
+            <h5 class="card-title">Card Title</h5>
+            <p class="card-text truncated-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
+              bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
+              elit.
+            </p>
+            <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
+            <div class="collapse-button">See less <i class="bi bi-caret-up-fill"></i></div>
           </div>
         </div>
-            </a>
-        <a href="" class="card-link-wrapper">
-          <div class="card" style="width: 18rem;">
-            <div class="card bg-dark text-white" style="max-width: 600px;">
-              <img src="../../public/images/card2.jpg" class="card-img card-img-top" alt="Sicily, Italy"/>
-              <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
-                <h5 class="card-title location-text">Sicily, Italy</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <!-- <div class="button-container">
-                <a href="#" class="btn btn-primary card-btn">Discover</a>
-              </div> -->
-            </div>
-          </div>
-        </a>
-        <a href="" class="card-link-wrapper">
-          <div class="card" style="width: 18rem;">
-            <div class="card bg-dark text-white" style="max-width: 600px;">
-              <img src="../../public/images/card3.jpg" class="card-img card-img-top" alt="Sicily, Italy"/>
-              <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
-                <h5 class="card-title location-text">Tokyo, Japan</h5>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <hr class="hr" />
-              <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
-              <!-- <div class="button-container">
-                <a href="#" class="btn btn-primary card-btn">Discover</a>
-              </div> -->
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
       <!-- SOCIAL MEDIA / can be eschewed but the block before the footer looks nice -->
@@ -513,5 +436,5 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   ></script>
   <script src="../../public/js/modal.js"></script>
-
+  <script src="../../public/js/user-page.js"></script>
 </html>
