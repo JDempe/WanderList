@@ -23,11 +23,8 @@
   </head>
   <body>
     <header>
-      <!-- NAVBAR (user: logged in) / goes in main.handlebars -->
-      <nav
-        class="navbar navbar-expand-lg navbar-dark"
-        style="background-color: #6CB4F8;"
-      >
+       <!-- NAVBAR / goes in main.handlebars -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
           <a class="navbar-brand font-test text-center" href="#">WEBSITE</a>
         </div>
@@ -44,12 +41,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-				<!-- insert more links here -->
-
-        <!-- classes and data-signin can be transferred to any buttons -->
-				<a class="cd-main-nav__item cd-main-nav__item--signin js-signin-modal-trigger" href="#0" data-signin="login">Sign in</a>
-				<a class="cd-main-nav__item cd-main-nav__item--signup js-signin-modal-trigger" href="#0" data-signin="signup">Sign up</a>
-
+          <!-- classes and data-signin can be transferred to any buttons -->
+          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log in</a>
+          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign up</a>
+          	<!-- insert more links here -->
             <a class="nav-item nav-link active" href="/">
               <!-- HOME ICON / navigates to personal_page.handlebars -->
               <i class="bi bi-house-fill navIcon"></i>
@@ -89,206 +84,139 @@
             <i class="bi bi-github"></i>
           </a>
         </div>
-      </section>
-      <!-- The big section Website description / links / contact  -->
-      <div class="container text-center text-md-start mt-5">
-        <div class="row mt-3">
-          <!-- Website name / blurb section -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="bi bi-gem footer-gem"></i>
-              Website Name
-            </h6>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
-              aliquid odit, nihil recusandae maxime minima cum et? Cupiditate,
-              debitis quo aut odio itaque amet fuga nobis dolor. Blanditiis,
-              cumque ab. We'll put a short blurb for our website here.
-            </p>
-          </div>
-          <!-- First link column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="bi bi-link-45deg"></i>
-              Technology(TEMP)
-            </h6>
-            <p>
-              <a
-                href="https://getbootstrap.com/"
-                target="_blank"
-                class="text-reset"
-              >
-                Bootstrap
-              </a>
-            </p>
-            <p>
-              <a href="https://jquery.com/" target="_blank" class="text-reset">
-                jQuery
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://www.npmjs.com/package/nodemon"
-                target="_blank"
-                class="text-reset"
-              >
-                Node
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://nodejs.org/en"
-                target="_blank"
-                class="text-reset"
-              >
-                Nodemon
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://expressjs.com/"
-                target="_blank"
-                class="text-reset"
-              >
-                Express
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://www.npmjs.com/package/express-session"
-                target="_blank"
-                class="text-reset"
-              >
-                Express-Session
-              </a>
-            </p>
-          </div>
-          <!-- Second link column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="bi bi-link-45deg"></i>
-              Continued(TEMP)
-            </h6>
-            <p>
-              <a
-                href="https://www.npmjs.com/package/bcrypt"
-                target="_blank"
-                class="text-reset"
-              >
-                bcrypt
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://handlebarsjs.com/"
-                target="_blank"
-                class="text-reset"
-              >
-                Handlebars
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://www.npmjs.com/package/express-handlebars"
-                target="_blank"
-                class="text-reset"
-              >
-                Express-Handlebars
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://www.mysql.com/"
-                target="_blank"
-                class="text-reset"
-              >
-                MySQL
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://sequelize.org/"
-                target="_blank"
-                class="text-reset"
-              >
-                Sequelize
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://www.npmjs.com/package/connect-session-sequelize"
-                target="_blank"
-                class="text-reset"
-              >
-                Connect-Session-Sequelize
-              </a>
-            </p>
-          </div>
-          <!-- Contact link column / links to github profiles -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="bi bi-github footer-contact-github"></i>
-              Contact(TEMP)
-            </h6>
-            <p>
-              <a
-                href="https://github.com/JDempe"
-                target="_blank"
-                class="text-reset"
-              >
-                JDempe
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://github.com/UserOlena"
-                target="_blank"
-                class="text-reset"
-              >
-                UserOlena
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://github.com/Kevrev"
-                target="_blank"
-                class="text-reset"
-              >
-                Kevrev
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://github.com/jenryt"
-                target="_blank"
-                class="text-reset"
-              >
-                jenryt
-              </a>
-            </p>
-            <p>
-              <a
-                href="https://github.com/bbandhu"
-                target="_blank"
-                class="text-reset"
-              >
-                bbandhu
-              </a>
-            </p>
+        </section>
+        <!-- The big section Website description / links / contact  -->
+        <div class="container text-center text-md-start mt-5">
+          <div class="row mt-3">
+            <!-- Website name / blurb section -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="bi bi-gem footer-gem"></i>
+                    Website Name
+                </h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Dolorum aliquid odit, nihil recusandae maxime minima cum et? 
+                    Cupiditate, debitis quo aut odio itaque amet fuga nobis dolor. 
+                    Blanditiis, cumque ab. We'll put a short blurb for our website here.
+                </p>
+            </div>
+            <!-- First link column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="bi bi-link-45deg"></i>
+                    Technology
+                </h6>
+                <p>
+                    <a href="https://getbootstrap.com/" target="_blank" class="text-reset">
+                      Bootstrap
+                    </a>
+                </p>
+                <p>
+                    <a href="https://jquery.com/" target="_blank" class="text-reset">
+                      jQuery
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.npmjs.com/package/nodemon" target="_blank" class="text-reset">
+                      Node
+                    </a>
+                </p>
+                <p>
+                    <a href="https://nodejs.org/en" target="_blank" class="text-reset">
+                      Nodemon
+                    </a>
+                </p>
+                <p>
+                    <a href="https://expressjs.com/" target="_blank" class="text-reset">
+                      Express
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.npmjs.com/package/express-session" target="_blank" class="text-reset">
+                      Express-Session
+                    </a>
+                </p>
+            </div>
+            <!-- Second link column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="bi bi-link-45deg"></i>
+                    Continued
+                </h6>
+                <p>
+                    <a href="https://www.npmjs.com/package/bcrypt" target="_blank" class="text-reset">
+                      bcrypt
+                    </a>
+                </p>
+                <p>
+                    <a href="https://handlebarsjs.com/" target="_blank" class="text-reset">
+                      Handlebars
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.npmjs.com/package/express-handlebars" target="_blank" class="text-reset">
+                      Express-Handlebars
+                    </a>
+                </p>
+                <p>
+                  <a href="https://www.mysql.com/" target="_blank" class="text-reset">
+                      MySQL
+                  </a>
+                </p>
+                <p>
+                    <a href="https://sequelize.org/" target="_blank" class="text-reset">
+                      Sequelize
+                    </a>
+                </p>
+                <p>
+                    <a href="https://www.npmjs.com/package/connect-session-sequelize" target="_blank" class="text-reset">
+                      Connect-Session-Sequelize
+                    </a>
+                </p>
+            </div>
+            <!-- Contact link column / links to github profiles -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                    <i class="bi bi-github footer-contact-github"></i>
+                    Contact
+                </h6>
+                  <p>
+                    <a href="https://github.com/JDempe" target="_blank" class="text-reset">
+                        JDempe
+                    </a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/UserOlena" target="_blank" class="text-reset">
+                        UserOlena
+                    </a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/Kevrev" target="_blank" class="text-reset">
+                        Kevrev
+                    </a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/jenryt" target="_blank" class="text-reset">
+                        jenryt
+                    </a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/bbandhu" target="_blank" class="text-reset">
+                        bbandhu
+                    </a>
+                  </p>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Copyright -->
-      <div
-        class="text-center p-4"
-        style="background-color: rgba(0, 0, 0, 0.05);"
-      >
-        © 2023 Copyright:
-        <a class="text-reset fw-bold" href="">Website Name</a>
-      </div>
-      <!-- Copyright -->
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2023 Copyright:
+            <a class="text-reset fw-bold" href="">Website Name</a>
+        </div>
+        <!-- Copyright -->
     </footer>
 
     {{! MODAL STUFF }}

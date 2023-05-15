@@ -16,7 +16,7 @@ Primary style
 }
 
 .body-modal a {
-  color: #2f889a;
+  color: #157385;
   text-decoration: none;
 }
 
@@ -159,7 +159,7 @@ Login/Signup modal window - by CodyHouse.co
     border: 1px solid rgba(255, 255, 255, 0.6);
   }
   .cd-main-nav__item.cd-main-nav__item--signup {
-    background: #2f889a;
+    background: #59b2c4;
   }
 }
 
@@ -345,7 +345,7 @@ x sigin/signup popup
 .cd-signin-modal__input[type=submit] {
   padding: 16px 0;
   cursor: pointer;
-  background: #2f889a;
+  background: #6CB4F8;
   color: #FFF;
   font-weight: bold;
   border: none;
@@ -357,7 +357,7 @@ x sigin/signup popup
 }
 
 .cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus {
-  background: #3599ae;
+  background: #81c4ff;
   outline: none;
 }
 

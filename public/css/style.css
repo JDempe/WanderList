@@ -1,13 +1,22 @@
+body {
+    background-color: #F0EEF6;
+}
+
+.navbar {
+    background-color: #6CB4F8; 
+}
+
 /* Changes the website name font in the navbar, centers it */
 .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     margin-right: 0px;
-    padding-left: 12rem;
     text-align: center;
     font-family: "Hammersmith One", sans-serif;
     font-size: 1.8rem;
   }
-
 
 .navbar-nav {
     margin-left: auto;
@@ -18,6 +27,22 @@
 .navIcon {
     margin: 0px 0px 5px 5px;
     font-size: 1.5rem;
+}
+
+/* Overriding Bootstrap, targets both login and sign up in the navbar */
+.login-nav-Btn {
+    margin-right: 0.5rem;
+    width: 6rem;
+    border-width: 1.3px;
+    background: #6CB4F8;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    color: #FFFFFF
+}
+
+.login-nav-Btn:hover {
+    background: #ffffff;
+    color: #000000
 }
 
 .container {
@@ -57,3 +82,11 @@ pushes text right */
 .footer-contact-github {
     padding-right: 0.2rem;
 }
+
+
+@media (max-width: 791px) {
+    .navbar-brand {
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
