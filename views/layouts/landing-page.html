@@ -20,6 +20,7 @@
     <link href="../../public/css/reset.css" rel="stylesheet" />
     <link href="../../public/css/modal.css" rel="stylesheet" />
     <link href="../../public/css/style.css" rel="stylesheet" />
+    <link href="../../public/css/landing-page.css" rel="stylesheet" />
   </head>
   <body>
     <header>
@@ -67,6 +68,79 @@
     </header>
     <main>
       <!-- MAIN CONTENT -->
+    <div class="banner">
+      <img src="../../public/images/placeholderbanner.jpg" alt="Banner Image">
+      <div class="row position-absolute top-0 start-50 translate-middle-x">
+        <div class="col-md-6">
+          <a class="js-signin-modal-trigger btn btn-light login-banner-Btn" href="#0" data-signin="login">Log in</a>
+          <a class="js-signin-modal-trigger btn btn-light login-banner-Btn" href="#0" data-signin="signup">Sign up</a>
+        </div>
+      </div>
+    </div>
+    <div class="discover">Discover what's out there</div>
+    <div class="card-container">
+      <div class="card" style="width: 18rem;">
+        <div class="card bg-dark text-white" style="max-width: 600px;">
+          <img src="../../public/images/card1.jpg" class="card-img card-img-top" alt="Paris, France"/>
+          <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
+            <h5 class="card-title location-text">Paris, France</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <div class="button-container">
+            <a href="#" class="btn btn-primary card-btn">Discover</a>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <div class="card bg-dark text-white" style="max-width: 600px;">
+          <img src="../../public/images/card2.jpg" class="card-img card-img-top" alt="Sicily, Italy"/>
+          <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
+            <h5 class="card-title location-text">Sicily, Italy</h5>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <div class="button-container">
+            <a href="#" class="btn btn-primary card-btn">Discover</a>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;">
+        <img src="../../public/images/card3.jpg" class="card-img card-img-top" alt="Yosemite, California"/>
+        <div class="card-img-overlay" style="background-color: rgba(0, 0, 0, 0.2)">
+          <h5 class="card-title location-text">Yosemite NP, California</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <p class="card-text"><i class="bi bi-person-circle card-icon"></i>Example text</p>
+          <hr class="hr" />
+          <div class="button-container">
+            <a href="#" class="btn btn-primary card-btn">Discover</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
@@ -219,9 +293,9 @@
         <!-- Copyright -->
     </footer>
 
-    {{! MODAL STUFF }}
+    <!-- {{! MODAL STUFF }} -->
     <!-- Modal -->
-    {{!-- Provide by https://codyhouse.co/gem/loginsignup-modal-window/ --}}
+    <!-- {{!-- Provide by https://codyhouse.co/gem/loginsignup-modal-window/ --}} -->
     <div class="body-modal cd-signin-modal js-signin-modal">
       <!-- this is the entire modal form, including the background -->
       <div class="cd-signin-modal__container">

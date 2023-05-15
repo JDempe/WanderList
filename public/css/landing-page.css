@@ -1,0 +1,79 @@
+.banner {
+    position: relative;
+}
+  
+.banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.login-banner-Btn {
+    margin: 20px;
+}
+
+.discover {
+    padding-top: 2rem;
+    text-align: center;
+    font-family: "Hammersmith One", sans-serif;
+    font-size: 2rem;
+    color: #2a7bc7
+}
+
+.card {
+    border-radius: 22px;
+    border-width: 0px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0 5rem 0;
+  }
+
+.card-img-top {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 22px 22px 0 0;
+}
+
+.card-img-overlay {
+    height: 12rem;
+    border-radius: 22px 22px 0 0;
+}
+.location-text {
+    padding-top: 8rem;
+    font-size: 1.5rem;
+    color: #ffffff
+}
+
+.card-icon {
+    padding-right: 6px;
+    font-size: 18px;
+}
+
+.card-text {
+    color: #A6A2AC;
+}
+
+.card-btn {
+    background: #6CB4F8;
+    border-color: #6CB4F8;
+}
+
+.hr {
+    margin: 6px 0 6px 0;
+    border-color: #7a7b7c;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    font-family: "Hammersmith One", sans-serif;
+  }
+  
+
