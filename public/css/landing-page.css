@@ -74,14 +74,18 @@
 .card-container {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     padding: 2rem 0 5rem 0;
   }
+
+.card-link-wrapper {
+    text-decoration: none;
+}
 
 .card-img-top {
     object-fit: cover;
     width: 100%;
-    height: 100%;
+    height: 192px;
     border-radius: 22px 22px 0 0;
 }
 
