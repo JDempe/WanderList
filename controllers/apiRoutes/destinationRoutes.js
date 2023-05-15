@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {Destinations} = require('../models');
+const {Destinations} = require('../../models');
 
 // GET route to retrieve all destinations
 router.get('/destinations', async (req, res) => {
