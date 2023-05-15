@@ -8,8 +8,32 @@
     height: auto;
 }
 
-.login-banner-Btn {
-    margin: 20px;
+.signin-overlay {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 55%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-banner-btn {
+    margin: 12px;
+    background-color: #fb7022;
+    border-width: 5px;
+    border-color: #fb7022;
+    font-family: "Arial", sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+
+.banner-text {
+    font-family: "Arial", sans-serif;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 .discover {
