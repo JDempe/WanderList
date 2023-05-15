@@ -124,6 +124,38 @@
     justify-content: center;
     padding-top: 10px;
     font-family: "Hammersmith One", sans-serif;
-  }
+}
   
 
+
+@media (max-width: 768px) {
+    .signin-banner-btn {
+        border-width: 3px;
+        font-size: 0.8rem;
+    }  
+    .banner-text-blurb {
+        white-space: pre-line;
+        width: 80%;
+        font-size: 1rem; /* Adjust the font size for smaller screens */
+    }
+    .signin-overlay-blurb {
+        top: 5%;
+    }
+    .signin-overlay {
+        top: 40%;
+    }   
+}
+
+@media (min-width: 769px) and (max-width: 1214px) {
+    .banner-text-blurb {
+      white-space: pre-line;
+      width: 80%;
+      font-size: 1.35rem; /* Adjust the font size for medium-sized screens */
+    }
+}
+
+@media (min-width: 1300px) {
+    .signin-overlay {
+        top: 45%;
+    }   
+}

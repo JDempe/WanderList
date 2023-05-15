@@ -84,7 +84,7 @@ pushes text right */
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 791px) {
     .navbar-brand {
       top: 50%;
       transform: translate(-50%, -50%);
