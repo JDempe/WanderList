@@ -8,6 +8,26 @@
     height: auto;
 }
 
+.signin-overlay-blurb {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 55%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-text-blurb {
+    white-space: pre-line;
+    width: 55%;
+    font-family: "Hammersmith One", sans-serif;
+    font-size: 1.75rem;
+    color: #ffffff;
+}
+
+
 .signin-overlay {
     position: absolute;
     top: 50%;
@@ -18,6 +38,7 @@
     align-items: center;
     justify-content: center;
 }
+
 
 .signin-banner-btn {
     margin: 12px;
