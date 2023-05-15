@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    $(".card").each(function() {
+        var card = $(this);
+        var cardHeight = card.outerHeight();
+        if (cardHeight > 200) {
+            card.find(".truncated-text").addClass("enable-truncation");
+            card.find(".expand-button").show();
+        }
+    });
+
     $(".expand-button").click(function() {
         var card = $(this).closest(".card");
         card.removeClass("collapsing");
@@ -12,7 +21,7 @@ $(document).ready(function() {
         var card = $(this).closest(".card");
         card.removeClass("expanded");
         card.addClass("collapsing");
-        card.find(".truncated-text").css("max-height", "100px");
+        card.find(".truncated-text").css("max-height", "200px");
         $(this).hide();
         card.find(".expand-button").show();
     });
