@@ -6,18 +6,18 @@ class Pin extends Model {}
 Pin.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-    },
-    pinDescription: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     pinTitle: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    pinDescription: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     pinLocaton: {
       type: DataTypes.STRING,
@@ -27,13 +27,28 @@ Pin.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    pinCost: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    pinLink: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    pinCategory: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    pinTag: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     pinImage: {
       type: DataTypes.BLOB("long"),
-      allowNull: false,
+      allowNull: true,
+    },
+    user_id: {
+      type: DataTypes.UUID,
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
   },
   {

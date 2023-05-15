@@ -1,8 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-const bcrypt = require('bcrypt');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
-class User extends Model {};
+class User extends Model {}
 
 User.init(
   {
@@ -32,6 +32,16 @@ User.init(
         len: [8, 16],
       },
     },
+    // join avatar and user table
+    // each users can have multiple avatars and vice versa.
+    avatar_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      reference: {
+        model: "avatars",
+        key: "id",
+      },
+    },
   },
   {
     hooks: {
@@ -46,12 +56,11 @@ User.init(
     },
     sequelize,
     freezeTableName: true,
-    modelName: 'user',
+    modelName: "user",
     timestamps: false,
     underscored: true,
   }
-)
-
+);
 
 // object to test the model. it will be deleted later
 // const test = {
