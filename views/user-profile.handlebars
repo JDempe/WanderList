@@ -1,14 +1,12 @@
   <main class="container" id="user-profile">
     <div class="col-3">
-      <image src="../../public/images/sample-profile-pic.png" class="rounded-circle" alt="Cinque Terre" width="250"
+      <image src="./images/sample-profile-pic.png" class="rounded-circle" alt="Cinque Terre" width="250"
         height="250">
     </div>
 
     <div class="col-9">
-
-      <form class="col needs-validation" novalidate>
+      <form id="user-profile-form" class="col needs-validation" novalidate>
         <h2>User Profile</h2>
-
         <div class="mb-3 col">
           <label for="username-form" class="form-label">Username</label>
           <input type="text" class="form-control" id="username-form" placeholder="Your username..." value="{{user.username}}" required
@@ -23,7 +21,7 @@
         <div class="row">
           <div class="mb-3 col">
             <label for="fname" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="fname" placeholder="Your first name..." required minlength="1"
+            <input value="{{user.first_name}}" type="text" class="form-control" id="fname" placeholder="Your first name..." required minlength="1"
               maxlength="20">
             <div class="valid-feedback">
               Looks Great!
@@ -34,7 +32,7 @@
           </div>
           <div class="mb-3 col">
             <label for="lname" class="form-label">Last Name</label>
-            <input type="text" class="form-control" id="lname" placeholder="Your last name..." required minlength="1"
+            <input value="{{user.last_name}}" type="text" class="form-control" id="lname" placeholder="Your last name..." required minlength="1"
               maxlength="20">
             <div class="valid-feedback">
               Looks Great!
@@ -81,5 +79,3 @@
 
     </div>
   </main>
-
-  <script src="../../public/js/user-profile.js"></script>
