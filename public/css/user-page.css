@@ -149,6 +149,19 @@
     color: #6e6c78;
 }
 
+.title-textarea {
+    min-height: 2rem;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+}
+
+.card-textarea {
+    min-height: 2rem;
+    width: 100%
+}
+
+
 .truncated-text.enable-truncation {
     min-height: 50px;
     max-height: 200px;

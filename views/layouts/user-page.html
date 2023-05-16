@@ -126,6 +126,47 @@
             </div>
           </div>
         </div>
+        <div class="pin">
+          <!-- CONTAINS DATE -->
+          <div class="date-container">
+            <hr class="hr date-hr" />
+            <div class="timestamp">MM/DD/YY</div>
+            <hr class="hr date-hr" />
+          </div>
+          <!-- CONTAINS CARD -->
+          <div class="card-container">
+            <div class="card">
+              <form class="card-body">
+                <div class="card-top-section">
+                  <!-- DISPLAY CARD TITLE -->
+                  <div class="card-title display-text">Card Text</div>
+                  <!-- EDIT STATE CARD TITLE -->
+                  <textarea class="card-title title-textarea" placeholder="Card Title"></textarea>
+                  <!-- Actions should have confirmation required -->
+                  <div class="card-icon-section">
+                    <!-- CHECK ICON / completes item -->
+                    <i class="bi bi-check-square card-icon"></i>
+                    <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                    <i class="bi bi-pencil card-icon"></i>
+                    <!-- PIN ICON / "pins" card -->
+                    <i class="bi bi-pin-angle card-icon"></i>
+                    <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                    <i class="bi bi-share card-icon"></i>
+                    <!-- TRASH ICON / makes DELETE request to server for this post -->
+                    <i class="bi bi-trash card-icon"></i>
+                  </div>
+                </div>
+                <hr class="hr card-hr" />
+                <!-- DISPLAY CARD TEXT -->
+                <div class="card-text display-text truncated-text">Card Text</div>
+                <!-- EDIT STATE CARD TEXT -->
+                <textarea class="card-text card-textarea" placeholder="Card Text" readonly></textarea>
+                <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
+                <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
+              </form>
+            </div>
+          </div>
+        </div>
         <button id="save-button">Save</button>
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
