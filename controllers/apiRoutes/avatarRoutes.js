@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Avatar = require('../models/Avatars');
+const {Avatar} = require('../../models');
 
 // Create a new avatar
 router.post('/avatars', async (req, res) => {

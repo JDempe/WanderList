@@ -1,0 +1,32 @@
+[
+  {
+    "username": "emily42",
+    "email": "user1email@gmail.com",
+    "password": "User1pw@ucb",
+    "avatar_id": 1
+  },
+  {
+    "username": "Love2travel",
+    "email": "user2email@yahoo.com",
+    "password": "travel2MARS!",
+    "avatar_id": 3
+  },
+  {
+    "username": "teamUSAtraveler",
+    "email": "user3email@hotmail.com",
+    "password": "randomPW123",
+    "avatar_id": 2
+  },
+  {
+    "username": "mannyIsCool",
+    "email": "user4email@berkeley.edu",
+    "password": "yup!HeIsCool",
+    "avatar_id": 2
+  },
+  {
+    "username": "weGotThis",
+    "email": "user5email@aol.com",
+    "password": "weRtheCamp12",
+    "avatar_id": 4
+  }
+]

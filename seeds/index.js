@@ -1,24 +1,23 @@
-const sequelize = require('../config/connection');
+const sequelize = require("../config/connection");
+const { loremIpsum } = require("lorem-ipsum");
+const { User, Pins, Avatars } = require("../models");
 
-const {Example} = require('../models');
+const userSeedData = require("./userSeedData.json");
+const pinSeedData = require("./pinSeedData.json");
 
 const seedDb = async () => {
-  await sequelize.sync({force: true});
+  await sequelize.sync({ force: true });
 
-  await User.bulkCreate([
-    {
-      username: 'test1',
-      password: 'password',
-    },
-    {
-      username: 'test2',
-      password: 'password',
-    },
-    {
-      username: 'test3',
-      password: 'password',
-    }
-  ]);
+  await User.bulkCreate(userSeedData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  await Pins.bulkCreate(pinSeedData, {
+    individualHooks: true,
+    returning: true,
+  });
+
   process.exit(0);
 };
 
