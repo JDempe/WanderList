@@ -17,31 +17,33 @@ app.set("views", __dirname + "/views");
 
 // Express middleware
 app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
-  },
-  checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+      db: sequelize,
+    }),
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+    },
+    checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
 }));
- 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 app.use(routes);
 
 app.get("/", (req, res) => {
   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
   // layout property not necessary since it is default, but included for clarity
-  res.render("landing-page", { 
+  res.render("landing-page", {
     layout: "main",
-    style: "./css/landing-page.css" });
+    style: "./css/landing-page.css",
+    script: "./js/landing-page.js",
   });
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
