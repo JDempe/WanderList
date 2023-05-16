@@ -1,15 +1,20 @@
 $(document).ready(function() {
     $('#search-input').on('input', function() {
       var searchText = $(this).val().toLowerCase();
+      var noResultsContainer = $('.no-results-container');
   
       $('.card').each(function() {
         var cardTitle = $(this).find('.card-title').text().toLowerCase();
         var cardText = $(this).find('.card-text').text().toLowerCase();
   
         if (cardTitle.includes(searchText) || cardText.includes(searchText)) {
-          $(this).show();
+          $(this).css('display', 'block');
+          $(this).parent('.card-container').css('padding', '');
+          noResultsContainer.css('display', 'none');
         } else {
-          $(this).hide();
+          $(this).css('display', 'none');
+          $(this).parent('.card-container').css('padding', '0');
+          noResultsContainer.css('display', 'block');
         }
       });
     });
