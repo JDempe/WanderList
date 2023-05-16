@@ -1,3 +1,20 @@
+$(document).ready(function() {
+    $('#search-input').on('input', function() {
+      var searchText = $(this).val().toLowerCase();
+  
+      $('.card').each(function() {
+        var cardTitle = $(this).find('.card-title').text().toLowerCase();
+        var cardText = $(this).find('.card-text').text().toLowerCase();
+  
+        if (cardTitle.includes(searchText) || cardText.includes(searchText)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+});
+  
 // Card Javascript 
 $(document).ready(function() {
     $(".card").each(function() {

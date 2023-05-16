@@ -40,12 +40,24 @@
     color: #6e6c78;
 }
 
-.card-icon:hover {
-    color: #000; /* Change the color when hovered */
-  }
-  
+.bi-check-square:hover {
+    color: #43af65; /* Change the color when hovered */
+}
+
+.bi-pencil:hover {
+    color: #5a7ce4; /* Change the color when hovered */
+}
+
+.bi-share:hover {
+    color: #343333; /* Change the color when hovered */
+}
+
+.bi-trash:hover {
+    color: #ec6f6f; /* Change the color when hovered */
+}
+
   .card-icon.active {
-    color: #f00; /* Change the color when active */
+    color: #147bda; /* Change the color when active */
   }
 
 .card-hr {

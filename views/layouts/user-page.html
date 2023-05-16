@@ -73,7 +73,7 @@
       <!-- Search bar -->
         <div class="functions-bar">
           <div class="input-group rounded search-bar">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <input type="search" class="form-control rounded" placeholder="Search for cards" aria-label="Search" aria-describedby="search-addon" id="search-input"/>
             <span class="input-group-text border-0" id="search-addon">
               <i class="bi bi-search"></i>
             </span>
@@ -81,7 +81,6 @@
         </div>
         <!-- Card container -->
         <div class="card-container">
-          <!-- Individual card -->
           <div class="card">
             <div class="card-body">
               <div class="card-top-section">
@@ -100,36 +99,7 @@
               </div>
               <hr class="hr card-hr" />
               <p class="card-text truncated-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-  
+                test
               </p>
               <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
               <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
@@ -139,53 +109,108 @@
         <div class="card-container">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Card Title</h5>
+              <div class="card-top-section">
+                <h5 class="card-title">Card Title</h5>
+                <!-- Actions should have confirmation required -->
+                <div class="card-icon-section">
+                  <!-- CHECK ICON / completes item -->
+                  <i class="bi bi-check-square card-icon"></i>
+                  <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                  <i class="bi bi-pencil card-icon"></i>
+                  <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                  <i class="bi bi-share card-icon"></i>
+                  <!-- TRASH ICON / makes DELETE request to server for this post -->
+                  <i class="bi bi-trash card-icon"></i>
+                </div>
+              </div>
+              <hr class="hr card-hr" />
               <p class="card-text truncated-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-  
+                test
               </p>
               <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
-              <div class="collapse-button">See less <i class="bi bi-caret-up-fill"></i></div>
+              <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
             </div>
           </div>
         </div>
         <div class="card-container">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Card Title</h5>
+              <div class="card-top-section">
+                <h5 class="card-title">Card Title</h5>
+                <!-- Actions should have confirmation required -->
+                <div class="card-icon-section">
+                  <!-- CHECK ICON / completes item -->
+                  <i class="bi bi-check-square card-icon"></i>
+                  <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                  <i class="bi bi-pencil card-icon"></i>
+                  <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                  <i class="bi bi-share card-icon"></i>
+                  <!-- TRASH ICON / makes DELETE request to server for this post -->
+                  <i class="bi bi-trash card-icon"></i>
+                </div>
+              </div>
+              <hr class="hr card-hr" />
               <p class="card-text truncated-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies nibh ac felis ullamcorper
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-                bibendum. Proin rhoncus, enim vel luctus dapibus, ligula odio venenatis justo, at fringilla lectus est eu
-  
+                test
               </p>
               <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
-              <div class="collapse-button">See less <i class="bi bi-caret-up-fill"></i></div>
+              <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
             </div>
           </div>
         </div>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-top-section">
+                <h5 class="card-title">Card Title</h5>
+                <!-- Actions should have confirmation required -->
+                <div class="card-icon-section">
+                  <!-- CHECK ICON / completes item -->
+                  <i class="bi bi-check-square card-icon"></i>
+                  <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                  <i class="bi bi-pencil card-icon"></i>
+                  <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                  <i class="bi bi-share card-icon"></i>
+                  <!-- TRASH ICON / makes DELETE request to server for this post -->
+                  <i class="bi bi-trash card-icon"></i>
+                </div>
+              </div>
+              <hr class="hr card-hr" />
+              <p class="card-text truncated-text">
+                test2
+              </p>
+              <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
+              <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-top-section">
+                <h5 class="card-title">Card Title</h5>
+                <!-- Actions should have confirmation required -->
+                <div class="card-icon-section">
+                  <!-- CHECK ICON / completes item -->
+                  <i class="bi bi-check-square card-icon"></i>
+                  <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                  <i class="bi bi-pencil card-icon"></i>
+                  <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                  <i class="bi bi-share card-icon"></i>
+                  <!-- TRASH ICON / makes DELETE request to server for this post -->
+                  <i class="bi bi-trash card-icon"></i>
+                </div>
+              </div>
+              <hr class="hr card-hr" />
+              <p class="card-text truncated-text">
+                test3
+              </p>
+              <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
+              <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
+            </div>
+          </div>
+        </div>
+
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
       <!-- SOCIAL MEDIA / can be eschewed but the block before the footer looks nice -->
