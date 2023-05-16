@@ -1,27 +1,40 @@
 const router = require("express").Router();
-const { Example } = require("../../models");
+const { User } = require("../../models");
 
 // GET discovery page
 router.get("/discover", async (req, res) => {
   try {
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
-    res.render("discovery-page", { 
-      layout: "main", 
-      style: "./css/discovery-page.css" });
+    res.render("discovery-page", {
+      layout: "main",
+      style: "./css/discovery-page.css",
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // GET discovery page
-router.get("/editprofile", async (req, res) => {
+router.get("/editprofile/:id", async (req, res) => {
   try {
+
+// Do a query of the database to get the user's info given their ID
+    const userData = await User.findByPk(req.params.id, {
+      attributes: { exclude: ["password"] }
+    });
+    const user = userData.get({ plain: true });
+console.log(userData);
+
+
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
-    res.render("user-profile", { 
-      layout: "main", 
-      style: "./css/user-profile.css" });
+    res.render("user-profile", {
+      layout: "main",
+      style: "./css/user-profile.css",
+      script: "./js/user-profile.js",
+      user,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
