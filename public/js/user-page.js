@@ -57,4 +57,18 @@ $(document).ready(function() {
     });
 });
 
-
+// Allows editing of card when the pencil icon is clicked
+$('.card-icon-section .bi-pencil').click(function() {
+    // Disables editing on all cards
+    $('.card-title').prop('readonly', true);
+    $('.card-text').prop('readonly', true);
+  
+    // Enables editing on the clicked card
+    let cardTitleInput = $(this).closest('.card-top-section').find('.card-title');
+    let cardTextInput = $(this).closest('.card-body').find('.card-text');
+  
+    cardTitleInput.prop('readonly', false);
+    cardTextInput.prop('readonly', false);
+  
+    cardTitleInput.focus();
+  });

@@ -95,7 +95,7 @@
           <!-- CONTAINS DATE -->
           <div class="date-container">
             <hr class="hr date-hr" />
-              <div class="timestamp">MM/DD/YY</div>
+            <div class="timestamp">MM/DD/YY</div>
             <hr class="hr date-hr" />
           </div>
           <!-- CONTAINS CARD -->
@@ -103,7 +103,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="card-top-section">
-                  <h5 class="card-title">Card Title</h5>
+                  <input type="text" class="card-title" value="Card Title" readonly>
                   <!-- Actions should have confirmation required -->
                   <div class="card-icon-section">
                     <!-- CHECK ICON / completes item -->
@@ -119,15 +119,14 @@
                   </div>
                 </div>
                 <hr class="hr card-hr" />
-                <p class="card-text truncated-text">
-                  Card Text
-                </p>
+                <input type="text" class="card-text truncated-text" value="Card Text" readonly>
                 <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
                 <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
               </div>
             </div>
           </div>
         </div>
+        <button id="save-button">Save</button>
     </main>
     <footer class="text-center text-lg-start bg-light text-muted">
       <!-- SOCIAL MEDIA / can be eschewed but the block before the footer looks nice -->

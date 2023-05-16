@@ -92,6 +92,14 @@
     
 }
 
+.card input {
+    border-width: 0;
+}
+
+.card input:focus {
+    outline: none;
+}
+
 .card-title {
     margin-bottom: 0px;
    font-family: "Source Sans Pro" ;
