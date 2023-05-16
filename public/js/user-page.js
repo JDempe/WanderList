@@ -130,7 +130,25 @@ const pinSearch = function() {
     });
 };
 
+
+const applyReadOnly = () => {
+    $('.card-text').each((index, element) => {
+      readOnlyAppearance($(element));
+    });
+};
+  
+const readOnlyAppearance = ($textarea) => {
+    if ($textarea.prop('readonly')) {
+      $textarea.height('auto');
+      $textarea.height($textarea[0].scrollHeight + 'px');
+      $textarea.css('border', 'none');
+      $textarea.css('resize', 'none');
+      $textarea.css('background-color', 'transparent');
+      $textarea.css('box-shadow', 'none');
+    }
+};
+  
 $(document).ready(function() {
   pinSearch();
-  pinTransition();
+  applyReadOnly();
 });
