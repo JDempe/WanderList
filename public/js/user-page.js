@@ -10,15 +10,15 @@ $(document).ready(function() {
         if (cardTitle.includes(searchText) || cardText.includes(searchText)) {
           $(this).css('display', 'block');
           $(this).parent('.card-container').css('padding', '');
-          noResultsContainer.css('display', 'none');
+          noResultsContainer.addClass('no-results-container-noshow');
         } else {
           $(this).css('display', 'none');
           $(this).parent('.card-container').css('padding', '0');
-          noResultsContainer.css('display', 'block');
+          noResultsContainer.removeClass('no-results-container-noshow');
         }
       });
     });
-});
+  });
   
 // Card Javascript 
 $(document).ready(function() {

@@ -34,6 +34,25 @@
     background-color: #197fd8;
 }
 
+.no-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+  }
+  
+  .no-results-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.no-results-container-noshow {
+    display: none;
+}
+
 /* card css */
 .card-container {
     padding: 1rem 0 1.5rem;
