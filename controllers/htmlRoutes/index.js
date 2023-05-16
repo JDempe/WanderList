@@ -6,7 +6,9 @@ router.get("/discover", async (req, res) => {
   try {
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
-    res.render("discovery-page", { layout: "main" });
+    res.render("discovery-page", { 
+      layout: "main", 
+      style: "./css/discoery-page.css" });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -15,7 +17,7 @@ router.get("/discover", async (req, res) => {
 // GET user page
 router.get("/user/:id", async (req, res) => {
   try {
-// Get the current user's info
+    // Get the current user's info
     const userData = await user.findByPk(req.params.id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
@@ -28,7 +30,6 @@ router.get("/user/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 // CREATE new example
 router.post("/", async (req, res) => {
