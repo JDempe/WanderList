@@ -1,8 +1,60 @@
+.search-bar {
+    width: 15rem;
+}
+
+.input-group-text {
+    background-color: #00000000;
+}
+
+/* card css */
+.card-container {
+    padding: 1rem 0 1.5rem;
+}
 .card {
     width: 65%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 16px;
     min-height: 50px;
+}
+
+.card-top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title {
+   font-family: "Source Sans Pro" ;
+   font-weight: 900;
+   font-size: 2rem; 
+   color: #6e6c78;
+}
+
+.card-icon-section {
+    display: flex;
+}
+
+.card-icon {
+    margin: 0px 3.5px 0px 3.5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6e6c78;
+}
+
+.card-icon:hover {
+    color: #000; /* Change the color when hovered */
+  }
+  
+  .card-icon.active {
+    color: #f00; /* Change the color when active */
+  }
+
+.card-hr {
+    margin: 8px 0 8px 0;
+}
+
+.card-text {
+    font-family: "Source Sans Pro" ;
+    color: #6e6c78;
 }
 
 .truncated-text.enable-truncation {
@@ -30,11 +82,6 @@
     opacity: 0; 
 }
 
-.collapse-button,
-.expand-button {
-    display: none;
-}
-
 .card.collapsing .truncated-text.enable-truncation {
     max-height: 0;
     transition: max-height 0.5s ease;
@@ -45,12 +92,14 @@
     transition: max-height 0.5s ease;
 }
 
-.bi-caret-down-fill {
+.bi-caret-down-fill,
+.bi-caret-up {
     font-size: 0.8rem;
 }
 
 .expand-button,
 .collapse-button {
+    padding-top: 10px;
     color: #a3a3a3;
     cursor: pointer;
     text-align: center;
@@ -58,3 +107,4 @@
     margin-top: auto;
     display: none;
 }
+/* --end-- card css */

@@ -1,3 +1,4 @@
+// Card Javascript 
 $(document).ready(function() {
     $(".card").each(function() {
         var card = $(this);
@@ -26,3 +27,4 @@ $(document).ready(function() {
         card.find(".expand-button").show();
     });
 });
+// End card javascript
