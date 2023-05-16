@@ -101,93 +101,16 @@
           <!-- CONTAINS CARD -->
           <div class="card-container">
             <div class="card">
-              <div class="card-body">
-                <div class="card-top-section">
-                  <input type="text" class="card-title form-control" value="Card Title" readonly>
-                  <!-- Actions should have confirmation required -->
-                  <div class="card-icon-section">
-                    <!-- CHECK ICON / completes item -->
-                    <i class="bi bi-check-square card-icon"></i>
-                    <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-                    <i class="bi bi-pencil card-icon"></i>
-                    <!-- PIN ICON / "pins" card -->
-                    <i class="bi bi-pin-angle card-icon"></i>
-                    <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
-                    <i class="bi bi-share card-icon"></i>
-                    <!-- TRASH ICON / makes DELETE request to server for this post -->
-                    <i class="bi bi-trash card-icon"></i>
-                  </div>
-                </div>
-                <hr class="hr card-hr" />
-                <input type="text" class="card-text truncated-text" value="Card Text" readonly>
-                <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
-                <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pin">
-          <!-- CONTAINS DATE -->
-          <div class="date-container">
-            <hr class="hr date-hr" />
-            <div class="timestamp">MM/DD/YY</div>
-            <hr class="hr date-hr" />
-          </div>
-          <!-- CONTAINS CARD -->
-          <div class="card-container">
-            <div class="card">
-              <form class="card-body">
-                <div class="card-top-section">
-                  <!-- DISPLAY CARD TITLE -->
-                  <div class="card-title display-text">Card Text</div>
-                  <!-- EDIT STATE CARD TITLE -->
-                  <textarea class="card-title title-textarea"></textarea>
-                  <!-- Actions should have confirmation required -->
-                  <div class="card-icon-section">
-                    <!-- CHECK ICON / completes item -->
-                    <i class="bi bi-check-square card-icon"></i>
-                    <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-                    <i class="bi bi-pencil card-icon"></i>
-                    <!-- PIN ICON / "pins" card -->
-                    <i class="bi bi-pin-angle card-icon"></i>
-                    <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
-                    <i class="bi bi-share card-icon"></i>
-                    <!-- TRASH ICON / makes DELETE request to server for this post -->
-                    <i class="bi bi-trash card-icon"></i>
-                  </div>
-                </div>
-                <hr class="hr card-hr" />
-                <!-- DISPLAY CARD TEXT -->
-                <div class="card-text display-text truncated-text">
-                </div>
-                <!-- EDIT STATE CARD TEXT -->
-                <textarea class="card-text card-textarea" readonly></textarea>
-                <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
-                <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="pin">
-          <!-- CONTAINS DATE -->
-          <div class="date-container">
-            <hr class="hr date-hr" />
-            <div class="timestamp">MM/DD/YY</div>
-            <hr class="hr date-hr" />
-          </div>
-          <!-- CONTAINS CARD -->
-          <div class="card-container">
-            <div class="card">
               <form class="card-body was-validated">
                 <div class="card-top-section">
                   <!-- DISPLAY PIN TITLE -->
-                  <input type="text" class="card-title" placeholder="Pin Title" aria-label="Pin Title
+                  <input type="text" class="card-title" placeholder="Pin Title" aria-label="Pin Title"
                   value="">
                     <div class="valid-feedback" style="display: none;">
-                      Looks good!
+                      Great!
                     </div>
                     <div class="invalid-feedback" style="display: none;">
-                      Please enter a message in the textarea.
+                      Please enter a title.
                     </div>
                   <!-- Actions should have confirmation required -->
                   <div class="card-icon-section">
@@ -205,12 +128,10 @@
                 </div>
                 <hr class="hr card-hr" />
                 <!-- CARD TEXT -->
-                  <textarea class="card-text form-control" id="validationTextarea" aria-label="Pin Body Text" readonly required></textarea>
+                  <textarea class="card-text form-control" id="validationTextarea" aria-label="Pin Body Text" required></textarea>
                   <!-- <div class="invalid-feedback">
                     Please enter a message in the textarea.
                   </div> -->             
-                <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
-                <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
               </form>
             </div>
           </div>
