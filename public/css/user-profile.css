@@ -2,7 +2,7 @@
     border: 1px solid black;
 } */
 
-main {
+main #user-profile {
     display: flex;
     flex-direction: row;
     margin: 0 5%;
@@ -13,7 +13,7 @@ main {
     border-radius: 4px;
 }
 
-body {
+body #user-profile {
     background-color: #F9F9F9;
 }
 

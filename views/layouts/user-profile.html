@@ -23,52 +23,82 @@
         height="250">
     </div>
 
-    <div class="col">
-      <h2>User Profile</h2>
+    <div class="col-9">
 
-      <div class="mb-3 col">
-        <label for="email" class="form-label">Username</label>
-        <input type="email" class="form-control" id="email" placeholder="Your username...">
-      </div>
-      <div class="row">
-        <div class="mb-3 col">
-          <label for="fname" class="form-label">First Name</label>
-          <input type="email" class="form-control" id="fname" placeholder="Your first name...">
-        </div>
-        <div class="mb-3 col">
-          <label for="lname" class="form-label">Last Name</label>
-          <input type="email" class="form-control" id="lname" placeholder="Your last name...">
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="aboutme-form" class="form-label">About Me</label>
-        <textarea class="form-control" id="aboutme-form" rows="3"></textarea>
-      </div>
-      <div class="mb-3 col">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="example@example.com">
-      </div>
-      <div class="row">
-        <div class="mb-3 col">
-          <label for="fname" class="form-label">Password</label>
-          <input type="email" class="form-control" id="fname" placeholder="New Password">
-        </div>
-        <div class="mb-3 col">
-          <label for="lname" class="form-label">Confirm Password</label>
-          <input type="email" class="form-control" id="lname" placeholder="Confirm New Password">
-        </div>
-      </div>
+      <form class="col needs-validation" novalidate>
+        <h2>User Profile</h2>
 
-      <div class="row">
         <div class="mb-3 col">
-          <button type="button" class="btn btn-outline-primary">Confirm Changes</button>
-          <button type="button" class="btn btn-secondary">Cancel</button>
-      </div>
+          <label for="username-form" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username-form" placeholder="Your username..." required
+            minlength="3" maxlength="20">
+          <div class="valid-feedback">
+            Looks Great!
+          </div>
+          <div class="invalid-feedback">
+            Please choose a username between 3 and 20 characters.
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col">
+            <label for="fname" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="Your first name..." required minlength="1"
+              maxlength="20">
+            <div class="valid-feedback">
+              Looks Great!
+            </div>
+            <div class="invalid-feedback">
+              Please provide your first name.
+            </div>
+          </div>
+          <div class="mb-3 col">
+            <label for="lname" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lname" placeholder="Your last name..." required minlength="1"
+              maxlength="20">
+            <div class="valid-feedback">
+              Looks Great!
+            </div>
+            <div class="invalid-feedback">
+              Please provide your last name.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="aboutme-form" class="form-label">About Me</label>
+          <textarea class="form-control" id="aboutme-form" rows="3"></textarea>
+        </div>
 
+
+        <h2>Account Security</h2>
+
+        <div class="mb-3 col">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="example@example.com">
+        </div>
+
+
+        <div class="row">
+          <div class="mb-3 col">
+            <label for="fname" class="form-label">Password</label>
+            <input type="email" class="form-control" id="fname" placeholder="New Password">
+          </div>
+          <div class="mb-3 col">
+            <label for="lname" class="form-label">Confirm Password</label>
+            <input type="email" class="form-control" id="lname" placeholder="Confirm New Password">
+          </div>
+        </div>
+
+        <form class="row">
+          <div class="mb-3 col">
+            <button type="submit" class="btn btn-outline-primary">Confirm Changes</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+          </div>
+        </form>
+
+
+      </form>
 
     </div>
-
-
   </main>
 
 </body>
