@@ -101,6 +101,13 @@
 // // Bind click event to the document
 // $(document).on('click', handleClickOutside);
 
+// Prevent refresh on submission
+const preventDefault = (event) => {
+    event.preventDefault();
+};
+
+$('form').submit(preventDefault);
+
 // Search function Javascript / Searches for date, title, and text
 const pinSearch = function() {
     $('#search-input').on('input', function() {
@@ -130,25 +137,58 @@ const pinSearch = function() {
     });
 };
 
+// Sets all text areas to readonly by default
+const defaultReadOnly = () => {
+    $('.card-text').prop('readonly', true);
+    $('.card-title').prop('readonly', true);
+}
 
+// Iterates over every pin body and runs next function
 const applyReadOnly = () => {
     $('.card-text').each((index, element) => {
       readOnlyAppearance($(element));
     });
 };
   
+// If an area is readonly, removes textarea appearance
 const readOnlyAppearance = ($textarea) => {
     if ($textarea.prop('readonly')) {
-      $textarea.height('auto');
-      $textarea.height($textarea[0].scrollHeight + 'px');
-      $textarea.css('border', 'none');
-      $textarea.css('resize', 'none');
-      $textarea.css('background-color', 'transparent');
-      $textarea.css('box-shadow', 'none');
-    }
+        $textarea.addClass('no-visibility');
+      } else {
+        $textarea.removeClass('no-visibility');
+      }
 };
   
+// resizes textarea/card based on text height inside
+const autoResizeText = function() {
+    $('textarea').each(function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+}
+  
+// Edditing function when clicking on card
+$('.card-icon-section .bi-pencil').click(function() {
+    // Disable editing on all cards
+    $('.card-title').prop('readonly', true);
+    $('.card-text').prop('readonly', true);
+  
+    // Enables editing on the clicked card
+    const cardTitleInput = $(this).closest('.card-top-section').find('.card-title');
+    const cardTextInput = $(this).closest('.card-body').find('.card-text');
+  
+    cardTitleInput.prop('readonly', false);
+    cardTextInput.prop('readonly', false);
+    applyReadOnly();
+});
+
+
+
+$('textarea').on('input', autoResizeText);
+
 $(document).ready(function() {
   pinSearch();
+  defaultReadOnly();
   applyReadOnly();
+  autoResizeText();
 });

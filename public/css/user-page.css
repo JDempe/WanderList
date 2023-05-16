@@ -139,7 +139,6 @@
     color: #ec6f6f; /* Change the color when hovered */
 }
 
-
 .card-hr {
     margin: 4px 0 4px 0;
 }
@@ -147,6 +146,21 @@
 .card-text {
     font-family: "Source Sans Pro" ;
     color: #6e6c78;
+}
+
+.no-visibility {
+    border: none;
+    resize: none;
+    background-color: transparent;
+    box-shadow: none;
+    outline-color: transparent;
+    outline-style: none;
+}
+
+.no-visibility:focus {
+    outline-color: transparent;
+    outline-style: none;
+    box-shadow: none
 }
 
 .title-textarea {
