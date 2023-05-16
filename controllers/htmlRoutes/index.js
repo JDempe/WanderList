@@ -8,7 +8,20 @@ router.get("/discover", async (req, res) => {
     // layout property not necessary since it is default, but included for clarity
     res.render("discovery-page", { 
       layout: "main", 
-      style: "./css/discoery-page.css" });
+      style: "./css/discovery-page.css" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// GET discovery page
+router.get("/editprofile", async (req, res) => {
+  try {
+    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
+    // layout property not necessary since it is default, but included for clarity
+    res.render("user-profile", { 
+      layout: "main", 
+      style: "./css/user-profile.css" });
   } catch (err) {
     res.status(500).json(err);
   }
