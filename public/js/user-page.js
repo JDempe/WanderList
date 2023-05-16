@@ -1,26 +1,33 @@
+// Search function Javascript / Searches for date, title, and text
 $(document).ready(function() {
     $('#search-input').on('input', function() {
       var searchText = $(this).val().toLowerCase();
       var noResultsContainer = $('.no-results-container');
   
-      $('.card').each(function() {
-        var cardTitle = $(this).find('.card-title').text().toLowerCase();
-        var cardText = $(this).find('.card-text').text().toLowerCase();
+      $('.pin').each(function() {
+        var pin = $(this);
+        var cardTitle = pin.find('.card-title').text().toLowerCase();
+        var cardText = pin.find('.card-text').text().toLowerCase();
+        var timestamp = pin.find('.timestamp').text().toLowerCase();
   
-        if (cardTitle.includes(searchText) || cardText.includes(searchText)) {
-          $(this).css('display', 'block');
-          $(this).parent('.card-container').css('padding', '');
+        if (
+          cardTitle.includes(searchText) ||
+          cardText.includes(searchText) ||
+          timestamp.includes(searchText)
+        ) {
+          pin.css('display', 'block');
+          pin.removeClass('no-results');
           noResultsContainer.addClass('no-results-container-noshow');
         } else {
-          $(this).css('display', 'none');
-          $(this).parent('.card-container').css('padding', '0');
+          pin.css('display', 'none');
+          pin.addClass('no-results');
           noResultsContainer.removeClass('no-results-container-noshow');
         }
       });
     });
-  });
-  
-// Card Javascript 
+});
+
+// Card Expansion and Collapse Javascript 
 $(document).ready(function() {
     $(".card").each(function() {
         var card = $(this);
@@ -49,4 +56,5 @@ $(document).ready(function() {
         card.find(".expand-button").show();
     });
 });
-// End card javascript
+
+

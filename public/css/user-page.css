@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 3rem;
+    padding: 3rem 0 0.3rem 0;
     margin: 0 auto;
     max-width: 65%;
 }
@@ -31,7 +31,7 @@
 }
 
 .input-group-text {
-    background-color: #197fd8;
+    background-color: #ffffff00;
 }
 
 .no-results-container {
@@ -39,9 +39,9 @@
     align-items: center;
     justify-content: center;
     padding: 5%;
-  }
+}
   
-  .no-results-container div {
+.no-results-container div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,8 +54,28 @@
 }
 
 /* card css */
+.date-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.date-hr {
+    display: inline-block;
+    width: 30%;
+    margin: 10px 0px;
+    border: none;
+    border-top: 1px solid #000;
+}
+  
+.timestamp {
+    display: inline-block;
+    margin: 0 10px;
+}
+
 .card-container {
-    padding: 1rem 0 1.5rem;
+    padding: 0.5rem 0 1.5rem;
     display: flex;
     justify-content: space-around;
 }
@@ -99,17 +119,18 @@
     color: #5a7ce4; /* Change the color when hovered */
 }
 
+.bi-pin-angle:hover {
+    color: #f09b4c; /* Change the color when hovered */
+}
+
 .bi-share:hover {
-    color: #343333; /* Change the color when hovered */
+    color: #c784fd; /* Change the color when hovered */
 }
 
 .bi-trash:hover {
     color: #ec6f6f; /* Change the color when hovered */
 }
 
-  .card-icon.active {
-    color: #147bda; /* Change the color when active */
-  }
 
 .card-hr {
     margin: 4px 0 4px 0;
