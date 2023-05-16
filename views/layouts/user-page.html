@@ -141,7 +141,7 @@
                   <!-- DISPLAY CARD TITLE -->
                   <div class="card-title display-text">Card Text</div>
                   <!-- EDIT STATE CARD TITLE -->
-                  <textarea class="card-title title-textarea" placeholder="Card Title"></textarea>
+                  <textarea class="card-title title-textarea"></textarea>
                   <!-- Actions should have confirmation required -->
                   <div class="card-icon-section">
                     <!-- CHECK ICON / completes item -->
@@ -158,9 +158,60 @@
                 </div>
                 <hr class="hr card-hr" />
                 <!-- DISPLAY CARD TEXT -->
-                <div class="card-text display-text truncated-text">Card Text</div>
+                <div class="card-text display-text truncated-text">
+                </div>
                 <!-- EDIT STATE CARD TEXT -->
-                <textarea class="card-text card-textarea" placeholder="Card Text" readonly></textarea>
+                <textarea class="card-text card-textarea" readonly></textarea>
+                <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
+                <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="pin">
+          <!-- CONTAINS DATE -->
+          <div class="date-container">
+            <hr class="hr date-hr" />
+            <div class="timestamp">MM/DD/YY</div>
+            <hr class="hr date-hr" />
+          </div>
+          <!-- CONTAINS CARD -->
+          <div class="card-container">
+            <div class="card">
+              <form class="card-body was-validated">
+                <div class="card-top-section">
+                  <!-- DISPLAY PIN TITLE -->
+                  <input type="text" class="card-title" placeholder="Pin Title" aria-label="Pin Title
+                  value="">
+                    <div class="valid-feedback" style="display: none;">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback" style="display: none;">
+                      Please enter a message in the textarea.
+                    </div>
+                  <!-- Actions should have confirmation required -->
+                  <div class="card-icon-section">
+                    <!-- CHECK ICON / completes item -->
+                    <i class="bi bi-check-square card-icon"></i>
+                    <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+                    <i class="bi bi-pencil card-icon"></i>
+                    <!-- PIN ICON / "pins" card -->
+                    <i class="bi bi-pin-angle card-icon"></i>
+                    <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+                    <i class="bi bi-share card-icon"></i>
+                    <!-- TRASH ICON / makes DELETE request to server for this post -->
+                    <i class="bi bi-trash card-icon"></i>
+                  </div>
+                </div>
+                <hr class="hr card-hr" />
+                <!-- CARD TEXT -->
+                <div class="mb-3">
+                  <label for="validationTextarea" class="form-label"></label>
+                  <textarea class="form-control is-invalid" id="validationTextarea" required></textarea>
+                  <div class="invalid-feedback">
+                    Please enter a message in the textarea.
+                  </div>
+                </div>                
                 <div class="expand-button">See more <i class="bi bi-caret-down-fill"></i></div>
                 <div class="collapse-button">See less <i class="bi bi-caret-up"></i></div>
               </form>
