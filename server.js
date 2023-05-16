@@ -2,6 +2,8 @@ const express = require("express");
 const { engine } = require("express-handlebars");
 const sequelize = require("./config/connection");
 const routes = require("./controllers");
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
 
@@ -14,6 +16,19 @@ app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
 // Express middleware
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+  },
+  checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+}));
+ 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
