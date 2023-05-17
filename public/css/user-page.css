@@ -1,6 +1,7 @@
 .create-search-section {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 3rem 0 0.3rem 0;
     margin: 0 auto;
@@ -9,7 +10,7 @@
 
 .bi-plus-square-fill {
     font-size: 2rem;
-    color: #197fd8;
+    color: #2887d9;
     cursor: pointer;
 }
 
@@ -87,6 +88,7 @@
 
 .card-top-section {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     
@@ -106,6 +108,7 @@
    font-weight: 900;
    font-size: 2rem; 
    color: #6e6c78;
+   background-color: #197fd800;
 }
 
 .card-icon-section {
@@ -136,7 +139,7 @@
 }
 
 .bi-trash:hover {
-    color: #ec6f6f; /* Change the color when hovered */
+    color: #ef4747; ; /* Change the color when hovered */
 }
 
 .card-hr {
@@ -174,6 +177,46 @@
     min-height: 2rem;
     width: 100%
 }
+
+.changes-btn-container  {
+    display: flex;
+    float: right;
+    padding-top: 10px;
+}
+
+.save-btn {
+    margin-right: 0.3rem;
+    background-color:  #2887d9;
+}
+
+.save-btn:hover {
+    background-color: #6eb1eb; 
+    border-color: #6eb1eb;
+}
+
+.discard-btn {
+    
+}
+
+.discard-btn:hover {
+    background-color: #f97070; 
+    border-color: #f97070; 
+}
+
+.save-btn, .discard-btn {
+    border-radius: 10px;
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
 
 
 .truncated-text.enable-truncation {
