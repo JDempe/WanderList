@@ -7,8 +7,8 @@ const pinSearch = function() {
       $('.pin').each(function() {
         const pin = $(this);
         const cardTitle = pin.find('.card-title').text().toLowerCase();
-        const cardText = pin.find('.card-text').text().toLowerCase();
-        const timestamp = pin.find('.timestamp').text().toLowerCase();
+        const cardText = pin.find('.card-text').val().toLowerCase();
+        const timestamp = pin.find('.timestamp').val().toLowerCase();
   
         if (
           cardTitle.includes(searchText) ||
