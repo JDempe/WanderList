@@ -24,8 +24,6 @@ router.get("/editprofile/:id", async (req, res) => {
       attributes: { exclude: ["password"] }
     });
     const user = userData.get({ plain: true });
-console.log(userData);
-
 
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
