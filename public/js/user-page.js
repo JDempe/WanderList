@@ -60,11 +60,17 @@ function enablePinEditing(pin) {
 $('.card-icon-section .bi-pencil').click(function(e) {
   // Check if the button is already in a disabled state
   if ($(this).hasClass('disabled')) {
-    return; // Exit the function if disabled
+    return;
   }
-
+  
   const pin = $(this).closest('.card');
+  const pinTextInput = pin.find('.card-text');
+  // const pinTextValue = pinTextInput.val();
   enablePinEditing(pin);
+
+  // $('.discard-btn').click(function() {
+  //   pinTextInput.val(pinTextValue); 
+  // });
 
   // Checks if there is an active pin
   if (activePin && activePin[0] !== pin[0]) {
@@ -78,7 +84,7 @@ $('.card-icon-section .bi-pencil').click(function(e) {
   // Checks if the clicked pin is the active pin
   if (activePin && activePin[0] === pin[0]) {
     // Set the textarea to readonly
-    pin.find('.card-text').prop('readonly', true);
+    pinTextInput.prop('readonly', true);
     applyReadOnly();
 
     // Hides the buttons of the active pin
@@ -91,11 +97,11 @@ $('.card-icon-section .bi-pencil').click(function(e) {
     activePin = pin;
   }
 
-  // Disables the button temporarily to prevent spamming and let's buttons slide back up
+  // Disables the button temporarily to prevent spamming and let buttons slide back up
   $(this).addClass('disabled');
   setTimeout(() => {
     $(this).removeClass('disabled');
-  }, 200); 
+  }, 200);
 
   // Attaches click event listener to the document
   $(document).on('click', function(e) {
@@ -117,8 +123,6 @@ $('.card-icon-section .bi-pencil').click(function(e) {
       $(document).off('click');
     }
   });
-
-
 
   // Prevent event bubbling to avoid immediate closing of the card
   e.stopPropagation();
