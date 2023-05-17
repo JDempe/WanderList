@@ -47,7 +47,8 @@
             id="editprofile-firstname"
             placeholder="Your first name..."
             required
-
+            {{!-- Add regex pattern back in once DB will accept it --}}
+            {{!-- pattern="/^\w+([\s-_]\w+)*$/" --}}
             minlength="1"
             maxlength="20"
           />
@@ -68,7 +69,8 @@
             id="editprofile-lastname"
             placeholder="Your last name..."
             required
-
+            {{!-- Add regex pattern back in once DB will accept it --}}
+            {{!-- pattern="/^\w+([\s-_]\w+)*$/" --}}
             minlength="1"
             maxlength="20"
           />
