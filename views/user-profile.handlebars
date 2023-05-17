@@ -1,56 +1,11 @@
 <main class="container d-flex flex-wrap" id="user-profile">
   {{! AVATAR IMAGE AREA }}
   <div id="editprofile-avatar" class="col-3">
-    <image
-      src="./{{avatar.avatarsImage}}"
-      class="rounded-circle"
-      alt="avatar icon"
-      width="225"
-      height="225"
-    > </image>
+    <image src="./{{avatar.avatarsImage}}" class="rounded-circle" alt="avatar icon" width="225" height="225"> </image>
     <!-- Button trigger modal -->
-    <button
-      id="changeAvatarBtn"
-      type="button"
-      class="btn bi bi-camera"
-      data-toggle="modal"
-      data-target="#avatarChoiceModal"
-    ></button>
+    <button id="changeAvatarBtn" type="button" class="btn bi bi-camera" data-toggle="modal"
+      data-target="#avatarChoiceModal"></button>
   </div>
-
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="avatarChoiceModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="avatarChoiceModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog" role="document">
-      <div  data-simplebar class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="avatarChoiceModalLabel">Avatar Selection</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {{! AVATAR SELECTION AREA }}
-          <div id="avatar-selection" class="row">
-            {{#each avatars}}
-            {{>avatar-selection-image}}
-            {{/each}}
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
 
   {{! FORM AREA }}
   <div id="editaccount-forms" class="col-9">
@@ -60,17 +15,8 @@
       <div class="mb-3 col">
         {{! Username Textarea }}
         <label for="username-form" class="form-label">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          id="editprofile-username"
-          placeholder="Your username..."
-          value="{{user.username}}"
-          required
-          pattern="[a-zA-Z0-9]+"
-          minlength="3"
-          maxlength="20"
-        />
+        <input type="text" class="form-control" id="editprofile-username" placeholder="Your username..."
+          value="{{user.username}}" required pattern="[a-zA-Z0-9]+" minlength="3" maxlength="20" />
         <div class="valid-feedback">
           Looks Great!
         </div>
@@ -82,17 +28,8 @@
         <div class="mb-3 col">
           {{! First Name textarea }}
           <label for="editprofile-firstname" class="form-label">First Name</label>
-          <input
-            value="{{user.first_name}}"
-            type="text"
-            class="form-control"
-            id="editprofile-firstname"
-            placeholder="Your first name..."
-            required
-            pattern="[A-Za-z\s]+"
-            minlength="1"
-            maxlength="20"
-          />
+          <input value="{{user.first_name}}" type="text" class="form-control" id="editprofile-firstname"
+            placeholder="Your first name..." required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -103,17 +40,8 @@
         <div class="mb-3 col">
           {{! Last name text area }}
           <label for="editprofile-lastname" class="form-label">Last Name</label>
-          <input
-            value="{{user.last_name}}"
-            type="text"
-            class="form-control"
-            id="editprofile-lastname"
-            placeholder="Your last name..."
-            required
-            pattern="[A-Za-z\s]+"
-            minlength="1"
-            maxlength="20"
-          />
+          <input value="{{user.last_name}}" type="text" class="form-control" id="editprofile-lastname"
+            placeholder="Your last name..." required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -125,28 +53,15 @@
       <div class="mb-3">
         {{! About Me textarea }}
         <label for="editprofile-aboutme" class="form-label">About Me</label>
-        <textarea
-          class="form-control"
-          id="editprofile-aboutme"
-          rows="3"
-        >{{user.about_me}}</textarea>
+        <textarea class="form-control" id="editprofile-aboutme" rows="3">{{user.about_me}}</textarea>
       </div>
 
       <div class="row">
         {{! Submit Button }}
         <div class="mb-3 col text-end">
-          <button
-            disabled
-            id="editprofile-submitBtn"
-            type="submit"
-            class="btn btn-primary"
-          >Confirm</button>
+          <button disabled id="editprofile-submitBtn" type="submit" class="btn btn-primary">Confirm</button>
           {{! Cancel Button }}
-          <button
-            id="editprofile-cancelBtn"
-            type="button"
-            class="btn btn-outline-secondary"
-          >Cancel</button>
+          <button id="editprofile-cancelBtn" type="button" class="btn btn-outline-secondary">Cancel</button>
         </div>
       </div>
     </form>
@@ -156,49 +71,47 @@
       <h2>Account Security</h2>
       <div class="mb-3 col">
         <label for="email" class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="editprofile-email"
-          placeholder="example@example.com"
-          value="{{user.email}}"
-        />
+        <input type="email" class="form-control" id="editprofile-email" placeholder="example@example.com"
+          value="{{user.email}}" />
       </div>
       <div class="row">
         <div class="mb-3 col">
           <label for="fname" class="form-label">Password</label>
-          <input
-            type="email"
-            class="form-control"
-            id="editprofile-password"
-            placeholder="New Password"
-          />
+          <input type="email" class="form-control" id="editprofile-password" placeholder="New Password" />
         </div>
         <div class="mb-3 col">
           <label for="lname" class="form-label">Confirm Password</label>
-          <input
-            type="email"
-            class="form-control"
-            id="editprofile-confirmpassword"
-            placeholder="Confirm New Password"
-          />
+          <input type="email" class="form-control" id="editprofile-confirmpassword"
+            placeholder="Confirm New Password" />
         </div>
       </div>
       <div class="row">
         <div class="mb-3 col text-end">
-          <button
-            disabled
-            id="editsecurity-submitBtn"
-            type="submit"
-            class="btn btn-primary"
-          >Confirm</button>
-          <button
-            id="editsecurity-cancelBtn"
-            type="button"
-            class="btn btn-outline-secondary"
-          >Cancel</button>
+          <button disabled id="editsecurity-submitBtn" type="submit" class="btn btn-primary">Confirm</button>
+          <button id="editsecurity-cancelBtn" type="button" class="btn btn-outline-secondary">Cancel</button>
         </div>
       </div>
     </form>
   </div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="avatarChoiceModal" tabindex="-1" role="dialog" aria-labelledby="avatarChoiceModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div data-simplebar class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="avatarChoiceModalLabel">Avatar Selection</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{! AVATAR SELECTION AREA }}
+        <div id="avatar-selection" class="row">
+          {{#each avatars}}
+          {{>avatar-selection-image}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
