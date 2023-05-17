@@ -34,3 +34,9 @@
   background-color: #ffffff;
   border-radius: 4px;
 }
+
+#user-profile img {
+  margin: 40px auto;
+  border: 8px solid #003961;
+  background-color: #c8ddff;
+}
