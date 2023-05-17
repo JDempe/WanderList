@@ -6,6 +6,7 @@ const { User } = require('../../models');
 router.post('/signup', async (req, res) => {
     try {
         // verify that there is no user in the database with the provided email
+        console.log('im back end')
         const userExists = await User.findOne({
             where: {
                 email: req.body.email.toLowerCase().trim(),
@@ -34,6 +35,11 @@ router.post('/signup', async (req, res) => {
             password: req.body.password.trim(),
         });
         
+        req.session.save( () => {
+            req.session.user_id = result.id;
+            req.session.logged_in = true;
+         });
+
         res.status(200).json({ message: `Welcome aboard, ${result.username}! Enjoy your journey with us!` });
         
     } catch (error) {
