@@ -15,7 +15,7 @@ async function handleSignUpClick(e) {
         password: $signupPassword.val().trim(),
     }
 
-    const response = await fetch('http://localhost:3001/api/user/signup', {
+    const response = await fetch('/api/user/signup', {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: { 'Content-Type': 'application/json' },
