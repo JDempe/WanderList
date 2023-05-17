@@ -35,8 +35,49 @@
   border-radius: 4px;
 }
 
+#editprofile-avatar{
+  position: relative;
+}
+
 #user-profile img {
   margin: 40px auto;
-  border: 8px solid #003961;
-  background-color: #c8ddff;
+}
+
+#user-profile #changeAvatarBtn {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 40px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.797);
+  border: #00396148 2px solid;
+  opacity: 50%;
+  transition: all 0.3s ease-in-out;
+}
+
+#user-profile #changeAvatarBtn:hover {
+opacity: 100%;
+transition: all 0.3s ease-in-out;
+}
+
+#avatar-selection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+#avatar-selection img {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+#avatar-selection img:hover {
+  scale: 1.2;
 }

@@ -95,6 +95,7 @@ router.put("/editprofile/:id", async (req, res) => {
         last_name: req.body.last_name,
         username: req.body.username,
         about_me: req.body.about_me,
+        avatar_id: req.body.avatar_id,
       },
       {
         where: {

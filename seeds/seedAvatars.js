@@ -16,7 +16,11 @@ const avatarData = [
       {
         avatarsName: 'Avatar4',
         avatarsImage: 'images/avatar4.png',
-      },  
+      },
+      {
+        avatarsName: 'Avatar5',
+        avatarsImage: 'images/avatar5.png',
+      },
 
 ];
   

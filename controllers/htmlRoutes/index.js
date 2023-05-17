@@ -29,6 +29,9 @@ router.get("/editprofile/:id", async (req, res) => {
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
 
+    const avatarList = await Avatars.findAll();
+    const avatars = avatarList.map((avatar) => avatar.get({ plain: true }));
+
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
     res.render("user-profile", {
@@ -37,6 +40,7 @@ router.get("/editprofile/:id", async (req, res) => {
       script: "./js/user-profile.js",
       user,
       avatar,
+      avatars,
     });
   } catch (err) {
     res.status(500).json(err);

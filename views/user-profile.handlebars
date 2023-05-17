@@ -4,11 +4,53 @@
     <image
       src="./{{avatar.avatarsImage}}"
       class="rounded-circle"
-      alt="Cinque Terre"
+      alt="avatar icon"
       width="225"
       height="225"
     > </image>
+    <!-- Button trigger modal -->
+    <button
+      id="changeAvatarBtn"
+      type="button"
+      class="btn bi bi-camera"
+      data-toggle="modal"
+      data-target="#avatarChoiceModal"
+    ></button>
   </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="avatarChoiceModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="avatarChoiceModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="avatarChoiceModalLabel">Avatar Selection</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{! AVATAR SELECTION AREA }}
+          <div id="avatar-selection" class="row">
+            {{#each avatars}}
+            {{>avatar-selection-image}}
+            {{/each}}
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
 
   {{! FORM AREA }}
   <div id="editaccount-forms" class="col-9">
