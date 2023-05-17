@@ -81,8 +81,10 @@ transition: all 0.3s ease-in-out;
   margin: 0 auto;
   padding: 4px 0px;
   width: fit-content;
+  transition: all 0.1s ease-in-out;
 }
 
 #avatar-selection img:hover {
   scale: 1.2;
+  transition: all 0.1s ease-in-out;
 }
