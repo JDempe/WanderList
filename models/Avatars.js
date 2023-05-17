@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Avatar extends Model {}
+class Avatars extends Model {}
 
-Avatar.init(
+Avatars.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,7 +17,7 @@ Avatar.init(
       unique: true,
     },
     avatarsImage: {
-      type: DataTypes.BLOB("long"),
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -29,4 +29,4 @@ Avatar.init(
   }
 );
 
-module.exports = Avatar;
+module.exports = Avatars;

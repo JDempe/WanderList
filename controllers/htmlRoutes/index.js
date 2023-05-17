@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Avatars } = require("../../models");
 
 // GET discovery page
 router.get("/discover", async (req, res) => {
@@ -25,6 +25,10 @@ router.get("/editprofile/:id", async (req, res) => {
     });
     const user = userData.get({ plain: true });
 
+    // Pull from the avatar table the avatar image location that matches the user's avatar id
+    const avatarData = await Avatars.findByPk(user.avatar_id);
+    const avatar = avatarData.get({ plain: true });
+
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
     res.render("user-profile", {
@@ -32,6 +36,7 @@ router.get("/editprofile/:id", async (req, res) => {
       style: "./css/user-profile.css",
       script: "./js/user-profile.js",
       user,
+      avatar,
     });
   } catch (err) {
     res.status(500).json(err);

@@ -1,4 +1,4 @@
-const { Avatar } = require('../models');
+const { Avatars } = require('../models');
 
 const avatarData = [
     {
@@ -21,7 +21,7 @@ const avatarData = [
 ];
   
   const seedAvatars = async () => {
-    await Avatar.bulkCreate(avatarData);
+    await Avatars.bulkCreate(avatarData);
   };
   
   module.exports = seedAvatars; 
