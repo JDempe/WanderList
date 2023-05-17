@@ -50,30 +50,38 @@ function enableCardEditing(card) {
 }
   
 // Function to handle click events on card icons
-$('.card-icon-section .bi-pencil').click(function() {
-    const card = $(this).closest('.card');
-    enableCardEditing(card);
+$('.card-icon-section .bi-pencil').click(function(e) {
+  const card = $(this).closest('.card');
+  enableCardEditing(card);
   
-    // Attach click event listener to the document
-    $(document).on('click', function(e) {
-      const target = $(e.target);
-      const isCard = target.closest('.card').length > 0;
+  // Show the save and discard buttons
+  card.find('.save-btn').slideToggle(200);
+  card.find('.discard-btn').slideToggle(200);
   
-      // Check if the click event occurred outside of the card elements
-      if (!isCard) {
-        $('.card-title').prop('readonly', true);
-        $('.card-text').prop('readonly', true);
-        applyReadOnly();
+  // Attach click event listener to the document
+  $(document).on('click', function(e) {
+    const target = $(e.target);
+    const isCard = target.closest('.card').length > 0;
   
-        // Remove the click event listener from the document
-        $(document).off('click');
-      }
-    });
+    // Check if the click event occurred outside of the card elements
+    if (!isCard) {
+      $('.card-title').prop('readonly', true);
+      $('.card-text').prop('readonly', true);
+      applyReadOnly();
   
-    // Prevent event bubbling to avoid immediate closing of the card
-    e.stopPropagation();
+      // Hide the save and discard buttons
+      card.find('.save-btn').slideToggle(200);
+      card.find('.discard-btn').slideToggle(200);
+  
+      // Remove the click event listener from the document
+      $(document).off('click');
+    }
 });
   
+  // Prevent event bubbling to avoid immediate closing of the card
+  e.stopPropagation();
+});
+
 // Function to disable editing when clicking outside of the card
 function disableCardEditing() {
     $('.card-title').prop('readonly', true);
