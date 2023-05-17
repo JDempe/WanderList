@@ -7,8 +7,6 @@ const $signupPassword = $('#signup-password');
 async function handleSignUpClick(e) {
     e.preventDefault();
 
-    console.log('going to fetch')
-    const $authModal = $('.body-modal');
     const userData = {
         username: $signupUsername.val().trim(),
         email: $signupEmail.val().trim().toLowerCase(),
@@ -84,7 +82,7 @@ function validateSignUpPasswordField() {
 // verify that the password value consists of 8 to 128 characters and includes at least one numerical digit, one special symbol, and one uppercase letter.
 function validatePassword() {
     const userPassword = $signupPassword.val().trim();
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=])(?=.*[A-Z]).{8,128}$/;
+    const passwordRegex = /^(?=.*[0-9])(?=.*[~`!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?])(?=.*[A-Z])(?=.*[a-z]).{8,128}$/;
 
     if (!passwordRegex.test(userPassword)) {
         return false;
