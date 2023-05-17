@@ -3,28 +3,35 @@ const preventDefault = (e) => {
     e.preventDefault();
 };
 
+
+// variables to make code cleaner later
+
+let pinTitle =  $('.card-title');
+let pinText =  $('.card-text');
+let activePin = null;
+
 $('form').submit(preventDefault);
 
 // Sets all text areas to readonly by default
 const defaultReadOnly = () => {
-    $('.card-text').prop('readonly', true);
-    $('.card-title').prop('readonly', true);
+  pinTitle.prop('readonly', true);
+  pinText.prop('readonly', true);
 }
 
 // Iterates over every pin body and runs next function
 const applyReadOnly = () => {
-    $('.card-text').each((index, element) => {
+    pinText.each((index, element) => {
       readOnlyAppearance($(element));
     });
 };
   
 // If an area is readonly, removes textarea appearance
-const readOnlyAppearance = ($textarea) => {
-    if ($textarea.prop('readonly')) {
-        $textarea.addClass('no-visibility');
-      } else {
-        $textarea.removeClass('no-visibility');
-      }
+const readOnlyAppearance = (pinText) => {
+  if (pinText.prop('readonly')) {
+    pinText.addClass('no-visibility');
+  } else {
+    pinText.removeClass('no-visibility');
+  }
 };
   
 // resizes textarea/card based on text height inside
@@ -35,68 +42,86 @@ const autoResizeText = function() {
     });
 }
   
-function enableCardEditing(card) {
-    // Disable editing on all cards
-    $('.card-title').prop('readonly', true);
-    $('.card-text').prop('readonly', true);
-  
-    // Enables editing on the clicked card
-    const cardTitleInput = card.find('.card-title');
-    const cardTextInput = card.find('.card-text');
-  
-    cardTitleInput.prop('readonly', false);
-    cardTextInput.prop('readonly', false);
-    applyReadOnly();
+function enablePinEditing(pin) {
+  // Disable editing on all pins
+  pinTitle.prop('readonly', true);
+  pinText.prop('readonly', true);
+
+  // Enables editing on the clicked pin
+  const pinTitleInput = pin.find('.card-title');
+  const pinTextInput = pin.find('.card-text');
+
+  pinTitleInput.prop('readonly', false);
+  pinTextInput.prop('readonly', false);
+  applyReadOnly();
 }
-  
-// Function to handle click events on card icons
+
+
 $('.card-icon-section .bi-pencil').click(function(e) {
-  const card = $(this).closest('.card');
-  enableCardEditing(card);
-  
-  // Show the save and discard buttons
-  card.find('.save-btn').slideToggle(200);
-  card.find('.discard-btn').slideToggle(200);
-  
-  // Attach click event listener to the document
+  // Check if the button is already in a disabled state
+  if ($(this).hasClass('disabled')) {
+    return; // Exit the function if disabled
+  }
+
+  const pin = $(this).closest('.card');
+  enablePinEditing(pin);
+
+  // Checks if there is an active pin
+  if (activePin && activePin[0] !== pin[0]) {
+    // Hides the active pin's buttons
+    activePin.find('.save-btn, .discard-btn').slideUp(200);
+  }
+
+  // Toggles the buttons for the clicked pin
+  pin.find('.save-btn, .discard-btn').slideToggle(200);
+
+  // Checks if the clicked pin is the active pin
+  if (activePin && activePin[0] === pin[0]) {
+    // Set the textarea to readonly
+    pin.find('.card-text').prop('readonly', true);
+    applyReadOnly();
+
+    // Hides the buttons of the active pin
+    pin.find('.save-btn, .discard-btn').slideUp(200);
+
+    // Resets the active pin
+    activePin = null;
+  } else {
+    // Sets the active pin
+    activePin = pin;
+  }
+
+  // Disables the button temporarily to prevent spamming and let's buttons slide back up
+  $(this).addClass('disabled');
+  setTimeout(() => {
+    $(this).removeClass('disabled');
+  }, 200); 
+
+  // Attaches click event listener to the document
   $(document).on('click', function(e) {
     const target = $(e.target);
-    const isCard = target.closest('.card').length > 0;
-  
-    // Check if the click event occurred outside of the card elements
-    if (!isCard) {
-      $('.card-title').prop('readonly', true);
-      $('.card-text').prop('readonly', true);
+    const isPin = target.closest('.card').length > 0;
+
+    // Checks if the click event occurred outside of the pin elements
+    if (!isPin) {
+      $('.card-title, .card-text').prop('readonly', true);
       applyReadOnly();
-  
-      // Hide the save and discard buttons
-      card.find('.save-btn').slideToggle(200);
-      card.find('.discard-btn').slideToggle(200);
-  
-      // Remove the click event listener from the document
+
+      // Hides the buttons of the active pin
+      activePin.find('.save-btn, .discard-btn').slideUp(200);
+
+      // Resets the active pin
+      activePin = null;
+
+      // Removes the click event listener from the document
       $(document).off('click');
     }
-});
-  
+  });
+
+
+
   // Prevent event bubbling to avoid immediate closing of the card
   e.stopPropagation();
-});
-
-// Function to disable editing when clicking outside of the card
-function disableCardEditing() {
-    $('.card-title').prop('readonly', true);
-    $('.card-text').prop('readonly', true);
-    applyReadOnly();
-}
-  
-// Attach click event listener to the document
-$(document).on('click', function(event) {
-    const target = $(event.target);
-    const isCard = target.closest('.card').length > 0;
-
-    if (!isCard) {
-        disableCardEditing();
-    }
 });
 
 $('textarea').on('input', autoResizeText);
