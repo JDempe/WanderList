@@ -2,7 +2,7 @@
   {{! AVATAR IMAGE AREA }}
   <div id="editprofile-avatar" class="col-3">
     <image
-      src="{{avatar-img}}"
+      src="{{user.avatar-img}}"
       class="rounded-circle"
       alt="Cinque Terre"
       width="225"
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="mb-3 col">
           {{! First Name textarea }}
-          <label for="fname" class="form-label">First Name</label>
+          <label for="editprofile-firstname" class="form-label">First Name</label>
           <input
             value="{{user.first_name}}"
             type="text"
@@ -47,8 +47,7 @@
             id="editprofile-firstname"
             placeholder="Your first name..."
             required
-            {{!-- Add regex pattern back in once DB will accept it --}}
-            {{!-- pattern="/^\w+([\s-_]\w+)*$/" --}}
+            pattern="[A-Za-z\s]+"
             minlength="1"
             maxlength="20"
           />
@@ -61,7 +60,7 @@
         </div>
         <div class="mb-3 col">
           {{! Last name text area }}
-          <label for="lname" class="form-label">Last Name</label>
+          <label for="editprofile-lastname" class="form-label">Last Name</label>
           <input
             value="{{user.last_name}}"
             type="text"
@@ -69,8 +68,7 @@
             id="editprofile-lastname"
             placeholder="Your last name..."
             required
-            {{!-- Add regex pattern back in once DB will accept it --}}
-            {{!-- pattern="/^\w+([\s-_]\w+)*$/" --}}
+            pattern="[A-Za-z\s]+"
             minlength="1"
             maxlength="20"
           />

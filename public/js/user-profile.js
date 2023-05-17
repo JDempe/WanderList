@@ -50,7 +50,7 @@ $(document).ready(function () {
 
       // Send the PUT request
       $.ajax({
-        url: "/api/user/editprofile/4440b905-e4f8-4921-a404-fe1676e0df41",
+        url: "/api/user/editprofile/50e95835-2139-4dde-bb52-15ba5de15684",
         data: {
           first_name: user.firstName,
           last_name: user.lastName,

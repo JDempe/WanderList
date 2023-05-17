@@ -24,14 +24,14 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isAlpha: true,
+        is: /^[a-zA-Z\s]+$/,
       },
     },
     last_name: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isAlpha: true,
+        is: /^[a-zA-Z\s]+$/,
       },
     },
     email: {
