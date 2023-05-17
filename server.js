@@ -38,7 +38,13 @@ app.use(routes);
 app.get("/", (req, res) => {
   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
   // layout property not necessary since it is default, but included for clarity
-  res.render("landing-page", { layout: "main" });
+  res.render("landing-page", {
+     layout: "main",
+     user: {
+      id: req.session.user_id,
+      isLoggedIn: req.session.logged_in
+    } 
+    });
 });
 
 sequelize.sync({ force: false }).then(() => {
