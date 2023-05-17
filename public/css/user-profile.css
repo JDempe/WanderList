@@ -61,6 +61,10 @@ opacity: 100%;
 transition: all 0.3s ease-in-out;
 }
 
+#avatarChoiceModal .modal-content {
+  height: 60vh;
+}
+
 #avatar-selection {
   display: flex;
   flex-direction: row;
@@ -75,6 +79,7 @@ transition: all 0.3s ease-in-out;
 
 #avatar-selection img {
   margin: 0 auto;
+  padding: 4px 0px;
   width: fit-content;
 }
 
