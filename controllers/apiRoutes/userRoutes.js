@@ -33,7 +33,12 @@ router.post('/signup', async (req, res) => {
             email: req.body.email.toLowerCase().trim(),
             password: req.body.password.trim(),
         });
-        
+
+        req.session.user_id = result.id;
+        req.session.logged_in = 1;
+
+        req.session.save();
+
         res.status(200).json({ message: `Welcome aboard, ${result.username}! Enjoy your journey with us!` });
         
     } catch (error) {

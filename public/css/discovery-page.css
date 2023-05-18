@@ -1,0 +1,147 @@
+.create-search-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 3rem 0 0.3rem 0;
+    margin: 0 auto;
+    max-width: 65%;
+}
+
+.bi-arrow-clockwise {
+    font-size: 1.1rem;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.bi-arrow-clockwise:hover {
+    color: #6eb1eb; /* Change the color when hovered */
+}
+
+.btn-refresh {
+    background-color: #2887d9;
+    border-color: #2887d9;
+}
+
+.btn-refresh:hover {
+    background-color: #6eb1eb;
+    border-color: #6eb1eb;
+}
+
+
+.create-text {
+    padding-left: 4px;
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: #ffffff;
+    
+}
+
+.search-bar {
+    width: 15rem;
+}
+
+.input-group-text {
+    background-color: #ffffff00;
+}
+
+.no-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+  
+.no-results-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.no-results-container-noshow {
+    display: none;
+}
+
+/* card css */
+.date-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.date-hr {
+    display: inline-block;
+    width: 30%;
+    margin: 10px 0px;
+    border: none;
+    border-top: 1px solid #000;
+}
+  
+.timestamp {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.card-container {
+    padding: 0.5rem 0 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+.card {
+    width: 65%;
+    border-radius: 16px;
+    min-height: 50px;
+}
+
+.card-top-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.card input {
+    border-width: 0;
+}
+
+.card input:focus {
+    outline: none;
+}
+
+.card-title {
+    margin-bottom: 0px;
+   font-family: "Source Sans Pro" ;
+   font-weight: 900;
+   font-size: 2rem; 
+   color: #6e6c78;
+   background-color: #197fd800;
+}
+
+.card-icon-section {
+    display: flex;
+}
+
+.card-icon {
+    margin: 0px 3.5px 0px 3.5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6e6c78;
+}
+
+.bi-pin-angle:hover {
+    color: #f09b4c; /* Change the color when hovered */
+}
+
+.card-hr {
+    margin: 4px 0 4px 0;
+}
+
+.card-text {
+    font-family: "Source Sans Pro" ;
+    color: #6e6c78;
+}
