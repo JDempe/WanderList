@@ -4,6 +4,7 @@ const sequelize = require("./config/connection");
 const routes = require("./controllers");
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { extendDefaultFields } = require("./models/Session");
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(session({
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,
+    table: 'Session', 
+    extendDefaultFields: extendDefaultFields,
   }),
   cookie: {
     maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
