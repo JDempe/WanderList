@@ -133,4 +133,12 @@
            el.value = el.value;
       }
   };
+  //function to enable tooltip on navbar
+  document.addEventListener("DOMContentLoaded", function() {
+   console.log("DOM loaded and ready to go!");
+   var tooltipTriggers = document.querySelectorAll('[data-toggle="tooltip"]');
+   for (var i = 0; i < tooltipTriggers.length; i++) {
+       new bootstrap.Tooltip(tooltipTriggers[i]);
+   }
+});
 })();
