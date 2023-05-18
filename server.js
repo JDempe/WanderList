@@ -4,6 +4,7 @@ const sequelize = require("./config/connection");
 const routes = require("./controllers");
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const { extendDefaultFields } = require("./models/Session");
 
 const app = express();
 
@@ -17,16 +18,18 @@ app.set("views", __dirname + "/views");
 
 // Express middleware
 app.use(session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize,
-    }),
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
-    },
-    checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+    table: 'Session', 
+    extendDefaultFields: extendDefaultFields,
+  }),
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+  },
+  checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
 }));
 
 app.use(express.urlencoded({ extended: true }));
