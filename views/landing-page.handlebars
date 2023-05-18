@@ -14,6 +14,7 @@
                 <div class="navbar-nav ml-auto">
                     <!-- classes and data-signin can be transferred to any buttons -->
                     {{!logic to handle login/signup buttons when the user is logged in or not}}
+                    {{! below block will be rendered if user is not logged in}}
                     {{#unless user.isLoggedIn}}
                     <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log
                         in</a>
@@ -26,22 +27,22 @@
                         <i class="bi bi-box-arrow-right navIcon"></i>
                     </a>
                     {{/if}}
-                    <a class="nav-item nav-link active" href="/" title="Home">
-                        <!-- HOME ICON / navigates to personal_page.handlebars -->
-                        <i class="bi bi-house-fill navIcon"></i>
-                    </a>
-                    <a class="nav-item nav-link active" href="/discover" title="Discover">
-                        <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
-                        <i class="bi bi-compass navIcon"></i>
-                    </a>
-                    <a class="nav-item nav-link active" href="user/{{user.id}}" title="Profile">
-                        <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-                        <i class="bi bi-person-circle navIcon"></i>
-                    </a>
-                    <a class="nav-item nav-link active" href="#" title="Settings">
-                        <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
-                        <i class="bi bi-gear-fill navIcon"></i>
-                    </a>
+                  <a class="nav-item nav-link active" href="/" data-toggle="tooltip" data-placement="top" title="Home">
+              <!-- HOME ICON / navigates to personal_page.handlebars -->
+              <i class="bi bi-house-fill navIcon"></i>
+            </a>
+            <a class="nav-item nav-link active" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
+              <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
+              <i class="bi bi-compass navIcon"></i>
+            </a>
+            <a class="nav-item nav-link active" href="user/{{user.id}}" data-toggle="tooltip" data-placement="top" title="Profile">
+              <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+              <i class="bi bi-person-circle navIcon"></i>
+            </a>
+            <a class="nav-item nav-link active" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+              <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
+              <i class="bi bi-gear-fill navIcon"></i>
+            </a>
                 </div>
             </div>
         </nav>
