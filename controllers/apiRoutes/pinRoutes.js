@@ -15,7 +15,7 @@ router.get('/pins', async (req, res) => {
 // GET route to retrieve a specific pin by ID
 router.get('/pins/:id', async (req, res) => {
     try {
-        const pin = await Pins.findByPk(req.params.id);
+        const pins = await Pins.findByPk(req.params.id);
         if (pins) {
             res.status(200).json(pins);
         } else {
