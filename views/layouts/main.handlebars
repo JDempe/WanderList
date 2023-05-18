@@ -390,12 +390,14 @@
                 for="signup-username"
               >Username</label>
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border signup-input"
                 id="signup-username"
                 type="text"
                 placeholder="Username"
+                minlength="3" 
+                maxlength="20" 
               />
-              <span class="cd-signin-modal__error">Error message here!</span>
+              <span class="cd-signin-modal__error">The username must be alphanumeric and have 3-20 characters!</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -404,12 +406,12 @@
                 for="signup-email"
               >E-mail</label>
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border signup-input"
                 id="signup-email"
                 type="email"
                 placeholder="E-mail"
               />
-              <span class="cd-signin-modal__error">Error message here!</span>
+              <span class="cd-signin-modal__error">Please provide a valid email address!</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -418,7 +420,7 @@
                 for="signup-password"
               >Password</label>
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border signup-input"
                 id="signup-password"
                 type="text"
                 placeholder="Password"
@@ -427,10 +429,10 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error">Error message here!</span>
+              <span class="cd-signin-modal__error">Password should be 8-128 characters long and contain alphanumeric, uppercase and special characters!</span>
             </p>
 
-            <p class="cd-signin-modal__fieldset">
+            {{!-- <p class="cd-signin-modal__fieldset">
               <input
                 type="checkbox"
                 id="accept-terms"
@@ -438,13 +440,15 @@
               />
               <label for="accept-terms">I agree to the
                 <a href="#0">Terms</a></label>
-            </p>
+            </p> --}}
 
             <p class="cd-signin-modal__fieldset">
               <input
                 class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding"
+                id="signup-btn"
                 type="submit"
                 value="Create account"
+                disabled
               />
             </p>
           </form>
@@ -510,4 +514,6 @@
     src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"
   ></script>
   <script src="{{script}}"></script>
+  <script src="./handlers/user-auth.js"></script>
+
 </html>
