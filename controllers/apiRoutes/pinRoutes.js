@@ -1,5 +1,6 @@
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+// const router = express.Router();
+const router = require("express").Router();
 const { Pins } = require("../../models");
 
 // GET route to retrieve all pins
