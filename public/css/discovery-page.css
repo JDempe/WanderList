@@ -137,10 +137,6 @@
     color: #f09b4c; /* Change the color when hovered */
 }
 
-.bi-flag:hover {
-    color: #ef4747; ; /* Change the color when hovered */
-}
-
 .card-hr {
     margin: 4px 0 4px 0;
 }
