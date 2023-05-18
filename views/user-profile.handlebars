@@ -60,35 +60,43 @@
         {{! Submit Button }}
         <div class="mb-3 col text-end">
           <button disabled id="editprofile-submitBtn" type="submit" class="btn btn-primary">Confirm</button>
-          {{! Cancel Button }}
-          <button id="editprofile-cancelBtn" type="button" class="btn btn-outline-secondary">Cancel</button>
         </div>
       </div>
     </form>
 
     {{! EDIT SECURITY SETTINGS FORM }}
-    <form id="editsecurity-form" class="col needs-validation" novalidate>
+    <form id="editsecurity-form" class="col" novalidate>
       <h2>Account Security</h2>
       <div class="mb-3 col">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="editprofile-email" placeholder="example@example.com"
-          value="{{user.email}}" />
+        <input type="email" class="form-control" id="editsecurity-email" disabled value="{{user.email}}" />
       </div>
       <div class="row">
         <div class="mb-3 col">
           <label for="fname" class="form-label">Password</label>
-          <input type="email" class="form-control" id="editprofile-password" placeholder="New Password" />
+          <input type="password" class="form-control" id="editsecurity-password" placeholder="New Password" max="128" >
+          <div class="valid-feedback">
+            Looks Great!
+          </div>
+          <div class="invalid-feedback">
+            Be sure to check the requirements!
+          </div>
         </div>
         <div class="mb-3 col">
           <label for="lname" class="form-label">Confirm Password</label>
-          <input type="email" class="form-control" id="editprofile-confirmpassword"
-            placeholder="Confirm New Password" />
+          <input type="password" class="form-control" id="editsecurity-confirmpassword" placeholder="Confirm New Password" max="128"/>
+          <div class="valid-feedback">
+            Looks Great!
+          </div>
+          <div class="invalid-feedback">
+            Passwords do not match!
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="mb-3 col text-end">
+          <button id="editsecurity-deleteBtn" type="submit" class="btn btn-danger">Delete Account</button>
           <button disabled id="editsecurity-submitBtn" type="submit" class="btn btn-primary">Confirm</button>
-          <button id="editsecurity-cancelBtn" type="button" class="btn btn-outline-secondary">Cancel</button>
         </div>
       </div>
     </form>
@@ -98,7 +106,7 @@
 <!-- Modal -->
 <div class="modal fade" id="avatarChoiceModal" tabindex="-1" role="dialog" aria-labelledby="avatarChoiceModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div data-simplebar class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="avatarChoiceModalLabel">Avatar Selection</h5>
@@ -115,3 +123,23 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAccountModalLabel">Account Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>We are sure you accidentally clicked this button, but if not please confirm your choice and we will delete your account.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="deleteAccountModal-confirmBtn" type="button" class="btn btn-danger">Delete Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="editprofile-alert-area"></div>

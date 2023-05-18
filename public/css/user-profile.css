@@ -62,7 +62,7 @@ transition: all 0.3s ease-in-out;
 }
 
 #avatarChoiceModal .modal-content {
-  height: 60vh;
+  height: 75vh;
 }
 
 #avatar-selection {
@@ -87,4 +87,12 @@ transition: all 0.3s ease-in-out;
 #avatar-selection img:hover {
   scale: 1.2;
   transition: all 0.1s ease-in-out;
+}
+
+#editprofile-alert-area {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  min-width: fit-content;
+  padding: 20px;
 }
