@@ -50,23 +50,27 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         // verify the existence of the user with the provided email in the database.
-        const validateUser = await User.findOne({
+        const userData = await User.findOne({
             where: {
                 email: req.body.email.toLowerCase().trim(),
             }
         });
 
-        if (!validateUser) {
+        if (!userData) {
             return res.status(400).json({ message: 'Incorrect email or password, please try again' });
         }
         
         // verify that the hashed password stored in the database matches the password provided by the user.
-        const validatePassword = bcrypt.compareSync(req.body.password, validateUser.password);
+        const validatePassword = bcrypt.compareSync(req.body.password, userData.password);
         
         if (!validatePassword) {
             return res.status(400).json({ message: 'Incorrect email or password, please try again' });
         }
         
+        req.session.user_id = userData.id;
+        req.session.logged_in = 1;
+
+        req.session.save();
         
         return res.status(200).json({ message: 'You have been successfully logged in!' })
         
