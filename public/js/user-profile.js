@@ -94,7 +94,7 @@ $(document).ready(function () {
           success: function (response) {
             // If the username is not unique, show an error message
             // If the username doesnt exist or is mine, send the PUT request to change user profile info
-            if (response.username) {
+            if (response) {
               addAlertToPage(
                 "alert-danger",
                 "Username already exists!",

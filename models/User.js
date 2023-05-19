@@ -59,6 +59,7 @@ User.init(
     avatar_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 51,
       reference: {
         model: "avatars",
         key: "id",
