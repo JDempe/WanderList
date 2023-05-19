@@ -10,8 +10,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-// setup express so that it knows we're using handlebars as our
-// template engine
+// setup express so that it knows we're using handlebars as our template engine
 app.engine("handlebars", engine({}));
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
@@ -31,10 +30,10 @@ app.use(session({
   },
   checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
 }));
- 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 app.use(routes);
 
@@ -42,7 +41,9 @@ app.get("/", (req, res) => {
   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
   // layout property not necessary since it is default, but included for clarity
   res.render("landing-page", {
-     layout: "main"
+    layout: "main",
+    style: "./css/landing-page.css",
+    script: "./js/landing-page.js",
     //  user: {
     //   id: req.session.user_id,
     //   isLoggedIn: req.session.logged_in
