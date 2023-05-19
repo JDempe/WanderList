@@ -71,54 +71,6 @@ router.get("/editprofile/:username", async (req, res) => {
 
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is default, but included for clarity
-    res.render("discovery-page", {
-      layout: "main",
-      style: "./css/discovery-page.css",
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// go to /editprofile and that will find the session user and redirect to /editprofile/:id
-router.get("/editprofile", async (req, res) => {
-  try {
-    //Serves the body of the page aka "edit-profile.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
-    // lookup username by session userId
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-    });
-    const user = userData.get({ plain: true });
-
-    res.redirect(`/editprofile/${user.username}`);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// GET edit profile page
-router.get("/editprofile/:username", async (req, res) => {
-  try {
-    // lookup one user by username
-    const userData = await User.findOne({
-      where: {
-        username: req.params.username,
-      },
-      attributes: { exclude: ["password"] },
-    });
-    const user = userData.get({ plain: true });
-
-    // Pull from the avatar table the avatar image location that matches the user's avatar id
-    const avatarData = await Avatars.findByPk(user.avatar_id);
-    const avatar = avatarData.get({ plain: true });
-    // TODO have the avatars be pulled up after render page.
-
-    const avatarList = await Avatars.findAll();
-    const avatars = avatarList.map((avatar) => avatar.get({ plain: true }));
-
-    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
     res.render("user-profile", {
       layout: "main",
       style: "./css/user-profile.css",
@@ -131,7 +83,6 @@ router.get("/editprofile/:username", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 // GET user page
 router.get("/user/:id", async (req, res) => {
