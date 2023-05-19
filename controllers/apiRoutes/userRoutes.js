@@ -113,7 +113,57 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Try to find a user with the provided username in the database.  For verifying unique identity. does not return values.
+// route for user to logout
+router.post('/logout', async (req, res) => {
+    try {
+        if (req.session.logged_in) {
+            req.session.destroy( () => {
+                return res.status(200).end();
+            });
+        } else {
+            return res.status(404).end();
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
+
+// set up a route for users to update information
+router.put("/editprofile/:id", async (req, res) => {
+    try {
+      // TODO verify that the user exists in the database.
+      const userExists = await User.findByPk(req.params.id);
+  
+      if (!userExists) {
+        return res.status(400).json({
+          message: `The user with the provided id "${req.params.id}" does not exist. Please try again.`,
+        });
+      }
+  
+      // proceed to update the user in the database.
+      const result = await User.update(
+        {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          username: req.body.username,
+          about_me: req.body.about_me,
+          avatar_id: req.body.avatar_id,
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+      res
+        .status(200)
+        .json({ message: `Your profile has been successfully updated!` });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
+
+  // Try to find a user with the provided username in the database.
 router.get("/checkusername/:username", async (req, res) => {
   try {
     const user = await User.findOne({

@@ -6,9 +6,10 @@
     "pinGeocords": "34.052235:-118.243683",
     "pinLink": "https://lacity.gov/visitors",
     "pinCategory": "Tourism",
-    "pinTag": ["clubbing", "shopping", "city-life"],
+    "pinTag": "clubbing, shopping, city-life",
     "pinImage": "",
-    "pinCompletion": true
+    "pinCompletion": true,
+    "user_id": "001"
   },
   {
     "pinTitle": "Lorem Ipsum 2",
@@ -17,9 +18,10 @@
     "pinGeocords": "46.9514:7.4371.",
     "pinLink": "https://www.bern.com/en/home",
     "pinCategory": "Adventure travel",
-    "pinTag": ["mountain", "biking", "forest"],
+    "pinTag": "mountain, biking, forest",
     "pinImage": "",
-    "pinCompletion": false
+    "pinCompletion": false,
+    "user_id": "002"
   },
   {
     "pinTitle": "Lorem Ipsum 3",
@@ -28,8 +30,9 @@
     "pinGeocords": "34.048927:-111.093735",
     "pinLink": "https://tourism.az.gov",
     "pinCategory": "Road trip",
-    "pinTag": ["desert", "road trip", "route 66"],
+    "pinTag": "desert, road trip, route 66",
     "pinImage": "",
-    "pinCompletion": false
+    "pinCompletion": false,
+    "user_id": "003"
   }
 ]

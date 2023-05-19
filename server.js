@@ -44,10 +44,10 @@ app.get("/", (req, res) => {
     layout: "main",
     style: "./css/landing-page.css",
     script: "./js/landing-page.js",
-    //  user: {
-    //   id: req.session.user_id,
-    //   isLoggedIn: req.session.logged_in
-    // } 
+    user: {
+      id: req.session.user_id,
+      isLoggedIn: req.session.logged_in
+    } 
     });
 });
 
