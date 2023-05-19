@@ -9,17 +9,18 @@ const seedDb = async () => {
   await sequelize.sync({ force: true });
   console.log("\n----- database synced -----\n");
 
-  await User.bulkCreate(userSeedData, {
+  const users = await User.bulkCreate(userSeedData, {
     individualHooks: true,
     returning: true,
   });
   console.log("'\n ----- Users seeded -----\n");
 
-  await Pins.bulkCreate(pinSeedData, {
-    individualHooks: true,
-    returning: true,
-  });
-  console.log("'\n ----- Pins seeded -----\n");
+  for (const pinData of pinSeedData) {
+    await Pins.create({
+      ...pinData,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
 
   await Avatars.bulkCreate(avatarSeedData, {
     individualHooks: true,
