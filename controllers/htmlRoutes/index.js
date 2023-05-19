@@ -5,12 +5,16 @@ const { Example } = require("../../models");
 router.get("/discover", async (req, res) => {
   try {
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
-    res.render("discovery-page", { layout: "main" });
+    // layout property not necessary since it is defaust, but included for clarity
+    res.render("discovery-page", {
+      style: "./css/discovery-page.css",
+      partials: "discovery-pin",
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 // GET user page
 router.get("/user/:id", async (req, res) => {
