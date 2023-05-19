@@ -21,6 +21,7 @@ const seedDb = async () => {
       user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
+  console.log("'\n ----- Pins seeded -----\n");
 
   await Avatars.bulkCreate(avatarSeedData, {
     individualHooks: true,
@@ -28,6 +29,7 @@ const seedDb = async () => {
   });
 
   console.log("'\n ----- Avatars seeded -----\n");
+
   process.exit(0);
 };
 
