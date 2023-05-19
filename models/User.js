@@ -47,7 +47,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8, 16],
+        len: [8, 128],
       },
     },
     about_me: {
