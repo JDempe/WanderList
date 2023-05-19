@@ -2,6 +2,7 @@ const $signupBtn = $("#signup-btn");
 const $signupUsername = $('#signup-username');
 const $signupEmail = $('#signup-email');
 const $signupPassword = $('#signup-password');
+const $loginBtn = $("#login-btn");
 
 // invoked when the 'Create Account' button is clicked and sends the user information to the server for saving.
 async function handleSignUpClick(e) {
@@ -17,14 +18,40 @@ async function handleSignUpClick(e) {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: { 'Content-Type': 'application/json' },
-    })
-    console.log(response)
+    });
+
     if (response.ok) {
         $('.body-modal').removeAttr('cd-signin-modal--is-visible');
         document.location.replace('/');
         alert(`Welcome aboard, ${userData.username}! Enjoy your journey with us!`);
     } else {
         alert('Failed to sign up!');
+    }
+}
+
+// invoked when the 'Log-in' button is clicked and sends the user information to the server for validation.
+async function handleLogInClick(e) {
+    e.preventDefault();
+
+    const userData = {
+        email: $('#signin-email').val().trim().toLowerCase(),
+        password: $("#signin-password").val().trim(),
+    }
+
+    const response = await fetch('/api/user/login', {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        $('.body-modal').removeAttr('cd-signin-modal--is-visible');
+        document.location.replace('/');
+        alert(`You are logged in successfully!`); // to be removed. needed for testing purpose
+    } else if (response.status === 400) {
+        $("#signin-password").siblings('.error-400').addClass('cd-signin-modal__error--is-visible');
+    } else {
+        $("#signin-password").siblings('.error-500').addClass('cd-signin-modal__error--is-visible');
     }
 }
 
@@ -118,8 +145,9 @@ function checkSignUpFormCompletion() {
 }
 
 // event listeners
+$loginBtn.on('click', e => handleLogInClick(e));
 $signupBtn.on('click', e => handleSignUpClick(e)); 
 $signupUsername.on('blur', validateSignUpUsernameField);
 $signupEmail.on('blur', validateSignUpEmailField);
 $signupPassword.on('blur', validateSignUpPasswordField);
-$('.signup-input').on('keyup', checkSignUpFormCompletion);
+$('.signup-input').on('keyup', checkSignUpFormCompletion); // ".signup-input" is a class assigned to all the input fields in the sign-up form.
