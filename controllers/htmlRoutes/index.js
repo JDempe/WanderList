@@ -1,16 +1,26 @@
 const router = require("express").Router();
-const { User, Avatars } = require("../../models");
+const { User, Avatars, Pins } = require("../../models");
 
 // GET discovery page
 router.get("/discover", async (req, res) => {
   try {
+      
+      const pins = await Pins.findAll({
+          limit: 5,
+      });
+
+      const pinsData = pins.map(pin => ({
+        pinTitle: pin.pinTitle,
+        pinDescription: pin.pinDescription,
+      }));
+
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
     // layout property not necessary since it is defaust, but included for clarity
     res.render("discovery-page", {
       style: "./css/discovery-page.css",
       script: "./js/discovery-page.js",
       scriptSecond: "./js/search-pin.js",
-      partials: "discovery-pin",
+      pins: pinsData,
     });
   } catch (err) {
     res.status(500).json(err);

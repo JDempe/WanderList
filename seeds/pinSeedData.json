@@ -1,7 +1,8 @@
 [
   {
-    "pinTitle": "Lorem Ipsum 1",
-    "pinDescription": "{{loremIpsum}}",
+    "id": "81c33582-6e72-45f6-9441-3c4daffdbf48",
+    "pinTitle": "Hello World 1",
+    "pinDescription": "Hello World 1",
     "pinLocaton": "Los Angeles",
     "pinGeocords": "34.052235:-118.243683",
     "pinLink": "https://lacity.gov/visitors",
@@ -11,8 +12,9 @@
     "pinCompletion": true
   },
   {
-    "pinTitle": "Lorem Ipsum 2",
-    "pinDescription": "{{loremIpsum}}",
+    "id": "5a9a96c4-6b7c-4521-b9d5-3a7ac90e6fa9",
+    "pinTitle": "Hello World 2",
+    "pinDescription": "Hello World 2",
     "pinLocaton": "Bern",
     "pinGeocords": "46.9514:7.4371.",
     "pinLink": "https://www.bern.com/en/home",
@@ -22,8 +24,33 @@
     "pinCompletion": false
   },
   {
-    "pinTitle": "Lorem Ipsum 3",
-    "pinDescription": "{{loremIpsum}}",
+    "id": "bda2c207-8f85-42c6-ae97-670db1d92ff5",
+    "pinTitle": "Hello World 4",
+    "pinDescription": "Hello World 4",
+    "pinLocaton": "Arizona",
+    "pinGeocords": "34.048927:-111.093735",
+    "pinLink": "https://tourism.az.gov",
+    "pinCategory": "Road trip",
+    "pinTag": ["desert", "road trip", "route 66"],
+    "pinImage": "",
+    "pinCompletion": false
+  },
+  {
+    "id": "146a5f53-35db-4b09-8e68-57db6721f41f",
+    "pinTitle": "Hello World 5",
+    "pinDescription": "Hello World 5",
+    "pinLocaton": "Arizona",
+    "pinGeocords": "34.048927:-111.093735",
+    "pinLink": "https://tourism.az.gov",
+    "pinCategory": "Road trip",
+    "pinTag": ["desert", "road trip", "route 66"],
+    "pinImage": "",
+    "pinCompletion": false
+  },
+  {
+    "id": "f2eef11d-33f9-4c4a-8b50-913369239679",
+    "pinTitle": "Hello World 6",
+    "pinDescription": "Hello World 6",
     "pinLocaton": "Arizona",
     "pinGeocords": "34.048927:-111.093735",
     "pinLink": "https://tourism.az.gov",
