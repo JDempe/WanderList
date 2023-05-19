@@ -1,8 +1,7 @@
 $(document).ready(function () {
+  // Get the current user's info
   // Save the current values in the form
-  // TODO Make the id dynamic based on the logged in user
   var currentUserInfo = {
-    id: "43af29e4-80e2-4842-a1e3-75bb6bdab73b",
     username: $("#editprofile-username").val(),
     firstName: $("#editprofile-firstname").val(),
     lastName: $("#editprofile-lastname").val(),
@@ -26,7 +25,7 @@ $(document).ready(function () {
 
     // Send a PUT request to change the user's avatar id
     $.ajax({
-      url: `/api/user/editprofile/${currentUserInfo.id}`,
+      url: `/api/user/editprofile/${currentUserInfo.username}`,
       data: {
         avatar_id: avatarId,
       },
@@ -40,7 +39,6 @@ $(document).ready(function () {
       },
     });
   });
-
   // END AVATAR MODAL //
 
   // USER PROFILE //
@@ -105,7 +103,7 @@ $(document).ready(function () {
               );
             } else {
               $.ajax({
-                url: `/api/user/editprofile/${currentUserInfo.id}`,
+                url: `/api/user/editprofile/${currentUserInfo.username}`,
                 data: {
                   first_name: user.firstName,
                   last_name: user.lastName,
@@ -213,7 +211,7 @@ $(document).ready(function () {
     e.preventDefault();
     // send a DELETE request to delete the user
     $.ajax({
-      url: `/api/user/delete/${currentUserInfo.id}`,
+      url: `/api/user/delete/${currentUserInfo.username}`,
       type: "DELETE",
       success: function (response) {
         console.log("deleted user");
