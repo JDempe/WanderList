@@ -1,6 +1,5 @@
-// const express = require("express");
-// const router = express.Router();
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const { Pins } = require("../../models");
 
 // GET route to retrieve all pins
@@ -52,9 +51,7 @@ router.put("/pins/:id", async (req, res) => {
     } else {
       const existingPin = Pins.findByPk(req.params.id);
       if (existingPin) {
-        res
-          .status(200)
-          .json({ message: "No update has been mapFinderOptions." });
+        res.status(200).json({ message: "No update has been made." });
       } else {
         res.status(404).json({ error: "Pin not found" });
       }
