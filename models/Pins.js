@@ -43,6 +43,11 @@ Pin.init(
       type: DataTypes.BLOB("long"),
       allowNull: true,
     },
+    pinCompletion: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
     user_id: {
       type: DataTypes.UUID,
       references: {
