@@ -1,21 +1,24 @@
 const router = require("express").Router();
 const { User, Avatars, Pins } = require("../../models");
 
-// GET discovery page
+// GET discovery page and render content / discovery-pins
 router.get("/discover", async (req, res) => {
   try {
-      
-      const pins = await Pins.findAll({
-          limit: 5,
-      });
+    const pins = await Pins.findAll();
 
-      const pinsData = pins.map(pin => ({
-        pinTitle: pin.pinTitle,
-        pinDescription: pin.pinDescription,
-      }));
+    // Shuffles the pins array using  algorithm
+    for (let i = pins.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pins[i], pins[j]] = [pins[j], pins[i]];
+    }
 
-    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is defaust, but included for clarity
+    // Limits the rendered output to 20 pins
+    const pinsData = pins.slice(0, 20).map(pin => ({
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription,
+    }));
+
+    // Renders the js/css/second js/hbs/and pins template for [age]
     res.render("discovery-page", {
       style: "./css/discovery-page.css",
       script: "./js/discovery-page.js",
