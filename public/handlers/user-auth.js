@@ -3,6 +3,7 @@ const $signupUsername = $('#signup-username');
 const $signupEmail = $('#signup-email');
 const $signupPassword = $('#signup-password');
 const $loginBtn = $("#login-btn");
+const $logoutBnt = $("#logout-btn");
 
 // invoked when the 'Create Account' button is clicked and sends the user information to the server for saving.
 async function handleSignUpClick(e) {
@@ -52,6 +53,24 @@ async function handleLogInClick(e) {
         $("#signin-password").siblings('.error-400').addClass('cd-signin-modal__error--is-visible');
     } else {
         $("#signin-password").siblings('.error-500').addClass('cd-signin-modal__error--is-visible');
+    }
+}
+
+// 
+async function handleLogOutClick(e) {
+    e.preventDefault();
+
+    const response = await fetch('/api/user/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+        document.location.replace('/');
+    } else if (response.status === 404) {
+        alert('User was not found');
+    } else {
+        alert('We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.')
     }
 }
 
@@ -146,7 +165,8 @@ function checkSignUpFormCompletion() {
 
 // event listeners
 $loginBtn.on('click', e => handleLogInClick(e));
-$signupBtn.on('click', e => handleSignUpClick(e)); 
+$signupBtn.on('click', e => handleSignUpClick(e));
+$logoutBnt.on('click', e => handleLogOutClick(e));
 $signupUsername.on('blur', validateSignUpUsernameField);
 $signupEmail.on('blur', validateSignUpEmailField);
 $signupPassword.on('blur', validateSignUpPasswordField);
