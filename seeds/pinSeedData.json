@@ -7,7 +7,8 @@
     "pinLink": "https://lacity.gov/visitors",
     "pinCategory": "Tourism",
     "pinTag": ["clubbing", "shopping", "city-life"],
-    "pinImage": ""
+    "pinImage": "",
+    "pinCompletion": true
   },
   {
     "pinTitle": "Lorem Ipsum 2",
@@ -17,7 +18,8 @@
     "pinLink": "https://www.bern.com/en/home",
     "pinCategory": "Adventure travel",
     "pinTag": ["mountain", "biking", "forest"],
-    "pinImage": ""
+    "pinImage": "",
+    "pinCompletion": false
   },
   {
     "pinTitle": "Lorem Ipsum 3",
@@ -27,6 +29,7 @@
     "pinLink": "https://tourism.az.gov",
     "pinCategory": "Road trip",
     "pinTag": ["desert", "road trip", "route 66"],
-    "pinImage": ""
+    "pinImage": "",
+    "pinCompletion": false
   }
 ]

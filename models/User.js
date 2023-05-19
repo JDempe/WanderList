@@ -15,6 +15,24 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        isAlphanumeric: true,
+      },
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        is: /^[a-zA-Z\s]+$/,
+      },
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        is: /^[a-zA-Z\s]+$/,
+      },
     },
     email: {
       type: DataTypes.STRING,
@@ -31,6 +49,10 @@ User.init(
       validate: {
         len: [8, 16],
       },
+    },
+    about_me: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     // join avatar and user table
     // each users can have multiple avatars and vice versa.

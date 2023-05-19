@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Document</title>
@@ -24,6 +25,9 @@
     <link href="../../public/css/modal.css" rel="stylesheet" />
     <link href="../../public/css/style.css" rel="stylesheet" />
     <link href="../../public/css/landing-page.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <header>
@@ -45,23 +49,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
-          <!-- classes and data-signin can be transferred to any buttons -->
-          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log in</a>
-          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign up</a>
-          	<!-- insert more links here -->
-            <a class="nav-item nav-link active" href="/">
+            <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log in</a>
+            <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign up</a>
+            <a class="nav-item nav-link active" href="/" data-toggle="tooltip" data-placement="top" title="Home">
               <!-- HOME ICON / navigates to personal_page.handlebars -->
               <i class="bi bi-house-fill navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="/discover">
+            <a class="nav-item nav-link active" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
               <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
               <i class="bi bi-compass navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="user/{{user.id}}">
+            <a class="nav-item nav-link active" href="user/{{user.id}}" data-toggle="tooltip" data-placement="top" title="Profile">
               <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
               <i class="bi bi-person-circle navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="#">
+            <a class="nav-item nav-link active" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
               <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
               <i class="bi bi-gear-fill navIcon"></i>
             </a>
@@ -76,12 +78,12 @@
       <div class="card-img-overlay signin-overlay-blurb">
         <span class="banner-text-blurb">Start planning for your <br>next adventure today<br></span>
       </div>
-      <div class="card-img-overlay signin-overlay" style="height: 150px">
+      <!-- <div class="card-img-overlay signin-overlay" style="height: 150px">
         <a class="js-signin-modal-trigger btn btn-light signin-banner-btn" href="#0" data-signin="login">Log in</a>
         <span class="banner-text">or</span>
         <a class="js-signin-modal-trigger btn btn-light signin-banner-btn" href="#0" data-signin="signup">Sign up</a>
       </div>
-    </div>
+    </div> -->
     <div class="discover">Discover what's out there</div>
     <a href="" class="card-link-wrapper">
       <div class="card-container">
