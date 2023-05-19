@@ -15,19 +15,39 @@ router.get("/discover", async (req, res) => {
   }
 });
 
-// GET discovery page
-router.get("/editprofile/:id", async (req, res) => {
+// go to /editprofile and that will find the session user and redirect to /editprofile/:id
+router.get("/editprofile", async (req, res) => {
   try {
+    //Serves the body of the page aka "edit-profile.hbs" to the container //aka "main.hbs"
+    // layout property not necessary since it is default, but included for clarity
+    // lookup username by session userId
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    const user = userData.get({ plain: true });
 
-// Do a query of the database to get the user's info given their ID
-    const userData = await User.findByPk(req.params.id, {
-      attributes: { exclude: ["password"] }
+    res.redirect(`/editprofile/${user.username}`);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// GET edit profile page
+router.get("/editprofile/:username", async (req, res) => {
+  try {
+    // lookup one user by username
+    const userData = await User.findOne({
+      where: {
+        username: req.params.username,
+      },
+      attributes: { exclude: ["password"] },
     });
     const user = userData.get({ plain: true });
 
     // Pull from the avatar table the avatar image location that matches the user's avatar id
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
+    // TODO have the avatars be pulled up after render page.
 
     const avatarList = await Avatars.findAll();
     const avatars = avatarList.map((avatar) => avatar.get({ plain: true }));
