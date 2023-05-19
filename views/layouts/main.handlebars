@@ -20,6 +20,10 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"
+        />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" 
+      rel="stylesheet"
     />
     <link href="./css/reset.css" rel="stylesheet" />
     <link href="./css/modal.css" rel="stylesheet" />
@@ -27,56 +31,53 @@
     <link href="{{style}}" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <!-- NAVBAR / goes in main.handlebars -->
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-          <a class="navbar-brand font-test text-center" href="/">WEBSITE</a>
-        </div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto">
-            <!-- classes and data-signin can be transferred to any buttons -->
-            <a
-              class="js-signin-modal-trigger btn btn-light login-nav-Btn"
-              href="#0"
-              data-signin="login"
-            >Log in</a>
-            <a
-              class="js-signin-modal-trigger btn btn-light login-nav-Btn"
-              href="#0"
-              data-signin="signup"
-            >Sign up</a>
-            <!-- insert more links here -->
-            <a class="nav-item nav-link active" href="/">
+   <header>
+        <!-- NAVBAR / goes in main.handlebars -->
+        {{! Path: views/partials/navbar.handlebars }}
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand font-test text-center" href="#">WEBSITE</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <!-- classes and data-signin can be transferred to any buttons -->
+                    {{!logic to handle login/signup buttons when the user is logged in or not}}
+                    {{! below block will be rendered if user is not logged in}}
+                    {{#unless user.isLoggedIn}}
+                    <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log
+                        in</a>
+                    <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign
+                        up</a>
+                    {{/unless}}
+                    {{#if user.isLoggedIn}}
+                    <a class="nav-item nav-link active" href="/logout">
+                        <!-- logout  Icon / navigates to logout.handlebars -->
+                        <i class="bi bi-box-arrow-right navIcon"></i>
+                    </a>
+                    {{/if}}
+                  <a class="nav-item nav-link active" href="/" data-toggle="tooltip" data-placement="top" title="Home">
               <!-- HOME ICON / navigates to personal_page.handlebars -->
               <i class="bi bi-house-fill navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="/discover">
+            <a class="nav-item nav-link active" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
               <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
               <i class="bi bi-compass navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="user/{{user.id}}">
+            <a class="nav-item nav-link active" href="user/{{user.id}}" data-toggle="tooltip" data-placement="top" title="Profile">
               <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
               <i class="bi bi-person-circle navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="user/editprofile/{{user.id}}">
+            <a class="nav-item nav-link active" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
               <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
               <i class="bi bi-gear-fill navIcon"></i>
             </a>
-          </div>
-        </div>
-      </nav>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
       <!-- MAIN CONTENT -->
@@ -349,7 +350,8 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error">Error message here!</span>
+              <span class="cd-signin-modal__error error-400">The email or password provided is incorrect. Please try again.</span>
+              <span class="cd-signin-modal__error error-500">We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -364,6 +366,7 @@
 
             <p class="cd-signin-modal__fieldset">
               <input
+                id="login-btn"
                 class="cd-signin-modal__input cd-signin-modal__input--full-width"
                 type="submit"
                 value="Login"
