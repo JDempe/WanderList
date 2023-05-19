@@ -29,4 +29,5 @@ const pinSearch = function() {
 
 $(document).ready(function() {
   pinSearch();
+  console.log('it works2')
 });

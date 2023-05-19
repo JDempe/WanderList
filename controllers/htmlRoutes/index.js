@@ -8,6 +8,8 @@ router.get("/discover", async (req, res) => {
     // layout property not necessary since it is defaust, but included for clarity
     res.render("discovery-page", {
       style: "./css/discovery-page.css",
+      script: "./js/discovery-page.js",
+      scriptSecond: "./js/search-pin.js",
       partials: "discovery-pin",
     });
   } catch (err) {
