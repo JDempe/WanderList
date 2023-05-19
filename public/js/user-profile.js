@@ -1,10 +1,8 @@
 $(document).ready(function () {
-  // $.getScript("handlers/user-auth.js", function () {});
-
   // Save the current values in the form
   // TODO Make the id dynamic based on the logged in user
   var currentUserInfo = {
-    id: "7b64f697-974e-4182-a83d-7dcde7f36936",
+    id: "43af29e4-80e2-4842-a1e3-75bb6bdab73b",
     username: $("#editprofile-username").val(),
     firstName: $("#editprofile-firstname").val(),
     lastName: $("#editprofile-lastname").val(),
