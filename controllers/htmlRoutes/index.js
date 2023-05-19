@@ -5,10 +5,27 @@ const { User, Avatars } = require("../../models");
 router.get("/discover", async (req, res) => {
   try {
     //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
+    // layout property not necessary since it is defaust, but included for clarity
     res.render("discovery-page", {
-      layout: "main",
       style: "./css/discovery-page.css",
+      script: "./js/discovery-page.js",
+      scriptSecond: "./js/search-pin.js",
+      partials: "discovery-pin",
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/personal", async (req, res) => {
+  try {
+    //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
+    // layout property not necessary since it is defaust, but included for clarity
+    res.render("personal-page", {
+      style: "./css/personal-page.css",
+      script: "./js/personal-page.js",
+      scriptSecond: "./js/search-pin.js",
+      partials: "personal-pin",
     });
   } catch (err) {
     res.status(500).json(err);
