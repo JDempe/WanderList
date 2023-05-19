@@ -8,7 +8,7 @@ const pinSearch = function() {
         const pin = $(this);
         const cardTitle = pin.find('.card-title').text().toLowerCase();
         const cardText = pin.find('.card-text').val().toLowerCase();
-        const timestamp = pin.find('.timestamp').val().toLowerCase();
+        const timestamp = pin.find('.timestamp').text().toLowerCase();
   
         if (
           cardTitle.includes(searchText) ||
