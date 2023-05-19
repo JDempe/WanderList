@@ -79,6 +79,20 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// route for user to logout
+router.post('/logout', async (req, res) => {
+    try {
+        if (req.session.logged_in) {
+            req.session.destroy( () => {
+                return res.status(200).end();
+            });
+        } else {
+            return res.status(404).end();
+        }
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
 
 // set up a route for users to update information
 router.put("/editprofile/:id", async (req, res) => {
