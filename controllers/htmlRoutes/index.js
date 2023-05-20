@@ -53,20 +53,20 @@ router.get("/discover", async (req, res) => {
   }
 });
 
-router.get("/personal", async (req, res) => {
-  try {
-    //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is defaust, but included for clarity
-    res.render("personal-page", {
-      style: "./css/personal-page.css",
-      script: "./js/personal-page.js",
-      scriptSecond: "./js/search-pin.js",
-      partials: "personal-pin",
-    });
-  } catch (err) {
-    res.status(404).json(err);
-  }
-});
+// router.get("/personal", async (req, res) => {
+//   try {
+//     //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
+//     // layout property not necessary since it is defaust, but included for clarity
+//     res.render("personal-page", {
+//       style: "./css/personal-page.css",
+//       script: "./js/personal-page.js",
+//       scriptSecond: "./js/search-pin.js",
+//       partials: "personal-pin",
+//     });
+//   } catch (err) {
+//     res.status(404).json(err);
+//   }
+// });
 
 // go to /editprofile and that will find the session user and redirect to /editprofile/:id
 router.get("/editprofile", async (req, res) => {
