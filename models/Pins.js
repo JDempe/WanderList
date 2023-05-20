@@ -16,7 +16,7 @@ Pin.init(
       allowNull: false,
     },
     pinDescription: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     pinLocation: {

@@ -47,7 +47,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8, 16],
+        len: [8, 128],
       },
     },
     about_me: {
@@ -59,6 +59,7 @@ User.init(
     avatar_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 51,
       reference: {
         model: "avatars",
         key: "id",

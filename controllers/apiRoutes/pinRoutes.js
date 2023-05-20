@@ -12,7 +12,7 @@ router.get("/pins", async (req, res) => {
   }
 });
 
-// GET route to retrieve a specific pin by ID
+// GET route to retrieve a specific pin by pin ID
 router.get("/pins/:id", async (req, res) => {
   try {
     const pins = await Pins.findByPk(req.params.id);
@@ -20,6 +20,22 @@ router.get("/pins/:id", async (req, res) => {
       res.status(200).json(pins);
     } else {
       res.status(404).json({ error: "Pin not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET route to retrieve a all pins by user ID
+router.get("/pins/user/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pins = await Pins.findAll({ where: { user_id: id } });
+
+    if (pins.length > 0) {
+      res.status(200).json(pins);
+    } else {
+      res.status(404).json({ error: "No pin is found for this user!" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

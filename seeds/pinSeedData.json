@@ -1,7 +1,7 @@
 [
   {
-    "pinTitle": "Lorem Ipsum 1",
-    "pinDescription": "{{loremIpsum}}",
+    "pinTitle": "Code Hard Play Hard 1",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
     "pinLocation": "Los Angeles",
     "pinGeocords": "34.052235:-118.243683",
     "pinLink": "https://lacity.gov/visitors",
@@ -9,11 +9,11 @@
     "pinTag": "clubbing, shopping, city-life",
     "pinImage": "",
     "pinCompletion": true,
-    "user_id": "001"
+    "user_id": "000"
   },
   {
-    "pinTitle": "Lorem Ipsum 2",
-    "pinDescription": "{{loremIpsum}}",
+    "pinTitle": "Code Hard Play Hard 2",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
     "pinLocation": "Bern",
     "pinGeocords": "46.9514:7.4371.",
     "pinLink": "https://www.bern.com/en/home",
@@ -21,11 +21,11 @@
     "pinTag": "mountain, biking, forest",
     "pinImage": "",
     "pinCompletion": false,
-    "user_id": "002"
+    "user_id": "000"
   },
   {
-    "pinTitle": "Lorem Ipsum 3",
-    "pinDescription": "{{loremIpsum}}",
+    "pinTitle": "Code Hard Play Hard 3",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
     "pinLocation": "Arizona",
     "pinGeocords": "34.048927:-111.093735",
     "pinLink": "https://tourism.az.gov",
@@ -33,6 +33,78 @@
     "pinTag": "desert, road trip, route 66",
     "pinImage": "",
     "pinCompletion": false,
-    "user_id": "003"
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 4",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "lifestyle, italy, sea, europe, architecture, sky  ",
+    "pinImage": "",
+    "pinCompletion": true,
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 5",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "holiday, style, tourism",
+    "pinImage": "",
+    "pinCompletion": true,
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 6",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "beach, sunset, coconut",
+    "pinImage": "",
+    "pinCompletion": false,
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 7",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "travel, nature, travelphotography",
+    "pinImage": "",
+    "pinCompletion": true,
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 8",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "forest",
+    "pinImage": "",
+    "pinCompletion": true,
+    "user_id": "000"
+  },
+  {
+    "pinTitle": "Code Hard Play Hard 9",
+    "pinDescription": "Coding is like embarking on an exciting expedition through the vast and mysterious Amazon rainforest. As you navigate through the tangled branches of code, you find yourself surrounded by an abundance of hidden bugs, each one waiting to surprise you with its unique behavior. It's a jungle out there, and you quickly realize that there is no such thing as a bug repellent spray to keep them at bay.\nBut fear not, intrepid coder! Armed with your trusty tools and fueled by curiosity, you press on, determined to conquer the challenges that lie ahead. Just like spotting rare wildlife in the rainforest, identifying and fixing these bugs becomes a thrilling quest, filled with excitement and triumph. \nSo, gear up, embrace the untamed wilderness of coding, and remember that every bug you conquer brings you one step closer to becoming a true coding adventurer. Happy coding, fearless explorer of the digital rainforest!",
+    "pinLocation": "Los Angeles",
+    "pinGeocords": "34.052235:-118.243683",
+    "pinLink": "https://www.google.com",
+    "pinCategory": "Tourism",
+    "pinTag": "kayaking, jogging",
+    "pinImage": "",
+    "pinCompletion": false,
+    "user_id": "000"
   }
 ]
