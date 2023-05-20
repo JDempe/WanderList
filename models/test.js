@@ -8,7 +8,7 @@ Pin.findOne({
 })
 .then((pinTest) => {
     if (pinTest) {
-      const pinTitle = pinTest.pinTitle;
+      const pinTestTitle = pinTitle;
       const userId = pinTest.user_id;
       const username = pinTest.User.id === userId ? pinTest.User.username : null;
       console.log("Pin Title:", pinTitle);
