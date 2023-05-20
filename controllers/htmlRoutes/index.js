@@ -4,16 +4,16 @@ const { Op } = require("sequelize");
 
 
 
-router.get("/", (req, res) => {
-  //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
-  // layout property not necessary since it is default, but included for clarity
-  res.render("landing-page", {
-    layout: "main",
-    style: "./css/landing-page.css",
-    script: "./js/landing-page.js",
-    user:res.locals.user
-    });
-});
+// router.get("/", (req, res) => {
+//   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
+//   // layout property not necessary since it is default, but included for clarity
+//   res.render("landing-page", {
+//     layout: "main",
+//     style: "./css/landing-page.css",
+//     script: "./js/landing-page.js",
+//      //user:res.locals.user
+//     });
+//});
 // GET discovery page
 router.get("/discover", async (req, res) => {
   try {
@@ -114,14 +114,12 @@ router.get("/user/:id", async (req, res) => {
   }
 });
 
-
-
 //router to handle  GET 404 page
-router.use((req, res) => {
-  res.status(404).render('404page', {   
-    layout: 'main',
-    style: './css/404.css',
-    title: 'Page Not Found'
-  });
-});
+// router.use((req, res) => {
+//   res.status(404).render('404page', {   
+//     layout: 'main',
+//     style: './css/404.css',
+//     title: 'Page Not Found'
+//   });
+// });
 module.exports = router;
