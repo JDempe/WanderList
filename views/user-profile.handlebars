@@ -16,7 +16,7 @@
         {{! Username Textarea }}
         <label for="username-form" class="form-label">Username</label>
         <input type="text" class="form-control" id="editprofile-username" placeholder="Your username..."
-          value="{{user.username}}" required pattern="[a-zA-Z0-9]+" minlength="3" maxlength="20" />
+          value="{{user.username}}" required pattern="[a-zA-Z0-9]+" minlength="3" maxlength="20" data-bs-toggle="popover"  title="Username Requirements" data-bs-trigger="focus" data-bs-placement="left" fallbackPlacements=['left', 'bottom', 'top', 'right'] data-html="true" data-bs-content="Must contain only alphanumeric characters and be between 3 and 20 characters."/>
         <div class="valid-feedback">
           Looks Great!
         </div>
@@ -29,7 +29,7 @@
           {{! First Name textarea }}
           <label for="editprofile-firstname" class="form-label">First Name</label>
           <input value="{{user.first_name}}" type="text" class="form-control" id="editprofile-firstname"
-            placeholder="Your first name..." required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
+            placeholder="First name" required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -41,7 +41,7 @@
           {{! Last name text area }}
           <label for="editprofile-lastname" class="form-label">Last Name</label>
           <input value="{{user.last_name}}" type="text" class="form-control" id="editprofile-lastname"
-            placeholder="Your last name..." required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
+            placeholder="Last name" required pattern="[A-Za-z\s]+" minlength="1" maxlength="20" />
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -53,7 +53,7 @@
       <div class="mb-3">
         {{! About Me textarea }}
         <label for="editprofile-aboutme" class="form-label">About Me</label>
-        <textarea class="form-control" id="editprofile-aboutme" rows="3">{{user.about_me}}</textarea>
+        <textarea class="form-control" placeholder="Tell us a little about yourself!" id="editprofile-aboutme" rows="3">{{user.about_me}}</textarea>
       </div>
 
       <div class="row">
@@ -68,13 +68,13 @@
     <form id="editsecurity-form" class="col" novalidate>
       <h2>Account Security</h2>
       <div class="mb-3 col">
-        <label for="email" class="form-label">Email</label>
+        <label for="editsecurity-email" class="form-label">Email</label>
         <input type="email" class="form-control" id="editsecurity-email" disabled value="{{user.email}}" />
       </div>
       <div class="row">
         <div class="mb-3 col">
-          <label for="fname" class="form-label">Password</label>
-          <input type="password" class="form-control" id="editsecurity-password" placeholder="New Password" max="128" >
+          <label for="editsecurity-password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="editsecurity-password" placeholder="New Password" max="128" data-bs-toggle="popover"  title="Password Requirements" data-bs-trigger="focus" data-bs-placement="left" fallbackPlacements=['left', 'bottom', 'top', 'right'] data-html="true" data-bs-content="Must contain at least one uppercase letter, lowercase letter, number, and special character and be between 8 and 128 characters.">
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -83,8 +83,8 @@
           </div>
         </div>
         <div class="mb-3 col">
-          <label for="lname" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" id="editsecurity-confirmpassword" placeholder="Confirm New Password" max="128"/>
+          <label for="editsecurity-confirmpassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="editsecurity-confirmpassword" placeholder="New Password" max="128"/>
           <div class="valid-feedback">
             Looks Great!
           </div>
@@ -142,4 +142,4 @@
   </div>
 </div>
 
-<div id="editprofile-alert-area"></div>
+<div id="editprofile-alert-area" style="pointer-events: none"></div>

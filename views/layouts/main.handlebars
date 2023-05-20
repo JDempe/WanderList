@@ -20,9 +20,9 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"
-        />
-    <link 
-      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" 
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link href="./css/reset.css" rel="stylesheet" />
@@ -63,21 +63,33 @@
               <!-- HOME ICON / navigates to personal_page.handlebars -->
               <i class="bi bi-house-fill navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
+            <a class="nav-item nav-link active" role="button" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
               <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
               <i class="bi bi-compass navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="user/{{user.id}}" data-toggle="tooltip" data-placement="top" title="Profile">
+            <a
+              class="nav-item nav-link active"
+              href="/user"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Profile"
+            >
               <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
               <i class="bi bi-person-circle navIcon"></i>
             </a>
-            <a class="nav-item nav-link active" href="#" data-toggle="tooltip" data-placement="top" title="Settings">
+            <a
+              class="nav-item nav-link active"
+              href="/editprofile"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Settings"
+            >
               <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
               <i class="bi bi-gear-fill navIcon"></i>
             </a>
-                </div>
-            </div>
-        </nav>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
       <!-- MAIN CONTENT -->
@@ -350,8 +362,12 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error error-400">The email or password provided is incorrect. Please try again.</span>
-              <span class="cd-signin-modal__error error-500">We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.</span>
+              <span class="cd-signin-modal__error error-400">The email or
+                password provided is incorrect. Please try again.</span>
+              <span class="cd-signin-modal__error error-500">We apologize for
+                the inconvenience. We have encountered an issue on our end, but
+                rest assured that we are actively working to resolve it. We
+                appreciate your understanding.</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -397,8 +413,8 @@
                 id="signup-username"
                 type="text"
                 placeholder="Username"
-                minlength="3" 
-                maxlength="20" 
+                minlength="3"
+                maxlength="20"
               />
               <span class="cd-signin-modal__error username-validation">The username must be alphanumeric and have 3-20 characters!</span>
               <span class="cd-signin-modal__error username-error-422">The username is already taken. Please choose a different username.</span>
@@ -438,7 +454,7 @@
               <span class="cd-signin-modal__error error-500">We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.</span>
             </p>
 
-            {{!-- <p class="cd-signin-modal__fieldset">
+            {{! <p class="cd-signin-modal__fieldset">
               <input
                 type="checkbox"
                 id="accept-terms"
@@ -446,7 +462,7 @@
               />
               <label for="accept-terms">I agree to the
                 <a href="#0">Terms</a></label>
-            </p> --}}
+            </p> }}
 
             <p class="cd-signin-modal__fieldset">
               <input
@@ -510,17 +526,20 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+  ></script>
+  <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
   ></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   ></script>
-  <script src="./js/modal.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"
   ></script>
+  <script src="./handlers/user-auth.js"></script>  
   <script src="{{script}}"></script>
   <script src="{{scriptSecond}}"></script>
-  <script src="./handlers/user-auth.js"></script>
-  
+  <script src="./js/modal.js"></script>
+
 </html>

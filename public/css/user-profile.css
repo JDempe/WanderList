@@ -23,6 +23,10 @@
   margin: 0 auto;
 }
 
+.editprofile-alert {
+  pointer-events: all;
+}
+
 #editprofile-form, #editsecurity-form {
   display: flex;
   flex-direction: column;
@@ -95,4 +99,9 @@ transition: all 0.3s ease-in-out;
   width: 100%;
   min-width: fit-content;
   padding: 20px;
+}
+
+.btn.btn-primary[disabled] {
+  background-color: #a4a3a3;
+  border: #a4a3a3;
 }

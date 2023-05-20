@@ -41,7 +41,7 @@ router.get("/personal", async (req, res) => {
       partials: "personal-pin",
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json(err);
   }
 });
 
@@ -58,7 +58,7 @@ router.get("/editprofile", async (req, res) => {
 
     res.redirect(`/editprofile/${user.username}`);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json(err);
   }
 });
 
@@ -74,6 +74,31 @@ router.get("/editprofile/:username", async (req, res) => {
     });
     const user = userData.get({ plain: true });
 
+    // Pull from session the user's id to confirm that the user is logged in
+    const userId = req.session.user_id;
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+    const userExists = await User.findOne({
+      where: {
+        username: req.params.username,
+      },
+      attributes: { exclude: ["password"] },
+    });
+
+    // verify that the user exists in the database.
+    if (!userExists) {
+      return res.status(400).json({
+        message: `The user with the provided username "${req.params.username}" does not exist.`,
+      });
+    }
+
+    // verify that the user is logged in and is the same user as the one being updated.
+    if (userSession !== userExists.id || userLoggedIn !== 1) {
+      return res.status(400).json({
+        message: `You are not authorized to edit this user's profile.`,
+      });
+    }
+    
     // Pull from the avatar table the avatar image location that matches the user's avatar id
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
@@ -93,7 +118,7 @@ router.get("/editprofile/:username", async (req, res) => {
       avatars,
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json(err);
   }
 });
 
