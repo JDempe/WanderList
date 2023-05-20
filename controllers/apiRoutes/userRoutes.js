@@ -57,14 +57,14 @@ router.post('/login', async (req, res) => {
         });
 
         if (!userData) {
-            return res.status(400).json({ message: 'Incorrect email or password, please try again' });
+            return res.status(404).json({ message: 'Incorrect email or password, please try again' });
         }
         
         // verify that the hashed password stored in the database matches the password provided by the user.
         const validatePassword = bcrypt.compareSync(req.body.password, userData.password);
         
         if (!validatePassword) {
-            return res.status(400).json({ message: 'Incorrect email or password, please try again' });
+            return res.status(404).json({ message: 'Incorrect email or password, please try again' });
         }
         
         req.session.user_id = userData.id;

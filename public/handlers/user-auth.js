@@ -39,6 +39,14 @@ async function handleLogInClick(e) {
         password: $("#signin-password").val().trim(),
     }
 
+    if (userData.email.length < 3) {
+        showErrorMessage($('#signin-email'), '.login-short-email');
+        return;
+    } else if (userData.password.length < 8) {
+        showErrorMessage($("#signin-password"), '.login-short-password');
+        return;
+    }
+
     const response = await fetch('/api/user/login', {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -49,14 +57,14 @@ async function handleLogInClick(e) {
         $('.body-modal').removeAttr('cd-signin-modal--is-visible');
         document.location.replace('/');
         alert(`You are logged in successfully!`); // to be removed. needed for testing purpose
-    } else if (response.status === 400) {
-        $("#signin-password").siblings('.error-400').addClass('cd-signin-modal__error--is-visible');
-    } else {
-        $("#signin-password").siblings('.error-500').addClass('cd-signin-modal__error--is-visible');
+    } else if (response.status === 404) {
+        showErrorMessage($("#signin-password"), '.error-404');
+    } else if (response.status === 500) {
+        showErrorMessage($("#signin-password"), '.error-500');
     }
 }
 
-// 
+// invoked when the 'Log-out' icon is clicked, sends the user information to the server, where user's session will be deleted from the Sessions table and logged_in value overwritten to false.
 async function handleLogOutClick(e) {
     e.preventDefault();
 

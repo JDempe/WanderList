@@ -327,12 +327,12 @@
                 for="signin-email"
               >E-mail</label>
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
                 id="signin-email"
                 type="email"
                 placeholder="E-mail"
               />
-              <span class="cd-signin-modal__error">Error message here!</span>
+              <span class="cd-signin-modal__error login-short-email">Please provide a valid email address!</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -341,7 +341,7 @@
                 for="signin-password"
               >Password</label>
               <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border"
+                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
                 id="signin-password"
                 type="text"
                 placeholder="Password"
@@ -350,8 +350,9 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error error-400">The email or password provided is incorrect. Please try again.</span>
+              <span class="cd-signin-modal__error error-404">The email or password provided is incorrect. Please try again.</span>
               <span class="cd-signin-modal__error error-500">We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.</span>
+              <span class="cd-signin-modal__error login-short-password">Password should be 8-128 characters long and contain alphanumeric, uppercase and special characters!</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
