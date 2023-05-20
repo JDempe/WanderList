@@ -97,15 +97,16 @@ router.post("/login", async (req, res) => {
         .status(400)
         .json({ message: "Incorrect email or password, please try again" });
     }
-
-    req.session.user_id = userData.id;
+    const userId = userData.id;
+    console.log("!!!!!userData.id!!", userData.id);
+    req.session.user_id = userId;
     req.session.logged_in = 1;
 
     req.session.save();
 
     return res
       .status(200)
-      .json({ message: "You have been successfully logged in!" });
+      .json({ userId, message: "You have been successfully logged in!" });
   } catch (error) {
     res.status(500).json(error);
   }

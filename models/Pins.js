@@ -16,10 +16,10 @@ Pin.init(
       allowNull: false,
     },
     pinDescription: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
-    pinLocaton: {
+    pinLocation: {
       type: DataTypes.STRING,
       allowNull: false,
     },
