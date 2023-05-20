@@ -27,16 +27,16 @@ async function handleSignUpClick(e) {
     alert(`Welcome aboard, ${userData.username}! Enjoy your journey with us!`);
   } else if (response.status === 422) {
     const responseJson = await response.json();
-    
-    if (responseJson.errorCode === 'usernameExists') {
-      showErrorMessage($signupUsername, '.username-error-422');
-    } else if (responseJson.errorCode === 'emailExists') {
-      showErrorMessage($signupEmail, '.email-error-422');
-    } else if (response.status === 500) {
-      showErrorMessage($signupPassword, '.error-500');
-    }
-}
 
+    if (responseJson.errorCode === "usernameExists") {
+      showErrorMessage($signupUsername, ".username-error-422");
+    } else if (responseJson.errorCode === "emailExists") {
+      showErrorMessage($signupEmail, ".email-error-422");
+    } else if (response.status === 500) {
+      showErrorMessage($signupPassword, ".error-500");
+    }
+  }
+}
 // invoked when the 'Log-in' button is clicked and sends the user information to the server for validation.
 async function handleLogInClick(e) {
   e.preventDefault();
@@ -58,9 +58,8 @@ async function handleLogInClick(e) {
     const userId = responseData.userId; // Extract additional user data //<--
     console.log("userId", userId); //<--
     $(".body-modal").removeAttr("cd-signin-modal--is-visible");
-    document.location.replace(`api//pins/user/${userId}`); //<--
+    document.location.replace(`api/pins/user/${userId}`); //<--
     // document.location.replace(`/`);
-
   } else if (response.status === 400) {
     $("#signin-password")
       .siblings(".error-400")
@@ -97,7 +96,7 @@ function validateSignUpUsernameField() {
   const bool = validateUsername(); // invoke the validate function to verify if the validation has been successful.
 
   if (!bool) {
-    showErrorMessage($signupUsername, '.username-validation');
+    showErrorMessage($signupUsername, ".username-validation");
   }
 }
 
@@ -122,7 +121,7 @@ function validateSignUpEmailField() {
   const bool = validateEmail(); // true or false
 
   if (!bool) {
-    showErrorMessage($signupEmail, '.email-validation');    
+    showErrorMessage($signupEmail, ".email-validation");
   }
 }
 
@@ -143,7 +142,7 @@ function validateSignUpPasswordField() {
   const bool = validatePassword(); // true or false
 
   if (!bool) {
-    showErrorMessage($signupPassword, '.password-validation');
+    showErrorMessage($signupPassword, ".password-validation");
   }
 }
 
@@ -163,11 +162,15 @@ function validatePassword() {
 // displayss a custom error message if any of the sign-up inputs fail to pass the validation.
 
 function showErrorMessage(element, siblingsClass) {
-    element.siblings(siblingsClass).addClass('cd-signin-modal__error--is-visible');
+  element
+    .siblings(siblingsClass)
+    .addClass("cd-signin-modal__error--is-visible");
 
-    element.on('focus', () => {
-        element.siblings(siblingsClass).removeClass('cd-signin-modal__error--is-visible');
-    });
+  element.on("focus", () => {
+    element
+      .siblings(siblingsClass)
+      .removeClass("cd-signin-modal__error--is-visible");
+  });
 }
 
 // function disables or enables "create account" button based on the sign-up fields input validation
