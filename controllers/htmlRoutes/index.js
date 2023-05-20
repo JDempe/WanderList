@@ -6,13 +6,13 @@ router.get("/discover", async (req, res) => {
   try {
     const pins = await Pins.findAll();
 
-    // Shuffles the pins array using  algorithm
+    // Shuffles the pins array using the Fisher-Yates algorithm
     for (let i = pins.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [pins[i], pins[j]] = [pins[j], pins[i]];
     }
 
-    // Limits the rendered output to 20 pins
+    // Limits the rendered output to 20 pins and includes username
     const pinsData = pins.slice(0, 20).map(pin => ({
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,

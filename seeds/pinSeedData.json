@@ -9,7 +9,7 @@
     "pinTag": "clubbing, shopping, city-life",
     "pinImage": "",
     "pinCompletion": true,
-    "user_id": "001"
+    "user_id": "2f05a82c-61ad-4a0a-b3a3-8c650f2de2a5"
   },
   {
     "pinTitle": "Lorem Ipsum 2",
@@ -21,7 +21,7 @@
     "pinTag": "mountain, biking, forest",
     "pinImage": "",
     "pinCompletion": false,
-    "user_id": "002"
+    "user_id": "4f05a82c-61ad-4a0a-b3a3-8c650f2de2a5"
   },
   {
     "pinTitle": "Lorem Ipsum 3",
@@ -33,6 +33,6 @@
     "pinTag": "desert, road trip, route 66",
     "pinImage": "",
     "pinCompletion": false,
-    "user_id": "003"
+    "user_id": "3f05a82c-61ad-4a0a-b3a3-8c650f2de2a5"
   }
 ]
