@@ -1,9 +1,4 @@
 const router = require("express").Router();
-<<<<<<< HEAD
-const { User, Avatars, Pins } = require("../../models");
-
-// GET discovery page and render content / discovery-pins
-=======
 const { User, Avatars } = require("../../models");
 const { Op } = require("sequelize");
 
@@ -20,7 +15,7 @@ const { Op } = require("sequelize");
 //     });
 //});
 // GET discovery page
->>>>>>> 44b75b946c523a1d67d873dc3d29f5c7e294ceb3
+
 router.get("/discover", async (req, res) => {
   try {
     const pins = await Pins.findAll();
