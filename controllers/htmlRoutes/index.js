@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Avatars } = require("../../models");
+const { User, Avatars, Pins } = require("../../models");
 const { Op } = require("sequelize");
 
 
