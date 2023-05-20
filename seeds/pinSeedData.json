@@ -2,7 +2,7 @@
   {
     "pinTitle": "Lorem Ipsum 1",
     "pinDescription": "{{loremIpsum}}",
-    "pinLocaton": "Los Angeles",
+    "pinLocation": "Los Angeles",
     "pinGeocords": "34.052235:-118.243683",
     "pinLink": "https://lacity.gov/visitors",
     "pinCategory": "Tourism",
@@ -14,7 +14,7 @@
   {
     "pinTitle": "Lorem Ipsum 2",
     "pinDescription": "{{loremIpsum}}",
-    "pinLocaton": "Bern",
+    "pinLocation": "Bern",
     "pinGeocords": "46.9514:7.4371.",
     "pinLink": "https://www.bern.com/en/home",
     "pinCategory": "Adventure travel",
@@ -26,7 +26,7 @@
   {
     "pinTitle": "Lorem Ipsum 3",
     "pinDescription": "{{loremIpsum}}",
-    "pinLocaton": "Arizona",
+    "pinLocation": "Arizona",
     "pinGeocords": "34.048927:-111.093735",
     "pinLink": "https://tourism.az.gov",
     "pinCategory": "Road trip",

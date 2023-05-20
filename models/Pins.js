@@ -19,7 +19,7 @@ Pin.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    pinLocaton: {
+    pinLocation: {
       type: DataTypes.STRING,
       allowNull: false,
     },

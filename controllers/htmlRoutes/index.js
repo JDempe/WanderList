@@ -16,6 +16,7 @@ router.get("/discover", async (req, res) => {
     const pinsData = pins.slice(0, 20).map(pin => ({
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
+      pinLocation: pin.pinLocation,
     }));
 
     // Renders the js/css/second js/hbs/and pins template for [age]
