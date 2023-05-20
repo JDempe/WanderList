@@ -13,7 +13,7 @@ router.post('/signup', async (req, res) => {
         });
             
         if (userExists) {
-            return res.json({ message: `The user with the provided email "${userExists.email}" already exists. Please try to log in.` });
+            return res.status(422).json({ errorCode: 'emailExists' });
         }
         
         // verify that the provided username does not exist in the database.
@@ -24,7 +24,7 @@ router.post('/signup', async (req, res) => {
         })
         
         if (usernameExists) {
-            return res.json({ message: `The username "${usernameExists.username}" is already taken. Please choose a different username.` });
+            return res.status(422).json({ errorCode: 'usernameExists' }); 
         }
         
         // once all verification steps have been successfully completed, proceed to create the user in the database.
