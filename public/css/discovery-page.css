@@ -28,10 +28,14 @@
     border-color: #6eb1eb;
 }
 
+.btn-refresh:active {
+    transform: scale(0.99);
+    box-shadow: 0 0 0 0.25rem #6eb1eb80;
+  }
 
 .create-text {
     padding-left: 4px;
-    font-family: "Source Sans Pro";
+    font-family: "Source Sans Pro", sans-serif;
     font-weight: 600;
     font-size: 1.35rem;
     color: #ffffff;
@@ -115,7 +119,7 @@
 
 .card-title {
     margin-bottom: 0px;
-   font-family: "Source Sans Pro" ;
+   font-family: "Source Sans Pro", sans-serif ;
    font-weight: 900;
    font-size: 2rem; 
    color: #6e6c78;
@@ -141,7 +145,21 @@
     margin: 4px 0 4px 0;
 }
 
+.card-username {
+    font-family: "Hammersmith One", sans-serif ;
+    font-size: rem;
+    color: #6e6c78;
+}
+
+.card-location {
+    padding-top: 10px;
+    font-family: "Source Sans Pro", sans-serif ;
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: #2887d9;
+}
+
 .card-text {
-    font-family: "Source Sans Pro" ;
+    font-family: "Source Sans Pro", sans-serif ;
     color: #6e6c78;
 }

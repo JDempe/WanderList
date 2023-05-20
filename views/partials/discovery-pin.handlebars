@@ -1,27 +1,39 @@
-<div class="pin">
-<!-- CONTAINS DATE -->
-    <div class="date-container">
-        <hr class="hr date-hr" />
-        <div class="timestamp">MM/DD/YY</div>
-        <hr class="hr date-hr" />
-    </div>
-    <!-- CONTAINS CARD -->
-    <div class="card-container">
-        <div class="card">
-            <div class="card-body was-validated">
-                <div class="card-top-section">
-                    <!-- DISPLAY PIN TITLE -->
-                    <div class="card-title">Placeholder</div>
-                    <!-- Actions should have confirmation required -->
-                    <div class="card-icon-section">
-                    <!-- PIN ICON -->
-                    <i class="bi bi-pin-angle card-icon"></i>
+{{#each pins}}
+    <div class="pin">
+    <!-- CONTAINS DATE -->
+        <div class="date-container">
+            <hr class="hr date-hr" />
+            <div class="timestamp">{{timestamp}}</div>
+            <hr class="hr date-hr" />
+        </div>
+        <!-- CONTAINS CARD -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-body was-validated">
+                    <div class="card-top-section">
+                        <!-- DISPLAY PIN TITLE -->
+                        <div class="card-title">
+                            {{pinTitle}}
+                        </div>
+                        <!-- Actions should have confirmation required -->
+                        <div class="card-icon-section">
+                        <!-- PIN ICON -->
+                        <i class="bi bi-pin-angle card-icon"></i>
+                        </div>
                     </div>
+                    <hr class="hr card-hr" />
+                    <div class="card-username">
+                        Posted by: {{pinUsername}}
+                    </div>
+                    <div class="card-location">
+                        {{pinLocation}}
+                    </div>
+                    <!-- CARD TEXT -->
+                    <p class="card-text">
+                        {{pinDescription}}
+                    </p>          
                 </div>
-                <hr class="hr card-hr" />
-                <!-- CARD TEXT -->
-                <p class="card-text">Placeholder</p>          
             </div>
         </div>
     </div>
-</div>
+{{/each}}
