@@ -7,15 +7,12 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { extendDefaultFields } = require("./models/Session");
 
 const app = express();
-
 const PORT = process.env.PORT || 3001;
 
-// setup express so that it knows we're using handlebars as our template engine
 app.engine("handlebars", engine({}));
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
-// Express middleware
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -35,24 +32,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
-app.use(routes);
 
 app.get("/", (req, res) => {
-  //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
-  // layout property not necessary since it is default, but included for clarity
   res.render("landing-page", {
     layout: "main",
     style: "./css/landing-page.css",
     script: "./js/landing-page.js",
     user: {
       id: req.session.user_id,
-      isLoggedIn: req.session.logged_in
+      isLoggedIn: req.session.logged_in   
     } 
-    });
+  });
+});
+app.use(routes);
+
+
+//404 handler should come last
+app.use((req, res) => {
+  res.status(404).render('404page', {   
+    layout: 'main',
+    style: './css/404.css',
+    title: 'Page Not Found'
+  });
 });
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
-  });
+});
 });
