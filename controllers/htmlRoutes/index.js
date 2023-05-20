@@ -2,8 +2,6 @@ const router = require("express").Router();
 const { User, Avatars, Pins } = require("../../models");
 const { Op } = require("sequelize");
 
-
-
 // router.get("/", (req, res) => {
 //   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
 //   // layout property not necessary since it is default, but included for clarity
@@ -27,11 +25,21 @@ router.get("/discover", async (req, res) => {
     }
 
     // Limits the rendered output to 20 pins
-    const pinsData = pins.slice(0, 20).map(pin => ({
+    const pinsData = pins.slice(0, 20).map((pin) => ({
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
+      pinUsername: pin.user_id,
     }));
+
+    // Take the user ID for each pinsData and find the username that matches the user ID
+    for (let i = 0; i < pinsData.length; i++) {
+      const userData = await User.findByPk(pinsData[i].pinUsername, {
+        attributes: { exclude: ["password"] },
+      });
+      const user = userData.get({ plain: true });
+      pinsData[i].pinUsername = user.username;
+    }
 
     // Renders the js/css/second js/hbs/and pins template for [age]
     res.render("discovery-page", {
@@ -113,7 +121,7 @@ router.get("/editprofile/:username", async (req, res) => {
         message: `You are not authorized to edit this user's profile.`,
       });
     }
-    
+
     // Pull from the avatar table the avatar image location that matches the user's avatar id
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
@@ -156,7 +164,7 @@ router.get("/user/:id", async (req, res) => {
 
 // router to handle  GET 404 page
 // router.use((req, res) => {
-//   res.status(404).render('404page', {   
+//   res.status(404).render('404page', {
 //     layout: 'main',
 //     style: './css/404.css',
 //     title: 'Page Not Found'
