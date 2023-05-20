@@ -400,7 +400,8 @@
                 minlength="3" 
                 maxlength="20" 
               />
-              <span class="cd-signin-modal__error">The username must be alphanumeric and have 3-20 characters!</span>
+              <span class="cd-signin-modal__error username-validation">The username must be alphanumeric and have 3-20 characters!</span>
+              <span class="cd-signin-modal__error username-error-422">The username is already taken. Please choose a different username.</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -414,7 +415,8 @@
                 type="email"
                 placeholder="E-mail"
               />
-              <span class="cd-signin-modal__error">Please provide a valid email address!</span>
+              <span class="cd-signin-modal__error email-validation">Please provide a valid email address!</span>
+              <span class="cd-signin-modal__error email-error-422">The user with the provided email already exists. Please try to log in!</span>
             </p>
 
             <p class="cd-signin-modal__fieldset">
@@ -432,7 +434,8 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error">Password should be 8-128 characters long and contain alphanumeric, uppercase and special characters!</span>
+              <span class="cd-signin-modal__error password-validation">Password should be 8-128 characters long and contain alphanumeric, uppercase and special characters!</span>
+              <span class="cd-signin-modal__error error-500">We apologize for the inconvenience. We have encountered an issue on our end, but rest assured that we are actively working to resolve it. We appreciate your understanding.</span>
             </p>
 
             {{!-- <p class="cd-signin-modal__fieldset">
