@@ -1,5 +1,13 @@
 [
   {
+    "username": "test",
+    "first_name": "Emily",
+    "last_name": "Smith",
+    "email": "test@gmail.com",
+    "password": "test",
+    "avatar_id": 1
+  },
+  {
     "username": "emily42",
     "first_name": "Emily",
     "last_name": "Smith",

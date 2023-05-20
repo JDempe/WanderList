@@ -1,8 +1,9 @@
 $(document).ready(function () {
+  $("#editsecurity-password").popover();
+  $("#editprofile-username").popover();
+  // Get the current user's info
   // Save the current values in the form
-  // TODO Make the id dynamic based on the logged in user
   var currentUserInfo = {
-    id: "43af29e4-80e2-4842-a1e3-75bb6bdab73b",
     username: $("#editprofile-username").val(),
     firstName: $("#editprofile-firstname").val(),
     lastName: $("#editprofile-lastname").val(),
@@ -26,13 +27,14 @@ $(document).ready(function () {
 
     // Send a PUT request to change the user's avatar id
     $.ajax({
-      url: `/api/user/editprofile/${currentUserInfo.id}`,
+      url: `/api/user/editprofile/${currentUserInfo.username}`,
       data: {
         avatar_id: avatarId,
       },
       type: "PUT",
       success: function (response) {
         console.log("updated user");
+
         location.reload();
       },
       error: function (xhr) {
@@ -40,7 +42,6 @@ $(document).ready(function () {
       },
     });
   });
-
   // END AVATAR MODAL //
 
   // USER PROFILE //
@@ -96,32 +97,15 @@ $(document).ready(function () {
           success: function (response) {
             // If the username is not unique, show an error message
             // If the username doesnt exist or is mine, send the PUT request to change user profile info
-            if (response.username) {
+            if (response) {
               addAlertToPage(
                 "alert-danger",
                 "Username already exists!",
                 " Please choose a different username.",
                 "#editprofile-submitBtn"
               );
-            } else {
-              $.ajax({
-                url: `/api/user/editprofile/${currentUserInfo.id}`,
-                data: {
-                  first_name: user.firstName,
-                  last_name: user.lastName,
-                  username: user.username,
-                  about_me: user.aboutme,
-                },
-                type: "PUT",
-                success: function (response) {
-                  console.log("updated user");
-                  location.reload();
-                },
-                error: function (xhr) {
-                  console.log("error updating user");
-                  console.log(xhr);
-                },
-              });
+              // End the click event function
+              return;
             }
           },
           error: function (xhr) {
@@ -130,8 +114,31 @@ $(document).ready(function () {
           },
         });
       }
+
+      $.ajax({
+        url: `/api/user/editprofile/${currentUserInfo.username}`,
+        data: {
+          first_name: user.firstName,
+          last_name: user.lastName,
+          username: user.username,
+          about_me: user.aboutme,
+        },
+        type: "PUT",
+        success: function (response) {
+          console.log("updated user");
+          // load the successfulChangeModal to show the user that the change was successful
+          window.location.href = `/editprofile/${user.username}`;
+        },
+        error: function (xhr) {
+          console.log("error updating user");
+          console.log(xhr);
+        },
+      });
+
+      // redirect to the user's new URL with the new username
     }
   });
+
   // END USER PROFILE //
 
   // ACCOUNT SECURITY //
@@ -156,17 +163,17 @@ $(document).ready(function () {
 
   // if you submit the form, first check to make sure the passwords match and are valid.  Don't let the user submit the form if they don't match or are invalid.
   $("#editsecurity-form").submit(function (event) {
-    var password = $("#editsecurity-password").val().trim();
+    var newpassword = $("#editsecurity-password").val().trim();
     var confirmPassword = $("#editsecurity-confirmpassword").val().trim();
 
     if (
-      password !== confirmPassword ||
-      !validatePassword(password) ||
+      newpassword !== confirmPassword ||
+      !validatePassword(newpassword) ||
       !validatePassword(confirmPassword)
     ) {
       event.preventDefault();
       event.stopPropagation();
-      if (password !== confirmPassword) {
+      if (newpassword !== confirmPassword) {
         addAlertToPage(
           "alert-danger",
           "Passwords do not match!",
@@ -174,7 +181,7 @@ $(document).ready(function () {
           "#editsecurity-submitBtn"
         );
       }
-      if (!validatePassword(password)) {
+      if (!validatePassword(newpassword)) {
         addAlertToPage(
           "alert-danger",
           "Password is invalid!",
@@ -185,9 +192,9 @@ $(document).ready(function () {
     } else {
       // if the passwords match, send a PUT request to update the user's password
       $.ajax({
-        url: `/api/user/editsecurity/${currentUserInfo.id}`,
+        url: `/api/user/editsecurity/${currentUserInfo.username}`,
         data: {
-          password: password,
+          password: newpassword,
         },
         type: "PUT",
         success: function (response) {
@@ -209,22 +216,35 @@ $(document).ready(function () {
   });
 
   // if the user clicks the deleteAccountModal confirm button, it sends a DELETE request to delete the user
-  $("#deleteAccountModal-confirmBtn").click(function (e) {
+  $("#deleteAccountModal-confirmBtn").click( async function (e) {
     e.preventDefault();
     // send a DELETE request to delete the user
-    $.ajax({
-      url: `/api/user/delete/${currentUserInfo.id}`,
+    await $.ajax({
+      url: `/api/user/delete/${currentUserInfo.username}`,
       type: "DELETE",
       success: function (response) {
         console.log("deleted user");
-        // redirect to the homepage
-        window.location.href = "/";
       },
       error: function (xhr) {
         console.log(xhr);
         console.log("error deleting user");
       },
     });
+
+    // call the logout api
+    await $.ajax({
+      url: "/api/user/logout",
+      type: "GET",
+      success: function (response) {
+        console.log("logged out");
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        console.log("error logging out");
+      },
+    });
+    // redirect to the homepage
+    window.location.href = "/";
   });
 
   // END ACCOUNT SECURITY //
@@ -240,7 +260,7 @@ $(document).ready(function () {
     disableButtonID
   ) {
     var myAlert = document.createElement("div");
-    myAlert.className = `alert ${alertClass} alert-dismissible fade show`;
+    myAlert.className = `alert ${alertClass} alert-dismissible fade show editprofile-alert`;
     myAlert.setAttribute("role", "alert");
     myAlert.innerHTML = `
             <strong>${alertBoldMessage}</strong> ${alertMessage}
