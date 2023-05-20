@@ -28,18 +28,18 @@ router.post('/signup', async (req, res) => {
         }
         
         // once all verification steps have been successfully completed, proceed to create the user in the database.
-        const result = await User.create({
+        const userData = await User.create({
             username: req.body.username.trim(),
             email: req.body.email.toLowerCase().trim(),
             password: req.body.password.trim(),
         });
 
-        req.session.user_id = result.id;
+        req.session.user_id = userData.id;
         req.session.logged_in = 1;
 
         req.session.save();
 
-        res.status(200).json({ message: `Welcome aboard, ${result.username}! Enjoy your journey with us!` });
+        res.status(200).json({ message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!` });
         
     } catch (error) {
         res.status(500).json(error);

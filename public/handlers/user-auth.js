@@ -33,8 +33,8 @@ async function handleSignUpClick(e) {
         } else if (responseJson.errorCode === 'emailExists') {
             showErrorMessage($signupEmail, '.email-error-422');
         }
-    } else {
-        alert('Failed to sign up!');
+    } else if (response.status === 500) {
+        showErrorMessage($signupPassword, '.error-500');
     }
 }
 
