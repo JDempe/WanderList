@@ -346,24 +346,37 @@ router.put("/savepin", async (req, res) => {
         message: `You are not authorized to edit this user's profile.`,
       });
     }
-
-    // Break apart the saved_pins string into an array using the comma as a delimiter.  Only do this if the string is not null.
+    console.log("req.body.pinId", req.body.pinId);
+    // This is the format of each entry in the JSON array.
+    // {
+    //   "pinId": req.body.pinId,
+    //   "completed": false
+    // }
+    // Break apart the saved_pins string into a JSON with pinId and completed keys.  Only do this if the string is not null.
     if (userExists.saved_pins !== null && userExists.saved_pins !== "") {
-      var savedPinsArray = userExists.saved_pins.split(",");
-      // If the pinID is already in the array, remove it.  Otherwise, add it.
-      if (savedPinsArray.includes(req.body.cardId)) {
-        var index = savedPinsArray.indexOf(req.body.cardId);
-        savedPinsArray.splice(index, 1);
+      var savedPinsJSON = JSON.parse(userExists.saved_pins);
+      // If the pinID is already a value in the json, remove it.  Otherwise, add it.
+      if (savedPinsJSON.some((e) => e.pinId === req.body.pinId)) {
+        var savedPinsArray = savedPinsJSON.filter(
+          (e) => e.pinId !== req.body.pinId
+        );
       } else {
-        savedPinsArray.push(req.body.cardId);
+        var savedPinsArray = savedPinsJSON.concat({
+          pinId: req.body.pinId,
+          completed: false,
+        });
       }
     } else {
-      var savedPinsArray = [];
-      savedPinsArray.push(req.body.cardId);
+      var savedPinsArray = [
+        {
+          pinId: req.body.pinId,
+          completed: false,
+        },
+      ];
     }
-    // Rejoin the array into a string using the comma as a delimiter.
-    var savedPinsString = savedPinsArray.join(",");
-    console.log("savedPinsString", savedPinsString);
+
+    // Stringify the JSON array to be stored in the database.
+    var savedPinsString = JSON.stringify(savedPinsArray);
 
     // proceed to update the user in the database.
     await User.update(
@@ -376,11 +389,9 @@ router.put("/savepin", async (req, res) => {
         },
       }
     );
-    res
-      .status(200)
-      .json({
-        message: `Your profile has been successfully updated!`,
-      });
+    res.status(200).json({
+      message: `Your profile has been successfully updated! ${savedPinsString}`,
+    });
   } catch (error) {
     res.status(500).json(error);
   }

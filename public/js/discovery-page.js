@@ -11,11 +11,12 @@ $(document).ready(function () {
       console.log("not logged in");
       return;
     }
-    if (response.saved_pins === null) {
+    if (response.saved_pins === null || response.saved_pins === "") {
       console.log("no pins");
       return;
     }
-    var pinnedCards = response.saved_pins.split(",");
+    // take the string and JSON parse it
+    var pinnedCards = JSON.parse(response.saved_pins);
     console.log(pinnedCards);
     checkPinnedCards(pinnedCards);
   });
@@ -41,11 +42,7 @@ $(document).ready(function () {
         pinIconEl.popover('show');
         return;
       } else {
-
-
-        
         // Look at the pin, if it has a class of bi-pin-angle-fill, remove that class and add the class of bi-pin-angle, otherwise do the opposite
-        console.log(this)
         if (pinIconEl.hasClass(pinnedIcon)) {
           pinIconEl.removeClass(pinnedIcon);
           pinIconEl.addClass(unpinnedIcon);
@@ -62,7 +59,7 @@ $(document).ready(function () {
           url: "/api/user/savepin",
           method: "PUT",
           data: {
-            cardId: cardId,
+            pinId: cardId,
           },
         }).then(function (response) {
           // console.log(response);
@@ -71,11 +68,12 @@ $(document).ready(function () {
     });
   });
 
-  // Create a function to cycle through all .card-pinning elements and add the class of pinned if the card is in the user's pinned cards
+  // function to check each key in the pinnedCards array against the cardId
   function checkPinnedCards(pinnedCards) {
     $(".card-icon").each(function () {
       var cardId = $(this).closest(".card-container").attr("data-pinid");
-      if (pinnedCards.includes(cardId)) {
+      // if the pinnedCards JSON array includes the cardId, add the class of pinned to the card
+      if (pinnedCards.some((e) => e.pinId === cardId)) {
         $(this).addClass(pinnedIcon);
         $(this).removeClass(unpinnedIcon);
       }
