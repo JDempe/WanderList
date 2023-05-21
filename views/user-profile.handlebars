@@ -55,6 +55,7 @@
         <label for="editprofile-aboutme" class="form-label">About Me</label>
         <textarea class="form-control" placeholder="Tell us a little about yourself!" id="editprofile-aboutme" rows="3">{{user.about_me}}</textarea>
       </div>
+     <input type="hidden" name="user_id" id="editsecurity-id" value="{{user.id}}">
 
       <div class="row">
         {{! Submit Button }}

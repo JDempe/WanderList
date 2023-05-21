@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const { User } = require("../../models");
+const { User, Avatars, Post } = require("../../models");
 
 // set up router to find users by id
 router.get("/:id", async (req, res) => {
@@ -137,6 +137,7 @@ router.put("/editprofile/:id", async (req, res) => {
       return res.status(400).json({
         message: `The user with the provided id "${req.params.id}" does not exist. Please try again.`,
       });
+      
     }
 
     // proceed to update the user in the database.

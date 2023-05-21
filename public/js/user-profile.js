@@ -9,6 +9,7 @@ $(document).ready(function () {
     lastName: $("#editprofile-lastname").val(),
     aboutme: $("#editprofile-aboutme").val(),
     email: $("#editsecurity-email").val(),
+    id: $("#editsecurity-id").val()
   };
 
   // AVATAR MODAL //
@@ -27,7 +28,7 @@ $(document).ready(function () {
 
     // Send a PUT request to change the user's avatar id
     $.ajax({
-      url: `/api/user/editprofile/${currentUserInfo.username}`,
+      url: `/api/user/editprofile/${currentUserInfo.id}`,
       data: {
         avatar_id: avatarId,
       },
@@ -124,18 +125,19 @@ $(document).ready(function () {
       }
 
       $.ajax({
-        url: `/api/user/editprofile/${currentUserInfo.username}`,
+        url: `/api/user/editprofile/${currentUserInfo.id}`,
         data: {
           first_name: user.firstName,
           last_name: user.lastName,
           username: user.username,
           about_me: user.aboutme,
+          
         },
         type: "PUT",
         success: function (response) {
           console.log("updated user");
           // load the successfulChangeModal to show the user that the change was successful
-          window.location.href = `/editprofile/${user.username}`;
+          window.location.href = `/editprofile/${currentUserInfo.id}`;
         },
         error: function (xhr) {
           console.log("error updating user");
@@ -220,7 +222,7 @@ $(document).ready(function () {
           console.log("error updating user");
           if(xhr.status === 400){
             var response = JSON.parse(xhr.responseText);
-            if(response.message === `The user with the provided id ${user.username} does not exist. Please try again.`){
+            if(response.message === `The user with the provided id ${currentUserInfo.username} does not exist. Please try again.`){
               alert('The user does not exist. Please try again.');
             }
           }
@@ -245,7 +247,7 @@ $(document).ready(function () {
     e.preventDefault();
     // send a DELETE request to delete the user
     await $.ajax({
-      url: `/api/user/delete/${currentUserInfo.username}`,
+      url: `/api/user/delete/${currentUserInfo.id}`,
       type: "DELETE",
       success: function (response) {
         console.log("deleted user");
