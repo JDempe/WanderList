@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Pins } = require("../../models");
+const { Pins, User, Avatars } = require("../../models");
 
 // GET route to retrieve all pins
 router.get("/pins", async (req, res) => {
@@ -12,7 +12,7 @@ router.get("/pins", async (req, res) => {
   }
 });
 
-// GET route to retrieve a specific pin by ID
+// GET route to retrieve a specific pin by pin ID
 router.get("/pins/:id", async (req, res) => {
   try {
     const pins = await Pins.findByPk(req.params.id);
@@ -21,6 +21,49 @@ router.get("/pins/:id", async (req, res) => {
     } else {
       res.status(404).json({ error: "Pin not found" });
     }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET route to retrieve a all pins by user ID
+router.get("/pins/user/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const pins = await Pins.findAll({ where: { user_id: id } });
+    if (pins.length <= 0) {
+      res.status(404).json({ error: "No pin is found for this user!" });
+    }
+
+    for (let i = pins.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pins[i], pins[j]] = [pins[j], pins[i]];
+    }
+
+    // Limits the rendered output to 20 pins
+    const pinsData = pins.slice(0, 20).map((pin) => ({
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription,
+      pinLocation: pin.pinLocation,
+      pinUsername: pin.user_id,
+    }));
+
+    // Take the user ID for each pinsData and find the username that matches the user ID
+    for (let i = 0; i < pinsData.length; i++) {
+      const userData = await User.findByPk(pinsData[i].pinUsername, {
+        attributes: { exclude: ["password"] },
+      });
+      const user = userData.get({ plain: true });
+      pinsData[i].pinUsername = user.username;
+    }
+
+    // Renders the js/css/second js/hbs/and pins template for [age]
+    res.render("discovery-page", {
+      style: "./css/discovery-page.css",
+      script: "./js/discovery-page.js",
+      scriptSecond: "./js/search-pin.js",
+      pins: pinsData,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
