@@ -132,7 +132,14 @@ $(document).ready(function () {
         error: function (xhr) {
           console.log("error updating user");
           console.log(xhr);
+
+          if(xhr.status === 401){
+
+          //redirect to home page
+          window.location.href = `/`;
+          }
         },
+        
       });
 
       // redirect to the user's new URL with the new username

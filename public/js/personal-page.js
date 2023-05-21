@@ -54,6 +54,23 @@ function enablePinEditing(pin) {
   pinTextInput.prop("readonly", false);
   applyReadOnly();
 }
+//wrapper function to handle 404 errors from server and redirect to home page.
+async function fetchWrapper(url, options) {
+  const response = await fetch(url, options);
+  
+  if (!response.ok) {
+    if (response.status === 404) {
+      // Redirect to the home page
+      window.location.href = '/';
+    }
+    
+    throw new Error(response.statusText);
+  }
+  
+  return response.json();
+}
+
+
 
 $(".card-icon-section .bi-check-square").click(async function (e) {
   if ($(this).hasClass("disabled")) {
@@ -63,23 +80,21 @@ $(".card-icon-section .bi-check-square").click(async function (e) {
   const pin = $(this).closest(".card");
   const currentStatus = pin.data("pinCompletion");
   const newStatus = !currentStatus;
-
-  try {
-    const response = await fetch("/pins/:id", {
-      method: "PUT",
-      body: JSON.stringify({ pinCompletion: newStatus }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
+    try {
+      const data = await fetchWrapper("/pins/:id", {
+        method: "PUT",
+        body: JSON.stringify({ pinCompletion: newStatus }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
     console.log("public>>js>>personal-page.js", data);
   } catch (error) {
     console.log("public>>js>>personal-page.js", error);
   }
   e.stopPropagation();
 });
-
 $(".card-icon-section .bi-pencil").click(function (e) {
   // Check if the button is already in a disabled state
   if ($(this).hasClass("disabled")) {

@@ -51,8 +51,10 @@ async function handleLogInClick(e) {
     body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },
   });
-
-  if (response.ok) {
+  if (response.status === 404) {
+    // Redirect to home page if API route not found
+    window.location.href = '/';
+  }else if (response.ok) {
     const responseData = await response.json(); //<--
     console.log("responseData", responseData); //<--
     const userId = responseData.userId; // Extract additional user data //<--
