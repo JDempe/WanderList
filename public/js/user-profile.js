@@ -135,10 +135,10 @@ $(document).ready(function () {
         type: "PUT",
         success: function (response) {
           console.log("updated user");
-          // If the update is successful, show the model to user with a success message
+          // If the update is successful, show the modal to user with a success message
           showSuccessModal("User profile has been successfully updated!");
           // Redirect to the user's profile page
-          window.location.href = `/editprofile/${currentUserInfo.username}`;
+          window.location.href = `/editprofile/${user.username}`;
         },
         error: function (xhr) {
           console.log("error updating user");
