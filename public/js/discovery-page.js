@@ -1,6 +1,7 @@
 $(document).ready(function () {
   const pinnedIcon = "bi-pin-angle-fill";
   const unpinnedIcon = "bi-pin";
+
   // Get the user's pinned cards by looking up the session id
   $.ajax({
     url: "/api/user/session/lookup",
@@ -8,6 +9,10 @@ $(document).ready(function () {
   }).then(function (response) {
     if (response.logged_in === false) {
       console.log("not logged in");
+      return;
+    }
+    if (response.saved_pins === null) {
+      console.log("no pins");
       return;
     }
     var pinnedCards = response.saved_pins.split(",");
@@ -36,17 +41,21 @@ $(document).ready(function () {
         pinIconEl.popover('show');
         return;
       } else {
+
+
+        
         // Look at the pin, if it has a class of bi-pin-angle-fill, remove that class and add the class of bi-pin-angle, otherwise do the opposite
-        if ($(this).hasClass(pinnedIcon)) {
-          $(this).removeClass(pinnedIcon);
-          $(this).addClass(unpinnedIcon);
+        console.log(this)
+        if (pinIconEl.hasClass(pinnedIcon)) {
+          pinIconEl.removeClass(pinnedIcon);
+          pinIconEl.addClass(unpinnedIcon);
         } else {
-          $(this).addClass(pinnedIcon);
-          $(this).removeClass(unpinnedIcon);
+          pinIconEl.addClass(pinnedIcon);
+          pinIconEl.removeClass(unpinnedIcon);
         }
 
         // Get the id of the card that was clicked by looking for data-pinid in the parent element that has the class of card-container
-        var cardId = $(this).closest(".card-container").attr("data-pinid");
+        var cardId = pinIconEl.closest(".card-container").attr("data-pinid");
 
         // Add the card to the user's pinned cards
         $.ajax({
@@ -56,7 +65,7 @@ $(document).ready(function () {
             cardId: cardId,
           },
         }).then(function (response) {
-          console.log(response);
+          // console.log(response);
         });
       }
     });

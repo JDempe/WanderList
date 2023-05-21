@@ -327,7 +327,7 @@ router.put("/savepin", async (req, res) => {
       });
     }
 
-    // verify that the user exists in the database using the provided username.
+    //   // verify that the user exists in the database using the provided username.
     const userExists = await User.findOne({
       where: {
         id: userSession,
@@ -340,7 +340,7 @@ router.put("/savepin", async (req, res) => {
       });
     }
 
-    // verify that the user is logged in and is the same user as the one being updated.
+    //   // verify that the user is logged in and is the same user as the one being updated.
     if (userSession !== userExists.id || userLoggedIn !== 1) {
       return res.status(400).json({
         message: `You are not authorized to edit this user's profile.`,
@@ -348,20 +348,19 @@ router.put("/savepin", async (req, res) => {
     }
 
     // Break apart the saved_pins string into an array using the comma as a delimiter.  Only do this if the string is not null.
-    if (userExists.saved_pins !== null || userExists.saved_pins !== "") {
-    var savedPinsArray = userExists.saved_pins.split(",");
-    // If the pinID is already in the array, remove it.  Otherwise, add it.
-    if (savedPinsArray.includes(req.body.cardId)) {
-      var index = savedPinsArray.indexOf(req.body.cardId);
-      savedPinsArray.splice(index, 1);
+    if (userExists.saved_pins !== null && userExists.saved_pins !== "") {
+      var savedPinsArray = userExists.saved_pins.split(",");
+      // If the pinID is already in the array, remove it.  Otherwise, add it.
+      if (savedPinsArray.includes(req.body.cardId)) {
+        var index = savedPinsArray.indexOf(req.body.cardId);
+        savedPinsArray.splice(index, 1);
+      } else {
+        savedPinsArray.push(req.body.cardId);
+      }
     } else {
+      var savedPinsArray = [];
       savedPinsArray.push(req.body.cardId);
     }
-  } else {
-    var savedPinsArray = [];
-    savedPinsArray.push(req.body.cardId);
-  }
-
     // Rejoin the array into a string using the comma as a delimiter.
     var savedPinsString = savedPinsArray.join(",");
     console.log("savedPinsString", savedPinsString);
@@ -379,7 +378,9 @@ router.put("/savepin", async (req, res) => {
     );
     res
       .status(200)
-      .json({ message: `Your profile has been successfully updated! ${req.body.cardId}` });
+      .json({
+        message: `Your profile has been successfully updated!`,
+      });
   } catch (error) {
     res.status(500).json(error);
   }
