@@ -64,7 +64,7 @@ router.post("/signup", async (req, res) => {
       .status(200)
       .json({
         message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!`,
-      });
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -82,7 +82,7 @@ router.post("/login", async (req, res) => {
 
     if (!userData) {
       return res
-        .status(400)
+        .status(404)
         .json({ message: "Incorrect email or password, please try again" });
 
     }
