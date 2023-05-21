@@ -30,19 +30,22 @@ router.get("/pins/:id", async (req, res) => {
 router.get("/pins/user/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const pins = await Pins.findAll({ where: { user_id: id } });
+    const { page = 1 } = req.query; // Get the page number from the query parameters
+
+    const limit = 10; // Number of pins per page
+    const offset = (page - 1) * limit; // Calculate the offset based on the page number
+
+    const pins = await Pins.findAndCountAll({
+      where: { user_id: id },
+      limit,
+      offset,
+    });
     // TODO: waiting for place holder for no pin user
     // if (pins.length <= 0) {
     //   res.status(404).json({ error: "No pin is found for this user!" });
     // }
 
-    for (let i = pins.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [pins[i], pins[j]] = [pins[j], pins[i]];
-    }
-
-    // Limits the rendered output to 20 pins
-    const pinsData = pins.slice(0, 20).map((pin) => ({
+    const pinsData = pins.rows.map((pin) => ({
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
@@ -59,9 +62,9 @@ router.get("/pins/user/:id", async (req, res) => {
     }
 
     // Renders the js/css/second js/hbs/and pins template for [age]
-    res.render("discovery-page", {
-      style: "./css/discovery-page.css",
-      script: "./js/discovery-page.js",
+    res.render("personal-page", {
+      style: "./css/personal-page.css",
+      script: "./js/personal-page.js",
       scriptSecond: "./js/search-pin.js",
       pins: pinsData,
     });
