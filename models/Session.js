@@ -10,6 +10,7 @@ sequelize.define("Session", {
     expires: Sequelize.DATE,
     data: Sequelize.TEXT,
     user_id: Sequelize.STRING,
+    username: Sequelize.STRING,
     logged_in: {
       type: Sequelize.TINYINT(1),
       defaultValue: false,
@@ -21,6 +22,7 @@ sequelize.define("Session", {
       data: defaults.data,
       expires: defaults.expires,
       user_id: session.user_id,
+      username: session.username,
       logged_in: session.logged_in,     
     };
   }

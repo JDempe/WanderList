@@ -11,7 +11,7 @@ router.get("/:id", async (req, res) => {
 
     if (!userData) {
       return res.status(404).json({
-        message: `No user found with the provided id "${req.params.id}". Please try again.`,
+        message: `No user found with the provided id. Please try again.`,
       });
     }
 
@@ -57,6 +57,7 @@ router.post("/signup", async (req, res) => {
 
     req.session.user_id = userData.id;
     req.session.logged_in = 1;
+    req.session.username = userData.username;
 
     req.session.save();
 
@@ -98,13 +99,15 @@ router.post("/login", async (req, res) => {
     const userId = userData.id;
     console.log("!!!!!userData.id!!", userData.id);
     req.session.user_id = userId;
+    req.session.username = userData.username;
     req.session.logged_in = 1;
+
 
     req.session.save();
 
     return res
       .status(200)
-      .json({ userId, message: "You have been successfully logged in!" });
+      .json({ username, message: "You have been successfully logged in!" });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -339,7 +342,7 @@ router.put("/savepins/:username", async (req, res) => {
         username: req.params.username,
       },
     });
-    
+
     if (!userExists) {
       return res.status(400).json({
         message: `The user with the provided username "${req.params.username}" does not exist. Please try again.`,
