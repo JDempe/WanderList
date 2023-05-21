@@ -39,6 +39,10 @@ $(document).ready(function () {
       },
       error: function (xhr) {
         console.log(xhr);
+        if(xhr.status === 404) {
+          // Redirect to home page if API route not found
+          window.location.href = '/';
+        }
       },
     });
   });
@@ -111,6 +115,10 @@ $(document).ready(function () {
           error: function (xhr) {
             console.log(xhr);
             console.log("error checking username");
+            if(xhr.status === 404) {
+              // Redirect to home page if API route not found
+              window.location.href = '/';
+            }
           },
         });
       }
@@ -135,7 +143,7 @@ $(document).ready(function () {
 
           if(xhr.status === 401){
 
-          //redirect to home page
+          //redirect to landing page
           window.location.href = `/`;
           }
         },
@@ -210,6 +218,16 @@ $(document).ready(function () {
         error: function (xhr) {
           console.log(xhr);
           console.log("error updating user");
+          if(xhr.status === 400){
+            var response = JSON.parse(xhr.responseText);
+            if(response.message === `The user with the provided id ${user.username} does not exist. Please try again.`){
+              alert('The user does not exist. Please try again.');
+            }
+          }
+          if(xhr.status === 404) {
+            // Redirect to home page if API route not found
+            window.location.href = '/';
+          }
         },
       });
     }
@@ -235,6 +253,10 @@ $(document).ready(function () {
       error: function (xhr) {
         console.log(xhr);
         console.log("error deleting user");
+        if(xhr.status === 404) {
+          // Redirect to home page if API route not found
+          window.location.href = '/';
+        }
       },
     });
 
@@ -301,3 +323,7 @@ $(document).ready(function () {
 
   // END FUNCTIONS //
 });
+
+//handle error modal dialog
+document.getElementById('errorModalMessage').innerText = "Your error message";
+$('#errorModal').modal('show');

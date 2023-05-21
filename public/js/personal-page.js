@@ -55,19 +55,23 @@ function enablePinEditing(pin) {
   applyReadOnly();
 }
 //wrapper function to handle 404 errors from server and redirect to home page.
-async function fetchWrapper(url, options) {
-  const response = await fetch(url, options);
-  
-  if (!response.ok) {
-    if (response.status === 404) {
+function fetchWrapper(url, options) {
+  return $.ajax({
+    url: url,
+    type: options.method || 'GET', // default method is GET
+    data: options.body ? JSON.parse(options.body) : {}, 
+    dataType: 'json', // expected data sent from server
+    contentType: options.headers ? options.headers['Content-Type'] : 'application/json' // content type sent to server
+  }).done((response) => {
+    return response;
+  }).fail((jqXHR) => {
+    if (jqXHR.status === 404) {
       // Redirect to the home page
       window.location.href = '/';
     }
     
-    throw new Error(response.statusText);
-  }
-  
-  return response.json();
+    throw new Error(jqXHR.statusText);
+  });
 }
 
 
@@ -95,6 +99,7 @@ $(".card-icon-section .bi-check-square").click(async function (e) {
   }
   e.stopPropagation();
 });
+
 $(".card-icon-section .bi-pencil").click(function (e) {
   // Check if the button is already in a disabled state
   if ($(this).hasClass("disabled")) {

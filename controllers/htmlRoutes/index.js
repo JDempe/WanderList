@@ -1,8 +1,6 @@
 const router = require("express").Router();
-const { User, Avatars } = require("../../models");
+const { User, Avatars, Pins } = require("../../models");
 const { Op } = require("sequelize");
-
-
 
 // router.get("/", (req, res) => {
 //   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
@@ -15,35 +13,60 @@ const { Op } = require("sequelize");
 //     });
 //});
 // GET discovery page
+
 router.get("/discover", async (req, res) => {
   try {
-    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is defaust, but included for clarity
+    const pins = await Pins.findAll();
+
+    // Shuffles the pins array using  algorithm
+    for (let i = pins.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pins[i], pins[j]] = [pins[j], pins[i]];
+    }
+
+    // Limits the rendered output to 20 pins
+    const pinsData = pins.slice(0, 20).map((pin) => ({
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription,
+      pinLocation: pin.pinLocation,
+      pinUsername: pin.user_id,
+    }));
+
+    // Take the user ID for each pinsData and find the username that matches the user ID
+    for (let i = 0; i < pinsData.length; i++) {
+      const userData = await User.findByPk(pinsData[i].pinUsername, {
+        attributes: { exclude: ["password"] },
+      });
+      const user = userData.get({ plain: true });
+      pinsData[i].pinUsername = user.username;
+    }
+
+    // Renders the js/css/second js/hbs/and pins template for [age]
     res.render("discovery-page", {
       style: "./css/discovery-page.css",
       script: "./js/discovery-page.js",
       scriptSecond: "./js/search-pin.js",
-      partials: "discovery-pin",
+      pins: pinsData,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/personal", async (req, res) => {
-  try {
-    //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is defaust, but included for clarity
-    res.render("personal-page", {
-      style: "./css/personal-page.css",
-      script: "./js/personal-page.js",
-      scriptSecond: "./js/search-pin.js",
-      partials: "personal-pin",
-    });
-  } catch (err) {
-    res.status(404).json(err);
-  }
-});
+// router.get("/personal", async (req, res) => {
+//   try {
+//     //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
+//     // layout property not necessary since it is defaust, but included for clarity
+//     res.render("personal-page", {
+//       style: "./css/personal-page.css",
+//       script: "./js/personal-page.js",
+//       scriptSecond: "./js/search-pin.js",
+//       partials: "personal-pin",
+//     });
+//   } catch (err) {
+//     res.status(404).json(err);
+//   }
+// });
 
 // go to /editprofile and that will find the session user and redirect to /editprofile/:id
 router.get("/editprofile", async (req, res) => {
@@ -98,7 +121,7 @@ router.get("/editprofile/:username", async (req, res) => {
         message: `You are not authorized to edit this user's profile.`,
       });
     }
-    
+
     // Pull from the avatar table the avatar image location that matches the user's avatar id
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
@@ -135,13 +158,13 @@ router.get("/user/:id", async (req, res) => {
     //Serves the body of the page aka "user-page.hbs" to the container //aka "main.hbs"
     res.render("user-page");
   } catch (err) {
-    res.status(500).json(err);
+    res.status(404).json(err);
   }
 });
 
-//router to handle  GET 404 page
+// router to handle  GET 404 page
 // router.use((req, res) => {
-//   res.status(404).render('404page', {   
+//   res.status(404).render('404page', {
 //     layout: 'main',
 //     style: './css/404.css',
 //     title: 'Page Not Found'
