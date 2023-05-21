@@ -65,6 +65,16 @@ User.init(
         key: "id",
       },
     },
+    saved_pins: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      get() {
+        return this.getDataValue("saved_pins").split(",");
+      },
+      set(val) {
+        this.setDataValue("saved_pins", val.join(","));
+      },
+    },
   },
   {
     hooks: {

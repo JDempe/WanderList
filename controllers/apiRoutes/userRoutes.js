@@ -60,11 +60,9 @@ router.post("/signup", async (req, res) => {
 
     req.session.save();
 
-    res
-      .status(200)
-      .json({
-        message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!`,
-      });
+    res.status(200).json({
+      message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!`,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -324,6 +322,51 @@ router.delete("/delete/:username", async (req, res) => {
     res
       .status(200)
       .json({ message: `Your account has been successfully deleted!` });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// set up a route for users to add a pinID to their saved_pins array.
+router.put("/savepins/:username", async (req, res) => {
+  try {
+    // const userSession = req.session.user_id;
+    // const userLoggedIn = req.session.logged_in;
+
+    // verify that the user exists in the database using the provided username.
+    const userExists = await User.findOne({
+      where: {
+        username: req.params.username,
+      },
+    });
+    
+    if (!userExists) {
+      return res.status(400).json({
+        message: `The user with the provided username "${req.params.username}" does not exist. Please try again.`,
+      });
+    }
+
+    // verify that the user is logged in and is the same user as the one being updated.
+    // if (userSession !== userExists.id || userLoggedIn !== 1) {
+    //   return res.status(400).json({
+    //     message: `You are not authorized to edit this user's profile.`,
+    //   });
+    // }
+
+    // proceed to update the user in the database.
+    await User.update(
+      {
+        avatard_id: req.body.avatar_id,
+      },
+      {
+        where: {
+          username: req.params.username,
+        },
+      }
+    );
+    res
+      .status(200)
+      .json({ message: `Your profile has been successfully updated!` });
   } catch (error) {
     res.status(500).json(error);
   }

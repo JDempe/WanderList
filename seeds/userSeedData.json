@@ -5,7 +5,8 @@
     "last_name": "Smith",
     "email": "test@gmail.com",
     "password": "test",
-    "avatar_id": 1
+    "avatar_id": 1,
+    "saved_pins": [1,2,3,4]
   },
   {
     "username": "emily42",
