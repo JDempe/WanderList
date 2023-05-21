@@ -9,7 +9,7 @@ $(document).ready(function () {
     lastName: $("#editprofile-lastname").val(),
     aboutme: $("#editprofile-aboutme").val(),
     email: $("#editsecurity-email").val(),
-    id: $("#editsecurity-id").val()
+    id: $("#editsecurity-id").val(),
   };
 
   // AVATAR MODAL //
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     // Send a PUT request to change the user's avatar id
     $.ajax({
-      url: `/api/user/editprofile/${currentUserInfo.id}`,
+      url: `/api/user/editprofile/${currentUserInfo.username}`,
       data: {
         avatar_id: avatarId,
       },
@@ -40,9 +40,9 @@ $(document).ready(function () {
       },
       error: function (xhr) {
         console.log(xhr);
-        if(xhr.status === 404) {
+        if (xhr.status === 404) {
           // Redirect to home page if API route not found
-          window.location.href = '/';
+          window.location.href = "/";
         }
       },
     });
@@ -116,40 +116,40 @@ $(document).ready(function () {
           error: function (xhr) {
             console.log(xhr);
             console.log("error checking username");
-            if(xhr.status === 404) {
+            if (xhr.status === 404) {
               // Redirect to home page if API route not found
-              window.location.href = '/';
+              window.location.href = "/";
             }
           },
         });
       }
 
       $.ajax({
-        url: `/api/user/editprofile/${currentUserInfo.id}`,
+        url: `/api/user/editprofile/${currentUserInfo.username}`,
         data: {
           first_name: user.firstName,
           last_name: user.lastName,
           username: user.username,
           about_me: user.aboutme,
-          
         },
         type: "PUT",
         success: function (response) {
           console.log("updated user");
-          // load the successfulChangeModal to show the user that the change was successful
-          window.location.href = `/editprofile/${currentUserInfo.id}`;
+          // If the update is successful, show the model to user with a success message
+          showSuccessModal("User profile has been successfully updated!");
+          // Redirect to the user's profile page
+          window.location.href = `/editprofile/${currentUserInfo.username}`;
         },
         error: function (xhr) {
           console.log("error updating user");
           console.log(xhr);
+          showErrorModal("There was an error updating your user profile.");
 
-          if(xhr.status === 401){
-
-          //redirect to landing page
-          window.location.href = `/`;
+          if (xhr.status === 401) {
+            //redirect to landing page
+            window.location.href = `/`;
           }
         },
-        
       });
 
       // redirect to the user's new URL with the new username
@@ -220,15 +220,18 @@ $(document).ready(function () {
         error: function (xhr) {
           console.log(xhr);
           console.log("error updating user");
-          if(xhr.status === 400){
+          if (xhr.status === 400) {
             var response = JSON.parse(xhr.responseText);
-            if(response.message === `The user with the provided id ${currentUserInfo.username} does not exist. Please try again.`){
-              alert('The user does not exist. Please try again.');
+            if (
+              response.message ===
+              `The user with the provided id ${currentUserInfo.username} does not exist. Please try again.`
+            ) {
+              alert("The user does not exist. Please try again.");
             }
           }
-          if(xhr.status === 404) {
+          if (xhr.status === 404) {
             // Redirect to home page if API route not found
-            window.location.href = '/';
+            window.location.href = "/";
           }
         },
       });
@@ -243,11 +246,11 @@ $(document).ready(function () {
   });
 
   // if the user clicks the deleteAccountModal confirm button, it sends a DELETE request to delete the user
-  $("#deleteAccountModal-confirmBtn").click( async function (e) {
+  $("#deleteAccountModal-confirmBtn").click(async function (e) {
     e.preventDefault();
     // send a DELETE request to delete the user
     await $.ajax({
-      url: `/api/user/delete/${currentUserInfo.id}`,
+      url: `/api/user/delete/${currentUserInfo.username}`,
       type: "DELETE",
       success: function (response) {
         console.log("deleted user");
@@ -255,9 +258,9 @@ $(document).ready(function () {
       error: function (xhr) {
         console.log(xhr);
         console.log("error deleting user");
-        if(xhr.status === 404) {
+        if (xhr.status === 404) {
           // Redirect to home page if API route not found
-          window.location.href = '/';
+          window.location.href = "/";
         }
       },
     });
@@ -324,14 +327,14 @@ $(document).ready(function () {
   }
 
   //handle error modal
-function showErrorModal(message) {
-  document.getElementById('errorModalMessage').innerText = message;
-  $('#errorModal').modal('show');
-}
-//handle success modal
-function showSuccessModal(message) {
-  document.getElementById('successModalMessage').innerText = message;
-  $('#successModal').modal('show');
-}
+  function showErrorModal(message) {
+    document.getElementById("errorModalMessage").innerText = message;
+    $("#errorModal").modal("show");
+  }
+  //handle success modal
+  function showSuccessModal(message) {
+    document.getElementById("successModalMessage").innerText = message;
+    $("#successModal").modal("show");
+  }
   // END FUNCTIONS //
 });
