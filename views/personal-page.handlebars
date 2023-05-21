@@ -1,7 +1,10 @@
         <div class="create-search-section">
           <div>
+            <a class="create-text" href="/pins/user/{{id}}">
             <i class="bi bi-plus-square-fill"></i>
-            <span class="create-text">Create a new pin</span>
+            {{!-- <span class="create-text">Create a new pin</span> --}}
+            Create a new pin</a>
+
           </div>
             <!-- Search bar -->
             <div class="functions-bar">
@@ -19,4 +22,9 @@
             <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
           </div>
         </div>
-        {{> personal-pin}}
+       {{#if pins}}
+       {{!-- Handle case when user has no pin --}}
+       {{> personal-pin}}
+       {{else}}
+       {{> personal-noPin}}
+       {{/if}}

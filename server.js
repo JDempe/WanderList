@@ -19,7 +19,7 @@ app.use(session({
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,
-    table: 'Session', 
+    table: 'Session',
     extendDefaultFields: extendDefaultFields,
   }),
   cookie: {
@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
     script: "./js/landing-page.js",
     user: {
       id: req.session.user_id,
-      isLoggedIn: req.session.logged_in   
-    } 
+      isLoggedIn: req.session.logged_in
+    }
   });
 });
 app.use(routes);
@@ -49,7 +49,7 @@ app.use(routes);
 
 //404 handler should come last
 app.use((req, res) => {
-  res.status(404).render('404page', {   
+  res.status(404).render('404page', {
     layout: 'main',
     style: './css/404.css',
     title: 'Page Not Found'
@@ -59,5 +59,5 @@ app.use((req, res) => {
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
-});
+  });
 });
