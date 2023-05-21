@@ -69,4 +69,5 @@ router.delete('/avatars/:id', async (req, res) => {
   }
 });
 
+
 module.exports = router;
