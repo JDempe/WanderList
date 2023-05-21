@@ -125,7 +125,31 @@ router.post("/logout", async (req, res) => {
   }
 });
 
+// Look up a user based on the active session
+router.get("/session/lookup", async (req, res) => {
+  try {
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+    const userData = await User.findByPk(userSession, {
+      attributes: { exclude: ["password"] },
+    });
+
+    if (!userData) {
+      return res.status(200).json({
+        logged_in: false,
+      });
+    }
+
+    const user = userData.get({ plain: true });
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // set up a route for users to update information
+// TODO Delete this or the duplicate using username
 router.put("/editprofile/:id", async (req, res) => {
   try {
     // TODO verify that the user exists in the database.
@@ -244,7 +268,6 @@ router.put("/editprofile/:username", async (req, res) => {
 });
 
 // set up a route for users to update their own information.  Require the user to be logged in.
-// TODO Hash the PW
 router.put("/editsecurity/:username", async (req, res) => {
   try {
     const userSession = req.session.user_id;
@@ -328,45 +351,71 @@ router.delete("/delete/:username", async (req, res) => {
 });
 
 // set up a route for users to add a pinID to their saved_pins array.
-router.put("/savepins/:username", async (req, res) => {
+router.put("/savepin", async (req, res) => {
   try {
-    // const userSession = req.session.user_id;
-    // const userLoggedIn = req.session.logged_in;
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+
+    // verify the user is logged in
+    if (!userLoggedIn) {
+      return res.status(400).json({
+        message: `You must be logged in to save a pin.`,
+      });
+    }
 
     // verify that the user exists in the database using the provided username.
     const userExists = await User.findOne({
       where: {
-        username: req.params.username,
+        id: userSession,
       },
     });
-    
+
     if (!userExists) {
       return res.status(400).json({
-        message: `The user with the provided username "${req.params.username}" does not exist. Please try again.`,
+        message: `The user with the provided username "${userExists.username}" does not exist. Please try again.`,
       });
     }
 
     // verify that the user is logged in and is the same user as the one being updated.
-    // if (userSession !== userExists.id || userLoggedIn !== 1) {
-    //   return res.status(400).json({
-    //     message: `You are not authorized to edit this user's profile.`,
-    //   });
-    // }
+    if (userSession !== userExists.id || userLoggedIn !== 1) {
+      return res.status(400).json({
+        message: `You are not authorized to edit this user's profile.`,
+      });
+    }
+
+    // Break apart the saved_pins string into an array using the comma as a delimiter.  Only do this if the string is not null.
+    if (userExists.saved_pins !== null || userExists.saved_pins !== "") {
+    var savedPinsArray = userExists.saved_pins.split(",");
+    // If the pinID is already in the array, remove it.  Otherwise, add it.
+    if (savedPinsArray.includes(req.body.cardId)) {
+      var index = savedPinsArray.indexOf(req.body.cardId);
+      savedPinsArray.splice(index, 1);
+    } else {
+      savedPinsArray.push(req.body.cardId);
+    }
+  } else {
+    var savedPinsArray = [];
+    savedPinsArray.push(req.body.cardId);
+  }
+
+    // Rejoin the array into a string using the comma as a delimiter.
+    var savedPinsString = savedPinsArray.join(",");
+    console.log("savedPinsString", savedPinsString);
 
     // proceed to update the user in the database.
     await User.update(
       {
-        avatard_id: req.body.avatar_id,
+        saved_pins: savedPinsString,
       },
       {
         where: {
-          username: req.params.username,
+          id: userExists.id,
         },
       }
     );
     res
       .status(200)
-      .json({ message: `Your profile has been successfully updated!` });
+      .json({ message: `Your profile has been successfully updated! ${req.body.cardId}` });
   } catch (error) {
     res.status(500).json(error);
   }
