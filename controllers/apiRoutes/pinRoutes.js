@@ -3,19 +3,19 @@ const router = express.Router();
 const { Pins, User, Avatars } = require("../../models");
 
 // GET route to retrieve all pins
-// router.get("/pins", async (req, res) => {
-//   try {
-//     const pins = await Pins.findAll();
-//     res.status(200).json(pins);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
+router.get("/pins", async (req, res) => {
+  try {
+    const pins = await Pins.findAll();
+    res.status(200).json(pins);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // GET route to retrieve a specific pin by pin ID
-router.get("/pins/:id", async (req, res) => {
+router.get("/pins/:pinid", async (req, res) => {
   try {
-    const pins = await Pins.findByPk(req.params.id);
+    const pins = await Pins.findByPk(req.params.pinid);
     if (pins) {
       res.status(200).json(pins);
     } else {
@@ -92,41 +92,14 @@ router.post("/pins/user/:id", async (req, res) => {
     const newPins = await Pins.create({
       ...req.body,
       // user_id: req.session.user_id,
-      user_id: User.id,
+      user_id: id,
     });
-    console.log(User.id);
-    const userId = userData.id;
-    console.log("!!!!!userData.id!!", userData.id);
-    req.session.user_id = userId;
-    req.session.save();
-
     res.status(201).json(newPins);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-// PUT route to update a pin
-// router.put("/pins/:id", async (req, res) => {
-//   try {
-//     const [updated] = await Pins.update(req.body, {
-//       where: { id: req.params.id },
-//     });
-//     if (updated !== 0) {
-//       const updatedPin = await Pins.findByPk(req.params.id);
-//       res.status(200).json(updatedPin);
-//     } else {
-//       const existingPin = Pins.findByPk(req.params.id);
-//       if (existingPin) {
-//         res.status(200).json({ message: "No update has been made." });
-//       } else {
-//         res.status(404).json({ error: "Pin not found" });
-//       }
-//     }
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
 // PUT route to update a pin
 router.put("/pins/:id", async (req, res) => {
   try {
