@@ -48,6 +48,10 @@ body {
     font-size: 1.5rem;
 }
 
+#darkmode-toggle {
+    padding-top: 0.5rem;
+}
+
 /* Overriding Bootstrap, targets both login and sign up in the navbar */
 .login-nav-Btn {
     margin-right: 0.5rem;
@@ -134,3 +138,9 @@ pushes text right */
 .hvr-grow:active {
     transform: scale(1.05);
 }
+
+/* dark-mode */
+
+.darkmode.navbar {
+    background-color: var(--navbar-color-dark);
+  }
