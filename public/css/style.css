@@ -84,6 +84,18 @@ pushes text right */
     padding-right: 0.2rem;
 }
 
+#git-icon {
+    display: block;
+    transition: transform .5s ease-out; 
+}
+    
+#git-icon:hover {
+    transform: rotate(360deg);
+}
+
+.d-block {
+    display: block;
+}
 
 @media (max-width: 791px) {
     .navbar-brand {
