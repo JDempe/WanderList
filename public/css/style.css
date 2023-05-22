@@ -1,28 +1,36 @@
 :root {
     /* Light mode variables */
     --body-color: #F0EEF6;
-    --navbar-color-blue: #6CB4F8;
+    --navbar-background-blue: #6CB4F8;
     --button-text: #FFFFFF;
     --button-hover-background-color: #ffffff;
     --button-hover-text-color: #000000;
   
     /* Dark mode variables */
     --body-color-dark: #36384b;
-    --navbar-color-dark: #2b303d;
+    --navbar-background-dark: #2f3543;
+    --navbar-text-dark: #e7e9f0;
     --text-color-dark: #FFFFFF;
     --button-background-dark: #475567;
     --button-text-dark: #FFFFFF;
     --button-border-dark: #475567;
+    --footer-background-dark: #2f3543;
+    --footer-text-dark: #e7e9f0;
 }
   
 
+@font-face {
+    font-family: 'Wanderlust';
+    src: url('../fonts/WanderlustRegular.woff') format('woff');
+}
+  
 body {
     position: relative;
     background-color: var(--body-color);
 }
 
 .navbar {
-    background-color: var(--navbar-color-blue); 
+    background-color: var(--navbar-background-blue); 
 }
 
 /* Changes the website name font in the navbar, centers it */
@@ -33,7 +41,7 @@ body {
     width: fit-content;
     margin-right: 0px;
     text-align: center;
-    font-family: "Hammersmith One", sans-serif;
+    font-family: "Wanderlust", sans-serif;
     font-size: 1.8rem;
   }
 
@@ -57,7 +65,7 @@ body {
     margin-right: 0.5rem;
     width: 6rem;
     border-width: 1.3px;
-    background: var(--navbar-color-blue);
+    background: var(--navbar-background-blue);
     font-family: "Arial", sans-serif;
     font-weight: bold;
     color: #FFFFFF
@@ -146,11 +154,19 @@ body.darkmode {
 }
 
 .darkmode.navbar {
-    background-color: var(--navbar-color-dark);
+    background-color: var(--navbar-background-dark);
   }
 
+.darkmode.navbar-brand {
+    color: var(--navbar-text-dark);
+}
+
+.darkmode#navbarNavAltMarkup a {
+    color: var(--navbar-text-dark) !important;
+}
+
 .darkmode.login-nav-Btn {
-    background: var(--navbar-color-dark);
+    background: var(--navbar-background-dark);
     border-color: var(--button-border-dark);
 }
 
@@ -159,3 +175,7 @@ body.darkmode {
     color: var(--button-text-dark);
 }
 
+footer.darkmode {
+    background-color: var(--footer-background-dark) !important;
+    color: var(--footer-text-dark) !important;
+}
