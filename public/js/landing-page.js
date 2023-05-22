@@ -1,7 +1,4 @@
-// $(document).ready(function() {
-//     $('.carousel').carousel({
-//       interval: 1000
-//     });
-//   });
-
-//   console.log("landing-page.js loaded");
+$(document).ready(function() {
+    $('link[href="./css/discovery-page.css"]').remove();
+    $('link[href="./css/personal-page.css"]').remove();
+  });
