@@ -17,11 +17,11 @@ Pin.init(
     },
     pinDescription: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     pinLocation: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     pinGeocords: {
       type: DataTypes.STRING,
@@ -45,7 +45,7 @@ Pin.init(
     },
     pinCompletion: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false,
     },
     user_id: {
