@@ -109,6 +109,7 @@
 .timestamp {
     display: inline-block;
     margin: 0 10px;
+    color: #565c75;
 }
 
 .card-container {
@@ -167,10 +168,41 @@
     margin: 4px 0 4px 0;
 }
 
+
+.avatar-container {
+    display: flex;
+    align-items: center;
+    padding-top: 7px;
+  }
+  
+.avatar-border {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgb(142, 143, 155);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pin-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .card-username {
+    margin-right: 10px;
+    margin-left: 7px;
+    padding-top: 8px;
     font-family: "Hammersmith One", sans-serif ;
-    font-size: rem;
+    font-size: 1.05rem;
     color: #6e6c78;
+}
+
+.pin-updated {
+    margin-left: 10px; 
 }
 
 .card-location {

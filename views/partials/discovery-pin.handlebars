@@ -22,8 +22,18 @@
                         </div>
                     </div>
                     <hr class="hr card-hr" />
-                    <div class="card-username">
-                        <img src="{{pinAvatar}}" class="" width="50px" /> {{pinUsername}} {{pinUpdated}}
+                    {{!-- <div class="username-wrapper">
+                        <img src="{{pinAvatar}}" class="pin-avatar" width="50px" /> 
+                        <div class="card-username">{{pinUsername}} {{pinUpdated}}</div>
+                    </div> --}}
+                    <div class="avatar-container">
+                        <div class="avatar-border">
+                            <img src="{{pinAvatar}}" class="pin-avatar" width="48px" /> 
+                        </div>
+                        <div class="username-content">
+                            <div class="card-username">{{pinUsername}}</div>
+                            <div class="pin-updated">{{pinUpdated}}</div>
+                        </div>
                     </div>
                     <div class="card-location">
                         {{pinLocation}}

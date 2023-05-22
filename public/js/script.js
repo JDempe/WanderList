@@ -41,6 +41,7 @@ $(document).ready(function() {
       '.bi-pin',
       '.form-control',
       '.bi-search',
+      '.timestamp',
       // sign in modal
       // // '.body-modal',
       // '.cd-signin-modal__block',
