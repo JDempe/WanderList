@@ -27,12 +27,13 @@
         </div>
       </div>
     </div>
-    <div class="no-results-container no-results-container-noshow">
-      <div>
-        <span>No results found.</span>
-        <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
+      <div class="no-results-container no-results-container-noshow">
+          <div>
+            <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+            <span class="no-results-text">No results found</span>
+            {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
+          </div>
       </div>
-    </div>
     {{#if mypins}}
     {{!-- Handle case when user has no pin --}}
     {{> personal-pin}}
@@ -80,7 +81,7 @@
   </div>
   <!-- CONTAINS CARD -->
   <div class="card-container">
-    <div class="card">
+    <div class="card card-pin-color">
       <form class="card-body was-validated">
         <div class="card-top-section">
           <!-- DISPLAY PIN TITLE -->
