@@ -51,6 +51,11 @@ router.get("/pins/user/:id", async (req, res) => {
       pinLocation: pin.pinLocation,
       pinUsername: pin.user_id,
       id: pin.id,
+       user:{
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      },
+
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
@@ -68,6 +73,11 @@ router.get("/pins/user/:id", async (req, res) => {
       script: "./js/personal-page.js",
       scriptSecond: "./js/search-pin.js",
       pins: pinsData,
+      user: {
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      }
+      
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
