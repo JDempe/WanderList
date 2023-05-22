@@ -212,7 +212,6 @@ $(document).ready(function () {
   // save button event listener
   //   TODO need to only get the new pin one
   $(document).on("click", ".save-btn", function () {
-    // get the value of the title and text
     const pinEl = $(this).closest(".pin");
     const titleEl = pinEl.find(".card-title");
     const textEl = pinEl.find(".card-text");
@@ -220,44 +219,44 @@ $(document).ready(function () {
     const text = textEl.val();
     const saveBtn = $(this);
     const discardBtn = pinEl.find(".discard-btn");
-
-    //  get the session user id as the id by calling the /api/user/session/lookup route
+  
     $.ajax({
       url: "/api/user/session/lookup",
       type: "GET",
     }).then(function (response) {
       console.log(response);
       var id = response.id;
-
-      // send a post request to the server
+      const pinId = pinEl.data("id"); // Get pin id
+  
+    // based on whether pin exists or not set the method and url(put or post)
+      const method = pinId ? "PUT" : "POST";
+      const url = pinId ? `/api/pins/${pinId}` : `/api/pins/user/${id}`;
+  
+      // Send request to the server
       $.ajax({
-        url: `/api/pins/user/${id}`,
-        type: "POST",
+        url: url,
+        type: method,
         data: {
           pinTitle: title,
           pinDescription: text,
         },
       }).then(function (response) {
         console.log(response);
-        // remove the disabled class from the create new pin button
         $("#create-new-pin").removeClass("disabled");
-        // remove the create pin flag class from the new pin
         pinEl.removeClass("create-pin-flag");
-        // add the readonly attribute to the title and text
         titleEl.prop("readonly", true);
         titleEl.addClass("no-visibility");
         textEl.prop("readonly", true);
         textEl.addClass("no-visibility");
         saveBtn.removeAttr("style");
         discardBtn.removeAttr("style");
-
-        // add the id to the new pin
-        console.log(pinEl);
-        pinEl.data("id", response.id);
+  
+        if (!pinId) { // If it was a new pin
+          pinEl.data("id", response.id); // Set the received id to the pin
+        }
       });
     });
   });
-
   // discard button event listener
   // if discard is clicked, read the id from the data-id attribute, if it doesnt exist remove the element, if it does exist send a request to get pinTitle and pinDescription and set the values of the title and text to those values
   $(document).on("click", ".discard-btn", function () {
