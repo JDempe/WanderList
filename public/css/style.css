@@ -1,28 +1,28 @@
 :root {
     /* Light mode variables */
-    --background-color: #F0EEF6;
-    --navbar-color: #6CB4F8;
-    --button-background: #6CB4F8;
+    --body-color: #F0EEF6;
+    --navbar-color-blue: #6CB4F8;
     --button-text: #FFFFFF;
     --button-hover-background-color: #ffffff;
     --button-hover-text-color: #000000;
   
     /* Dark mode variables */
-    --background-color-dark: #222222;
-    --navbar-color-dark: #333333;
+    --body-color-dark: #36384b;
+    --navbar-color-dark: #2b303d;
     --text-color-dark: #FFFFFF;
-    --button-background-dark: #444444;
+    --button-background-dark: #475567;
     --button-text-dark: #FFFFFF;
+    --button-border-dark: #475567;
 }
   
 
 body {
     position: relative;
-    background-color: var(--background-color);
+    background-color: var(--body-color);
 }
 
 .navbar {
-    background-color: var(--navbar-color); 
+    background-color: var(--navbar-color-blue); 
 }
 
 /* Changes the website name font in the navbar, centers it */
@@ -48,7 +48,7 @@ body {
     font-size: 1.5rem;
 }
 
-#darkmode-toggle {
+#toggle-switch {
     padding-top: 0.5rem;
 }
 
@@ -57,7 +57,7 @@ body {
     margin-right: 0.5rem;
     width: 6rem;
     border-width: 1.3px;
-    background: #6CB4F8;
+    background: var(--navbar-color-blue);
     font-family: "Arial", sans-serif;
     font-weight: bold;
     color: #FFFFFF
@@ -141,6 +141,21 @@ pushes text right */
 
 /* dark-mode */
 
+body.darkmode {
+    background-color: var(--body-color-dark);
+}
+
 .darkmode.navbar {
     background-color: var(--navbar-color-dark);
   }
+
+.darkmode.login-nav-Btn {
+    background: var(--navbar-color-dark);
+    border-color: var(--button-border-dark);
+}
+
+.darkmode.login-nav-Btn:hover {
+    background: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
+

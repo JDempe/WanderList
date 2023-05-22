@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#flexSwitchCheckDefault').prop('checked', isNightMode === 'true');
 
     if (isNightMode === 'true') {
-      $('.navbar').addClass('darkmode');
+      toggleNightMode(true);
     }
   }
 
@@ -14,12 +14,12 @@ $(document).ready(function() {
 
     localStorage.setItem('nightMode', isNightMode);
 
-    if (isNightMode) {
-      $('.navbar').addClass('darkmode');
-    } else {
-      $('.navbar').removeClass('darkmode');
-    }
+    toggleNightMode(isNightMode);
   });
+
+  function toggleNightMode(isNightMode) {
+    $('body, .navbar, .login-nav-Btn').toggleClass('darkmode', isNightMode);
+  }
 });
 
 // Removes any empty script tags from html
