@@ -80,3 +80,40 @@ $(document).ready(function () {
     });
   }
 });
+
+function initMap() {
+  // Latitude and Longitude of United States
+  const unitedstates = { lat: 37.0902, lng: -95.7129 };
+
+  // The map, centered at United States
+  const map = new google.maps.Map($("#map")[0], {
+    zoom: 4.2,
+    center: unitedstates,
+  });
+
+  // Iterate over each .pin element
+  $('.pin').each(function() {
+    const geocords = $(this).find('.geocord').text(); // Get the geocoordinates from .geocord element
+
+    const [latitude, longitude] = geocords.split(':');
+
+    const marker = new google.maps.Marker({
+      position: {
+        lat: parseFloat(latitude),
+        lng: parseFloat(longitude)
+      },
+      map: map,
+      title: "Pin Location"
+    });
+  });
+}
+
+$(document).ready(function() {
+  const googleMapsScript = $('<script>');
+  googleMapsScript.attr('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-pmWwrZIpXOTg86L92IT976akk21YoE&libraries=places&callback=initMap');
+  $('body').append(googleMapsScript);
+});
+
+$(document).ready(function() {
+  initMap();
+});

@@ -24,6 +24,24 @@
     src: url('../fonts/WanderlustRegular.woff') format('woff');
 }
 
+/* map */
+.map-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+  
+#map {
+    height: 35rem;
+    width: 65%;
+}
+
+.geocord {
+    display: none;
+}
+
+
 .create-search-section {
     display: flex;
     align-items: center;
@@ -247,6 +265,12 @@
     border-top-color: #f56d6d !important;
     border-bottom-color: #f56d6d !important;
 }
+
+@media only screen and (max-width: 1024px) {
+    #map {
+      height: 10rem; /* Adjust the desired height for laptops */
+    }
+  }
 
 .darkmode.btn-refresh {
     background-color: #6b7bb3;

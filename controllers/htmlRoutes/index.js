@@ -30,6 +30,7 @@ router.get("/discover", async (req, res) => {
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
+      pinGeocords: pin.pinGeocords,
       // take the pin.updatedAt and cut it off at the 4th space and only take the first half
       pinDate : pin.updatedAt ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pin.updatedAt,
       timestamp: pin.updatedAt,
