@@ -26,6 +26,7 @@ router.get("/discover", async (req, res) => {
 
     // Limits the rendered output to 20 pins
     const pinsData = pins.slice(0, 20).map((pin) => ({
+      pinID: pin.id,
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,

@@ -65,6 +65,10 @@ User.init(
         key: "id",
       },
     },
+    saved_pins: {
+      type: DataTypes.TEXT("long"),
+      allowNull: true,
+    },
   },
   {
     hooks: {
@@ -84,15 +88,5 @@ User.init(
     underscored: true,
   }
 );
-
-// object to test the model. it will be deleted later
-// const test = {
-//   username: 'olena',
-//   email: 'email@email.com',
-//   password: 'password',
-// }
-
-// User.create(test)
-// end of items to delete
 
 module.exports = User;

@@ -3,14 +3,14 @@ const router = express.Router();
 const { Pins, User, Avatars } = require("../../models");
 
 // GET route to retrieve all pins
-router.get("/pins", async (req, res) => {
-  try {
-    const pins = await Pins.findAll();
-    res.status(200).json(pins);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+// router.get("/pins", async (req, res) => {
+//   try {
+//     const pins = await Pins.findAll();
+//     res.status(200).json(pins);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
 
 // GET route to retrieve a specific pin by pin ID
 router.get("/pins/:id", async (req, res) => {
@@ -50,10 +50,12 @@ router.get("/pins/user/:id", async (req, res) => {
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
       pinUsername: pin.user_id,
-      user:{
+      id: pin.id,
+       user:{
         id: req.session.user_id,
         isLoggedIn: req.session.logged_in
-      }
+      },
+
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
