@@ -203,7 +203,7 @@
 
 .save-btn,
 .discard-btn {
-  display: none;
+  /* display: none; */
   border-radius: 10px;
   font-family: "Source Sans Pro";
   font-weight: 600;

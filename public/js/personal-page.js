@@ -263,35 +263,78 @@ $(".create-text").click(async function (e) {
   e.preventDefault();
   console.log("Button clicked");
 
-  const pinTitleVal = pinTitle.val();
-  const pinTextVal = pinText.val();
-
   const newPinData = {
-    pinTitle: pinTitleVal.trim(),
-    pinDescription: pinTextVal.trim(),
+    pinTitle: pinTitle,
+    pinDescription: pinText,
     pinLocation: "",
   };
   const id = "8e0d5611-380d-400e-a51a-b79916df61d8";
-  try {
-    const response = await fetch(`/api/pins/user/${id}`, {
-      method: "POST",
-      body: JSON.stringify(newPinData),
-      headers: { "Content-Type": "application/json" },
-    });
-    if (response.ok) {
-      const newPin = await response.json();
-      const pinCardTemplate = Handlebars.compile($(".pin").html());
-      const newPinCardHtml = pinCardTemplate(newPin);
-      $(newPinCardHtml).insertBefore(".pin:first");
-      console.log("New Pin:", newPin);
-    } else {
-      // The pin creation was not successful
-      console.error("Failed to create a new pin.");
-    }
-  } catch (error) {
-    console.error("Failed to create pin:", error);
+  const response = await fetch(`/api/pins/user/${id}`, {
+    method: "POST",
+    body: JSON.stringify(newPinData),
+    headers: { "Content-Type": "application/json" },
+  });
+  if (response.ok) {
+    const newPin = await response.json();
+    console.log("New Pin:", newPin);
+  } else {
+    // The pin creation was not successful
+    console.error("Failed to create a new pin.");
   }
 });
+
+// $(".create-text").click(async function (e) {
+//   e.preventDefault();
+//   console.log("Button clicked");
+//   // const pinTempSource = await $.get(
+//   //   "../../../views/partials/personal-pin.handlebars"
+//   // );
+//   // const emptyCardTemp = Handlebars.compile(pinTempSource);
+//   // const emptyCard = emptyCardTemp({});
+
+//   // const emptyCardHTML = $(".pin").prop("outerHTML");
+
+//   console.log(id);
+
+//   const emptyCardHTML = $(".pin").html();
+//   console.log(emptyCardHTML);
+//   const firstExistingPin = $(".pin:eq(1)");
+//   console.log(firstExistingPin);
+//   // $(emptyCard).insertBefore(firstExistingPin);
+//   $(emptyCardHTML).insertBefore(firstExistingPin);
+//   console.log("New pin card inserted");
+//   const newPinCard = $(".pin:first");
+
+//   newPinCard.find(".save-btn").click(async function () {
+//     console.log("Save button clicked");
+//     const pinTitle = newPinCard.find(".card-title").val();
+//     const pinText = newPinCard.find(".card-text").val();
+
+//     const newPinData = {
+//       pinTitle: pinTitle.trim(),
+//       pinDescription: pinText.trim(),
+//       id: "jennifer",
+//     };
+//     // console.log("userId", userId);
+//     try {
+//       const response = await fetch("/api/pins/:id", {
+//         method: "POST",
+//         body: JSON.stringify(newPinData),
+//         headers: { "Content-Type": "application/json" },
+//       });
+//       if (response.ok) {
+//         // The pin was created successfully
+//         const newPin = await response.json();
+//         // Code to insert the new pin card into the DOM
+//       } else {
+//         // The pin creation was not successful
+//         console.error("Failed to create a new pin.");
+//       }
+//     } catch (error) {
+//       console.error("catch: Failed to create pin:", error);
+//     }
+//   });
+// });
 
 $("textarea").on("input", autoResizeText);
 

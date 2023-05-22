@@ -82,8 +82,14 @@ router.post("/pins/user/:id", async (req, res) => {
     const newPins = await Pins.create({
       ...req.body,
       // user_id: req.session.user_id,
-      user_id: id,
+      user_id: User.id,
     });
+    console.log(User.id);
+    const userId = userData.id;
+    console.log("!!!!!userData.id!!", userData.id);
+    req.session.user_id = userId;
+    req.session.save();
+
     res.status(201).json(newPins);
   } catch (error) {
     res.status(400).json({ error: error.message });

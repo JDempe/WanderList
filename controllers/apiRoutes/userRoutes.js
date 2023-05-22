@@ -60,11 +60,9 @@ router.post("/signup", async (req, res) => {
 
     req.session.save();
 
-    res
-      .status(200)
-      .json({
-        message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!`,
-      });
+    res.status(200).json({
+      message: `Welcome aboard, ${userData.username}! Enjoy your journey with us!`,
+    });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -98,7 +96,6 @@ router.post("/login", async (req, res) => {
         .json({ message: "Incorrect email or password, please try again" });
     }
     const userId = userData.id;
-    console.log("!!!!!userData.id!!", userData.id);
     req.session.user_id = userId;
     req.session.logged_in = 1;
 
