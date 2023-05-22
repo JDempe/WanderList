@@ -1,10 +1,37 @@
+:root {
+    /* Light mode variables */
+    --body-color: #F0EEF6;
+    --navbar-background-blue: #6CB4F8;
+    /* --navbar-background-blue: #2f583f; */
+    --button-text: #FFFFFF;
+    --button-hover-background-color: #ffffff;
+    --button-hover-text-color: #000000;
+  
+    /* Dark mode variables */
+    --body-color-dark: #3c3e52;
+    --navbar-background-dark: #2f3452;
+    --navbar-text-dark: #e7e9f0;
+    --text-color-dark: #FFFFFF;
+    --button-background-dark: #475567;
+    --button-text-dark: #FFFFFF;
+    --button-border-dark: #475567;
+    --footer-background-dark: #35374a;
+    --footer-text-dark: #e7e9f0;
+}
+  
+
+@font-face {
+    font-family: 'Wanderlust';
+    src: url('../fonts/WanderlustRegular.woff') format('woff');
+}
+  
 body {
     position: relative;
-    background-color: #F0EEF6;
+    background-color: var(--body-color);
 }
 
 .navbar {
-    background-color: #6CB4F8; 
+    background-color: var(--navbar-background-blue); 
 }
 
 /* Changes the website name font in the navbar, centers it */
@@ -15,7 +42,8 @@ body {
     width: fit-content;
     margin-right: 0px;
     text-align: center;
-    font-family: "Hammersmith One", sans-serif;
+    font-family: "Wanderlust", sans-serif;
+    font-feature-settings: "salt" 1, "ss01" 1;
     font-size: 1.8rem;
   }
 
@@ -26,8 +54,17 @@ body {
 
 /* Sets size of ALL navbar icons */
 .navIcon {
-    margin: 0px 0px 5px 5px;
+    margin: 0px;
     font-size: 1.5rem;
+}
+
+#toggle-switch {
+    padding-top: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: #6f6fab;
+    border-color: transparent;
 }
 
 /* Overriding Bootstrap, targets both login and sign up in the navbar */
@@ -35,15 +72,22 @@ body {
     margin-right: 0.5rem;
     width: 6rem;
     border-width: 1.3px;
-    background: #6CB4F8;
+    background: var(--navbar-background-blue);
     font-family: "Arial", sans-serif;
     font-weight: bold;
     color: #FFFFFF
 }
 
 .login-nav-Btn:hover {
-    background: #ffffff;
-    color: #000000
+    background: var(--button-hover-background-color);
+    color: var(--button-text-hover-color);
+}
+
+.user-avatar {
+    width: 43px;
+    height: 43px;
+    margin-right: 0px;
+    padding-right: 0px;
 }
 
 .container {
@@ -127,4 +171,37 @@ pushes text right */
 .hvr-grow:focus,
 .hvr-grow:active {
     transform: scale(1.05);
+}
+
+/* dark-mode */
+
+body.darkmode {
+    background-color: var(--body-color-dark);
+}
+
+.darkmode.navbar {
+    background-color: var(--navbar-background-dark);
+  }
+
+.darkmode.navbar-brand {
+    color: var(--navbar-text-dark);
+}
+
+.darkmode#navbarNavAltMarkup a {
+    color: var(--navbar-text-dark) !important;
+}
+
+.darkmode.login-nav-Btn {
+    background: var(--navbar-background-dark);
+    border-color: var(--button-border-dark);
+}
+
+.darkmode.login-nav-Btn:hover {
+    background: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
+
+footer.darkmode {
+    background-color: var(--footer-background-dark) !important;
+    color: var(--footer-text-dark) !important;
 }

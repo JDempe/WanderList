@@ -1,3 +1,29 @@
+:root {
+    /* Light mode variables */
+    --body-color: #F0EEF6;
+    --navbar-background-blue: #6CB4F8;
+    /* --navbar-background-blue: #2f583f; */
+    --button-text: #FFFFFF;
+    --button-hover-background-color: #ffffff;
+    --button-hover-text-color: #000000;
+  
+    /* Dark mode variables */
+    --body-color-dark: #3c3e52;
+    --navbar-text-dark: #e7e9f0;
+    --text-color-dark: #FFFFFF;
+    --button-background-dark: #475567;
+    --button-text-dark: #FFFFFF;
+    --button-border-dark: #475567;
+    --footer-background-dark: #35374a;
+    --footer-text-dark: #e7e9f0;
+    --discovery-page-text-dark: #d1d4dd
+}
+
+@font-face {
+    font-family: 'Wanderlust';
+    src: url('../fonts/WanderlustRegular.woff') format('woff');
+}
+
 .create-search-section {
     display: flex;
     align-items: center;
@@ -69,6 +95,19 @@
     display: none;
 }
 
+.no-results-shrug {
+    font-family: sans-serif;
+    font-size: 4.85rem;
+    padding-bottom: 12x;
+    color: #b2b5c0;
+}
+
+.no-results-text {
+    font-family: "Wanderlust", sans-serif;
+    font-size: 2.65rem;
+    color: #b2b5c0;
+}
+
 /* card css */
 .date-container {
     display: flex;
@@ -88,6 +127,7 @@
 .timestamp {
     display: inline-block;
     margin: 0 10px;
+    color: #565c75;
 }
 
 .card-container {
@@ -99,6 +139,7 @@
     width: 65%;
     border-radius: 16px;
     min-height: 50px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card-top-section {
@@ -145,10 +186,41 @@
     margin: 4px 0 4px 0;
 }
 
+
+.avatar-container {
+    display: flex;
+    align-items: center;
+    padding-top: 7px;
+  }
+  
+.avatar-border {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgb(142, 143, 155);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.pin-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .card-username {
+    margin-right: 10px;
+    margin-left: 7px;
+    padding-top: 8px;
     font-family: "Hammersmith One", sans-serif ;
-    font-size: rem;
+    font-size: 1.05rem;
     color: #6e6c78;
+}
+
+.pin-updated {
+    margin-left: 10px; 
 }
 
 .card-location {
@@ -164,14 +236,96 @@
     color: #6e6c78;
 }
 
-
 .popover{
-    background: #ff9b9b !important;
+    background: #f56d6d !important;
 }
 
 
 .popover .popover-arrow::before, .popover .popover-arrow::after {
     border-color: transparent !important;  /* this example changes the arrow to orange color... You can always replace with any color you choose. */
-    border-top-color: #ff9b9b !important;
-    border-bottom-color: #ff9b9b !important;
+    border-top-color: #f56d6d !important;
+    border-bottom-color: #f56d6d !important;
 }
+
+.darkmode.btn-refresh {
+    background-color: #6b7bb3;
+    border-color: #6b7bb3;
+}
+
+.darkmode.btn-refresh:hover {
+    background-color: #9fb1ec;
+    border-color: #9fb1ec;
+}
+
+.darkmode.btn-refresh:active {
+    background-color: #445177;
+    border-color: #445177;
+}
+
+.darkmode.card-pin-color {
+    background-color: #494a61;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+
+}
+
+.darkmode.date-hr {
+    border-color: #ffffff;
+}
+
+.darkmode.timestamp {
+    color: var(--discovery-page-text-dark);
+}
+
+.darkmode.bi-pin {
+    color:var(--discovery-page-text-dark);
+}
+
+.darkmode.card-title {
+    color: var(--discovery-page-text-dark);
+}
+
+.darkmode.card-username {
+    color: var(--discovery-page-text-dark);
+}
+
+.darkmode.card-location {
+    color: #9fb1ec;
+}
+
+.darkmode.card-hr {
+    border-color: white;
+}
+.darkmode.card-text {
+    color: #c5c9d6;
+}
+
+.darkmode.form-control {
+    background-color: #494a61;
+    border-color: #63709d;
+    color: var(--discovery-page-text-dark)
+}
+
+.darkmode.form-control:focus {
+    outline: none; 
+    box-shadow: 0 0 5px #9fb1ec;
+}
+
+.darkmode.form-control::placeholder {
+    color: var(--discovery-page-text-dark)
+}
+
+.darkmode.bi-search {
+    color: var(--discovery-page-text-dark);
+}
+
+/* .darkmode.card-text {
+    background-color: #3c3e52;
+} */
+
+/* .darkmode.bi-pin-fill-angle {
+    color: #ffffff !important;
+}
+
+.darkmode.bi-pin-fill-angle::before {
+    color: #ffffff !important;
+} */
