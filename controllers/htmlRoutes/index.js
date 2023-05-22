@@ -30,6 +30,7 @@ router.get("/discover", async (req, res) => {
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
       pinUsername: pin.user_id,
+      
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
