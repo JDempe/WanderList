@@ -1,10 +1,28 @@
+:root {
+    /* Light mode variables */
+    --background-color: #F0EEF6;
+    --navbar-color: #6CB4F8;
+    --button-background: #6CB4F8;
+    --button-text: #FFFFFF;
+    --button-hover-background-color: #ffffff;
+    --button-hover-text-color: #000000;
+  
+    /* Dark mode variables */
+    --background-color-dark: #222222;
+    --navbar-color-dark: #333333;
+    --text-color-dark: #FFFFFF;
+    --button-background-dark: #444444;
+    --button-text-dark: #FFFFFF;
+}
+  
+
 body {
     position: relative;
-    background-color: #F0EEF6;
+    background-color: var(--background-color);
 }
 
 .navbar {
-    background-color: #6CB4F8; 
+    background-color: var(--navbar-color); 
 }
 
 /* Changes the website name font in the navbar, centers it */
@@ -26,7 +44,7 @@ body {
 
 /* Sets size of ALL navbar icons */
 .navIcon {
-    margin: 0px 0px 5px 5px;
+    margin: 0px;
     font-size: 1.5rem;
 }
 
@@ -42,8 +60,8 @@ body {
 }
 
 .login-nav-Btn:hover {
-    background: #ffffff;
-    color: #000000
+    background: var(--button-hover-background-color);
+    color: var(--button-text-hover-color);
 }
 
 .container {
