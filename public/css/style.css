@@ -2,19 +2,20 @@
     /* Light mode variables */
     --body-color: #F0EEF6;
     --navbar-background-blue: #6CB4F8;
+    /* --navbar-background-blue: #2f583f; */
     --button-text: #FFFFFF;
     --button-hover-background-color: #ffffff;
     --button-hover-text-color: #000000;
   
     /* Dark mode variables */
-    --body-color-dark: #36384b;
-    --navbar-background-dark: #2f3543;
+    --body-color-dark: #3c3e52;
+    --navbar-background-dark: #283147;
     --navbar-text-dark: #e7e9f0;
     --text-color-dark: #FFFFFF;
     --button-background-dark: #475567;
     --button-text-dark: #FFFFFF;
     --button-border-dark: #475567;
-    --footer-background-dark: #2f3543;
+    --footer-background-dark: #35374a;
     --footer-text-dark: #e7e9f0;
 }
   
@@ -42,6 +43,7 @@ body {
     margin-right: 0px;
     text-align: center;
     font-family: "Wanderlust", sans-serif;
+    font-feature-settings: "salt" 1, "ss01" 1;
     font-size: 1.8rem;
   }
 
@@ -58,6 +60,11 @@ body {
 
 #toggle-switch {
     padding-top: 0.5rem;
+}
+
+.form-check-input:checked {
+    background-color: rgb(111, 111, 171);
+    border-color: transparent;
 }
 
 /* Overriding Bootstrap, targets both login and sign up in the navbar */
