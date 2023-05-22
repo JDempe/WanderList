@@ -10,6 +10,9 @@ $(document).ready(function () {
 
   $("form").submit(preventDefault);
 
+// make the discover something button invisible but maintain its place in the DOM
+  $("#discover-something-button").css("visibility", "hidden");
+
   // EVENT LISTENERS //
   // ========================================================== //
 
@@ -296,8 +299,7 @@ $(document).ready(function () {
       });
     }
   });
-
-
+  
   // ========================================================== //
   // END EVENT LISTENERS //
 });
