@@ -51,6 +51,11 @@ router.get("/pins/user/:id", async (req, res) => {
       pinLocation: pin.pinLocation,
       pinUsername: pin.user_id,
       id: pin.id,
+       user:{
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      },
+
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
@@ -68,6 +73,11 @@ router.get("/pins/user/:id", async (req, res) => {
       script: "./js/personal-page.js",
       scriptSecond: "./js/search-pin.js",
       pins: pinsData,
+      user: {
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      }
+      
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -97,16 +107,38 @@ router.post("/pins/user/:id", async (req, res) => {
 });
 
 // PUT route to update a pin
+// router.put("/pins/:id", async (req, res) => {
+//   try {
+//     const [updated] = await Pins.update(req.body, {
+//       where: { id: req.params.id },
+//     });
+//     if (updated !== 0) {
+//       const updatedPin = await Pins.findByPk(req.params.id);
+//       res.status(200).json(updatedPin);
+//     } else {
+//       const existingPin = Pins.findByPk(req.params.id);
+//       if (existingPin) {
+//         res.status(200).json({ message: "No update has been made." });
+//       } else {
+//         res.status(404).json({ error: "Pin not found" });
+//       }
+//     }
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// });
+// PUT route to update a pin
 router.put("/pins/:id", async (req, res) => {
   try {
     const [updated] = await Pins.update(req.body, {
       where: { id: req.params.id },
     });
+
     if (updated !== 0) {
       const updatedPin = await Pins.findByPk(req.params.id);
       res.status(200).json(updatedPin);
     } else {
-      const existingPin = Pins.findByPk(req.params.id);
+      const existingPin = await Pins.findByPk(req.params.id);
       if (existingPin) {
         res.status(200).json({ message: "No update has been made." });
       } else {

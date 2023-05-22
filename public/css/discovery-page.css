@@ -163,3 +163,15 @@
     font-family: "Source Sans Pro", sans-serif ;
     color: #6e6c78;
 }
+
+
+.popover{
+    background: #ff9b9b !important;
+}
+
+
+.popover .popover-arrow::before, .popover .popover-arrow::after {
+    border-color: transparent !important;  /* this example changes the arrow to orange color... You can always replace with any color you choose. */
+    border-top-color: #ff9b9b !important;
+    border-bottom-color: #ff9b9b !important;
+}

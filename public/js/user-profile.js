@@ -9,10 +9,11 @@ $(document).ready(function () {
     lastName: $("#editprofile-lastname").val(),
     aboutme: $("#editprofile-aboutme").val(),
     email: $("#editsecurity-email").val(),
+    id: $("#editsecurity-id").val(),
   };
 
   // AVATAR MODAL //
-  // set up the modal show and hide
+  // set up the avatar selection modal show and hide
   $("#changeAvatarBtn").click(function (e) {
     e.preventDefault();
     // show the modal
@@ -23,7 +24,6 @@ $(document).ready(function () {
   $(".avatar-image-option").on("click", function () {
     // Get the avatar id from the image
     const avatarId = $(this).attr("data-avatar-id");
-    console.log(avatarId);
 
     // Send a PUT request to change the user's avatar id
     $.ajax({
@@ -34,11 +34,41 @@ $(document).ready(function () {
       type: "PUT",
       success: function (response) {
         console.log("updated user");
+        // instead of reloading the full page, change the avatar images on the page so that the alert can be shown
+        // lookup the avatarsImage in the DB from the Id
+        $.ajax({
+          url: `/api/avatars/${avatarId}`,
+          type: "GET",
+          success: function (response) {
+            // change the avatar image options
+            $("#editprofile-avatar-image").attr(
+              "src",
+              `${response.avatarsImage}`
+            );
+            $("#user-profile-pic").attr("src", `${response.avatarsImage}`);
 
-        location.reload();
-      },
-      error: function (xhr) {
-        console.log(xhr);
+            // display a success alert
+            addAlertToPage(
+              "alert-success",
+              "Success!",
+              " Your avatar has been successfully changed.",
+              "#editprofile-submitBtn"
+            );
+            // hide the modal
+            $("#avatarChoiceModal").modal("hide");
+          },
+          error: function (xhr) {
+            console.log(xhr);
+            if (xhr.status === 500) {
+              addAlertToPage(
+                "alert-danger",
+                "Error!",
+                " There was an error changing your avatar.",
+                "#editprofile-submitBtn"
+              );
+            }
+          },
+        });
       },
     });
   });
@@ -86,9 +116,7 @@ $(document).ready(function () {
         aboutme: $("#editprofile-aboutme").val().trim(),
       };
 
-      // Check the username to make sure it is unique in the DB
       // if the username was editted, check to make sure it is unique
-      // Check the username to make sure it is unique in the DB
       if (user.username !== currentUserInfo.username) {
         // Send a GET request to check the username
         $.ajax({
@@ -110,7 +138,14 @@ $(document).ready(function () {
           },
           error: function (xhr) {
             console.log(xhr);
-            console.log("error checking username");
+            if (xhr.status === 500) {
+              addAlertToPage(
+                "alert-danger",
+                "Error!",
+                " There was an error checking the username.",
+                "#editprofile-submitBtn"
+              );
+            }
           },
         });
       }
@@ -125,17 +160,27 @@ $(document).ready(function () {
         },
         type: "PUT",
         success: function (response) {
-          console.log("updated user");
-          // load the successfulChangeModal to show the user that the change was successful
+          // If the update is successful, show the modal to user with a success message
+          // Redirect to the user's profile page
           window.location.href = `/editprofile/${user.username}`;
         },
         error: function (xhr) {
-          console.log("error updating user");
           console.log(xhr);
+          if (xhr.status === 500) {
+            addAlertToPage(
+              "alert-danger",
+              "Error!",
+              " There was an error updating your profile.",
+              "#editprofile-submitBtn"
+            );
+
+            if (xhr.status === 401) {
+              //redirect to landing page
+              window.location.href = `/`;
+            }
+          }
         },
       });
-
-      // redirect to the user's new URL with the new username
     }
   });
 
@@ -203,6 +248,19 @@ $(document).ready(function () {
         error: function (xhr) {
           console.log(xhr);
           console.log("error updating user");
+          if (xhr.status === 400) {
+            var response = JSON.parse(xhr.responseText);
+            if (
+              response.message ===
+              `The user with the provided id ${currentUserInfo.username} does not exist. Please try again.`
+            ) {
+              alert("The user does not exist. Please try again.");
+            }
+          }
+          if (xhr.status === 404) {
+            // Redirect to home page if API route not found
+            window.location.href = "/";
+          }
         },
       });
     }
@@ -216,7 +274,7 @@ $(document).ready(function () {
   });
 
   // if the user clicks the deleteAccountModal confirm button, it sends a DELETE request to delete the user
-  $("#deleteAccountModal-confirmBtn").click( async function (e) {
+  $("#deleteAccountModal-confirmBtn").click(async function (e) {
     e.preventDefault();
     // send a DELETE request to delete the user
     await $.ajax({
@@ -228,13 +286,17 @@ $(document).ready(function () {
       error: function (xhr) {
         console.log(xhr);
         console.log("error deleting user");
+        if (xhr.status === 404) {
+          // Redirect to home page if API route not found
+          document.location.replace("/");
+        }
       },
     });
 
     // call the logout api
     await $.ajax({
       url: "/api/user/logout",
-      type: "GET",
+      type: "POST",
       success: function (response) {
         console.log("logged out");
       },
@@ -244,14 +306,14 @@ $(document).ready(function () {
       },
     });
     // redirect to the homepage
-    window.location.href = "/";
+    document.location.replace("/");
   });
 
   // END ACCOUNT SECURITY //
 
   // FUNCTIONS //
 
-  // TODO Add to helper functions and import to this .js
+  // TODO Add to handler functions and import to this .js
   // create the alert element
   function addAlertToPage(
     alertClass,
@@ -278,7 +340,6 @@ $(document).ready(function () {
     }, 5000);
   }
 
-  // TODO Learn how to import from helpers.js
   // validate the password
   function validatePassword(password) {
     const userPassword = password.trim();
@@ -292,5 +353,16 @@ $(document).ready(function () {
     }
   }
 
+  // LEGACY CODE - SUPERSEDED BY AlertOnPage() //
+  // //handle error modal
+  // function showErrorModal(message) {
+  //   document.getElementById("errorModalMessage").innerText = message;
+  //   $("#errorModal").modal("show");
+  // }
+  // //handle success modal
+  // function showSuccessModal(message) {
+  //   document.getElementById("successModalMessage").innerText = message;
+  //   $("#successModal").modal("show");
+  // }
   // END FUNCTIONS //
 });

@@ -26,10 +26,12 @@ router.get("/discover", async (req, res) => {
 
     // Limits the rendered output to 20 pins
     const pinsData = pins.slice(0, 20).map((pin) => ({
+      pinID: pin.id,
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
       pinUsername: pin.user_id,
+      
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
@@ -47,6 +49,10 @@ router.get("/discover", async (req, res) => {
       script: "./js/discovery-page.js",
       scriptSecond: "./js/search-pin.js",
       pins: pinsData,
+      user: {
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in   
+      } 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -81,7 +87,9 @@ router.get("/editprofile", async (req, res) => {
 
     res.redirect(`/editprofile/${user.username}`);
   } catch (err) {
-    res.status(404).json(err);
+    console.error(err);
+    // redirect to home page on error
+    return res.redirect("/");
   }
 });
 
@@ -109,11 +117,12 @@ router.get("/editprofile/:username", async (req, res) => {
     });
 
     // verify that the user exists in the database.
+  
     if (!userExists) {
-      return res.status(400).json({
-        message: `The user with the provided username "${req.params.username}" does not exist.`,
-      });
+      console.error(`The user with the provided username "${req.params.username}" does not exist.`);
+      return res.redirect("/");
     }
+
 
     // verify that the user is logged in and is the same user as the one being updated.
     if (userSession !== userExists.id || userLoggedIn !== 1) {
@@ -136,9 +145,16 @@ router.get("/editprofile/:username", async (req, res) => {
       layout: "main",
       style: "./css/user-profile.css",
       script: "./js/user-profile.js",
-      user,
+      //user,
       avatar,
       avatars,
+      user: {
+        ...user,
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in   
+      } 
+      
+      
     });
   } catch (err) {
     res.status(404).json(err);
@@ -149,7 +165,7 @@ router.get("/editprofile/:username", async (req, res) => {
 router.get("/user/:id", async (req, res) => {
   try {
     // Get the current user's info
-    const userData = await user.findByPk(req.params.id, {
+    const userData = await User.findByPk(req.params.id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });

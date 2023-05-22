@@ -1,7 +1,7 @@
 <main class="container d-flex flex-wrap" id="user-profile">
   {{! AVATAR IMAGE AREA }}
   <div id="editprofile-avatar" class="col-3">
-    <image src="./{{avatar.avatarsImage}}" class="rounded-circle" alt="avatar icon" width="225" height="225"> </image>
+    <image id="editprofile-avatar-image" src="./{{avatar.avatarsImage}}" class="rounded-circle" alt="avatar icon" width="225" height="225"> </image>
     <!-- Button trigger modal -->
     <button id="changeAvatarBtn" type="button" class="btn bi bi-camera" data-toggle="modal"
       data-target="#avatarChoiceModal"></button>
@@ -55,6 +55,7 @@
         <label for="editprofile-aboutme" class="form-label">About Me</label>
         <textarea class="form-control" placeholder="Tell us a little about yourself!" id="editprofile-aboutme" rows="3">{{user.about_me}}</textarea>
       </div>
+     <input type="hidden" name="user_id" id="editsecurity-id" value="{{user.id}}">
 
       <div class="row">
         {{! Submit Button }}
@@ -141,5 +142,38 @@
     </div>
   </div>
 </div>
-
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="errorModalMessage">An error has occurred.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="successModalMessage">A success has occurred.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="editprofile-alert-area" style="pointer-events: none"></div>
