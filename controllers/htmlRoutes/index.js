@@ -84,7 +84,7 @@ router.get("/pins/user", async (req, res) => {
       return res.redirect("/");
     }
 
-    res.redirect(`/user/${user.username}`);
+    res.redirect(`/pins/user/${user.username}`);
   } catch (err) {
     console.error(err);
     // redirect to home page on error
