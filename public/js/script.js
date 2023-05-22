@@ -33,6 +33,7 @@ $(document).ready(function() {
       '.create-text',
       '.card-text-color',
       '.card-color',
+      '.card-icon',
       '.card-pin-color',
       '.card-text',
       '.date-hr',
