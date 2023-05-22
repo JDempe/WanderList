@@ -1,30 +1,30 @@
-        <div class="create-search-section">
-          <div>
-            <a class="create-text" href="/pins/user/{{id}}">
-            <i class="bi bi-plus-square-fill"></i>
-            {{!-- <span class="create-text">Create a new pin</span> --}}
-            Create a new pin</a>
+<div class="create-search-section">
+  <div>
+    <a id="create-new-pin" class="btn create-text" role="button">
+      <i class="bi bi-plus-square-fill"></i>
+      {{!-- <span class="create-text">Create a new pin</span> --}}
+      Create a new pin</a>
 
-          </div>
-            <!-- Search bar -->
-            <div class="functions-bar">
-              <div class="input-group rounded search-bar">
+  </div>
+  <!-- Search bar -->
+  <div class="functions-bar">
+    <div class="input-group rounded search-bar">
                 <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search" aria-describedby="search-addon" id="search-input"/>
-                <span class="input-group-text border-0" id="search-addon">
-                  <i class="bi bi-search"></i>
-                </span>
-              </div>
-            </div>
-        </div>
-        <div class="no-results-container no-results-container-noshow">
-          <div>
-            <span>No results found.</span>
-            <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
-          </div>
-        </div>
-       {{#if pins}}
-       {{!-- Handle case when user has no pin --}}
-       {{> personal-pin}}
-       {{else}}
-       {{> personal-noPin}}
-       {{/if}}
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="bi bi-search"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="no-results-container no-results-container-noshow">
+  <div>
+    <span>No results found.</span>
+    <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
+  </div>
+</div>
+{{#if pins}}
+{{!-- Handle case when user has no pin --}}
+{{> personal-pin}}
+{{else}}
+{{> personal-noPin}}
+{{/if}}
