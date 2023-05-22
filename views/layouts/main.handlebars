@@ -1,15 +1,15 @@
 <html lang="en">
 
 <head>
-  <title>Document</title>
+  <title>Wanderlust</title>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="/" />
   <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet"/>
-  <link href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet" />
   <link href="./css/reset.css" rel="stylesheet" />
   <link href="./css/modal.css" rel="stylesheet" />
@@ -34,30 +34,34 @@
           {{!logic to handle login/signup buttons when the user is logged in or not}}
           {{! below block will be rendered if user is not logged in}}
           {{#unless user.isLoggedIn}}
-            <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log in</a>
-            <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign up</a>
+          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="login">Log in</a>
+          <a class="js-signin-modal-trigger btn btn-light login-nav-Btn" href="#0" data-signin="signup">Sign up</a>
             <a class="nav-item nav-link active" role="button" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
-              <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
-              <i class="bi bi-compass navIcon"></i>
-            </a>
+            <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
+            <i class="bi bi-compass navIcon"></i>
+          </a>
           {{/unless}}
           {{#if user.isLoggedIn}}
-            <a class="nav-item nav-link active" id="logout-btn" data-toggle="tooltip" data-placement="top" title="Logout">
-              <!-- logout  Icon / navigates to logout.handlebars -->
-              <i class="bi bi-box-arrow-right navIcon"></i>
-            </a>
-            <a class="nav-item nav-link active" role="button" href="/discover" data-toggle="tooltip" data-placement="top" title="Discover">
-              <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
-              <i class="bi bi-compass navIcon"></i>
-            </a>
-            <a class="nav-item nav-link active" href="/user" data-toggle="tooltip" data-placement="top" title="Profile">
-              <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-              <i class="bi bi-person-circle navIcon"></i>
-            </a>
-            <a class="nav-item nav-link active" href="/editprofile" data-toggle="tooltip" data-placement="top" title="Settings">
-              <!-- SETTINGS ICON / pops up site settings modal (covers minor site settings like darkmode) -->
-              <i class="bi bi-gear-fill navIcon"></i>
-            </a>
+          {{!-- A dropdown menu that is your username and then in the dropdown is a logout button --}}
+          <a class="nav-item nav-link active" role="button" href="/discover" data-toggle="tooltip" data-placement="top"
+            title="Discover">
+            <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
+            <i class="bi bi-compass navIcon"></i>
+          </a>
+          <a class="nav-item nav-link active" href="/user" data-toggle="tooltip" data-placement="top" title="Profile">
+            <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+            <i class="bi bi-person-circle navIcon"></i>
+          </a>
+          <div class="dropdown d-flex">
+            <img src="" class="nav-item nav-link active dropdown-toggle"
+              href="#" role="button" id="user-profile-pic" data-bs-toggle="dropdown" aria-expanded="false" width="50px" />
+            <a class="nav-item nav-link active dropdown-toggle" href="#" role="button" id="user-username"
+              data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <ul class="dropdown-menu" aria-labelledby="user-username">
+              <li><a class="dropdown-item" href="/editprofile">Settings</a></li>
+              <li><a class="dropdown-item" id="logout-btn" href="/logout">Logout</a></li>
+            </ul>
+          </div>
           {{/if}}
         </div>
       </div>
@@ -232,29 +236,29 @@
           class="cd-signin-modal__block js-signin-modal-block"
           data-type="login"
         >
-          <!-- log in form -->
-          <form class="cd-signin-modal__form">
-            <p class="cd-signin-modal__fieldset">
+        <!-- log in form -->
+        <form class="cd-signin-modal__form">
+          <p class="cd-signin-modal__fieldset">
               <label
                 class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace"
                 for="signin-email"
               >E-mail</label>
-              <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
+            <input
+              class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
                 id="signin-email"
                 type="email"
                 placeholder="E-mail"
               />
-              <span class="cd-signin-modal__error login-short-email">Please provide a valid email address!</span>
-            </p>
+            <span class="cd-signin-modal__error login-short-email">Please provide a valid email address!</span>
+          </p>
 
-            <p class="cd-signin-modal__fieldset">
+          <p class="cd-signin-modal__fieldset">
               <label
                 class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace"
                 for="signin-password"
               >Password</label>
-              <input
-                class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
+            <input
+              class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
                 id="signin-password"
                 type="text"
                 placeholder="Password"
@@ -263,18 +267,18 @@
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
               >Hide</a>
-              <span class="cd-signin-modal__error error-404">The email or
-                password provided is incorrect. Please try again.
-              </span>
-              <span class="cd-signin-modal__error error-500">We apologize for
-                the inconvenience. We have encountered an issue on our end, but
-                rest assured that we are actively working to resolve it. We
-                appreciate your understanding.
-              </span>
-              <span class="cd-signin-modal__error login-short-password">Password 
-                should be 8-128 characters long and contain alphanumeric, uppercase and special characters!
-              </span>
-            </p>
+            <span class="cd-signin-modal__error error-404">The email or
+              password provided is incorrect. Please try again.
+            </span>
+            <span class="cd-signin-modal__error error-500">We apologize for
+              the inconvenience. We have encountered an issue on our end, but
+              rest assured that we are actively working to resolve it. We
+              appreciate your understanding.
+            </span>
+            <span class="cd-signin-modal__error login-short-password">Password
+              should be 8-128 characters long and contain alphanumeric, uppercase and special characters!
+            </span>
+          </p>
 
           <p class="cd-signin-modal__fieldset">
             <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input" />
@@ -389,8 +393,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script src="./handlers/user-auth.js"></script>
+<script src="./js/script.js"></script>
+<script src="./js/modal.js"></script>
 <script src="{{script}}"></script>
 <script src="{{scriptSecond}}"></script>
-<script src="./js/modal.js"></script>
 
 </html>
