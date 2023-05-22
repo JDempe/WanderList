@@ -83,6 +83,13 @@ body {
     color: var(--button-text-hover-color);
 }
 
+.user-avatar {
+    width: 43px;
+    height: 43px;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+
 .container {
     margin-left: auto;
 }
