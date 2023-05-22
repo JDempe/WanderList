@@ -99,6 +99,10 @@ body {
     flex-grow: 0;
 }
 
+footer {
+    margin-top: 2rem;
+}
+
 /* Brings footer links closer together */
 footer p {
     margin-bottom: 0.8rem;
@@ -181,7 +185,7 @@ body.darkmode {
 
 .darkmode.navbar {
     background-color: var(--navbar-background-dark);
-  }
+}
 
 .darkmode.navbar-brand {
     color: var(--navbar-text-dark);

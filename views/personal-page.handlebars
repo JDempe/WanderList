@@ -4,7 +4,6 @@
       <i class="bi bi-plus-square-fill"></i>
       {{!-- <span class="create-text">Create a new pin</span> --}}
       Create a new pin</a>
-
   </div>
   <!-- Search bar -->
   <div class="functions-bar">
@@ -18,8 +17,9 @@
 </div>
 <div class="no-results-container no-results-container-noshow">
   <div>
-    <span>No results found.</span>
-    <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
+    <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+    <span class="no-results-text">No results found</span>
+    {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
   </div>
 </div>
 {{#if pins}}
@@ -41,7 +41,7 @@
     </div>
     <!-- CONTAINS CARD -->
     <div class="card-container">
-      <div class="card">
+      <div class="card card-pin-color">
         <form class="card-body was-validated">
           <div class="card-top-section">
             <!-- DISPLAY PIN TITLE -->
