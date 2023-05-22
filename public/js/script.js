@@ -21,6 +21,7 @@ $(document).ready(function() {
     const elementsToToggle = [
       // main.handlebars
       'body',
+      'dropdown-item',
       '.navbar',
       '.login-nav-Btn',
       '#navbarNavAltMarkup',

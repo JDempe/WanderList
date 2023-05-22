@@ -191,10 +191,6 @@ body.darkmode {
     color: var(--navbar-text-dark);
 }
 
-.darkmode#navbarNavAltMarkup a {
-    color: var(--navbar-text-dark) !important;
-}
-
 .darkmode.login-nav-Btn {
     background: var(--navbar-background-dark);
     border-color: var(--button-border-dark);
