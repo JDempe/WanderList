@@ -258,6 +258,46 @@ $(document).ready(function () {
     });
   });
 
+  // discard button event listener
+  // if discard is clicked, read the id from the data-id attribute, if it doesnt exist remove the element, if it does exist send a request to get pinTitle and pinDescription and set the values of the title and text to those values
+  $(document).on("click", ".discard-btn", function () {
+    const pinEl = $(this).closest(".pin");
+    const titleEl = pinEl.find(".card-title");
+    const textEl = pinEl.find(".card-text");
+    const saveBtn = $(this).siblings(".save-btn");
+    const discardBtn = $(this);
+
+    // get the id from the data-id attribute
+    const id = pinEl.data("id");
+    console.log(id);
+
+    // if the id is empty, remove the element
+    if (id === "") {
+      pinEl.remove();
+      // make the create new pin button not disabled
+      $("#create-new-pin").removeClass("disabled");
+    } else {
+      // if the id is not empty, send a request to get the pinTitle and pinDescription
+      $.ajax({
+        url: `/api/pins/${id}`,
+        type: "GET",
+      }).then(function (response) {
+        console.log(response);
+        // set the values of the title and text to the pinTitle and pinDescription
+        titleEl.val(response.pinTitle);
+        textEl.val(response.pinDescription);
+        // reset the form to the original state
+        titleEl.prop("readonly", true);
+        titleEl.addClass("no-visibility");
+        textEl.prop("readonly", true);
+        textEl.addClass("no-visibility");
+        saveBtn.removeAttr("style");
+        discardBtn.removeAttr("style");
+      });
+    }
+  });
+
+
   // ========================================================== //
   // END EVENT LISTENERS //
 });
