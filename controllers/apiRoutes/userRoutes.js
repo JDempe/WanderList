@@ -128,6 +128,28 @@ router.post("/logout", async (req, res) => {
     }
 });
 
+// Look up a user based on the active session
+router.get("/session/lookup", async (req, res) => {
+  try {
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+    const userData = await User.findByPk(userSession, {
+      attributes: { exclude: ["password"] },
+    });
+
+    if (!userData) {
+      return res.status(200).json({
+        logged_in: false,
+      });
+    }
+
+    const user = userData.get({ plain: true });
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 // Try to find a user with the provided username in the database.
 router.get("/checkusername/:username", async (req, res) => {
@@ -213,7 +235,6 @@ router.put("/editprofile/:username", async (req, res) => {
 });
 
 // set up a route for users to update their own information.  Require the user to be logged in.
-// TODO Hash the PW
 router.put("/editsecurity/:username", async (req, res) => {
     try {
         const userSession = req.session.user_id;
@@ -294,6 +315,89 @@ router.delete("/delete/:username", async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
+});
+
+// set up a route for users to add a pinID to their saved_pins array.
+router.put("/savepin", async (req, res) => {
+  try {
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+
+    // verify the user is logged in
+    if (!userLoggedIn) {
+      return res.status(400).json({
+        message: `You must be logged in to save a pin.`,
+      });
+    }
+
+    //   // verify that the user exists in the database using the provided username.
+    const userExists = await User.findOne({
+      where: {
+        id: userSession,
+      },
+    });
+
+    if (!userExists) {
+      return res.status(400).json({
+        message: `The user with the provided username "${userExists.username}" does not exist. Please try again.`,
+      });
+    }
+
+    //   // verify that the user is logged in and is the same user as the one being updated.
+    if (userSession !== userExists.id || userLoggedIn !== 1) {
+      return res.status(400).json({
+        message: `You are not authorized to edit this user's profile.`,
+      });
+    }
+    console.log("req.body.pinId", req.body.pinId);
+    // This is the format of each entry in the JSON array.
+    // {
+    //   "pinId": req.body.pinId,
+    //   "completed": false
+    // }
+    // Break apart the saved_pins string into a JSON with pinId and completed keys.  Only do this if the string is not null.
+    if (userExists.saved_pins !== null && userExists.saved_pins !== "") {
+      var savedPinsJSON = JSON.parse(userExists.saved_pins);
+      // If the pinID is already a value in the json, remove it.  Otherwise, add it.
+      if (savedPinsJSON.some((e) => e.pinId === req.body.pinId)) {
+        var savedPinsArray = savedPinsJSON.filter(
+          (e) => e.pinId !== req.body.pinId
+        );
+      } else {
+        var savedPinsArray = savedPinsJSON.concat({
+          pinId: req.body.pinId,
+          completed: false,
+        });
+      }
+    } else {
+      var savedPinsArray = [
+        {
+          pinId: req.body.pinId,
+          completed: false,
+        },
+      ];
+    }
+
+    // Stringify the JSON array to be stored in the database.
+    var savedPinsString = JSON.stringify(savedPinsArray);
+
+    // proceed to update the user in the database.
+    await User.update(
+      {
+        saved_pins: savedPinsString,
+      },
+      {
+        where: {
+          id: userExists.id,
+        },
+      }
+    );
+    res.status(200).json({
+      message: `Your profile has been successfully updated! ${savedPinsString}`,
+    });
+  } catch (error) {
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;
