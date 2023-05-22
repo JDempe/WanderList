@@ -105,3 +105,39 @@ transition: all 0.3s ease-in-out;
   background-color: #a4a3a3;
   border: #a4a3a3;
 }
+
+#user-profile.darkmode {
+  background-color: #494a61;
+}
+
+#editprofile-form.darkmode {
+  background-color: #494a61;
+}
+
+#editsecurity-form.darkmode {
+  background-color: #494a61;
+}
+
+.darkmode.form-label {
+  color: #c5c9d6;
+}
+
+h2.darkmode {
+  color: #c5c9d6;
+}
+
+.darkmode.card-text {
+  color: #c5c9d6;
+}
+
+.darkmode.form-control {
+  background-color: #494a61;
+  border-color: #63709d;
+  color: var(--discovery-page-text-dark)
+}
+
+.darkmode.card-pin-color {
+  background-color: #494a61;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+
+}

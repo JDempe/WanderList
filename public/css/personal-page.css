@@ -265,6 +265,7 @@
 }
 
 /* darkmode */
+
 .darkmode.card-icon {
   color: var(--discovery-page-text-dark);
 }

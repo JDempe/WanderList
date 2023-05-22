@@ -46,6 +46,11 @@ $(document).ready(function() {
       '.form-control',
       '.bi-search',
       '.timestamp',
+      '#user-profile',
+      '#editprofile-form',
+      '#editsecurity-form',
+      'h2',
+      '.form-label',
       // sign in modal
       // // '.body-modal',
       // '.cd-signin-modal__block',
