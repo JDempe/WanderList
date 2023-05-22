@@ -27,62 +27,62 @@ router.get("/pins/:pinid", async (req, res) => {
 });
 
 // GET route to retrieve a all pins by user ID
-router.get("/pins/user/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { page = 1 } = req.query; // Get the page number from the query parameters
+// router.get("/pins/user/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { page = 1 } = req.query; // Get the page number from the query parameters
 
-    const limit = 10; // Number of pins per page
-    const offset = (page - 1) * limit; // Calculate the offset based on the page number
+//     const limit = 10; // Number of pins per page
+//     const offset = (page - 1) * limit; // Calculate the offset based on the page number
 
-    const pins = await Pins.findAndCountAll({
-      where: { user_id: id },
-      limit,
-      offset,
-    });
-    // TODO: waiting for place holder for no pin user
-    // if (pins.length <= 0) {
-    //   res.status(404).json({ error: "No pin is found for this user!" });
-    // }
+//     const pins = await Pins.findAndCountAll({
+//       where: { user_id: id },
+//       limit,
+//       offset,
+//     });
+//     // TODO: waiting for place holder for no pin user
+//     // if (pins.length <= 0) {
+//     //   res.status(404).json({ error: "No pin is found for this user!" });
+//     // }
 
-    const pinsData = pins.rows.map((pin) => ({
-      pinTitle: pin.pinTitle,
-      pinDescription: pin.pinDescription,
-      pinLocation: pin.pinLocation,
-      pinUsername: pin.user_id,
-      id: pin.id,
-       user:{
-        id: req.session.user_id,
-        isLoggedIn: req.session.logged_in
-      },
+//     const pinsData = pins.rows.map((pin) => ({
+//       pinTitle: pin.pinTitle,
+//       pinDescription: pin.pinDescription,
+//       pinLocation: pin.pinLocation,
+//       pinUsername: pin.user_id,
+//       id: pin.id,
+//        user:{
+//         id: req.session.user_id,
+//         isLoggedIn: req.session.logged_in
+//       },
 
-    }));
+//     }));
 
-    // Take the user ID for each pinsData and find the username that matches the user ID
-    for (let i = 0; i < pinsData.length; i++) {
-      const userData = await User.findByPk(pinsData[i].pinUsername, {
-        attributes: { exclude: ["password"] },
-      });
-      const user = userData.get({ plain: true });
-      pinsData[i].pinUsername = user.username;
-    }
+//     // Take the user ID for each pinsData and find the username that matches the user ID
+//     for (let i = 0; i < pinsData.length; i++) {
+//       const userData = await User.findByPk(pinsData[i].pinUsername, {
+//         attributes: { exclude: ["password"] },
+//       });
+//       const user = userData.get({ plain: true });
+//       pinsData[i].pinUsername = user.username;
+//     }
 
-    // Renders the js/css/second js/hbs/and pins template for [age]
-    res.render("personal-page", {
-      style: "./css/personal-page.css",
-      script: "./js/personal-page.js",
-      scriptSecond: "./js/search-pin.js",
-      pins: pinsData,
-      user: {
-        id: req.session.user_id,
-        isLoggedIn: req.session.logged_in
-      }
+//     // Renders the js/css/second js/hbs/and pins template for [age]
+//     res.render("personal-page", {
+//       style: "./css/personal-page.css",
+//       script: "./js/personal-page.js",
+//       scriptSecond: "./js/search-pin.js",
+//       pins: pinsData,
+//       user: {
+//         id: req.session.user_id,
+//         isLoggedIn: req.session.logged_in
+//       }
       
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+//     });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
 
 // POST route to create a new pin and assign pin to the user
 router.post("/pins/user/:id", async (req, res) => {

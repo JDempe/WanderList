@@ -84,7 +84,7 @@ router.get("/pins/user", async (req, res) => {
       return res.redirect("/");
     }
 
-    res.redirect(`/user/${user.username}`);
+    res.redirect(`/pins/user/${user.username}`);
   } catch (err) {
     console.error(err);
     // redirect to home page on error
@@ -186,7 +186,7 @@ router.get("/pins/user/:username", async (req, res) => {
     const limit = 10; // Number of pins per page
     const offset = (page - 1) * limit; // Calculate the offset based on the page number
 
-    const id = await User.findOne({
+    const user = await User.findOne({
       where: {
         username: username,
       },
@@ -194,7 +194,7 @@ router.get("/pins/user/:username", async (req, res) => {
     });
     
     const pins = await Pins.findAndCountAll({
-      where: { user_id: id },
+      where: { user_id: user.id },
       limit,
       offset,
     });
