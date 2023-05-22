@@ -80,51 +80,158 @@ $(".card-icon-section .bi-check-square").click(async function (e) {
   e.stopPropagation();
 });
 
-$(".card-icon-section .bi-pencil").click(function (e) {
+// $(".card-icon-section .bi-pencil").click(function (e) {
+//   // Check if the button is already in a disabled state
+//   if ($(this).hasClass("disabled")) {
+//     return;
+//   }
+
+//   const pin = $(this).closest(".card");
+//   const pinTextInput = pin.find(".card-text");
+//   // const pinTextValue = pinTextInput.val();
+//   enablePinEditing(pin);
+
+//   // $('.discard-btn').click(function() {
+//   //   pinTextInput.val(pinTextValue);
+//   // });
+
+//   // Checks if there is an active pin
+//   if (activePin && activePin[0] !== pin[0]) {
+//     // Hides the active pin's buttons
+//     activePin.find(".save-btn, .discard-btn").slideUp(200);
+//   }
+
+//   // Toggles the buttons for the clicked pin
+//   pin.find(".save-btn, .discard-btn").slideToggle(200);
+
+//   // Checks if the clicked pin is the active pin
+//   if (activePin && activePin[0] === pin[0]) {
+//     // Set the textarea to readonly
+//     pinTextInput.prop("readonly", true);
+//     applyReadOnly();
+
+//     // Hides the buttons of the active pin
+//     pin.find(".save-btn, .discard-btn").slideUp(200);
+
+//     // Resets the active pin
+//     activePin = null;
+//   } else {
+//     // Sets the active pin
+//     activePin = pin;
+//   }
+
+//   // Disables the button temporarily to prevent spamming and let buttons slide back up
+//   $(this).addClass("disabled");
+//   setTimeout(() => {
+//     $(this).removeClass("disabled");
+//   }, 200);
+
+//   // Attaches click event listener to the document
+//   $(document).on("click", function (e) {
+//     const target = $(e.target);
+//     const isPin = target.closest(".card").length > 0;
+
+//     // Checks if the click event occurred outside of the pin elements
+//     if (!isPin) {
+//       $(".card-title, .card-text").prop("readonly", true);
+//       applyReadOnly();
+
+//       // Hides the buttons of the active pin
+//       activePin.find(".save-btn, .discard-btn").slideUp(200);
+
+//       // Resets the active pin
+//       activePin = null;
+
+//       // Removes the click event listener from the document
+//       $(document).off("click");
+//     }
+//   });
+
+//   // Prevent event bubbling to avoid immediate closing of the card
+//   e.stopPropagation();
+// });
+
+$(".card-icon-section .bi-pencil").click(async function (e) {
   // Check if the button is already in a disabled state
   if ($(this).hasClass("disabled")) {
     return;
   }
-
   const pin = $(this).closest(".card");
+  const pinId = pin.data("id");
+  console.log(pinId);
+
   const pinTextInput = pin.find(".card-text");
-  // const pinTextValue = pinTextInput.val();
-  enablePinEditing(pin);
+  const pinTitleInput = pin.find(".card-title");
+  console.log("pin", pin, "oriText", pinTextInput, "oriTitle", pinTitleInput);
 
-  // $('.discard-btn').click(function() {
-  //   pinTextInput.val(pinTextValue);
-  // });
+  try {
+    const response = await fetch(`/api/pins/${pinId}`);
 
-  // Checks if there is an active pin
-  if (activePin && activePin[0] !== pin[0]) {
-    // Hides the active pin's buttons
-    activePin.find(".save-btn, .discard-btn").slideUp(200);
+    if (response.ok) {
+      // const pinData = await response.json();
+      enablePinEditing(pin);
+
+      // Toggles the buttons for the clicked pin
+      pin.find(".save-btn, .discard-btn").slideToggle(200);
+
+      // Checks if the clicked pin is the active pin
+      if (activePin && activePin[0] === pin[0]) {
+        // Set the textarea to readonly
+        pinTextInput.prop("readonly", true);
+        applyReadOnly();
+
+        // Hides the buttons of the active pin
+        pin.find(".save-btn, .discard-btn").slideUp(200);
+
+        // Resets the active pin
+        activePin = null;
+      } else {
+        // Sets the active pin
+        activePin = pin;
+      }
+
+      // Disables the button temporarily to prevent spamming and let buttons slide back up
+      $(this).addClass("disabled");
+      setTimeout(() => {
+        $(this).removeClass("disabled");
+      }, 200);
+
+      pin.find(".save-btn").click(async function () {
+        try {
+          // Send the PUT request to the backend
+          const updatedTitle = pinTitleInput.val();
+          const updatedText = pinTextInput.val();
+          console.log(updatedTitle, updatedText);
+          const putResponse = await fetch(`/api/pins/${pinId}`, {
+            method: "PUT",
+            body: JSON.stringify({
+              pinTitle: updatedTitle,
+              pinDescription: updatedText,
+            }), // Pass the updated text in the request body
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (putResponse.ok) {
+            // The update was successful
+            const updatedPin = await putResponse.json();
+            // Handle any further actions or UI updates after successful update
+            console.log("Pin updated:", updatedPin);
+          } else {
+            // The update was not successful
+            console.error("Failed to update the pin.");
+          }
+        } catch (error) {
+          console.log("failed to update the pin:", error.message);
+        }
+      });
+    } else {
+      console.log("Pin not found");
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-
-  // Toggles the buttons for the clicked pin
-  pin.find(".save-btn, .discard-btn").slideToggle(200);
-
-  // Checks if the clicked pin is the active pin
-  if (activePin && activePin[0] === pin[0]) {
-    // Set the textarea to readonly
-    pinTextInput.prop("readonly", true);
-    applyReadOnly();
-
-    // Hides the buttons of the active pin
-    pin.find(".save-btn, .discard-btn").slideUp(200);
-
-    // Resets the active pin
-    activePin = null;
-  } else {
-    // Sets the active pin
-    activePin = pin;
-  }
-
-  // Disables the button temporarily to prevent spamming and let buttons slide back up
-  $(this).addClass("disabled");
-  setTimeout(() => {
-    $(this).removeClass("disabled");
-  }, 200);
 
   // Attaches click event listener to the document
   $(document).on("click", function (e) {
