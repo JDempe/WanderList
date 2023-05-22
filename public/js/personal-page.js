@@ -58,23 +58,25 @@ function enablePinEditing(pin) {
 function fetchWrapper(url, options) {
   return $.ajax({
     url: url,
-    type: options.method || 'GET', // default method is GET
-    data: options.body ? JSON.parse(options.body) : {}, 
-    dataType: 'json', // expected data sent from server
-    contentType: options.headers ? options.headers['Content-Type'] : 'application/json' // content type sent to server
-  }).done((response) => {
-    return response;
-  }).fail((jqXHR) => {
-    if (jqXHR.status === 404) {
-      // Redirect to the home page
-      window.location.href = '/';
-    }
-    
-    throw new Error(jqXHR.statusText);
-  });
+    type: options.method || "GET", // default method is GET
+    data: options.body ? JSON.parse(options.body) : {},
+    dataType: "json", // expected data sent from server
+    contentType: options.headers
+      ? options.headers["Content-Type"]
+      : "application/json", // content type sent to server
+  })
+    .done((response) => {
+      return response;
+    })
+    .fail((jqXHR) => {
+      if (jqXHR.status === 404) {
+        // Redirect to the home page
+        window.location.href = "/";
+      }
+
+      throw new Error(jqXHR.statusText);
+    });
 }
-
-
 
 $(".card-icon-section .bi-check-square").click(async function (e) {
   if ($(this).hasClass("disabled")) {
@@ -84,15 +86,15 @@ $(".card-icon-section .bi-check-square").click(async function (e) {
   const pin = $(this).closest(".card");
   const currentStatus = pin.data("pinCompletion");
   const newStatus = !currentStatus;
-    try {
-      const data = await fetchWrapper("/pins/:id", {
-        method: "PUT",
-        body: JSON.stringify({ pinCompletion: newStatus }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
+  try {
+    const data = await fetchWrapper("/pins/:id", {
+      method: "PUT",
+      body: JSON.stringify({ pinCompletion: newStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     console.log("public>>js>>personal-page.js", data);
   } catch (error) {
     console.log("public>>js>>personal-page.js", error);
@@ -275,6 +277,110 @@ $(".card-icon-section .bi-pencil").click(async function (e) {
   });
 
   // Prevent event bubbling to avoid immediate closing of the card
+  e.stopPropagation();
+});
+
+//create new post
+$(".create-text").click(async function (e) {
+  e.preventDefault();
+  console.log("Button clicked");
+
+  const newPinData = {
+    pinTitle: pinTitle,
+    pinDescription: pinText,
+    pinLocation: "",
+  };
+  const id = "8e0d5611-380d-400e-a51a-b79916df61d8";
+  const response = await fetch(`/api/pins/user/${id}`, {
+    method: "POST",
+    body: JSON.stringify(newPinData),
+    headers: { "Content-Type": "application/json" },
+  });
+  if (response.ok) {
+    const newPin = await response.json();
+    console.log("New Pin:", newPin);
+  } else {
+    // The pin creation was not successful
+    console.error("Failed to create a new pin.");
+  }
+});
+
+// $(".create-text").click(async function (e) {
+//   e.preventDefault();
+//   console.log("Button clicked");
+//   // const pinTempSource = await $.get(
+//   //   "../../../views/partials/personal-pin.handlebars"
+//   // );
+//   // const emptyCardTemp = Handlebars.compile(pinTempSource);
+//   // const emptyCard = emptyCardTemp({});
+
+//   // const emptyCardHTML = $(".pin").prop("outerHTML");
+
+//   console.log(id);
+
+//   const emptyCardHTML = $(".pin").html();
+//   console.log(emptyCardHTML);
+//   const firstExistingPin = $(".pin:eq(1)");
+//   console.log(firstExistingPin);
+//   // $(emptyCard).insertBefore(firstExistingPin);
+//   $(emptyCardHTML).insertBefore(firstExistingPin);
+//   console.log("New pin card inserted");
+//   const newPinCard = $(".pin:first");
+
+//   newPinCard.find(".save-btn").click(async function () {
+//     console.log("Save button clicked");
+//     const pinTitle = newPinCard.find(".card-title").val();
+//     const pinText = newPinCard.find(".card-text").val();
+
+//     const newPinData = {
+//       pinTitle: pinTitle.trim(),
+//       pinDescription: pinText.trim(),
+//       id: "jennifer",
+//     };
+//     // console.log("userId", userId);
+//     try {
+//       const response = await fetch("/api/pins/:id", {
+//         method: "POST",
+//         body: JSON.stringify(newPinData),
+//         headers: { "Content-Type": "application/json" },
+//       });
+//       if (response.ok) {
+//         // The pin was created successfully
+//         const newPin = await response.json();
+//         // Code to insert the new pin card into the DOM
+//       } else {
+//         // The pin creation was not successful
+//         console.error("Failed to create a new pin.");
+//       }
+//     } catch (error) {
+//       console.error("catch: Failed to create pin:", error);
+//     }
+//   });
+// });
+// delete post
+$(".card-icon-section .bi-trash").click(async function (e) {
+  // Check if the button is already in a disabled state
+  if ($(this).hasClass("disabled")) {
+    return;
+  }
+  const pin = $(this).closest(".pin");
+  const pinId = pin.data("id");
+  console.log(pinId);
+
+  try {
+    const response = await fetch(`/api/pins/${pinId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      // const pinData = await response.json();
+      pin.remove();
+      console.log("Pin deleted");
+    } else {
+      console.error("Failed to delete the pin.");
+    }
+  } catch (error) {
+    console.error("Error occurred while deleting the pin:", error);
+  }
   e.stopPropagation();
 });
 

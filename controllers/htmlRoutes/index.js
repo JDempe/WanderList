@@ -30,17 +30,27 @@ router.get("/discover", async (req, res) => {
       pinTitle: pin.pinTitle,
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
-      pinUsername: pin.user_id,
-      
+      // take the pin.updatedAt and cut it off at the 4th space and only take the first half
+      pinDate : pin.updatedAt ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pin.updatedAt,
+      timestamp: pin.updatedAt,
+      pinUserID: pin.user_id,
+      pinUsername: "",
+      pinAvatar: "",
     }));
 
     // Take the user ID for each pinsData and find the username that matches the user ID
     for (let i = 0; i < pinsData.length; i++) {
-      const userData = await User.findByPk(pinsData[i].pinUsername, {
+      const userData = await User.findByPk(pinsData[i].pinUserID, {
         attributes: { exclude: ["password"] },
       });
       const user = userData.get({ plain: true });
       pinsData[i].pinUsername = user.username;
+
+      // lookup the avatar src from the user's avatar_id
+      const avatarData = await Avatars.findByPk(user.avatar_id);
+      const avatar = avatarData.get({ plain: true });
+      pinsData[i].pinAvatar = avatar.avatarsImage;
+    
     }
 
     // Renders the js/css/second js/hbs/and pins template for [age]
