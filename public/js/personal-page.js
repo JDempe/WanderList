@@ -58,23 +58,25 @@ function enablePinEditing(pin) {
 function fetchWrapper(url, options) {
   return $.ajax({
     url: url,
-    type: options.method || 'GET', // default method is GET
-    data: options.body ? JSON.parse(options.body) : {}, 
-    dataType: 'json', // expected data sent from server
-    contentType: options.headers ? options.headers['Content-Type'] : 'application/json' // content type sent to server
-  }).done((response) => {
-    return response;
-  }).fail((jqXHR) => {
-    if (jqXHR.status === 404) {
-      // Redirect to the home page
-      window.location.href = '/';
-    }
-    
-    throw new Error(jqXHR.statusText);
-  });
+    type: options.method || "GET", // default method is GET
+    data: options.body ? JSON.parse(options.body) : {},
+    dataType: "json", // expected data sent from server
+    contentType: options.headers
+      ? options.headers["Content-Type"]
+      : "application/json", // content type sent to server
+  })
+    .done((response) => {
+      return response;
+    })
+    .fail((jqXHR) => {
+      if (jqXHR.status === 404) {
+        // Redirect to the home page
+        window.location.href = "/";
+      }
+
+      throw new Error(jqXHR.statusText);
+    });
 }
-
-
 
 $(".card-icon-section .bi-check-square").click(async function (e) {
   if ($(this).hasClass("disabled")) {
@@ -84,15 +86,15 @@ $(".card-icon-section .bi-check-square").click(async function (e) {
   const pin = $(this).closest(".card");
   const currentStatus = pin.data("pinCompletion");
   const newStatus = !currentStatus;
-    try {
-      const data = await fetchWrapper("/pins/:id", {
-        method: "PUT",
-        body: JSON.stringify({ pinCompletion: newStatus }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
+  try {
+    const data = await fetchWrapper("/pins/:id", {
+      method: "PUT",
+      body: JSON.stringify({ pinCompletion: newStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     console.log("public>>js>>personal-page.js", data);
   } catch (error) {
     console.log("public>>js>>personal-page.js", error);
@@ -355,6 +357,32 @@ $(".create-text").click(async function (e) {
 //     }
 //   });
 // });
+// delete post
+$(".card-icon-section .bi-trash").click(async function (e) {
+  // Check if the button is already in a disabled state
+  if ($(this).hasClass("disabled")) {
+    return;
+  }
+  const pin = $(this).closest(".pin");
+  const pinId = pin.data("id");
+  console.log(pinId);
+
+  try {
+    const response = await fetch(`/api/pins/${pinId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      // const pinData = await response.json();
+      pin.remove();
+      console.log("Pin deleted");
+    } else {
+      console.error("Failed to delete the pin.");
+    }
+  } catch (error) {
+    console.error("Error occurred while deleting the pin:", error);
+  }
+  e.stopPropagation();
+});
 
 $("textarea").on("input", autoResizeText);
 
