@@ -58,7 +58,7 @@ Pin.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     tableName: "pins",
   }

@@ -2,27 +2,6 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const { User, Avatars, Post } = require("../../models");
 
-// set up router to find users by id
-router.get("/:id", async (req, res) => {
-    try {
-        const userData = await User.findByPk(req.params.id, {
-            attributes: { exclude: ["password"] },
-        });
-
-        if (!userData) {
-            return res.status(404).json({
-                message: `No user found with the provided id "${req.params.id}". Please try again.`,
-            });
-        }
-
-        const user = userData.get({ plain: true });
-
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-});
-
 // set up a route for users to sign up.
 router.post("/signup", async (req, res) => {
     try {
@@ -291,14 +270,14 @@ router.delete("/delete/:username", async (req, res) => {
 
         // verify that the user exists in the database.
         if (!userExists) {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: `The user with the provided id "${req.params.username}" does not exist.`,
             });
         }
 
         // verify that the user is logged in and is the same user as the one being deleted.
         if (userSession !== userExists.id || userLoggedIn !== 1) {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: `You are not authorized to delete this user's account.`,
             });
         }
@@ -398,6 +377,27 @@ router.put("/savepin", async (req, res) => {
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+// set up router to find users by id
+router.get("/:id", async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.params.id, {
+            attributes: { exclude: ["password"] },
+        });
+
+        if (!userData) {
+            return res.status(404).json({
+                message: `No user found with the provided id "${req.params.id}". Please try again.`,
+            });
+        }
+
+        const user = userData.get({ plain: true });
+
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 });
 
 module.exports = router;
