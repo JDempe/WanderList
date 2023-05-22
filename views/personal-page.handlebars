@@ -65,7 +65,15 @@
         {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
       </div>
     </div>
+
+
+
+        {{#if savedPins}}
+    {{!-- Handle case when user has no pin --}}
     {{> discovery-pin}}
+    {{else}}
+    {{> discovery-nopin}}
+    {{/if}}
   </div>
 </div>
 

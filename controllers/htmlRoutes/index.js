@@ -212,6 +212,8 @@ router.get("/pins/user/:username", async (req, res) => {
 
     // Use the saved_pins column json object from user.  break the json object down and take only the pinId and put it into savedPinsData
     const savedPins = user.saved_pins;
+    // if they have no savedPins, then skip this part
+    if (savedPins) {
     const savedPinsJSON = JSON.parse(savedPins);
 
     // for each in savedPinsJSON, grab the pinId and put into array
@@ -254,7 +256,7 @@ router.get("/pins/user/:username", async (req, res) => {
       const avatar = avatarData.get({ plain: true });
       savedPinsData[i].pinAvatar = avatar.avatarsImage;
     }
-
+  }
 
     // Renders the js/css/second js/hbs/and pins template for [age]
     res.render("personal-page", {
