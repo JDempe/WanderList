@@ -58,7 +58,7 @@ router.get("/discover", async (req, res) => {
       style: "./css/discovery-page.css",
       script: "./js/discovery-page.js",
       scriptSecond: "./js/search-pin.js",
-      pins: pinsData,
+      savedPins: pinsData,
       user: {
         id: req.session.user_id,
         isLoggedIn: req.session.logged_in,
@@ -198,39 +198,72 @@ router.get("/pins/user/:username", async (req, res) => {
       limit,
       offset,
     });
-    // TODO: waiting for place holder for no pin user
-    // if (pins.length <= 0) {
-    //   res.status(404).json({ error: "No pin is found for this user!" });
-    // }
 
+// get the pinTitle and pinDescription from pins and put it into pinsData
     const pinsData = pins.rows.map((pin) => ({
-      pinTitle: pin.pinTitle,
-      pinDescription: pin.pinDescription,
-      pinLocation: pin.pinLocation,
-      pinUsername: pin.user_id,
       id: pin.id,
-       user:{
-        id: req.session.user_id,
-        isLoggedIn: req.session.logged_in
-      },
-
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription, 
+      pinLocation: pin.pinLocation,
+      // take the pin.updatedAt and cut it off at the 4th space and only take the first half
+      pinDate : pin.updatedAt ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pin.updatedAt,
     }));
 
-    // Take the user ID for each pinsData and find the username that matches the user ID
-    for (let i = 0; i < pinsData.length; i++) {
-      const userData = await User.findByPk(pinsData[i].pinUsername, {
+
+    // Use the saved_pins column json object from user.  break the json object down and take only the pinId and put it into savedPinsData
+    const savedPins = user.saved_pins;
+    const savedPinsJSON = JSON.parse(savedPins);
+
+    // for each in savedPinsJSON, grab the pinId and put into array
+    var savedPinsArray = [];
+    for (let i = 0; i < savedPinsJSON.length; i++) {
+      savedPinsArray.push(savedPinsJSON[i].pinId);
+    }
+
+    // go through each pin in the savedPinsArray and find the pin that matches the pinId and put it into savedPinsData
+    var savedPinsData = [];
+    for (let i = 0; i < savedPinsArray.length; i++) {
+      const pin = await Pins.findByPk(savedPinsArray[i]);
+      // map the data to pinTitle, pinDescription, pinLocation, pinDate, timestamp, pinUserID, pinUsername,  pinAvatar
+      const pinData = pin.get({ plain: true });
+      savedPinsData.push({
+        pinID: pinData.id,
+        pinTitle: pinData.pinTitle,
+        pinDescription: pinData.pinDescription,
+        pinLocation: pinData.pinLocation,
+        // take the pin.updatedAt and cut it off at the 4th space and only take the first half
+
+        pinDate : pinData.updatedAt ? pinData.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pinData.updatedAt,
+        timestamp: pinData.updatedAt,
+        pinUserID: pinData.user_id,
+        pinUsername: "",
+        pinAvatar: "",
+      });
+    }
+
+    // find the owner of the pinID and get their Username, and Avatar
+    for (let i = 0; i < savedPinsData.length; i++) {
+      const userData = await User.findByPk(savedPinsData[i].pinUserID, {
         attributes: { exclude: ["password"] },
       });
       const user = userData.get({ plain: true });
-      pinsData[i].pinUsername = user.username;
+      savedPinsData[i].pinUsername = user.username;
+
+      // lookup the avatar src from the user's avatar_id
+      const avatarData = await Avatars.findByPk(user.avatar_id);
+      const avatar = avatarData.get({ plain: true });
+      savedPinsData[i].pinAvatar = avatar.avatarsImage;
     }
+
 
     // Renders the js/css/second js/hbs/and pins template for [age]
     res.render("personal-page", {
       style: "./css/personal-page.css",
       script: "./js/personal-page.js",
       scriptSecond: "./js/search-pin.js",
-      pins: pinsData,
+      scriptThird: "./js/discovery-page.js",
+      mypins: pinsData,
+      savedPins: savedPinsData,
       user: {
         id: req.session.user_id,
         isLoggedIn: req.session.logged_in
