@@ -260,7 +260,7 @@ $(document).ready(function () {
         console.log("error deleting user");
         if (xhr.status === 404) {
           // Redirect to home page if API route not found
-          window.location.href = "/";
+          document.location.replace('/');
         }
       },
     });
@@ -268,7 +268,7 @@ $(document).ready(function () {
     // call the logout api
     await $.ajax({
       url: "/api/user/logout",
-      type: "GET",
+      type: "POST",
       success: function (response) {
         console.log("logged out");
       },
@@ -278,7 +278,7 @@ $(document).ready(function () {
       },
     });
     // redirect to the homepage
-    window.location.href = "/";
+    document.location.replace('/');
   });
 
   // END ACCOUNT SECURITY //
