@@ -42,16 +42,17 @@ $(document).ready(function() {
       '.form-control',
       '.bi-search',
       // sign in modal
-      '.cd-signin-modal__block',
-      '.cd-main-header',
-      '.cd-main-nav__item',
-      '.cd-signin-modal__switcher a',
-      '.cd-signin-modal__input.cd-signin-modal__input--has-border',
-      '.cd-signin-modal__input.cd-signin-modal__input--has-border:focus',
-      '.cd-signin-modal__input.cd-signin-modal__input--has-error',
-      '.cd-signin-modal__input[type=submit]',
-      '.cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus',
-      '.cd-signin-modal__hide-password',
+      // // '.body-modal',
+      // '.cd-signin-modal__block',
+      // '.cd-main-header',
+      // '.cd-main-nav__item',
+      // '.cd-signin-modal__switcher a',
+      // '.cd-signin-modal__input.cd-signin-modal__input--has-border',
+      // '.cd-signin-modal__input.cd-signin-modal__input--has-border:focus',
+      // '.cd-signin-modal__input.cd-signin-modal__input--has-error',
+      // '.cd-signin-modal__input[type=submit]',
+      // '.cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus',
+      // '.cd-signin-modal__hide-password',
 
     ];
 
