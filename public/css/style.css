@@ -9,7 +9,7 @@
   
     /* Dark mode variables */
     --body-color-dark: #3c3e52;
-    --navbar-background-dark: #283147;
+    --navbar-background-dark: #2f3452;
     --navbar-text-dark: #e7e9f0;
     --text-color-dark: #FFFFFF;
     --button-background-dark: #475567;
@@ -63,7 +63,7 @@ body {
 }
 
 .form-check-input:checked {
-    background-color: rgb(111, 111, 171);
+    background-color: #6f6fab;
     border-color: transparent;
 }
 

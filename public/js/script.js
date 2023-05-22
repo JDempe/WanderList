@@ -18,7 +18,8 @@ $(document).ready(function() {
   });
 
   function toggleNightMode(isNightMode) {
-    $('body, .navbar, .login-nav-Btn, #navbarNavAltMarkup, .navbar-brand, footer, .card-color, .discover, .card-text-color').toggleClass('darkmode', isNightMode);
+    $('body, .navbar, .login-nav-Btn, #navbarNavAltMarkup, .navbar-brand, footer, .discover, .btn-refresh, .card-text-color, .card-color, .card-pin-color, .card-text, .date-hr, .card-hr, .card-title, .card-username, .card-text, .card-location, .bi-pin, .form-control, .bi-search').toggleClass('darkmode', isNightMode);
+
   }
 });
 

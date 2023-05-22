@@ -9,7 +9,6 @@
   
     /* Dark mode variables */
     --body-color-dark: #3c3e52;
-    --navbar-background-dark: #283147;
     --navbar-text-dark: #e7e9f0;
     --text-color-dark: #FFFFFF;
     --button-background-dark: #475567;
@@ -190,9 +189,9 @@
 }
 
 .darkmode.discover {
-    color: var(--navbar-text-dark);
+    color: #e7e9f0;
 }
 
 .darkmode.card-text-color {
-     color: var(--navbar-text-dark);
+     color: #e7e9f0;
 }
