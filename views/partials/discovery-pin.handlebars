@@ -3,7 +3,7 @@
     <!-- CONTAINS DATE -->
         <div class="date-container">
             <hr class="hr date-hr" />
-            <div class="timestamp">{{timestamp}}</div>
+            <div class="timestamp">{{pinDate}}</div>
             <hr class="hr date-hr" />
         </div>
         <!-- CONTAINS CARD -->
@@ -23,7 +23,7 @@
                     </div>
                     <hr class="hr card-hr" />
                     <div class="card-username">
-                        Posted by: {{pinUsername}}
+                        <img src="{{pinAvatar}}" class="" width="50px" /> {{pinUsername}} {{pinUpdated}}
                     </div>
                     <div class="card-location">
                         {{pinLocation}}
