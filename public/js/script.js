@@ -18,8 +18,46 @@ $(document).ready(function() {
   });
 
   function toggleNightMode(isNightMode) {
-    $('body, .navbar, .login-nav-Btn, #navbarNavAltMarkup, .navbar-brand, footer, .discover, .btn-refresh, .card-text-color, .card-color, .card-pin-color, .card-text, .date-hr, .card-hr, .card-title, .card-username, .card-text, .card-location, .bi-pin, .form-control, .bi-search').toggleClass('darkmode', isNightMode);
+    const elementsToToggle = [
+      // main.handlebars
+      'body',
+      '.navbar',
+      '.login-nav-Btn',
+      '#navbarNavAltMarkup',
+      '.navbar-brand',
+      'footer',
+      // disover.handlebars
+      '.discover',
+      '.btn-refresh',
+      '.card-text-color',
+      '.card-color',
+      '.card-pin-color',
+      '.card-text',
+      '.date-hr',
+      '.card-hr',
+      '.card-title',
+      '.card-username',
+      '.card-location',
+      '.bi-pin',
+      '.form-control',
+      '.bi-search',
+      // sign in modal
+      '.cd-signin-modal__block',
+      '.cd-main-header',
+      '.cd-main-nav__item',
+      '.cd-signin-modal__switcher a',
+      '.cd-signin-modal__input.cd-signin-modal__input--has-border',
+      '.cd-signin-modal__input.cd-signin-modal__input--has-border:focus',
+      '.cd-signin-modal__input.cd-signin-modal__input--has-error',
+      '.cd-signin-modal__input[type=submit]',
+      '.cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus',
+      '.cd-signin-modal__hide-password',
 
+    ];
+
+    elementsToToggle.forEach(function(element) {
+      $(element).toggleClass('darkmode', isNightMode);
+    });
   }
 });
 
