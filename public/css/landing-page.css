@@ -1,3 +1,25 @@
+:root {
+    /* Light mode variables */
+    --body-color: #F0EEF6;
+    --navbar-background-blue: #6CB4F8;
+    /* --navbar-background-blue: #2f583f; */
+    --button-text: #FFFFFF;
+    --button-hover-background-color: #ffffff;
+    --button-hover-text-color: #000000;
+  
+    /* Dark mode variables */
+    --body-color-dark: #3c3e52;
+    --navbar-background-dark: #283147;
+    --navbar-text-dark: #e7e9f0;
+    --text-color-dark: #FFFFFF;
+    --button-background-dark: #475567;
+    --button-text-dark: #FFFFFF;
+    --button-border-dark: #475567;
+    --footer-background-dark: #35374a;
+    --footer-text-dark: #e7e9f0;
+}
+  
+
 .banner {
     position: relative;
 }
@@ -69,7 +91,7 @@
 .card {
     border-radius: 22px;
     border-width: 0px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .card-container {
@@ -160,4 +182,17 @@
     .signin-overlay {
         top: 45%;
     }   
+}
+
+.darkmode.card-color {
+    background-color: #494a5f;
+    border-radius: 0 0 22px 22px;
+}
+
+.darkmode.discover {
+    color: var(--navbar-text-dark);
+}
+
+.darkmode.card-text-color {
+     color: var(--navbar-text-dark);
 }

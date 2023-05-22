@@ -18,7 +18,7 @@ $(document).ready(function() {
   });
 
   function toggleNightMode(isNightMode) {
-    $('body, .navbar, .login-nav-Btn, #navbarNavAltMarkup, .navbar-brand, footer').toggleClass('darkmode', isNightMode);
+    $('body, .navbar, .login-nav-Btn, #navbarNavAltMarkup, .navbar-brand, footer, .card-color, .discover, .card-text-color').toggleClass('darkmode', isNightMode);
   }
 });
 
