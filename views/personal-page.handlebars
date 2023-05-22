@@ -1,86 +1,127 @@
-<div class="create-search-section">
-  <div>
-    <a id="create-new-pin" class="btn create-text" role="button">
-      <i class="bi bi-plus-square-fill"></i>
-      {{!-- <span class="create-text">Create a new pin</span> --}}
-      Create a new pin</a>
-
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-mine" type="button"
+      role="tab" aria-controls="nav-home" aria-selected="true">My Pins</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-pinned" type="button"
+      role="tab" aria-controls="nav-profile" aria-selected="false">Saved Pins</button>
   </div>
-  <!-- Search bar -->
-  <div class="functions-bar">
-    <div class="input-group rounded search-bar">
-                <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search" aria-describedby="search-addon" id="search-input"/>
-      <span class="input-group-text border-0" id="search-addon">
-        <i class="bi bi-search"></i>
-      </span>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-mine" role="tabpanel" aria-labelledby="nav-mine-tab">
+    <div class="create-search-section">
+      <div>
+        <a id="create-new-pin" class="btn create-text" role="button">
+          <i class="bi bi-plus-square-fill"></i>
+          {{!-- <span class="create-text">Create a new pin</span> --}}
+          Create a new pin</a>
+
+      </div>
+      <!-- Search bar -->
+      <div class="functions-bar">
+        <div class="input-group rounded search-bar">
+          <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search"
+            aria-describedby="search-addon" id="search-input" />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="bi bi-search"></i>
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<div class="no-results-container no-results-container-noshow">
-  <div>
-    <span>No results found.</span>
-    <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
-  </div>
-</div>
-{{#if pins}}
-{{!-- Handle case when user has no pin --}}
-{{> personal-pin}}
-{{else}}
-{{> personal-noPin}}
-{{/if}}
+    <div class="no-results-container no-results-container-noshow">
+      <div>
+        <span>No results found.</span>
+        <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
+      </div>
+    </div>
+    {{#if mypins}}
+    {{!-- Handle case when user has no pin --}}
+    {{> personal-pin}}
+    {{else}}
+    {{> personal-noPin}}
+    {{/if}}
 
+  </div>
+  <div class="tab-pane fade" id="nav-pinned" role="tabpanel" aria-labelledby="nav-pinned-tab">
+    <div class="create-search-section">
+      <button id="discover-something-button" type="button" class="btn btn-primary btn-refresh">
+        <i class="bi bi-arrow-clockwise"></i>
+        <span class="create-text">Discover something new</span>
+      </button>
+      <!-- Search bar -->
+      <div class="functions-bar">
+        <div class="input-group rounded search-bar">
+          <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search"
+            aria-describedby="search-addon" id="search-input" />
+          <span class="input-group-text border-0" id="search-addon">
+            <i class="bi bi-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="no-results-container no-results-container-noshow">
+      <div>
+        <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+        <span class="no-results-text">No results found</span>
+        {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
+      </div>
+    </div>
+    {{> discovery-pin}}
+  </div>
+</div>
 
 
 {{!-- HIDDEN ELEMENT --}}
 <div id="template-card-hidden" hidden class="pin">
-    <!-- CONTAINS DATE -->
-    <div class="date-container">
-      <hr class="hr date-hr">
-      <div class="timestamp">MM/DD/YY</div>
-      <hr class="hr date-hr">
-    </div>
-    <!-- CONTAINS CARD -->
-    <div class="card-container">
-      <div class="card">
-        <form class="card-body was-validated">
-          <div class="card-top-section">
-            <!-- DISPLAY PIN TITLE -->
-            <input type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value="">
-            <div class="valid-feedback" style="display: none;">
-              Great!
-            </div>
-            <div class="invalid-feedback" style="display: none;">
-              Please enter a title.
-            </div>
-            <!-- Actions should have confirmation required -->
-            <div class="card-icon-section">
-              <!-- CHECK ICON / completes item -->
-              <i class="bi bi-check-square card-icon"></i>
-              <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-              <i class="bi bi-pencil card-icon"></i>
-              <!-- PIN ICON / "pins" card -->
-              {{!-- <i class="bi bi-pin-angle card-icon"></i> --}}
-              <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
-              {{!-- <i class="bi bi-share card-icon"></i> --}}
-              <!-- TRASH ICON / makes DELETE request to server for this post -->
-              <i class="bi bi-trash card-icon"></i>
-            </div>
+  <!-- CONTAINS DATE -->
+  <div class="date-container">
+    <hr class="hr date-hr">
+    <div class="timestamp">MM/DD/YY</div>
+    <hr class="hr date-hr">
+  </div>
+  <!-- CONTAINS CARD -->
+  <div class="card-container">
+    <div class="card">
+      <form class="card-body was-validated">
+        <div class="card-top-section">
+          <!-- DISPLAY PIN TITLE -->
+          <input type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value="">
+          <div class="valid-feedback" style="display: none;">
+            Great!
           </div>
-          <hr class="hr card-hr">
-          <!-- CARD TEXT -->
-          <textarea class="card-text form-control no-visibility" placeholder="Enter Text" id="validationTextarea" aria-label="Pin Body Text" required="" readonly="" style="height: 468px;">Journey into the heart of Denver, Colorado, a city synonymous with the majestic Rocky Mountains. Here, nature meets adventure in the most thrilling way, a place where you can experience the exhilaration of standing atop some of the world's highest peaks. As the crisp mountain air fills your lungs, you can witness the true grandeur of the sprawling landscapes that lie before you, painted with the beautiful hues of nature. It is not just the allure of these magnificent peaks that draws adventurers here, but the path to reaching them. The trek is a testament to human resilience and determination, a journey that demands grit and endurance. Every rock you climb, every trail you traverse, and every summit you reach, is a new chapter in your personal story of adventure. And as you ascend higher, the panoramic views become increasingly spectacular, revealing the beautiful symphony of peaks and valleys basked in the soft glow of the Colorado sun. The mountains stand tall, whispering tales of the ages, waiting for you to add your own. It's more than just a climb; it's a dialogue with nature. The serenity and solitude that envelop you serve as a perfect backdrop for introspection and self-discovery. Here, amidst the beauty of nature, you don't just conquer mountains; you conquer your own limitations. This magical blend of physical challenge and mental rejuvenation makes the climb an unforgettable experience. Ready to embark on this epic adventure?</textarea>
-          <div class="changes-btn-container">
-            <button type="button" class="btn btn-primary save-btn">
-              Save Changes
-            </button>
-            <button type="button" class="btn btn-outline-danger discard-btn">
-              Discard Changes
-            </button>
+          <div class="invalid-feedback" style="display: none;">
+            Please enter a title.
           </div>
-          <!-- <div class="invalid-feedback">
+          <!-- Actions should have confirmation required -->
+          <div class="card-icon-section">
+            <!-- CHECK ICON / completes item -->
+            <i class="bi bi-check-square card-icon"></i>
+            <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+            <i class="bi bi-pencil card-icon"></i>
+            <!-- PIN ICON / "pins" card -->
+            {{!-- <i class="bi bi-pin-angle card-icon"></i> --}}
+            <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+            {{!-- <i class="bi bi-share card-icon"></i> --}}
+            <!-- TRASH ICON / makes DELETE request to server for this post -->
+            <i class="bi bi-trash card-icon"></i>
+          </div>
+        </div>
+        <hr class="hr card-hr">
+        <!-- CARD TEXT -->
+        <textarea class="card-text form-control no-visibility" placeholder="Enter Text" id="validationTextarea"
+          aria-label="Pin Body Text" required="" readonly=""
+          style="height: 468px;">Journey into the heart of Denver, Colorado, a city synonymous with the majestic Rocky Mountains. Here, nature meets adventure in the most thrilling way, a place where you can experience the exhilaration of standing atop some of the world's highest peaks. As the crisp mountain air fills your lungs, you can witness the true grandeur of the sprawling landscapes that lie before you, painted with the beautiful hues of nature. It is not just the allure of these magnificent peaks that draws adventurers here, but the path to reaching them. The trek is a testament to human resilience and determination, a journey that demands grit and endurance. Every rock you climb, every trail you traverse, and every summit you reach, is a new chapter in your personal story of adventure. And as you ascend higher, the panoramic views become increasingly spectacular, revealing the beautiful symphony of peaks and valleys basked in the soft glow of the Colorado sun. The mountains stand tall, whispering tales of the ages, waiting for you to add your own. It's more than just a climb; it's a dialogue with nature. The serenity and solitude that envelop you serve as a perfect backdrop for introspection and self-discovery. Here, amidst the beauty of nature, you don't just conquer mountains; you conquer your own limitations. This magical blend of physical challenge and mental rejuvenation makes the climb an unforgettable experience. Ready to embark on this epic adventure?</textarea>
+        <div class="changes-btn-container">
+          <button type="button" class="btn btn-primary save-btn">
+            Save Changes
+          </button>
+          <button type="button" class="btn btn-outline-danger discard-btn">
+            Discard Changes
+          </button>
+        </div>
+        <!-- <div class="invalid-feedback">
             Please enter a message in the textarea.
           </div> -->
-        </form>
-      </div>
+      </form>
     </div>
   </div>
+</div>
