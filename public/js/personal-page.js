@@ -221,7 +221,9 @@ $(document).ready(function () {
     const title = titleEl.val();
     const text = textEl.val();
     const saveBtn = $(this);
-    const discardBtn = pinEl.find(".discard-btn");
+    const discardBtn = pinEl.find(".discard-btn")
+    // hide the noPinPage
+    $("#personal-no-pin").css("display", "none");
   
     $.ajax({
       url: "/api/user/session/lookup",
