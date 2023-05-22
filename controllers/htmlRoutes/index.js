@@ -61,28 +61,36 @@ router.get("/discover", async (req, res) => {
       pins: pinsData,
       user: {
         id: req.session.user_id,
-        isLoggedIn: req.session.logged_in   
-      } 
+        isLoggedIn: req.session.logged_in,
+      },
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// router.get("/personal", async (req, res) => {
-//   try {
-//     //Serves the body of the page aka "personaly-page.hbs" to the container //aka "main.hbs"
-//     // layout property not necessary since it is defaust, but included for clarity
-//     res.render("personal-page", {
-//       style: "./css/personal-page.css",
-//       script: "./js/personal-page.js",
-//       scriptSecond: "./js/search-pin.js",
-//       partials: "personal-pin",
-//     });
-//   } catch (err) {
-//     res.status(404).json(err);
-//   }
-// });
+// use a router.get /user to get the user's username and ID, then redirect the page to /user/:username
+// go to /user and that will find the session user and redirect to /user/:id
+router.get("/pins/user", async (req, res) => {
+  try {
+    // lookup username by session userId
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    const user = userData.get({ plain: true });
+
+    // log in check
+    if (!req.session.logged_in) {
+      return res.redirect("/");
+    }
+
+    res.redirect(`/pins/user/${user.username}`);
+  } catch (err) {
+    console.error(err);
+    // redirect to home page on error
+    return res.redirect("/");
+  }
+});
 
 // go to /editprofile and that will find the session user and redirect to /editprofile/:id
 router.get("/editprofile", async (req, res) => {
@@ -127,12 +135,13 @@ router.get("/editprofile/:username", async (req, res) => {
     });
 
     // verify that the user exists in the database.
-  
+
     if (!userExists) {
-      console.error(`The user with the provided username "${req.params.username}" does not exist.`);
+      console.error(
+        `The user with the provided username "${req.params.username}" does not exist.`
+      );
       return res.redirect("/");
     }
-
 
     // verify that the user is logged in and is the same user as the one being updated.
     if (userSession !== userExists.id || userLoggedIn !== 1) {
@@ -155,36 +164,81 @@ router.get("/editprofile/:username", async (req, res) => {
       layout: "main",
       style: "./css/user-profile.css",
       script: "./js/user-profile.js",
-      //user,
       avatar,
       avatars,
       user: {
         ...user,
         id: req.session.user_id,
-        isLoggedIn: req.session.logged_in   
-      } 
-      
-      
+        isLoggedIn: req.session.logged_in,
+      },
     });
   } catch (err) {
-    res.status(404).json(err);
+    res.status(404).json(user);
   }
 });
 
 // GET user page
-router.get("/user/:id", async (req, res) => {
+router.get("/pins/user/:username", async (req, res) => {
   try {
-    // Get the current user's info
-    const userData = await User.findByPk(req.params.id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
-    const user = userData.get({ plain: true });
+    const { username } = req.params;
+    const { page = 1 } = req.query; // Get the page number from the query parameters
 
-    //Serves the body of the page aka "user-page.hbs" to the container //aka "main.hbs"
-    res.render("user-page");
-  } catch (err) {
-    res.status(404).json(err);
+    const limit = 10; // Number of pins per page
+    const offset = (page - 1) * limit; // Calculate the offset based on the page number
+
+    const user = await User.findOne({
+      where: {
+        username: username,
+      },
+      attributes: { exclude: ["password"] },
+    });
+    
+    const pins = await Pins.findAndCountAll({
+      where: { user_id: user.id },
+      limit,
+      offset,
+    });
+    // TODO: waiting for place holder for no pin user
+    // if (pins.length <= 0) {
+    //   res.status(404).json({ error: "No pin is found for this user!" });
+    // }
+
+    const pinsData = pins.rows.map((pin) => ({
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription,
+      pinLocation: pin.pinLocation,
+      pinUsername: pin.user_id,
+      id: pin.id,
+       user:{
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      },
+
+    }));
+
+    // Take the user ID for each pinsData and find the username that matches the user ID
+    for (let i = 0; i < pinsData.length; i++) {
+      const userData = await User.findByPk(pinsData[i].pinUsername, {
+        attributes: { exclude: ["password"] },
+      });
+      const user = userData.get({ plain: true });
+      pinsData[i].pinUsername = user.username;
+    }
+
+    // Renders the js/css/second js/hbs/and pins template for [age]
+    res.render("personal-page", {
+      style: "./css/personal-page.css",
+      script: "./js/personal-page.js",
+      scriptSecond: "./js/search-pin.js",
+      pins: pinsData,
+      user: {
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in
+      }
+      
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 

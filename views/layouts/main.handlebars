@@ -52,7 +52,7 @@
             <!-- DISCOVER ICON / navigates to discover_page.handlebars -->
             <i class="bi bi-compass navIcon"></i>
           </a>
-          <a class="nav-item nav-link active" href="/user" data-toggle="tooltip" data-placement="top" title="Pins">
+          <a class="nav-item nav-link active" href="/pins/user" data-toggle="tooltip" data-placement="top" title="Profile">
             <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
             <i class="bi bi-pin-angle-fill navIcon"></i>
           </a>
@@ -87,8 +87,9 @@
       </div>
       <!-- EXAMPLE SOCIAL MEDIA ICONS / formatted to the right side of the page, if we use them -->
       <div>
-        <a href="https://github.com/JDempe/project2" class="me-4 text-reset">
-          <i class="bi bi-github"></i>
+        <a href="https://github.com/JDempe/project2" class="me-4 text-reset d-block">
+          <i id="git-icon"
+          class="bi bi-github"></i>
         </a>
       </div>
     </section>
@@ -269,6 +270,7 @@
                 id="signin-password"
                 type="text"
                 placeholder="Password"
+                autocomplete="off"
               />
               <a
                 href="#0"
@@ -335,7 +337,7 @@
               for="signup-password">Password</label>
             <input
               class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border signup-input"
-              id="signup-password" type="text" placeholder="Password" />
+              id="signup-password" type="text" placeholder="Password" autocomplete="off"/>
             <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
             <span class="cd-signin-modal__error password-validation">Password
               should be 8-128 characters long and contain alphanumeric,
