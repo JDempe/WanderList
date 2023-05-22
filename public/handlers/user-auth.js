@@ -66,7 +66,7 @@ async function handleLogInClick(e) {
         const userId = responseData.userId; // Extract additional user data //<--
         console.log("userId", userId); //<--
         $(".body-modal").removeAttr("cd-signin-modal--is-visible");
-        document.location.replace(`api/pins/user/${userId}`); //<--   
+        document.location.replace(`/pins/user/`); //<--   
     } else if (response.status === 404) {
         showErrorMessage($("#signin-password"), '.error-404');
     } else if (response.status === 500) {
