@@ -291,14 +291,14 @@ router.delete("/delete/:username", async (req, res) => {
 
         // verify that the user exists in the database.
         if (!userExists) {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: `The user with the provided id "${req.params.username}" does not exist.`,
             });
         }
 
         // verify that the user is logged in and is the same user as the one being deleted.
         if (userSession !== userExists.id || userLoggedIn !== 1) {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: `You are not authorized to delete this user's account.`,
             });
         }
