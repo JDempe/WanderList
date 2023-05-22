@@ -29,6 +29,8 @@ $(document).ready(function() {
       // disover.handlebars
       '.discover',
       '.btn-refresh',
+      '.bi-plus-square-fill',
+      '.create-text',
       '.card-text-color',
       '.card-color',
       '.card-pin-color',
