@@ -258,6 +258,41 @@ $(".card-icon-section .bi-pencil").click(async function (e) {
   e.stopPropagation();
 });
 
+//create new post
+$(".create-text").click(async function (e) {
+  e.preventDefault();
+  console.log("Button clicked");
+
+  const pinTitleVal = pinTitle.val();
+  const pinTextVal = pinText.val();
+
+  const newPinData = {
+    pinTitle: pinTitleVal.trim(),
+    pinDescription: pinTextVal.trim(),
+    pinLocation: "",
+  };
+  const id = "8e0d5611-380d-400e-a51a-b79916df61d8";
+  try {
+    const response = await fetch(`/api/pins/user/${id}`, {
+      method: "POST",
+      body: JSON.stringify(newPinData),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      const newPin = await response.json();
+      const pinCardTemplate = Handlebars.compile($(".pin").html());
+      const newPinCardHtml = pinCardTemplate(newPin);
+      $(newPinCardHtml).insertBefore(".pin:first");
+      console.log("New Pin:", newPin);
+    } else {
+      // The pin creation was not successful
+      console.error("Failed to create a new pin.");
+    }
+  } catch (error) {
+    console.error("Failed to create pin:", error);
+  }
+});
+
 $("textarea").on("input", autoResizeText);
 
 $(document).ready(function () {

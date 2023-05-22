@@ -78,6 +78,7 @@ router.get("/pins/user/:id", async (req, res) => {
 router.post("/pins/user/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
     const newPins = await Pins.create({
       ...req.body,
       // user_id: req.session.user_id,
