@@ -1,25 +1,70 @@
 [![License: MIT license](https://img.shields.io/badge/License-MIT_license-success)](https://opensource.org/licenses/MIT)    
 ![Project status](https://img.shields.io/badge/Status-In%20Development-orange)
 
-# Project 2 Title
+#  WanderList
 
 ## Description
 
-Text will go here...
+Explore the world of travel dreams! Our website lets you create your own personalized travel wishes and discover inspiring blog posts from fellow adventurers. Save the ideas that captivate you, mark your travel accomplishments, and build a profile filled with unforgettable experiences. Start your journey with us today!
 
+---
+## Table of Contents
+* [Description](#description)
+* [Deployed Site](#deployed-site)
+* [Preview](#preview)
+* [Technologies Used](#technologies-used)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Project Status](#project-status)
+* [User Story](#user-story)
+* [Acceptance Criteria](#acceptance-criteria)
+* [Contact](#contact)
+* [License](#license)
+
+
+---
 ### Deployed Site
 
-The site is deployed at...
+Explore [WanderList](https://wanderlist.herokuapp.com/) website.
 
+---
+## Preview
+
+![WanderList](./public/images/preview/preview.png)
+
+---
+## Technologies Used
+
+* bcrypt v5.1.0 - Password hashing and encryption for enhanced security;
+*  connect-session-sequelize v7.1.6 - Integration of session management with Sequelize for persistent session storage;
+*  dotenv v16.0.3 - Loading environment variables from a .env file;
+*  express v4.18.2 - Web application framework for building server-side applications;
+*  express-handlebars - Templating engine for rendering dynamic HTML templates;
+*  express-session v.17.3 - Middleware for managing session data in Express;
+*  handlebars v4.7.7 - Template engine for rendering dynamic HTML templates;
+*  lorem-ipsum v2.0.8 - Generating placeholder text for testing and design purposes;
+*  mysql2 v3.3.1 - MySQL database driver for Node.js;
+*  nodemon v2.0.22 - Development tool for automatically restarting the server during code changes
+*  sequelize v6.31.1 - ORM (Object-Relational Mapping) for interacting with relational databases in an object-oriented manner.
+*  bootstrap: A popular front-end framework that provides a collection of pre-built CSS and JavaScript components for responsive web design.
+*  scrollbar: A graphical user interface element that allows users to scroll through content that exceeds the visible area of a window or container.
+*  HRV Grow: A feature that uses horizontal and vertical (HRV) growth animations to create an engaging and dynamic effect on cards, making them visually appealing and interactive.
+
+---
 ### Usage
+
+To access our website, simply click on the provided link, and for an enhanced experience, we recommend creating an account to unlock all of our website's features. To create an account, click on the "Sign Up" button located in the top right corner, and complete all the required fields. Once your account is successfully created, you will gain access to create your own personalized travel wish list, explore inspiring blog posts from fellow adventurers, and save your favorite blog posts to your account using the "Pin" icon, marking your own travel accomplishments.
+
 
 Text will go here.  This is an example image insert that will center, size, and provide a background for an image:
 <p align="center"><kbd><img src="" alt="" style="max-width: 600px;"/> </kbd></p>
 
+---
 ### User Interface
 
 Text will go here...
 
+---
 ## Credits
 ### Resources
 
