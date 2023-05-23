@@ -1,5 +1,5 @@
 {
-  "name": "project2",
+  "name": "WanderList",
   "version": "1.0.0",
   "description": "[![License: MIT license](https://img.shields.io/badge/License-MIT_license-success)](https://opensource.org/licenses/MIT)    \r ![Project status](https://img.shields.io/badge/Status-In%20Development-orange)",
   "main": "server.js",
@@ -27,10 +27,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JDempe/project2.git"
+    "url": "git+https://github.com/JDempe/wanderlist.git"
   },
   "bugs": {
-    "url": "https://github.com/JDempe/project2/issues"
+    "url": "https://github.com/JDempe/wanderlist/issues"
   },
-  "homepage": "https://github.com/JDempe/project2#readme"
+  "homepage": "https://github.com/JDempe/wanderlist#readme"
 }
