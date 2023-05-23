@@ -54,7 +54,7 @@ Explore [WanderList](https://wanderlist.herokuapp.com/) using our Heroku deploym
 ---
 ## Preview
 
-<p align="center"><kbd><img src="./public/images/preview/preview.png" alt="WanderList Preview Image" style="max-width: 600px;"/> </kbd></p>
+<p align="center"><kbd><img src="./documentation/images/preview/preview.png" alt="WanderList Preview Image" style="max-width: 600px;"/> </kbd></p>
 
 ---
 ## Technologies Used
