@@ -30,7 +30,7 @@ Explore [WanderList](https://wanderlist.herokuapp.com/) website.
 ---
 ## Preview
 
-![WanderList](./public/images/preview/preview.png)
+![WanderList](./documentation/images/preview/preview.png)
 
 ---
 ## Technologies Used
