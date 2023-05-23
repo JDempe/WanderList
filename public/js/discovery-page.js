@@ -26,7 +26,7 @@ $(document).ready(function () {
   });
 
   // Create a click event listener on anything with the class of card-pinning
-  $(".card-icon").click(function (e) {
+  $(".card-icon-pin").click(function (e) {
     e.preventDefault();
     var pinIconEl = $(this);
 
@@ -70,7 +70,7 @@ $(document).ready(function () {
 
   // function to check each key in the pinnedCards array against the cardId
   function checkPinnedCards(pinnedCards) {
-    $(".card-icon").each(function () {
+    $(".card-icon-pin").each(function () {
       var cardId = $(this).closest(".card-container").attr("data-pinid");
       // if the pinnedCards JSON array includes the cardId, add the class of pinned to the card
       if (pinnedCards.some((e) => e.pinId === cardId)) {
