@@ -181,10 +181,10 @@ router.get("/editprofile/:username", async (req, res) => {
 router.get("/pins/user/:username", async (req, res) => {
   try {
     const { username } = req.params;
-    const { page = 1 } = req.query; // Get the page number from the query parameters
+    // const { page = 1 } = req.query; // Get the page number from the query parameters
 
     const limit = 10; // Number of pins per page
-    const offset = (page - 1) * limit; // Calculate the offset based on the page number
+    // const offset = (page - 1) * limit; // Calculate the offset based on the page number
 
     const user = await User.findOne({
       where: {
@@ -195,8 +195,6 @@ router.get("/pins/user/:username", async (req, res) => {
     
     const pins = await Pins.findAndCountAll({
       where: { user_id: user.id },
-      limit,
-      offset,
     });
 
 // get the pinTitle and pinDescription from pins and put it into pinsData
@@ -236,7 +234,6 @@ router.get("/pins/user/:username", async (req, res) => {
         // take the pin.updatedAt and cut it off at the 4th space and only take the first half
 
         pinDate : pinData.updatedAt ? pinData.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pinData.updatedAt,
-        timestamp: pinData.updatedAt,
         pinUserID: pinData.user_id,
         pinUsername: "",
         pinAvatar: "",
@@ -273,7 +270,7 @@ router.get("/pins/user/:username", async (req, res) => {
       
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message  });
   }
 });
 

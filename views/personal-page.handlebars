@@ -68,7 +68,7 @@
 
 
 
-        {{#if savedPins}}
+    {{#if savedPins}}
     {{!-- Handle case when user has no pin --}}
     {{> discovery-pin}}
     {{else}}
@@ -89,14 +89,15 @@
   <!-- CONTAINS CARD -->
   <div class="card-container">
     <div class="card">
-      <form class="card-body was-validated">
+      <form class="card-body needs-validation" novalidate>
         <div class="card-top-section">
           <!-- DISPLAY PIN TITLE -->
-          <input type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value="">
-          <div class="valid-feedback" style="display: none;">
+          <input required type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value=""
+            minlength="1">
+          <div class="valid-feedback">
             Great!
           </div>
-          <div class="invalid-feedback" style="display: none;">
+          <div class="invalid-feedback">
             Please enter a title.
           </div>
           <!-- Actions should have confirmation required -->
@@ -116,19 +117,22 @@
         <hr class="hr card-hr">
         <!-- CARD TEXT -->
         <textarea class="card-text form-control no-visibility" placeholder="Enter Text" id="validationTextarea"
-          aria-label="Pin Body Text" required="" readonly=""
-          style="height: 468px;">Journey into the heart of Denver, Colorado, a city synonymous with the majestic Rocky Mountains. Here, nature meets adventure in the most thrilling way, a place where you can experience the exhilaration of standing atop some of the world's highest peaks. As the crisp mountain air fills your lungs, you can witness the true grandeur of the sprawling landscapes that lie before you, painted with the beautiful hues of nature. It is not just the allure of these magnificent peaks that draws adventurers here, but the path to reaching them. The trek is a testament to human resilience and determination, a journey that demands grit and endurance. Every rock you climb, every trail you traverse, and every summit you reach, is a new chapter in your personal story of adventure. And as you ascend higher, the panoramic views become increasingly spectacular, revealing the beautiful symphony of peaks and valleys basked in the soft glow of the Colorado sun. The mountains stand tall, whispering tales of the ages, waiting for you to add your own. It's more than just a climb; it's a dialogue with nature. The serenity and solitude that envelop you serve as a perfect backdrop for introspection and self-discovery. Here, amidst the beauty of nature, you don't just conquer mountains; you conquer your own limitations. This magical blend of physical challenge and mental rejuvenation makes the climb an unforgettable experience. Ready to embark on this epic adventure?</textarea>
+          aria-label="Pin Body Text" required readonly="" style="height: 468px;"
+          minlength="5">Journey into the heart of Denver, Colorado, a city synonymous with the majestic Rocky Mountains. Here, nature meets adventure in the most thrilling way, a place where you can experience the exhilaration of standing atop some of the world's highest peaks. As the crisp mountain air fills your lungs, you can witness the true grandeur of the sprawling landscapes that lie before you, painted with the beautiful hues of nature. It is not just the allure of these magnificent peaks that draws adventurers here, but the path to reaching them. The trek is a testament to human resilience and determination, a journey that demands grit and endurance. Every rock you climb, every trail you traverse, and every summit you reach, is a new chapter in your personal story of adventure. And as you ascend higher, the panoramic views become increasingly spectacular, revealing the beautiful symphony of peaks and valleys basked in the soft glow of the Colorado sun. The mountains stand tall, whispering tales of the ages, waiting for you to add your own. It's more than just a climb; it's a dialogue with nature. The serenity and solitude that envelop you serve as a perfect backdrop for introspection and self-discovery. Here, amidst the beauty of nature, you don't just conquer mountains; you conquer your own limitations. This magical blend of physical challenge and mental rejuvenation makes the climb an unforgettable experience. Ready to embark on this epic adventure?</textarea>
+        <div class="valid-feedback">
+          Great!
+        </div>
+        <div class="invalid-feedback">
+          Please enter a description.
+        </div>
         <div class="changes-btn-container">
-          <button type="button" class="btn btn-primary save-btn">
+          <button type="submit" class="btn btn-primary save-btn save-btn-submit">
             Save Changes
           </button>
           <button type="button" class="btn btn-outline-danger discard-btn">
             Discard Changes
           </button>
         </div>
-        <!-- <div class="invalid-feedback">
-            Please enter a message in the textarea.
-          </div> -->
       </form>
     </div>
   </div>
