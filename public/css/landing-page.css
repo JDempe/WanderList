@@ -107,7 +107,7 @@
 .card-text {
   color: #a6a2ac;
   max-height: 27px;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .card-btn {
