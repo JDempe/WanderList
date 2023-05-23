@@ -125,19 +125,3 @@ transition: all 0.3s ease-in-out;
 h2.darkmode {
   color: #c5c9d6;
 }
-
-.darkmode.card-text {
-  color: #c5c9d6;
-}
-
-.darkmode.form-control {
-  background-color: #494a61;
-  border-color: #63709d;
-  color: var(--discovery-page-text-dark)
-}
-
-.darkmode.card-pin-color {
-  background-color: #494a61;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-
-}

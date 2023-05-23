@@ -51,6 +51,10 @@ $(document).ready(function() {
       '#editsecurity-form',
       'h2',
       '.form-label',
+      'h6',
+      '.nav-color',
+      '.nav-tabs',
+
       // sign in modal
       // // '.body-modal',
       // '.cd-signin-modal__block',
