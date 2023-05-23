@@ -105,3 +105,23 @@ transition: all 0.3s ease-in-out;
   background-color: #a4a3a3;
   border: #a4a3a3;
 }
+
+#user-profile.darkmode {
+  background-color: #494a61;
+}
+
+#editprofile-form.darkmode {
+  background-color: #494a61;
+}
+
+#editsecurity-form.darkmode {
+  background-color: #494a61;
+}
+
+.darkmode.form-label {
+  color: #c5c9d6;
+}
+
+h2.darkmode {
+  color: #c5c9d6;
+}

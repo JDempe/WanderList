@@ -103,10 +103,11 @@
 }
 
 .no-results-text {
-    font-family: "Wanderlust", sans-serif;
+    font-family: "Hammersmith One", sans-serif;
     font-size: 2.65rem;
+    font-style: italic;
     color: #b2b5c0;
-}
+  }
 
 /* card css */
 .date-container {

@@ -1,3 +1,39 @@
+:root {
+  /* Light mode variables */
+  --body-color: #F0EEF6;
+  --navbar-background-blue: #6CB4F8;
+  /* --navbar-background-blue: #2f583f; */
+  --button-text: #FFFFFF;
+  --button-hover-background-color: #ffffff;
+  --button-hover-text-color: #000000;
+
+  /* Dark mode variables */
+  --body-color-dark: #3c3e52;
+  --navbar-text-dark: #e7e9f0;
+  --text-color-dark: #FFFFFF;
+  --button-background-dark: #475567;
+  --button-text-dark: #FFFFFF;
+  --button-border-dark: #475567;
+  --footer-background-dark: #35374a;
+  --footer-text-dark: #e7e9f0;
+  --discovery-page-text-dark: #d1d4dd
+}
+
+.create-container {
+  display: flex;
+  align-items: center; 
+}
+
+#create-new-pin {
+  display: flex;
+  align-items: center;
+}
+
+#create-new-pin i {
+  margin-right: 5px; 
+}
+
+
 .create-search-section {
   display: flex;
   align-items: center;
@@ -52,6 +88,20 @@
 
 .no-results-container-noshow {
   display: none;
+}
+
+.no-results-shrug {
+  font-family: sans-serif;
+  font-size: 4.85rem;
+  padding-bottom: 12x;
+  color: #b2b5c0;
+}
+
+.no-results-text {
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 2.65rem;
+  font-style: italic;
+  color: #b2b5c0;
 }
 
 /* card css */
@@ -209,7 +259,112 @@
   font-weight: 600;
 }
 
+.nav-color {
+  font-family: "Hammersmith One";
+}
+
 /* Turns off features while pin is in creation mode */
 .create-pin-flag i{
  display: none !important;;
+}
+
+/* darkmode */
+
+.darkmode.nav-color {
+  color: #e7e9f0;
+}
+
+.darkmode.nav-color.active {
+  color: #e7e9f0;
+  background-color: #63709d;
+  border-color: #63709d;
+}
+
+h6.darkmode {
+  color: #e7e9f0;
+}
+
+h3.darkmode {
+  color: #e7e9f0;
+}
+
+.nav-tabs.darkmode {
+  border-color: #5b6589;
+}
+
+.darkmode.card-icon {
+  color: var(--discovery-page-text-dark);
+}
+
+.darkmode.bi-plus-square-fill {
+  color: #6b7bb3;
+}
+
+.darkmode.bi-plus-square-fill:hover {
+  color: #9fb1ec;
+}
+
+.darkmode.btn-refresh:active {
+  background-color: #445177;
+  border-color: #445177;
+}
+
+.darkmode.card-pin-color {
+  background-color: #494a61;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+.darkmode.date-hr {
+  border-color: #ffffff;
+}
+
+.darkmode.timestamp {
+  color: var(--discovery-page-text-dark);
+}
+
+.darkmode.bi-pin {
+  color:var(--discovery-page-text-dark);
+}
+
+.darkmode.card-title {
+  color: var(--discovery-page-text-dark);
+}
+
+.darkmode.card-username {
+  color: var(--discovery-page-text-dark);
+}
+
+.darkmode.card-location {
+  color: #9fb1ec;
+}
+
+.darkmode.card-hr {
+  border-color: white;
+}
+.darkmode.card-text {
+  color: #c5c9d6;
+}
+
+.darkmode.create-text {
+  color: #c5c9d6;
+}
+
+.darkmode.form-control {
+  background-color: #494a61;
+  border-color: #63709d;
+  color: var(--discovery-page-text-dark)
+}
+
+.darkmode.form-control:focus {
+  outline: none; 
+  box-shadow: 0 0 5px #9fb1ec;
+}
+
+.darkmode.form-control::placeholder {
+  color: var(--discovery-page-text-dark)
+}
+
+.darkmode.bi-search {
+  color: var(--discovery-page-text-dark);
 }

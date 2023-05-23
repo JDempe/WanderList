@@ -1,8 +1,8 @@
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-mine" type="button"
+    <button class="nav-link active nav-color" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-mine" type="button"
       role="tab" aria-controls="nav-home" aria-selected="true">My Pins</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-pinned" type="button"
+    <button class="nav-link nav-color" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-pinned" type="button"
       role="tab" aria-controls="nav-profile" aria-selected="false">Saved Pins</button>
   </div>
 </nav>
@@ -27,12 +27,13 @@
         </div>
       </div>
     </div>
-    <div class="no-results-container no-results-container-noshow">
-      <div>
-        <span>No results found.</span>
-        <img src="/images/placeholder/temp-noresultsfound.png" alt="No Results">
+      <div class="no-results-container no-results-container-noshow">
+          <div>
+            <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+            <span class="no-results-text">No results found</span>
+            {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
+          </div>
       </div>
-    </div>
     {{#if mypins}}
     {{!-- Handle case when user has no pin --}}
     {{> personal-pin}}
@@ -89,7 +90,7 @@
   <!-- CONTAINS CARD -->
   <div class="card-container">
     <div class="card">
-      <form class="card-body needs-validation" novalidate>
+      <form class="card-body needs-validation card-pin-color" novalidate>
         <div class="card-top-section">
           <!-- DISPLAY PIN TITLE -->
           <input required type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value=""

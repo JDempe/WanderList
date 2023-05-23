@@ -21,6 +21,7 @@ $(document).ready(function() {
     const elementsToToggle = [
       // main.handlebars
       'body',
+      'dropdown-item',
       '.navbar',
       '.login-nav-Btn',
       '#navbarNavAltMarkup',
@@ -29,8 +30,11 @@ $(document).ready(function() {
       // disover.handlebars
       '.discover',
       '.btn-refresh',
+      '.bi-plus-square-fill',
+      '.create-text',
       '.card-text-color',
       '.card-color',
+      '.card-icon',
       '.card-pin-color',
       '.card-text',
       '.date-hr',
@@ -42,6 +46,16 @@ $(document).ready(function() {
       '.form-control',
       '.bi-search',
       '.timestamp',
+      '#user-profile',
+      '#editprofile-form',
+      '#editsecurity-form',
+      'h2',
+      'h3',
+      '.form-label',
+      'h6',
+      '.nav-color',
+      '.nav-tabs',
+
       // sign in modal
       // // '.body-modal',
       // '.cd-signin-modal__block',
