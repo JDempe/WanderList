@@ -1,322 +1,302 @@
 :root {
-    /* Light mode variables */
-    --body-color: #F0EEF6;
-    --navbar-background-blue: #6CB4F8;
-    /* --navbar-background-blue: #2f583f; */
-    --button-text: #FFFFFF;
-    --button-hover-background-color: #ffffff;
-    --button-hover-text-color: #000000;
-  
-    /* Dark mode variables */
-    --body-color-dark: #3c3e52;
-    --navbar-text-dark: #e7e9f0;
-    --text-color-dark: #FFFFFF;
-    --button-background-dark: #475567;
-    --button-text-dark: #FFFFFF;
-    --button-border-dark: #475567;
-    --footer-background-dark: #35374a;
-    --footer-text-dark: #e7e9f0;
-    --discovery-page-text-dark: #d1d4dd
+  /* Dark mode variables */
+  --discovery-page-text-dark: #d1d4dd;
 }
 
 @font-face {
-    font-family: 'Wanderlust';
-    src: url('../fonts/WanderlustRegular.woff') format('woff');
+  font-family: "Wanderlust";
+  src: url("../fonts/WanderlustRegular.woff") format("woff");
 }
 
 .create-search-section {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 3rem 0 0.3rem 0;
-    margin: 0 auto;
-    max-width: 65%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3rem 0 0.3rem 0;
+  margin: 0 auto;
+  max-width: 65%;
 }
 
 .bi-arrow-clockwise {
-    font-size: 1.1rem;
-    color: #ffffff;
-    cursor: pointer;
+  font-size: 1.1rem;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .bi-arrow-clockwise:hover {
-    color: #6eb1eb; /* Change the color when hovered */
+  color: #6eb1eb; /* Change the color when hovered */
 }
 
 .btn-refresh {
-    background-color: #2887d9;
-    border-color: #2887d9;
+  background-color: #2887d9;
+  border-color: #2887d9;
 }
 
 .btn-refresh:hover {
-    background-color: #6eb1eb;
-    border-color: #6eb1eb;
+  background-color: #6eb1eb;
+  border-color: #6eb1eb;
 }
 
 .btn-refresh:active {
-    transform: scale(0.99);
-    box-shadow: 0 0 0 0.25rem #6eb1eb80;
-  }
+  transform: scale(0.99);
+  box-shadow: 0 0 0 0.25rem #6eb1eb80;
+}
 
 .create-text {
-    padding-left: 4px;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 600;
-    font-size: 1.35rem;
-    color: #ffffff;
-    
+  padding-left: 4px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: #ffffff;
 }
 
 .search-bar {
-    width: 15rem;
+  width: 15rem;
 }
 
 .input-group-text {
-    background-color: #ffffff00;
+  background-color: #ffffff00;
 }
 
 .no-results-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
 }
-  
+
 .no-results-container div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .no-results-container-noshow {
-    display: none;
+  display: none;
 }
 
 .no-results-shrug {
-    font-family: sans-serif;
-    font-size: 4.85rem;
-    padding-bottom: 12x;
-    color: #b2b5c0;
+  font-family: sans-serif;
+  font-size: 4.85rem;
+  padding-bottom: 12x;
+  color: #b2b5c0;
 }
 
 .no-results-text {
-    font-family: "Hammersmith One", sans-serif;
-    font-size: 2.65rem;
-    font-style: italic;
-    color: #b2b5c0;
-  }
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 2.65rem;
+  font-style: italic;
+  color: #b2b5c0;
+}
 
 /* card css */
 .date-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .date-hr {
-    display: inline-block;
-    width: 30%;
-    margin: 10px 0px;
-    border: none;
-    border-top: 1px solid #000;
+  display: inline-block;
+  width: 30%;
+  margin: 10px 0px;
+  border: none;
+  border-top: 1px solid #000;
 }
-  
+
 .timestamp {
-    display: inline-block;
-    margin: 0 10px;
-    color: #565c75;
+  display: inline-block;
+  margin: 0 10px;
+  color: #565c75;
 }
 
 .card-container {
-    padding: 0.5rem 0 1.5rem;
-    display: flex;
-    justify-content: space-around;
+  padding: 0.5rem 0 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }
 .card {
-    width: 65%;
-    border-radius: 16px;
-    min-height: 50px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  width: 65%;
+  border-radius: 16px;
+  min-height: 50px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card-top-section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .card input {
-    border-width: 0;
+  border-width: 0;
 }
 
 .card input:focus {
-    outline: none;
+  outline: none;
 }
 
 .card-title {
-    margin-bottom: 0px;
-   font-family: "Source Sans Pro", sans-serif ;
-   font-weight: 900;
-   font-size: 2rem; 
-   color: #6e6c78;
-   background-color: #197fd800;
+  margin-bottom: 0px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  color: #6e6c78;
+  background-color: #197fd800;
 }
 
 .card-icon-section {
-    display: flex;
+  display: flex;
 }
 
 .card-icon {
-    margin: 0px 3.5px 0px 3.5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #6e6c78;
+  margin: 0px 3.5px 0px 3.5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6e6c78;
 }
 
 .bi-pin-angle:hover {
-    color: #f09b4c; /* Change the color when hovered */
+  color: #f09b4c; /* Change the color when hovered */
 }
 
 .card-hr {
-    margin: 4px 0 4px 0;
+  margin: 4px 0 4px 0;
 }
 
-
 .avatar-container {
-    display: flex;
-    align-items: center;
-    padding-top: 7px;
-  }
-  
+  display: flex;
+  align-items: center;
+  padding-top: 7px;
+}
+
 .avatar-border {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 3px solid rgb(142, 143, 155);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgb(142, 143, 155);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .pin-avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-username {
-    margin-right: 10px;
-    margin-left: 7px;
-    padding-top: 8px;
-    font-family: "Hammersmith One", sans-serif ;
-    font-size: 1.05rem;
-    color: #6e6c78;
+  margin-right: 10px;
+  margin-left: 7px;
+  padding-top: 8px;
+  font-family: "Hammersmith One", sans-serif;
+  font-size: 1.05rem;
+  color: #6e6c78;
 }
 
 .pin-updated {
-    margin-left: 10px; 
+  margin-left: 10px;
 }
 
 .card-location {
-    padding-top: 10px;
-    font-family: "Source Sans Pro", sans-serif ;
-    font-weight: 600;
-    font-size: 1.3rem;
-    color: #2887d9;
+  padding-top: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #2887d9;
 }
 
 .card-text {
-    font-family: "Source Sans Pro", sans-serif ;
-    color: #6e6c78;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #6e6c78;
 }
 
-.popover{
-    background: #f56d6d !important;
+.popover {
+  background: #f56d6d !important;
 }
 
-
-.popover .popover-arrow::before, .popover .popover-arrow::after {
-    border-color: transparent !important;  /* this example changes the arrow to orange color... You can always replace with any color you choose. */
-    border-top-color: #f56d6d !important;
-    border-bottom-color: #f56d6d !important;
+.popover .popover-arrow::before,
+.popover .popover-arrow::after {
+  border-color: transparent !important; /* this example changes the arrow to orange color... You can always replace with any color you choose. */
+  border-top-color: #f56d6d !important;
+  border-bottom-color: #f56d6d !important;
 }
 
 .darkmode.btn-refresh {
-    background-color: #6b7bb3;
-    border-color: #6b7bb3;
+  background-color: #6b7bb3;
+  border-color: #6b7bb3;
 }
 
 .darkmode.btn-refresh:hover {
-    background-color: #9fb1ec;
-    border-color: #9fb1ec;
+  background-color: #9fb1ec;
+  border-color: #9fb1ec;
 }
 
 .darkmode.btn-refresh:active {
-    background-color: #445177;
-    border-color: #445177;
+  background-color: #445177;
+  border-color: #445177;
 }
 
 .darkmode.card-pin-color {
-    background-color: #494a61;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-
+  background-color: #494a61;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 }
 
 .darkmode.date-hr {
-    border-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .darkmode.timestamp {
-    color: var(--discovery-page-text-dark);
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.bi-pin {
-    color:var(--discovery-page-text-dark);
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.card-title {
-    color: var(--discovery-page-text-dark);
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.card-username {
-    color: var(--discovery-page-text-dark);
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.card-location {
-    color: #9fb1ec;
+  color: #9fb1ec;
 }
 
 .darkmode.card-hr {
-    border-color: white;
+  border-color: white;
 }
 .darkmode.card-text {
-    color: #c5c9d6;
+  color: #c5c9d6;
 }
 
 .darkmode.form-control {
-    background-color: #494a61;
-    border-color: #63709d;
-    color: var(--discovery-page-text-dark)
+  background-color: #494a61;
+  border-color: #63709d;
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.form-control:focus {
-    outline: none; 
-    box-shadow: 0 0 5px #9fb1ec;
+  outline: none;
+  box-shadow: 0 0 5px #9fb1ec;
 }
 
 .darkmode.form-control::placeholder {
-    color: var(--discovery-page-text-dark)
+  color: var(--discovery-page-text-dark);
 }
 
 .darkmode.bi-search {
-    color: var(--discovery-page-text-dark);
+  color: var(--discovery-page-text-dark);
 }
 
 /* .darkmode.card-text {
