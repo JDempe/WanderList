@@ -36,7 +36,7 @@ Explore [WanderList](https://wanderlist.herokuapp.com/) website.
 ## Technologies Used
 
 * bcrypt v5.1.0 - Password hashing and encryption for enhanced security;
-*  connect-session-sequelize v7.1.6 - Integration of session management with Sequelize for persistent session storage;
+*  connect-session-sequelize v7.1.6 - Integration of session management with Sequelize for persistent session storage.
 *  dotenv v16.0.3 - Loading environment variables from a .env file;
 *  express v4.18.2 - Web application framework for building server-side applications;
 *  express-handlebars - Templating engine for rendering dynamic HTML templates;
@@ -47,8 +47,8 @@ Explore [WanderList](https://wanderlist.herokuapp.com/) website.
 *  nodemon v2.0.22 - Development tool for automatically restarting the server during code changes
 *  sequelize v6.31.1 - ORM (Object-Relational Mapping) for interacting with relational databases in an object-oriented manner.
 *  bootstrap: A popular front-end framework that provides a collection of pre-built CSS and JavaScript components for responsive web design.
-*  scrollbar: A graphical user interface element that allows users to scroll through content that exceeds the visible area of a window or container.
-*  HRV Grow: A feature that uses horizontal and vertical (HRV) growth animations to create an engaging and dynamic effect on cards, making them visually appealing and interactive.
+*  simplebar: A library used to replace the standard browser scrollbars.
+*  Hover.css: A feature library that provides animations to create an engaging and dynamic effect on cards, making them visually appealing and interactive.
 
 ---
 ### Usage
