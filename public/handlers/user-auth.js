@@ -66,7 +66,16 @@ async function handleLogInClick(e) {
         const userId = responseData.userId; // Extract additional user data //<--
         console.log("userId", userId); //<--
         $(".body-modal").removeAttr("cd-signin-modal--is-visible");
-        document.location.replace(`/pins/user/`); //<--   
+        // take userId and get username
+        const responseUsername = await fetch(`/api/user/${userId}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
+        const responseDataUsername = await responseUsername.json();
+        console.log("responseDataUsername", responseDataUsername);
+        const username = responseDataUsername.username;
+        console.log("username", username);
+        document.location.replace(`/pins/user/${username}`); //<--   
     } else if (response.status === 404) {
         showErrorMessage($("#signin-password"), '.error-404');
     } else if (response.status === 500) {

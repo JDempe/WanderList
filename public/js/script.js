@@ -50,6 +50,7 @@ $(document).ready(function() {
       '#editprofile-form',
       '#editsecurity-form',
       'h2',
+      'h3',
       '.form-label',
       'h6',
       '.nav-color',

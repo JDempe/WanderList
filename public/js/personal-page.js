@@ -10,7 +10,7 @@ $(document).ready(function () {
 
   $("form").submit(preventDefault);
 
-// make the discover something button invisible but maintain its place in the DOM
+  // make the discover something button invisible but maintain its place in the DOM
   $("#discover-something-button").css("visibility", "hidden");
 
   // EVENT LISTENERS //
@@ -214,7 +214,21 @@ $(document).ready(function () {
 
   // save button event listener
   //   TODO need to only get the new pin one
-  $(document).on("click", ".save-btn", function () {
+  $(document).on("click", ".save-btn", function (event) {
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var form = $(".needs-validation")[0];
+
+
+    // If there is an invalid form, prevent the submit button from working and show the validation notes
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      event.stopPropagation();
+      form.classList.add("was-validated");
+    }
+    // Otherwise, if the form is valid, send a PUT request with the info
+    else {
+
     const pinEl = $(this).closest(".pin");
     const titleEl = pinEl.find(".card-title");
     const textEl = pinEl.find(".card-text");
@@ -222,7 +236,9 @@ $(document).ready(function () {
     const text = textEl.val();
     const saveBtn = $(this);
     const discardBtn = pinEl.find(".discard-btn");
-  
+    // hide the noPinPage
+    $("#personal-no-pin").css("display", "none");
+
     $.ajax({
       url: "/api/user/session/lookup",
       type: "GET",
@@ -230,11 +246,11 @@ $(document).ready(function () {
       console.log(response);
       var id = response.id;
       const pinId = pinEl.data("id"); // Get pin id
-  
-    // based on whether pin exists or not set the method and url(put or post)
+
+      // based on whether pin exists or not set the method and url(put or post)
       const method = pinId ? "PUT" : "POST";
       const url = pinId ? `/api/pins/${pinId}` : `/api/pins/user/${id}`;
-  
+
       // Send request to the server
       $.ajax({
         url: url,
@@ -253,13 +269,16 @@ $(document).ready(function () {
         textEl.addClass("no-visibility");
         saveBtn.removeAttr("style");
         discardBtn.removeAttr("style");
-  
-        if (!pinId) { // If it was a new pin
+
+        if (!pinId) {
+          // If it was a new pin
           pinEl.data("id", response.id); // Set the received id to the pin
         }
       });
     });
+  }
   });
+
   // discard button event listener
   // if discard is clicked, read the id from the data-id attribute, if it doesnt exist remove the element, if it does exist send a request to get pinTitle and pinDescription and set the values of the title and text to those values
   $(document).on("click", ".discard-btn", function () {
@@ -298,7 +317,7 @@ $(document).ready(function () {
       });
     }
   });
-  
+
   // ========================================================== //
   // END EVENT LISTENERS //
 });
