@@ -25,7 +25,7 @@ Explore the world of travel dreams! Our website lets you create your own persona
 ---
 ### Deployed Site
 
-Explore [WanderList](https://wanderlist.herokuapp.com/) website.
+Explore [WanderList](https://wanderlist.herokuapp.com/) using our Heroku deployment!  
 
 ---
 ## Preview
@@ -35,20 +35,20 @@ Explore [WanderList](https://wanderlist.herokuapp.com/) website.
 ---
 ## Technologies Used
 
-* bcrypt v5.1.0 - Password hashing and encryption for enhanced security;
-*  connect-session-sequelize v7.1.6 - Integration of session management with Sequelize for persistent session storage.
-*  dotenv v16.0.3 - Loading environment variables from a .env file;
-*  express v4.18.2 - Web application framework for building server-side applications;
-*  express-handlebars - Templating engine for rendering dynamic HTML templates;
-*  express-session v.17.3 - Middleware for managing session data in Express;
-*  handlebars v4.7.7 - Template engine for rendering dynamic HTML templates;
-*  lorem-ipsum v2.0.8 - Generating placeholder text for testing and design purposes;
-*  mysql2 v3.3.1 - MySQL database driver for Node.js;
-*  nodemon v2.0.22 - Development tool for automatically restarting the server during code changes
-*  sequelize v6.31.1 - ORM (Object-Relational Mapping) for interacting with relational databases in an object-oriented manner.
-*  bootstrap: A popular front-end framework that provides a collection of pre-built CSS and JavaScript components for responsive web design.
-*  simplebar: A library used to replace the standard browser scrollbars.
-*  Hover.css: A feature library that provides animations to create an engaging and dynamic effect on cards, making them visually appealing and interactive.
+* [jQuery](https://jquery.com/) - A JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
+*  [bootstrap v5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/) - A popular front-end framework that provides a collection of pre-built CSS and JavaScript components for responsive web design.
+*  [handlebars v4.7.7](https://handlebarsjs.com/) - Template engine for rendering dynamic HTML templates.
+* [mySQL](https://www.mysql.com/) - Open-source relational database management system.
+*  [bcrypt v5.1.0](https://www.npmjs.com/package/bcrypt) - Password hashing and encryption for enhanced security.
+*  [sequelize v6.31.1](https://sequelize.org/) - ORM (Object-Relational Mapping) for interacting with relational databases in an object-oriented manner.
+*  [connect-session-sequelize v7.1.6](https://www.npmjs.com/package/connect-session-sequelize) - Integration of session management with Sequelize for persistent session storage.
+*  [express v4.18.2](https://www.npmjs.com/package/express) - Web application framework for building server-side applications.
+*  [express-handlebars](https://www.npmjs.com/package/express-handlebars) - Templating engine for rendering dynamic HTML templates.
+*  [express-session v.17.3](https://www.npmjs.com/package/express-session) - Middleware for managing session data in Express.
+*  [mysql2 v3.3.1](https://www.npmjs.com/package/mysql2) - MySQL database driver for Node.js.
+*  [nodemon v2.0.22](https://www.npmjs.com/package/nodemon) - Development tool for automatically restarting the server during code changes.
+*  [dotenv v16.0.3](https://www.npmjs.com/package/dotenv) - Loading environment variables from a .env file.
+* [Heroku](https://www.heroku.com/) - Cloud platform for deploying and managing applications.
 
 ---
 ### Usage
@@ -76,36 +76,26 @@ The below resources contributed to the project.
 
 #### Images
 
-- [Favicon Generator](https://favicon.io/favicon-generator/) provides an easy to use GUI to generate favicons for your website.  We used it for ours.
+- [Favicon Converter](https://favicon.io/favicon-converter/) provides a simple way to take any image and convert it to a favicon.  The favicon for this project was created from [this](https://www.flaticon.com/free-icons/compass) compass image created by Dimitry Miroliubov on [FlatIcon](https://www.flaticon.com/).
 
-- [Icons8](https://icons8.com/icons/) provide simple icons for the page navigations.
-  - [Minus Sign](https://icons8.com/icon/59837/minus)
-  - [Plus Sign](https://icons8.com/icon/59864/plus)
-  - [Arrow](https://icons8.com/icon/100040/up-arrow)
+- [Icons8](https://icons8.com/icons/) provide simple images and icons.
+  - [Blank Avatar Image](https://icons8.com/icon/65342/customer)
   
 - [Matt Visiwig](https://twitter.com/MattVisiwig) created an SVG background creator that provides many free options.  The background image was created from [this](https://www.svgbackgrounds.com/) tool.
 
 - [Shields.io](https://shields.io/) provides the badges for the README.
 
-#### Libraries
+- [Dighital](https://dighital.com/icon-pack/icons/flat-icons/travel-people-icons/) icons were purchased for the avatar images.
 
-- [jQuery](https://jquery.com/) is a fast, small, and feature-rich JavaScript library.
+#### Templates / Libraries
 
-- [MDBootstrap](https://mdbootstrap.com/) was the CSS Framework used on this project.
+- [SimpleBar](https://github.com/Grsmto/simplebar) is a custom scroll bar library that allows for replacing the default browser scroll bars.
 
-- [Day.js](https://day.js.org/) is the library used to handle dates and times.  It is a lightweight alternative to Moment.js.
+- [Ian Lunn](https://github.com/IanLunn) created an awesome library called [Hover.css](https://twitter.com/davidmacd) that adds some plug and play css animation classes.  We used this for some of the moving icons on the page.
 
-- [Ian Lunn](https://github.com/IanLunn) created an awesome library called [Hover.css](https://twitter.com/davidmacd) that adds some plug and play css animation classes.  I used this for some of the moving icons on my page.
-
-- [CodyHouse](https://codyhouse.co/) provides a lot of free resources for web developers.  I used their [Modal Window](https://codyhouse.co/gem/modal-window/) for the modal on the page.
-
-#### APIs
-
-- API Links will go here...
+- [CodyHouse](https://codyhouse.co/) provides a lot of free resources for web developers.  We used their [Login Modal](https://codyhouse.co/gem/loginsignup-modal-window/) for the login/signup functionality.
 
 #### Data
-
-Here is where we got our data:
 
 - [ChatGPT](https://chat.openai.com/) is a chatbot that uses GPT-3 to generate responses.  The chatbot was used to come up with the site name.
 
@@ -114,7 +104,12 @@ Here is where we got our data:
 
 Here are several blogs:
 
--[StackOverflow](https://stackoverflow.com/) provided many guides and tutorials for the project.  Below are the links used for key features:
+-[StackOverflow](https://stackoverflow.com/) provided guidance for troubleshooting the project.  Below are the links to key posts that contributed to our success:
+  - [Regular Expressions for Validation](https://stackoverflow.com/questions/4244109/regular-expression-to-accept-only-characters-a-z-in-a-textbox)
+  - [Using #each in Handlebars templates](https://stackoverflow.com/questions/21814888/access-values-using-each-in-a-one-dimensional-array)
+  - [Bootstrap Modal Class Issues](https://stackoverflow.com/questions/44609680/close-button-on-modal-not-working-what-am-i-doing-wrong)
+  - [Editting Bootstrap Popovers](https://stackoverflow.com/questions/54337652/how-can-i-change-the-color-of-bootstrap-popover-arrows)
+  - 
 
 #### Tutorials
 
@@ -134,4 +129,4 @@ Refer to the LICENSE in the repository.
 
 ## How to Contribute
 
-Contribute at...
+Looking to contribute?  Find out how at https://github.com/JDempe/WanderList!
