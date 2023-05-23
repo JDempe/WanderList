@@ -110,7 +110,7 @@ function initMap() {
 
 $(document).ready(function() {
   const googleMapsScript = $('<script>');
-  googleMapsScript.attr('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDn-pmWwrZIpXOTg86L92IT976akk21YoE&libraries=places&callback=initMap');
+  googleMapsScript.attr('src', 'https://maps.googleapis.com/maps/api/js?key={{placeholder}}libraries=places&callback=initMap');
   $('body').append(googleMapsScript);
 });
 
