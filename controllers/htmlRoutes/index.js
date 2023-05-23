@@ -211,7 +211,7 @@ router.get("/pins/user/:username", async (req, res) => {
     // Use the saved_pins column json object from user.  break the json object down and take only the pinId and put it into savedPinsData
     const savedPins = user.saved_pins;
     // if they have no savedPins, then skip this part
-    if (savedPins) {
+    if (savedPins && savedPins.length !== "") {
     const savedPinsJSON = JSON.parse(savedPins);
 
     // for each in savedPinsJSON, grab the pinId and put into array
@@ -234,6 +234,7 @@ router.get("/pins/user/:username", async (req, res) => {
         // take the pin.updatedAt and cut it off at the 4th space and only take the first half
 
         pinDate : pinData.updatedAt ? pinData.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pinData.updatedAt,
+        timestamp: pinData.updatedAt,
         pinUserID: pinData.user_id,
         pinUsername: "",
         pinAvatar: "",
@@ -270,7 +271,7 @@ router.get("/pins/user/:username", async (req, res) => {
       
     });
   } catch (error) {
-    res.status(500).json({ error: error.message  });
+    res.status(500).json({ error: error.message });
   }
 });
 
