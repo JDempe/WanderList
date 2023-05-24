@@ -125,6 +125,13 @@ router.get("/pins/user/:username", async (req, res) => {
       where: { user_id: user.id },
     });
 
+
+  // if there is no pinID, redirect to home page
+  if (!pins[0] === "") {
+    return res.redirect("/");
+  }
+
+
       // Create an array of the pins data
       var pinsData = pins.map((pin) => ({
         pinID: pin.id,
@@ -135,6 +142,7 @@ router.get("/pins/user/:username", async (req, res) => {
           ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
           : pin.updatedAt,
       }));
+    
     
 
     // Break the saved_pins json object down and take only the pinId and put it into savedPinsData
