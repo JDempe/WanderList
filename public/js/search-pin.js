@@ -1,3 +1,8 @@
+$(document).ready(function() {
+  pinSearch();
+});
+
+// FUNCTIONS //
 const pinSearch = function() {
   $('#search-input').on('input', function() {
     const searchText = $(this).val().toLowerCase();
@@ -31,7 +36,4 @@ const pinSearch = function() {
     }
   });
 };
-
-$(document).ready(function() {
-  pinSearch();
-});
+// END FUNCTIONS //
