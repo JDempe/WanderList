@@ -1,66 +1,66 @@
 {{#each mypins}}
-  <div class="pin" data-id="{{id}}" id="{{id}}">
-    <!-- CONTAINS DATE -->
-    <div class="date-container">
-      <hr class="hr date-hr" />
-      <div class="timestamp">{{pinDate}}</div>
-      <hr class="hr date-hr" />
-    </div>
-    <!-- CONTAINS CARD -->
-    <div class="card-container">
-      <div class="card card-pin-color" data-id="{{id}}" id="{{id}}">
-        <form class="card-body was-validated">
-          <div class="card-top-section">
-            <!-- DISPLAY PIN TITLE -->
-            <input
-              type="text"
-              class="card-title"
-              placeholder="Enter Title"
-              aria-label="Pin Title"
-              value="{{pinTitle}}"
-            />
-            <div class="valid-feedback" style="display: none;">
-              Great!
-            </div>
-            <div class="invalid-feedback" style="display: none;">
-              Please enter a title.
-            </div>
-            <!-- Actions should have confirmation required -->
-            <div class="card-icon-section">
-              <!-- CHECK ICON / completes item -->
-              {{!-- <i class="bi bi-check-square card-icon"></i> --}}
-              <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
-              <i class="bi bi-pencil card-icon"></i>
-              <!-- PIN ICON / "pins" card -->
-              {{!-- <i class="bi bi-pin-angle card-icon"></i> --}}
-              <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
-              {{!-- <i class="bi bi-share card-icon"></i> --}}
-              <!-- TRASH ICON / makes DELETE request to server for this post -->
-              <i class="bi bi-trash card-icon"></i>
-            </div>
+<div class="pin" data-id="{{id}}" id="{{id}}">
+  {{!-- Contains Pin date --}}
+  <div class="date-container">
+    <hr class="hr date-hr" />
+    <div class="timestamp">{{pinDate}}</div>
+    <hr class="hr date-hr" />
+  </div>
+  {{!-- Contains Pin Content --}}
+  <div class="card-container">
+    <div class="card card-pin-color" data-id="{{id}}" id="{{id}}">
+      <form class="card-body was-validated">
+        <div class="card-top-section">
+          {{!-- Pin Title --}} 
+          <input
+            type="text"
+            class="card-title"
+            placeholder="Enter Title"
+            aria-label="Pin Title"
+            value="{{pinTitle}}"
+          />
+          <div class="valid-feedback" style="display: none;">
+            Great!
           </div>
-          <hr class="hr card-hr" />
-          <!-- CARD TEXT -->
-          <textarea
-            class="card-text form-control"
-            placeholder="Enter Text"
-            id="validationTextarea"
-            aria-label="Pin Body Text"
-            required
-          >{{pinDescription}}</textarea>
-          <div class="changes-btn-container">
-            <button type="button" class="btn btn-primary save-btn">
-              Save Changes
-            </button>
-            <button type="button" class="btn btn-outline-danger discard-btn">
-              Discard Changes
-            </button>
+          <div class="invalid-feedback" style="display: none;">
+            Please enter a title.
           </div>
-          <!-- <div class="invalid-feedback">
-            Please enter a message in the textarea.
-          </div> -->
-        </form>
-      </div>
+          <!-- Actions should have confirmation required -->
+          <div class="card-icon-section">
+            <!-- CHECK ICON / completes item -->
+            {{!-- <i class="bi bi-check-square card-icon"></i> --}}
+            <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
+            <i class="bi bi-pencil card-icon"></i>
+            <!-- PIN ICON / "pins" card -->
+            {{!-- <i class="bi bi-pin-angle card-icon"></i> --}}
+            <!-- SHARE ICON / permalinks(?) post or maybe sends to global posts -->
+            {{!-- <i class="bi bi-share card-icon"></i> --}}
+            <!-- TRASH ICON / makes DELETE request to server for this post -->
+            <i class="bi bi-trash card-icon"></i>
+          </div>
+        </div>
+        <hr class="hr card-hr" />
+        {{!-- Pin Text --}}
+        <textarea
+          class="card-text form-control"
+          placeholder="Enter Text"
+          id="validationTextarea"
+          aria-label="Pin Body Text"
+          required
+        >{{pinDescription}}</textarea>
+        <div class="changes-btn-container">
+          <button type="button" class="btn btn-primary save-btn">
+            Save Changes
+          </button>
+          <button type="button" class="btn btn-outline-danger discard-btn">
+            Discard Changes
+          </button>
+        </div>
+        <!-- <div class="invalid-feedback">
+          Please enter a message in the textarea.
+        </div> -->
+      </form>
     </div>
   </div>
+</div>
 {{/each}}

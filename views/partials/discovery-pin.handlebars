@@ -1,45 +1,45 @@
 {{#each discoveryPins}}
     {{!-- Pin container --}}
-    <div class="pin">
-        {{!-- Contains Pin date --}}
-        <div class="date-container">
-            <hr class="hr date-hr" />
-            <div class="timestamp">{{pinDate}}</div>
-            <hr class="hr date-hr" />
-        </div>
-        {{!-- Contains Pin content --}}
-        <div class="card-container" data-pinid="{{pinID}}">
-            <div class="card card-pin-color">
-                <div class="card-body was-validated">
-                    <div class="card-top-section">
-                        {{!-- Pin title --}}
-                        <div class="card-title">
-                            {{pinTitle}}
-                        </div>
-                        <div class="card-icon-section card-pinning">
-                        {{!-- Pin icon --}}
-                        <i class="bi bi-pin card-icon card-icon-pin" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Login to save pins!" data-bs-trigger="focus" tabindex="0"></i>
-                        </div>
+<div class="pin">
+    {{!-- Contains Pin date --}}
+    <div class="date-container">
+        <hr class="hr date-hr" />
+        <div class="timestamp">{{pinDate}}</div>
+        <hr class="hr date-hr" />
+    </div>
+    {{!-- Contains Pin content --}}
+    <div class="card-container" data-pinid="{{pinID}}">
+        <div class="card card-pin-color">
+            <div class="card-body was-validated">
+                <div class="card-top-section">
+                    {{!-- Pin title --}}
+                    <div class="card-title">
+                        {{pinTitle}}
                     </div>
-                    <hr class="hr card-hr" />
-                    <div class="avatar-container">
-                        <div class="avatar-border">
-                            <img src="{{pinAvatar}}" class="pin-avatar" width="48px" /> 
-                        </div>
-                        <div class="username-content">
-                            <div class="card-username">{{pinUsername}}</div>
-                            <div class="pin-updated">{{pinUpdated}}</div>
-                        </div>
+                    <div class="card-icon-section card-pinning">
+                    {{!-- Pin icon --}}
+                    <i class="bi bi-pin card-icon card-icon-pin" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Login to save pins!" data-bs-trigger="focus" tabindex="0"></i>
                     </div>
-                    <div class="card-location">
-                        {{pinLocation}}
-                    </div>
-                    {{!-- Pin text --}}
-                    <p class="card-text">
-                        {{pinDescription}}
-                    </p>          
                 </div>
+                <hr class="hr card-hr" />
+                <div class="avatar-container">
+                    <div class="avatar-border">
+                        <img src="{{pinAvatar}}" class="pin-avatar" width="48px" /> 
+                    </div>
+                    <div class="username-content">
+                        <div class="card-username">{{pinUsername}}</div>
+                        <div class="pin-updated">{{pinUpdated}}</div>
+                    </div>
+                </div>
+                <div class="card-location">
+                    {{pinLocation}}
+                </div>
+                {{!-- Pin text --}}
+                <p class="card-text">
+                    {{pinDescription}}
+                </p>          
             </div>
         </div>
     </div>
+</div>
 {{/each}}
