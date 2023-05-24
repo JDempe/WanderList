@@ -40,7 +40,6 @@
     {{else}}
     {{> personal-noPin}}
     {{/if}}
-
   </div>
   <div class="tab-pane fade" id="nav-pinned" role="tabpanel" aria-labelledby="nav-pinned-tab">
     <div class="create-search-section">
@@ -66,9 +65,6 @@
         {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
       </div>
     </div>
-
-
-
     {{#if discoveryPins}}
     {{!-- Handle case when user has no pin --}}
     {{> discovery-pin}}
@@ -78,16 +74,13 @@
   </div>
 </div>
 
-
-{{!-- HIDDEN ELEMENT --}}
+{{!-- HIDDEN TEMPLATE ELEMENT --}}
 <div id="template-card-hidden" hidden class="pin">
-  <!-- CONTAINS DATE -->
   <div class="date-container">
     <hr class="hr date-hr">
     <div class="timestamp">MM/DD/YY</div>
     <hr class="hr date-hr">
   </div>
-  <!-- CONTAINS CARD -->
   <div class="card-container">
     <div class="card">
       <form class="card-body needs-validation card-pin-color" novalidate>
