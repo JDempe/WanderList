@@ -4,8 +4,8 @@ const avatarRoutes = require("./avatarRoutes");
 const pinRoutes = require("./pinRoutes");
 
 router.use("/user", userRoutes);
-router.use("/", avatarRoutes);
-router.use("/", pinRoutes);
+router.use("/avatars", avatarRoutes);
+router.use("/pins", pinRoutes);
 
 // Catch-all route handler for undefined API routes
 router.use((req, res) => {

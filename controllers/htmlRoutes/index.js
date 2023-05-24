@@ -1,21 +1,11 @@
 const router = require("express").Router();
 const { User, Avatars, Pins } = require("../../models");
-const { Op } = require("sequelize");
 
-// router.get("/", (req, res) => {
-//   //Serves the body of the page aka "landing-page.hbs" to the container //aka "main.hbs"
-//   // layout property not necessary since it is default, but included for clarity
-//   res.render("landing-page", {
-//     layout: "main",
-//     style: "./css/landing-page.css",
-//     script: "./js/landing-page.js",
-//      //user:res.locals.user
-//     });
-//});
 // GET discovery page
-
+// Navigate to /discover and pull 20 pins to display along with username and avatar
 router.get("/discover", async (req, res) => {
   try {
+    // Grab all pins from the database
     const pins = await Pins.findAll();
 
     // Shuffles the pins array using  algorithm
@@ -31,14 +21,16 @@ router.get("/discover", async (req, res) => {
       pinDescription: pin.pinDescription,
       pinLocation: pin.pinLocation,
       // take the pin.updatedAt and cut it off at the 4th space and only take the first half
-      pinDate : pin.updatedAt ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pin.updatedAt,
+      pinDate: pin.updatedAt
+        ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
+        : pin.updatedAt,
       timestamp: pin.updatedAt,
       pinUserID: pin.user_id,
       pinUsername: "",
       pinAvatar: "",
     }));
 
-    // Take the user ID for each pinsData and find the username that matches the user ID
+    // Take the creator userID for each pin and find the username that matches the userID
     for (let i = 0; i < pinsData.length; i++) {
       const userData = await User.findByPk(pinsData[i].pinUserID, {
         attributes: { exclude: ["password"] },
@@ -50,15 +42,13 @@ router.get("/discover", async (req, res) => {
       const avatarData = await Avatars.findByPk(user.avatar_id);
       const avatar = avatarData.get({ plain: true });
       pinsData[i].pinAvatar = avatar.avatarsImage;
-    
     }
 
-    // Renders the js/css/second js/hbs/and pins template for [age]
+    // Render the discovery page with the pinsData
     res.render("discovery-page", {
-      style: "./css/discovery-page.css",
-      script: "./js/discovery-page.js",
-      scriptSecond: "./js/search-pin.js",
-      savedPins: pinsData,
+      styles: ["discovery-page"],
+      scripts: ["discovery-page", "search-pin"],
+      discoveryPins: pinsData,
       user: {
         id: req.session.user_id,
         isLoggedIn: req.session.logged_in,
@@ -69,49 +59,162 @@ router.get("/discover", async (req, res) => {
   }
 });
 
-// use a router.get /user to get the user's username and ID, then redirect the page to /user/:username
-// go to /user and that will find the session user and redirect to /user/:id
+// GET navigation to user's pin page
+// Navigate to /pins/user and then redirect to /pins/user/:username once the username is known
+// TODO Convert to /user/pins
+// TODO Pass the ID info?
 router.get("/pins/user", async (req, res) => {
   try {
-    // lookup username by session userId
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-    });
-    const user = userData.get({ plain: true });
-
-    // log in check
+    // Log in Check, if not logged in, redirect to home page
     if (!req.session.logged_in) {
       return res.redirect("/");
     }
 
-    res.redirect(`/pins/user/${user.username}`);
-  } catch (err) {
-    console.error(err);
-    // redirect to home page on error
-    return res.redirect("/");
-  }
-});
-
-// go to /editprofile and that will find the session user and redirect to /editprofile/:id
-router.get("/editprofile", async (req, res) => {
-  try {
-    //Serves the body of the page aka "edit-profile.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
-    // lookup username by session userId
+    // Find the user's username by the session user_id
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
     });
     const user = userData.get({ plain: true });
 
+    // Redirect to /pins/user/:username
+    res.redirect(`/pins/user/${user.username}`);
+  } catch (err) {
+    // Redirect to 404 page on error
+    return res.status(404).json(err);
+  }
+});
+
+// GET navigation to user's editprofile page
+// Navigate to /editprofile and then redirect to /editprofile/:username once the username is known
+// TODO Pass the ID Info?
+router.get("/editprofile", async (req, res) => {
+  try {
+    // Lookup username by session userId
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    const user = userData.get({ plain: true });
+
+    // Redirect to /editprofile/:username
     res.redirect(`/editprofile/${user.username}`);
   } catch (err) {
-    console.error(err);
-    // redirect to home page on error
-    return res.redirect("/");
+    // Redirect to 404 page on error
+    return res.status(404).json(err);
+  }
+});
+
+// GET specific user's pin page
+// Navigate to /pins/user/:username
+router.get("/pins/user/:username", async (req, res) => {
+  try {
+    // Find the user's username by the session user_id
+    const user = await User.findOne({
+      where: {
+        username: req.params.username,
+      },
+      attributes: { exclude: ["password"] },
+    });
+
+    // If the user does not exist, redirect to home page
+    if (!user) {
+      console.error(
+        `The user with the provided username "${req.params.username}" does not exist.`
+      );
+      return res.redirect("/");
+    }
+
+    // Find the user's pins
+    const { page = 1 } = req.query; // Get the page number from the query parameters
+    const limit = 10; // Number of pins per page
+    const offset = (page - 1) * limit; // Calculate the offset based on the page number
+
+    const pins = await Pins.findAndCountAll({
+      where: { user_id: user.id },
+      limit,
+      offset,
+    });
+
+    // Create an array of the pins data
+    const pinsData = pins.rows.map((pin) => ({
+      id: pin.id,
+      pinTitle: pin.pinTitle,
+      pinDescription: pin.pinDescription,
+      pinLocation: pin.pinLocation,
+      // take the pin.updatedAt and cut it off at the 4th space and only take the first half (formatting)
+      pinDate: pin.updatedAt
+        ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
+        : pin.updatedAt,
+    }));
+
+    // Break the saved_pins json object down and take only the pinId and put it into savedPinsData
+    const savedPins = user.saved_pins;
+
+    // Only do the next part if the user has saved pins
+    if (savedPins && savedPins !== "") {
+      const savedPinsJSON = JSON.parse(savedPins);
+
+      // For each in savedPinsJSON, grab the pinId and put into array
+      var savedPinsArray = [];
+      for (let i = 0; i < savedPinsJSON.length; i++) {
+        savedPinsArray.push(savedPinsJSON[i].pinId);
+      }
+
+      // Go through each pin in the savedPinsArray and find the pin that matches the pinId and put it into savedPinsData
+      var savedPinsData = [];
+      for (let i = 0; i < savedPinsArray.length; i++) {
+        const pin = await Pins.findByPk(savedPinsArray[i]);
+        // Map the data required for the discovery pins to savedPinsData
+        const pinData = pin.get({ plain: true });
+        savedPinsData.push({
+          pinID: pinData.id,
+          pinTitle: pinData.pinTitle,
+          pinDescription: pinData.pinDescription,
+          pinLocation: pinData.pinLocation,
+          // Take the pin.updatedAt and cut it off at the 4th space and only take the first half
+          pinDate: pinData.updatedAt
+            ? pinData.updatedAt.toString().split(" ").slice(0, 4).join(" ")
+            : pinData.updatedAt,
+          timestamp: pinData.updatedAt,
+          pinUserID: pinData.user_id,
+          pinUsername: "",
+          pinAvatar: "",
+        });
+      }
+
+      // Find the creator of the pinID and get their username
+      for (let i = 0; i < savedPinsData.length; i++) {
+        const userData = await User.findByPk(savedPinsData[i].pinUserID, {
+          attributes: { exclude: ["password"] },
+        });
+        const user = userData.get({ plain: true });
+        savedPinsData[i].pinUsername = user.username;
+
+        // Lookup the avatar src from the user's avatar_id
+        const avatarData = await Avatars.findByPk(user.avatar_id);
+        const avatar = avatarData.get({ plain: true });
+        savedPinsData[i].pinAvatar = avatar.avatarsImage;
+      }
+    }
+
+    // Render the personal page with the pinsData and savedPinsData
+    res.render("personal-page", {
+      styles: ["personal-page"],
+      scripts: ["personal-page","discovery-page","search-pin"],
+      mypins: pinsData,
+      discoveryPins: savedPinsData,
+      user: {
+        id: req.session.user_id,
+        isLoggedIn: req.session.logged_in,
+      },
+    });
+  } catch (error) {
+    // Redirect to 404 page on error
+    return res.status(404).json(error);
   }
 });
 
 // GET edit profile page
+// Navigate to /editprofile/:username
 router.get("/editprofile/:username", async (req, res) => {
   try {
     // lookup one user by username
@@ -123,28 +226,19 @@ router.get("/editprofile/:username", async (req, res) => {
     });
     const user = userData.get({ plain: true });
 
-    // Pull from session the user's id to confirm that the user is logged in
-    const userId = req.session.user_id;
-    const userSession = req.session.user_id;
-    const userLoggedIn = req.session.logged_in;
-    const userExists = await User.findOne({
-      where: {
-        username: req.params.username,
-      },
-      attributes: { exclude: ["password"] },
-    });
-
     // verify that the user exists in the database.
-
-    if (!userExists) {
+    if (!user) {
       console.error(
         `The user with the provided username "${req.params.username}" does not exist.`
       );
       return res.redirect("/");
     }
 
-    // verify that the user is logged in and is the same user as the one being updated.
-    if (userSession !== userExists.id || userLoggedIn !== 1) {
+    // Confirm that the specified user is the same as the logged in user
+    const userSession = req.session.user_id;
+    const userLoggedIn = req.session.logged_in;
+
+    if (userSession !== user.id || userLoggedIn !== 1) {
       return res.status(400).json({
         message: `You are not authorized to edit this user's profile.`,
       });
@@ -153,17 +247,16 @@ router.get("/editprofile/:username", async (req, res) => {
     // Pull from the avatar table the avatar image location that matches the user's avatar id
     const avatarData = await Avatars.findByPk(user.avatar_id);
     const avatar = avatarData.get({ plain: true });
-    // TODO have the avatars be pulled up after render page.
 
+    // Pull from the avatar table all the avatar images for the modal
     const avatarList = await Avatars.findAll();
     const avatars = avatarList.map((avatar) => avatar.get({ plain: true }));
 
-    //Serves the body of the page aka "discovery-page.hbs" to the container //aka "main.hbs"
-    // layout property not necessary since it is default, but included for clarity
+    // Render the edit profile page with the user's data
     res.render("user-profile", {
       layout: "main",
-      style: "./css/user-profile.css",
-      script: "./js/user-profile.js",
+      styles: ["user-profile"],
+      scripts: ["user-profile"],
       avatar,
       avatars,
       user: {
@@ -177,110 +270,4 @@ router.get("/editprofile/:username", async (req, res) => {
   }
 });
 
-// GET user page
-router.get("/pins/user/:username", async (req, res) => {
-  try {
-    const { username } = req.params;
-    // const { page = 1 } = req.query; // Get the page number from the query parameters
-
-    const limit = 10; // Number of pins per page
-    // const offset = (page - 1) * limit; // Calculate the offset based on the page number
-
-    const user = await User.findOne({
-      where: {
-        username: username,
-      },
-      attributes: { exclude: ["password"] },
-    });
-    
-    const pins = await Pins.findAndCountAll({
-      where: { user_id: user.id },
-    });
-
-// get the pinTitle and pinDescription from pins and put it into pinsData
-    const pinsData = pins.rows.map((pin) => ({
-      id: pin.id,
-      pinTitle: pin.pinTitle,
-      pinDescription: pin.pinDescription, 
-      pinLocation: pin.pinLocation,
-      // take the pin.updatedAt and cut it off at the 4th space and only take the first half
-      pinDate : pin.updatedAt ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pin.updatedAt,
-    }));
-
-
-    // Use the saved_pins column json object from user.  break the json object down and take only the pinId and put it into savedPinsData
-    const savedPins = user.saved_pins;
-    // if they have no savedPins, then skip this part
-    if (savedPins && savedPins.length !== "") {
-    const savedPinsJSON = JSON.parse(savedPins);
-
-    // for each in savedPinsJSON, grab the pinId and put into array
-    var savedPinsArray = [];
-    for (let i = 0; i < savedPinsJSON.length; i++) {
-      savedPinsArray.push(savedPinsJSON[i].pinId);
-    }
-
-    // go through each pin in the savedPinsArray and find the pin that matches the pinId and put it into savedPinsData
-    var savedPinsData = [];
-    for (let i = 0; i < savedPinsArray.length; i++) {
-      const pin = await Pins.findByPk(savedPinsArray[i]);
-      // map the data to pinTitle, pinDescription, pinLocation, pinDate, timestamp, pinUserID, pinUsername,  pinAvatar
-      const pinData = pin.get({ plain: true });
-      savedPinsData.push({
-        pinID: pinData.id,
-        pinTitle: pinData.pinTitle,
-        pinDescription: pinData.pinDescription,
-        pinLocation: pinData.pinLocation,
-        // take the pin.updatedAt and cut it off at the 4th space and only take the first half
-
-        pinDate : pinData.updatedAt ? pinData.updatedAt.toString().split(" ").slice(0, 4).join(" ") : pinData.updatedAt,
-        timestamp: pinData.updatedAt,
-        pinUserID: pinData.user_id,
-        pinUsername: "",
-        pinAvatar: "",
-      });
-    }
-
-    // find the owner of the pinID and get their Username, and Avatar
-    for (let i = 0; i < savedPinsData.length; i++) {
-      const userData = await User.findByPk(savedPinsData[i].pinUserID, {
-        attributes: { exclude: ["password"] },
-      });
-      const user = userData.get({ plain: true });
-      savedPinsData[i].pinUsername = user.username;
-
-      // lookup the avatar src from the user's avatar_id
-      const avatarData = await Avatars.findByPk(user.avatar_id);
-      const avatar = avatarData.get({ plain: true });
-      savedPinsData[i].pinAvatar = avatar.avatarsImage;
-    }
-  }
-
-    // Renders the js/css/second js/hbs/and pins template for [age]
-    res.render("personal-page", {
-      style: "./css/personal-page.css",
-      script: "./js/personal-page.js",
-      scriptSecond: "./js/search-pin.js",
-      scriptThird: "./js/discovery-page.js",
-      mypins: pinsData,
-      savedPins: savedPinsData,
-      user: {
-        id: req.session.user_id,
-        isLoggedIn: req.session.logged_in
-      }
-      
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// router to handle  GET 404 page
-// router.use((req, res) => {
-//   res.status(404).render('404page', {
-//     layout: 'main',
-//     style: './css/404.css',
-//     title: 'Page Not Found'
-//   });
-// });
 module.exports = router;

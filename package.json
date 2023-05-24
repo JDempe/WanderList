@@ -1,5 +1,5 @@
 {
-  "name": "WanderList",
+  "name": "wanderlist",
   "version": "1.0.0",
   "description": "[![License: MIT license](https://img.shields.io/badge/License-MIT_license-success)](https://opensource.org/licenses/MIT)    \r ![Project status](https://img.shields.io/badge/Status-In%20Development-orange)",
   "main": "server.js",
