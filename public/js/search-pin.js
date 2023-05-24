@@ -1,10 +1,12 @@
 $(document).ready(function () {
   // EVENT LISTENERS //
+  // On any input into the search bar, filter the pins based on the search text
   $("#search-input").on("input", function () {
     const searchText = $(this).val().toLowerCase();
     const noResultsContainer = $(".no-results-container");
     let hasMatchingResults = false; // Flag to track if any matching results are found
 
+    // Loop through each pin and check if the search text is in the title, text, or timestamp
     $(".pin").each(function () {
       const pin = $(this);
       const cardTitle = pin.find(".card-title").text().toLowerCase();
@@ -27,6 +29,7 @@ $(document).ready(function () {
       }
     });
 
+    // If no matching results are found, show the no results container
     if (hasMatchingResults) {
       noResultsContainer.addClass("no-results-container-noshow");
     } else {

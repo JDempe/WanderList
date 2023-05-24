@@ -352,17 +352,5 @@ $(document).ready(function () {
       return true;
     }
   }
-
-  // LEGACY CODE - SUPERSEDED BY AlertOnPage() //
-  // //handle error modal
-  // function showErrorModal(message) {
-  //   document.getElementById("errorModalMessage").innerText = message;
-  //   $("#errorModal").modal("show");
-  // }
-  // //handle success modal
-  // function showSuccessModal(message) {
-  //   document.getElementById("successModalMessage").innerText = message;
-  //   $("#successModal").modal("show");
-  // }
   // END FUNCTIONS //
 });
