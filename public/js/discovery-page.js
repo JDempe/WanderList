@@ -6,7 +6,7 @@ $(document).ready(function () {
   $.ajax({
     url: "/api/user/session/lookup",
     method: "GET",
-  }).then(function (response) {
+}).then(function (response) {
     if (response.logged_in === false) {
       console.log("not logged in");
       return;

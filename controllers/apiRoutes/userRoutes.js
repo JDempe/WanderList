@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const { User, Avatars, Post } = require("../../models");
 
+// USER AUTHENTICATION ROUTES //
 // set up a route for users to sign up.
 router.post("/signup", async (req, res) => {
     try {
@@ -106,8 +107,9 @@ router.post("/logout", async (req, res) => {
         res.status(500).json(error);
     }
 });
+// END USER AUTHENTICATION ROUTES //
 
-// Look up a user based on the active session
+// Look up a username based on the active session
 router.get("/session/lookup", async (req, res) => {
   try {
     const userSession = req.session.user_id;
@@ -116,10 +118,18 @@ router.get("/session/lookup", async (req, res) => {
       attributes: { exclude: ["password"] },
     });
 
+    // verify that there is an active session
+    if (!userSession || !userLoggedIn) {
+        return res.status(404).json({
+            message: `There is no active session. Please log in.`,
+        });
+    }
+
+    // verify that the user exists in the database.
     if (!userData) {
-      return res.status(200).json({
-        logged_in: false,
-      });
+        return res.status(404).json({
+            message: `The user with the provided id "${userSession}" does not exist. Please try again.`,
+        });
     }
 
     const user = userData.get({ plain: true });
@@ -130,7 +140,7 @@ router.get("/session/lookup", async (req, res) => {
   }
 });
 
-// Try to find a user with the provided username in the database.
+// Try to find a user with the provided username in the database.  For verifying unique username. Returns true/false.
 router.get("/checkusername/:username", async (req, res) => {
     try {
         const user = await User.findOne({
@@ -147,7 +157,7 @@ router.get("/checkusername/:username", async (req, res) => {
     }
 });
 
-// Try to find a user with the provided email in the database.  For verifying unique identity. does not return values.
+// Try to find a user with the provided email in the database.  For verifying unique email. Returns true/false.
 router.get("/checkemail/:email", async (req, res) => {
     try {
         const user = await User.findOne({
