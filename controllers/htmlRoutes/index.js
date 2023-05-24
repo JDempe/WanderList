@@ -125,6 +125,7 @@ router.get("/pins/user/:username", async (req, res) => {
       where: { user_id: user.id },
     });
 
+    if (pins) {
       // Create an array of the pins data
       var pinsData = pins.map((pin) => ({
         pinID: pin.id,
@@ -135,6 +136,11 @@ router.get("/pins/user/:username", async (req, res) => {
           ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
           : pin.updatedAt,
       }));
+    } else {
+      // If the user has no pins, create an empty array
+      var pinsData = [];
+    }
+    
     
 
     // Break the saved_pins json object down and take only the pinId and put it into savedPinsData
