@@ -2,18 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {Avatars} = require('../../models');
 
-// Create a new avatar
-router.post('/avatars', async (req, res) => {
-  try {
-    const avatar = await Avatars.create(req.body);
-    res.status(201).json(avatar);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
 // Get all avatars
-router.get('/avatars', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const avatars = await Avatars.findAll();
     res.status(200).json(avatars);
@@ -23,7 +13,7 @@ router.get('/avatars', async (req, res) => {
 });
 
 // Get a specific avatar by id
-router.get('/avatars/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const avatar = await Avatars.findByPk(req.params.id);
     if (avatar) {
@@ -36,8 +26,18 @@ router.get('/avatars/:id', async (req, res) => {
   }
 });
 
+// Create a new avatar
+router.post('/', async (req, res) => {
+  try {
+    const avatar = await Avatars.create(req.body);
+    res.status(201).json(avatar);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 // Update a avatar by id
-router.put('/avatars/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const [updated] = await Avatars.update(req.body, {
       where: { id: req.params.id },
@@ -54,7 +54,7 @@ router.put('/avatars/:id', async (req, res) => {
 });
 
 // Delete a avatar by id
-router.delete('/avatars/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const deleted = await Avatars.destroy({
       where: { id: req.params.id },
@@ -68,6 +68,5 @@ router.delete('/avatars/:id', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 module.exports = router;

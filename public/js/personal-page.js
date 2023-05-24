@@ -160,7 +160,7 @@ $(document).ready(function () {
     console.log(pinId);
 
     try {
-      const response = await fetch(`/api/pins/${pinId}`, {
+      const response = await fetch(`/api/pins/delete/${pinId}`, {
         method: "DELETE",
       });
       if (response.ok) {

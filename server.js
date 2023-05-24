@@ -9,10 +9,12 @@ const { extendDefaultFields } = require("./models/Session");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Set up Handlebars.js engine with custom helpers
 app.engine("handlebars", engine({}));
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/views");
 
+// Set up sessions with cookies
 app.use(session({
   secret: process.env.SECRET,
   resave: false,
@@ -28,11 +30,12 @@ app.use(session({
   checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
 }));
 
+// Set up Express.js to parse data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 
-
+// Render the landing page
 app.get("/", (req, res) => {
   res.render("landing-page", {
     layout: "main",
@@ -46,7 +49,6 @@ app.get("/", (req, res) => {
 });
 app.use(routes);
 
-
 //404 handler should come last
 app.use((req, res) => {
   res.status(404).render('404page', {
@@ -56,6 +58,7 @@ app.use((req, res) => {
   });
 });
 
+// Start the server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}!`);
