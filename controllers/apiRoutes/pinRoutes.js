@@ -27,7 +27,7 @@ router.get("/:pinid", async (req, res) => {
 });
 
 // POST route to create a new pin and assign pin to the user
-router.post("/user/:id", async (req, res) => {
+router.post("/create/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -43,17 +43,17 @@ router.post("/user/:id", async (req, res) => {
 });
 
 // PUT route to update a pin
-router.put("/update/:id", async (req, res) => {
+router.put("/update/:pinid", async (req, res) => {
   try {
     const [updated] = await Pins.update(req.body, {
-      where: { id: req.params.id },
+      where: { id: req.params.pinid },
     });
 
     if (updated !== 0) {
-      const updatedPin = await Pins.findByPk(req.params.id);
+      const updatedPin = await Pins.findByPk(req.params.pinid);
       res.status(200).json(updatedPin);
     } else {
-      const existingPin = await Pins.findByPk(req.params.id);
+      const existingPin = await Pins.findByPk(req.params.pinid);
       if (existingPin) {
         res.status(200).json({ message: "No update has been made." });
       } else {

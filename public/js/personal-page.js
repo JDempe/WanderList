@@ -93,7 +93,7 @@ $(document).ready(function () {
             const updatedTitle = pinTitleInput.val();
             const updatedText = pinTextInput.val();
             console.log(updatedTitle, updatedText);
-            const putResponse = await fetch(`/api/pins/${pinId}`, {
+            const putResponse = await fetch(`/api/pins/update/${pinId}`, {
               method: "PUT",
               body: JSON.stringify({
                 pinTitle: updatedTitle,
@@ -249,7 +249,7 @@ $(document).ready(function () {
 
       // based on whether pin exists or not set the method and url(put or post)
       const method = pinId ? "PUT" : "POST";
-      const url = pinId ? `/api/pins/${pinId}` : `/api/pins/user/${id}`;
+      const url = pinId ? `/api/pins/update/${pinId}` : `/api/pins/create/${id}`;
 
       // Send request to the server
       $.ajax({
