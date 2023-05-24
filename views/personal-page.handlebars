@@ -4,22 +4,22 @@
       data-bs-target="#nav-mine, #create-new-pin" type="button" role="tab" aria-controls="nav-mypin"
       aria-selected="true">My Pins</button>
     <button class="nav-link nav-color" id="nav-savedpin-tab" data-bs-toggle="tab"
-      data-bs-target="#nav-pinned, #refresh-pin-btn" type="button" role="tab" aria-controls="nav-savedpin"
+      data-bs-target="#nav-pinned, #refresh-pin" type="button" role="tab" aria-controls="nav-savedpin"
       aria-selected="false">Saved Pins</button>
   </div>
 </nav>
 <div>
   <div class="create-search-section ">
     {{!-- Create a new pin button --}}
-    <div class="tab-content">
+    <div  class="tab-content">
       <div id="create-new-pin" class="tab-pane fade show active" role="tabpanel">
-        <a class="btn create-text" role="button">
+        <a id="create-new-pin-btn" class="btn create-text" role="button">
           <i class="bi bi-plus-square-fill"></i>
           Create a new pin</a>
       </div>
-      <div id="refresh-pin-btn" class="tab-pane fade" role="tabpanel">
+      <div id="refresh-pin" class="tab-pane fade" role="tabpanel">
         {{!-- Reload the page button --}}
-        <a class="btn btn-refresh" role="button">
+        <a id="refresh-pin-btn" class="btn btn-refresh" role="button">
           <i class="bi bi-arrow-clockwise"></i>
           Refresh saved pins</a>
       </div>
@@ -68,12 +68,11 @@
     </div>
     <!-- CONTAINS CARD -->
     <div class="card-container">
-      <div class="card">
-        <form class="card-body needs-validation card-pin-color" novalidate>
+      <div class="card card-pin-color">
+        <form class="card-body needs-validation" novalidate>
           <div class="card-top-section">
             <!-- DISPLAY PIN TITLE -->
-            <input required type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" value=""
-              minlength="1">
+            <input required type="text" class="card-title" placeholder="Enter Title" aria-label="Pin Title" minlength="1">
             <div class="valid-feedback">
               Great!
             </div>
@@ -117,3 +116,5 @@
       </div>
     </div>
   </div>
+
+  

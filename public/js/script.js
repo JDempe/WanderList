@@ -31,7 +31,7 @@ $(document).ready(function () {
       "#navbarNavAltMarkup",
       ".navbar-brand",
       "footer",
-      // disover.handlebars
+      // discover.handlebars
       ".discover",
       ".btn-refresh",
       ".bi-plus-square-fill",
