@@ -29,12 +29,9 @@ Welcome to The `WanderList`! The WanderList web app was developed as a component
 Experience the wonders of [WanderList](https://wanderlist.herokuapp.com/) through our Heroku deployment!
 
 ---
-## Preview
+## Walkthrough Video
 
-<p align="center"><kbd><img src="./documentation/images/preview_1.png" alt="WanderList Preview Image" style="max-width: 600px;"/> </kbd></p>
-
----
-## Demo
+To get an idea of the features for the site, watch our walkthrough video!
 
 https://github.com/JDempe/WanderList/assets/123279032/c7c8c7df-c378-4233-9d1e-df10ac189751
 
@@ -111,11 +108,6 @@ At the upper right corner of the navbar, you will find a convenient switch that 
 In the footer of our website, you will find a comprehensive list of the technologies that were employed to develop this remarkable travel-related platform. These technologies served as the foundation for creating a user-friendly and captivating website. Additionally, we proudly acknowledge the dedicated efforts of our contributors who worked tirelessly day and night to bring this vision to life. Their expertise and commitment have resulted in the creation of an exceptional website that aims to provide an outstanding experience for our beloved users.
 
 ---
-### User Interface
-
-Text will go here...
-
----
 ## Credits
 ### Resources
 
@@ -153,17 +145,13 @@ The following resources and individuals made invaluable contributions to the pro
 ### Educational
 #### Blog Posts
 
-Here are some insightful and informative blogs that we discovered to be valuable resources:
+Here are some insightful and informative blogs that were valuable resources:
 
 - [StackOverflow](https://stackoverflow.com/) provided guidance for troubleshooting the project.  Below are the links to key posts that contributed to our success:
 - [Regular Expressions for Validation](https://stackoverflow.com/questions/4244109/regular-expression-to-accept-only-characters-a-z-in-a-textbox)
 - [Using #each in Handlebars templates](https://stackoverflow.com/questions/21814888/access-values-using-each-in-a-one-dimensional-array)
 - [Bootstrap Modal Class Issues](https://stackoverflow.com/questions/44609680/close-button-on-modal-not-working-what-am-i-doing-wrong)
 - [Editting Bootstrap Popovers](https://stackoverflow.com/questions/54337652/how-can-i-change-the-color-of-bootstrap-popover-arrows)
-
-#### Tutorials
-
-- Tutorial Links will go here...
 
 ---
 ## Contact
