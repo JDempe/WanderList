@@ -1,39 +1,42 @@
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active nav-color" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-mine" type="button"
-      role="tab" aria-controls="nav-home" aria-selected="true">My Pins</button>
-    <button class="nav-link nav-color" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-pinned" type="button"
-      role="tab" aria-controls="nav-profile" aria-selected="false">Saved Pins</button>
+    <button class="nav-link active nav-color" id="nav-mypin-tab" data-bs-toggle="tab" data-bs-target="#nav-mine"
+      type="button" role="tab" aria-controls="nav-mypin" aria-selected="true">My Pins</button>
+    <button class="nav-link nav-color" id="nav-savedpin-tab" data-bs-toggle="tab" data-bs-target="#nav-pinned"
+      type="button" role="tab" aria-controls="nav-savedpin" aria-selected="false">Saved Pins</button>
   </div>
 </nav>
+<div>
+  <div class="create-search-section">
+    {{!-- Create a new pin button --}}
+    <div>
+      <a id="create-new-pin" class="btn create-text" role="button">
+        <i class="bi bi-plus-square-fill"></i>
+        {{!-- <span class="create-text">Create a new pin</span> --}}
+        Create a new pin</a>
+    </div>
+    {{!-- Reload the page button --}}
+    <button type="button" class="btn btn-primary btn-refresh">
+      <i class="bi bi-arrow-clockwise"></i>
+      <span class="create-text">refresh saved pins</span>
+    </button>
+
+
+    <!-- Search bar -->
+    {{> search-bar}}
+  </div>
+  <div class="no-results-container no-results-container-noshow">
+    <div>
+      <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+      <span class="no-results-text">No results found</span>
+      {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
+    </div>
+  </div>
+</div>
+
+
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-mine" role="tabpanel" aria-labelledby="nav-mine-tab">
-    <div class="create-search-section">
-      <div>
-        <a id="create-new-pin" class="btn create-text" role="button">
-          <i class="bi bi-plus-square-fill"></i>
-          {{!-- <span class="create-text">Create a new pin</span> --}}
-          Create a new pin</a>
-
-      </div>
-      <!-- Search bar -->
-      <div class="functions-bar">
-        <div class="input-group rounded search-bar">
-          <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search"
-            aria-describedby="search-addon" id="search-input" />
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="bi bi-search"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-      <div class="no-results-container no-results-container-noshow">
-          <div>
-            <span class="no-results-shrug">¯\_(ツ)_/¯</span>
-            <span class="no-results-text">No results found</span>
-            {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
-          </div>
-      </div>
     {{#if mypins}}
     {{!-- Handle case when user has no pin --}}
     {{> personal-pin}}
@@ -43,32 +46,6 @@
 
   </div>
   <div class="tab-pane fade" id="nav-pinned" role="tabpanel" aria-labelledby="nav-pinned-tab">
-    <div class="create-search-section">
-      <button id="discover-something-button" type="button" class="btn btn-primary btn-refresh">
-        <i class="bi bi-arrow-clockwise"></i>
-        <span class="create-text">Discover something new</span>
-      </button>
-      <!-- Search bar -->
-      <div class="functions-bar">
-        <div class="input-group rounded search-bar">
-          <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search"
-            aria-describedby="search-addon" id="search-input" />
-          <span class="input-group-text border-0" id="search-addon">
-            <i class="bi bi-search"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="no-results-container no-results-container-noshow">
-      <div>
-        <span class="no-results-shrug">¯\_(ツ)_/¯</span>
-        <span class="no-results-text">No results found</span>
-        {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
-      </div>
-    </div>
-
-
-
     {{#if discoveryPins}}
     {{!-- Handle case when user has no pin --}}
     {{> discovery-pin}}
