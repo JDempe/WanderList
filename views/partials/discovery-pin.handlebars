@@ -1,23 +1,23 @@
 {{#each discoveryPins}}
+    {{!-- Pin container --}}
     <div class="pin">
-    <!-- CONTAINS DATE -->
+        {{!-- Contains Pin date --}}
         <div class="date-container">
             <hr class="hr date-hr" />
             <div class="timestamp">{{pinDate}}</div>
             <hr class="hr date-hr" />
         </div>
-        <!-- CONTAINS CARD -->
+        {{!-- Contains Pin content --}}
         <div class="card-container" data-pinid="{{pinID}}">
             <div class="card card-pin-color">
                 <div class="card-body was-validated">
                     <div class="card-top-section">
-                        <!-- DISPLAY PIN TITLE -->
+                        {{!-- Pin title --}}
                         <div class="card-title">
                             {{pinTitle}}
                         </div>
-                        <!-- Actions should have confirmation required -->
                         <div class="card-icon-section card-pinning">
-                        <!-- PIN ICON -->
+                        {{!-- Pin icon --}}
                         <i class="bi bi-pin card-icon card-icon-pin" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Login to save pins!" data-bs-trigger="focus" tabindex="0"></i>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="card-location">
                         {{pinLocation}}
                     </div>
-                    <!-- CARD TEXT -->
+                    {{!-- Pin text --}}
                     <p class="card-text">
                         {{pinDescription}}
                     </p>          
