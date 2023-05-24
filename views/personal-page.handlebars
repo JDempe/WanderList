@@ -39,21 +39,15 @@
 
   <div class="tab-content">
     <div id="nav-mine" class="tab-pane fade show active" role="tabpanel" aria-labelledby="nav-mine-tab">
-      {{#if mypins}}
+
       {{!-- Handle case when user has no pin --}}
       {{> personal-pin}}
-      {{else}}
-      {{> personal-nopin}}
-      {{/if}}
+
 
     </div>
     <div id="nav-pinned" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-pinned-tab">
-      {{#if discoveryPins}}
-      {{!-- Handle case when user has no pin --}}
-      {{> discovery-pin}}
-      {{else}}
       {{> discovery-nopin}}
-      {{/if}}
+
     </div>
   </div>
 

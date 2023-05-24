@@ -34,8 +34,6 @@ app.use(session({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
-// load the views
-app.use(express.static(__dirname + "/views"));
 
 // Render the landing page
 app.get("/", (req, res) => {
