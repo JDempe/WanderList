@@ -36,7 +36,11 @@ Experience the wonders of [WanderList](https://wanderlist.herokuapp.com/) throug
 ---
 ## Demo
 
-https://github.com/JDempe/WanderList/assets/123279032/c7c8c7df-c378-4233-9d1e-df10ac189751
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="./documentation/images/preview_1.png">
+    <source src="./documentation/wanderlist-walkthrough.mp4" type="video/mp4">
+  </video>
+</figure>
 
 ---
 ## Description
