@@ -1,24 +1,23 @@
-        <div class="create-search-section">
-            <button type="button" class="btn btn-primary btn-refresh">
-                <i class="bi bi-arrow-clockwise"></i>
-                <span class="create-text">Discover something new</span>
-            </button>
-            <!-- Search bar -->
-            <div class="functions-bar">
-              <div class="input-group rounded search-bar">
-                <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search" aria-describedby="search-addon" id="search-input"/>
-                <span class="input-group-text border-0" id="search-addon">
-                  <i class="bi bi-search"></i>
-                </span>
-              </div>
-            </div>
-        </div>
-        <div class="no-results-container no-results-container-noshow">
-          <div>
-            <span class="no-results-shrug">¯\_(ツ)_/¯</span>
-            <span class="no-results-text">No results found</span>
-            {{!-- <img src="./images/placeholder/temp-noresultsfound.png" alt="No Results"> --}}
-          </div>
-        </div>
-        {{> discovery-pin}}
-        
+<div class="create-search-section">
+  {{!-- Refresh Button --}}
+  <button type="button" class="btn btn-primary btn-refresh">
+      <i class="bi bi-arrow-clockwise"></i>
+      <span class="create-text">Discover something new</span>
+  </button>
+  {{!-- Search Bar --}}
+  <div class="functions-bar">
+    <div class="input-group rounded search-bar">
+      <input type="search" class="form-control rounded" placeholder="Search for pins" aria-label="Search" aria-describedby="search-addon" id="search-input"/>
+      <span class="input-group-text border-0" id="search-addon">
+        <i class="bi bi-search"></i>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="no-results-container no-results-container-noshow">
+  <div>
+    <span class="no-results-shrug">¯\_(ツ)_/¯</span>
+    <span class="no-results-text">No results found</span>
+  </div>
+</div>
+{{> discovery-pin}}
