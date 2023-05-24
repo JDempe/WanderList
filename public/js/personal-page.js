@@ -318,6 +318,14 @@ $(document).ready(function () {
     }
   });
 
+  $('#nav-tab-personal-pins').on('show.bs.tab', function(e) {
+    let target = $(e.target).data('bs-target')
+    $(target)
+      .addClass('active show')
+      .siblings('.tab-pane.active')
+      .removeClass('active show')
+  })
+
   // ========================================================== //
   // END EVENT LISTENERS //
 });

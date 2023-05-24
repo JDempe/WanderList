@@ -10,12 +10,8 @@
 }
 
 #create-new-pin {
-  display: flex;
   align-items: center;
-}
-
-#create-new-pin i {
-  margin-right: 5px;
+ margin-right: 5px;
 }
 
 .create-search-section {
@@ -26,6 +22,7 @@
   padding: 3rem 0 0.3rem 0;
   margin: 0 auto;
   max-width: 65%;
+  height: 100px;
 }
 
 .bi-plus-square-fill {
@@ -38,7 +35,7 @@
   color: #6eb1eb; /* Change the color when hovered */
 }
 
-.create-text {
+.create-text, .btn-refresh {
   padding-left: 4px;
   font-family: "Source Sans Pro";
   font-weight: 600;
