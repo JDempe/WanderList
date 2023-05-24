@@ -271,7 +271,10 @@ $(document).ready(function () {
 
         });
       });
+      // make the create new pin button not disabled
+      $("#create-new-pin-btn").removeClass("disabled");
     }
+
   });
 
   // Discard Button Event Listener
