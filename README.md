@@ -18,7 +18,6 @@ Welcome to The `WanderList`! The WanderList web app was developed as a component
 * [Technologies Used](#technologies-used)
 * [Installation](#installation)
 * [Usage](#usage)
-* [User Interface](#user-interface)
 * [Credits](#credits)
 * [Contact](#contact)
 * [License](#license)
@@ -115,7 +114,11 @@ The following resources and individuals made invaluable contributions to the pro
 
 #### Fonts
 
-- [WanderlustRegular](https://fontsrepo.com/wanderlust-adventurous-free-font/).
+- [Wanderlust](https://fontsrepo.com/wanderlust-adventurous-free-font/) is a free typeface. It was used for the title of the website in the navbar present on every page.
+
+- [Hammersmith One](https://fonts.google.com/specimen/Hammersmith+One) is a free typeface readily available on Google Fonts. It was used in various capacities throughout the site such as with pin usernames. 
+
+- [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) is a free typeface readily available on Google Fonts. It was used in various capacities throughout the site such as with pin titles, locations, and text. 
 
 #### Images
 
@@ -152,7 +155,7 @@ Here are some insightful and informative blogs that were valuable resources:
 - [Using #each in Handlebars templates](https://stackoverflow.com/questions/21814888/access-values-using-each-in-a-one-dimensional-array)
 - [Bootstrap Modal Class Issues](https://stackoverflow.com/questions/44609680/close-button-on-modal-not-working-what-am-i-doing-wrong)
 - [Editting Bootstrap Popovers](https://stackoverflow.com/questions/54337652/how-can-i-change-the-color-of-bootstrap-popover-arrows)
-
+- [Setting Intervals for Bootstrap Carousel](https://stackoverflow.com/questions/25147394/how-to-change-the-interval-time-on-bootstrap-carousel)
 ---
 ## Contact
 ### Collaborators
