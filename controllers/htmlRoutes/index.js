@@ -125,21 +125,16 @@ router.get("/pins/user/:username", async (req, res) => {
       where: { user_id: user.id },
     });
 
-          // Create an array of the pins data
-    const pinsData = pins.map((pin) => ({
-      pinID: pin.id,
-      pinTitle: pin.pinTitle,
-      pinDescription: pin.pinDescription,
-      pinLocation: pin.pinLocation,
-      // Take the pin.updatedAt and cut it off at the 4th space and only take the first half
-      pinDate: pin.updatedAt
-        ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
-        : pin.updatedAt,
-      timestamp: pin.updatedAt,
-      pinUserID: pin.user_id,
-      pinUsername: "",
-      pinAvatar: "",
-    }));
+      // Create an array of the pins data
+      var pinsData = pins.map((pin) => ({
+        pinID: pin.id,
+        pinTitle: pin.pinTitle,
+        pinDescription: pin.pinDescription,
+        // Take the pin.updatedAt and cut it off at the 4th space and only take the first half
+        pinDate: pin.updatedAt
+          ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
+          : pin.updatedAt,
+      }));
     
 
     // Break the saved_pins json object down and take only the pinId and put it into savedPinsData

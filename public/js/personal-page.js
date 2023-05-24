@@ -13,30 +13,30 @@ $(document).ready(function () {
   // EVENT LISTENERS //
   // ========================================================== //
 
-  // Check mark button
-  $(".card-icon-section .bi-check-square").click(async function (e) {
-    if ($(this).hasClass("disabled")) {
-      return;
-    }
+  // Check mark button DISABLED
+  // $(".card-icon-section .bi-check-square").click(async function (e) {
+  //   if ($(this).hasClass("disabled")) {
+  //     return;
+  //   }
 
-    const pin = $(this).closest(".card");
-    const currentStatus = pin.data("pinCompletion");
-    const newStatus = !currentStatus;
-    try {
-      const data = await fetchWrapper("/pins/:id", {
-        method: "PUT",
-        body: JSON.stringify({ pinCompletion: newStatus }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  //   const pin = $(this).closest(".card");
+  //   const currentStatus = pin.data("pinCompletion");
+  //   const newStatus = !currentStatus;
+  //   try {
+  //     const data = await fetchWrapper("/pins/:id", {
+  //       method: "PUT",
+  //       body: JSON.stringify({ pinCompletion: newStatus }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
 
-      console.log("public>>js>>personal-page.js", data);
-    } catch (error) {
-      console.log("public>>js>>personal-page.js", error);
-    }
-    e.stopPropagation();
-  });
+  //     console.log("public>>js>>personal-page.js", data);
+  //   } catch (error) {
+  //     console.log("public>>js>>personal-page.js", error);
+  //   }
+  //   e.stopPropagation();
+  // });
 
   // Edit Button
   $(".card-icon-section .bi-pencil").click(async function (e) {
@@ -207,7 +207,7 @@ $(document).ready(function () {
     console.log(newPinEl.find(".card-title"));
 
     // insert the new element to the page after the no results container
-    $(".no-results-container").after(newPinEl);
+    $("#nav-mine").prepend(newPinEl);
   });
 
   // save button event listener
@@ -238,7 +238,6 @@ $(document).ready(function () {
         url: "/api/user/session/lookup",
         type: "GET",
       }).then(function (response) {
-        console.log(response);
         var id = response.id;
         const pinId = pinEl.data("id"); // Get pin id
 
@@ -257,7 +256,6 @@ $(document).ready(function () {
             pinDescription: text,
           },
         }).then(function (response) {
-          console.log(response);
           $("#create-new-pin").removeClass("disabled");
           pinEl.removeClass("create-pin-flag");
           titleEl.prop("readonly", true);
@@ -267,17 +265,16 @@ $(document).ready(function () {
           saveBtn.removeAttr("style");
           discardBtn.removeAttr("style");
 
-          if (!pinId) {
+
             // If it was a new pin
             pinEl.data("id", response.id); // Set the received id to the pin
-          }
+
         });
       });
     }
   });
 
   // Discard Button Event Listener
-
   $(document).on("click", ".discard-btn", function () {
     // read the id from the data-id attribute
     const pinEl = $(this).closest(".pin");
