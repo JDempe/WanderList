@@ -1,60 +1,64 @@
-$(document).ready(function() {
-  const isNightMode = localStorage.getItem('nightMode');
+$(document).ready(function () {
+  // NIGHT MODE //
+  const isNightMode = localStorage.getItem("nightMode");
 
+  // check if the user has a night mode preference saved in local storage
   if (isNightMode !== null) {
-    $('#flexSwitchCheckDefault').prop('checked', isNightMode === 'true');
+    $("#flexSwitchCheckDefault").prop("checked", isNightMode === "true");
 
-    if (isNightMode === 'true') {
+    if (isNightMode === "true") {
       toggleNightMode(true);
     }
   }
 
-  $('#flexSwitchCheckDefault').on('change', function() {
-    const isNightMode = $(this).prop('checked');
+  // toggle night mode when the switch is clicked
+  $("#flexSwitchCheckDefault").on("change", function () {
+    const isNightMode = $(this).prop("checked");
 
-    localStorage.setItem('nightMode', isNightMode);
+    localStorage.setItem("nightMode", isNightMode);
 
     toggleNightMode(isNightMode);
   });
 
+  // toggle night mode when the switch is clicked
   function toggleNightMode(isNightMode) {
     const elementsToToggle = [
       // main.handlebars
-      'body',
-      'dropdown-item',
-      '.navbar',
-      '.login-nav-Btn',
-      '#navbarNavAltMarkup',
-      '.navbar-brand',
-      'footer',
+      "body",
+      "dropdown-item",
+      ".navbar",
+      ".login-nav-Btn",
+      "#navbarNavAltMarkup",
+      ".navbar-brand",
+      "footer",
       // disover.handlebars
-      '.discover',
-      '.btn-refresh',
-      '.bi-plus-square-fill',
-      '.create-text',
-      '.card-text-color',
-      '.card-color',
-      '.card-icon',
-      '.card-pin-color',
-      '.card-text',
-      '.date-hr',
-      '.card-hr',
-      '.card-title',
-      '.card-username',
-      '.card-location',
-      '.bi-pin',
-      '.form-control',
-      '.bi-search',
-      '.timestamp',
-      '#user-profile',
-      '#editprofile-form',
-      '#editsecurity-form',
-      'h2',
-      'h3',
-      '.form-label',
-      'h6',
-      '.nav-color',
-      '.nav-tabs',
+      ".discover",
+      ".btn-refresh",
+      ".bi-plus-square-fill",
+      ".create-text",
+      ".card-text-color",
+      ".card-color",
+      ".card-icon",
+      ".card-pin-color",
+      ".card-text",
+      ".date-hr",
+      ".card-hr",
+      ".card-title",
+      ".card-username",
+      ".card-location",
+      ".bi-pin",
+      ".form-control",
+      ".bi-search",
+      ".timestamp",
+      "#user-profile",
+      "#editprofile-form",
+      "#editsecurity-form",
+      "h2",
+      "h3",
+      ".form-label",
+      "h6",
+      ".nav-color",
+      ".nav-tabs",
 
       // sign in modal
       // // '.body-modal',
@@ -68,32 +72,32 @@ $(document).ready(function() {
       // '.cd-signin-modal__input[type=submit]',
       // '.cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus',
       // '.cd-signin-modal__hide-password',
-
     ];
 
-    elementsToToggle.forEach(function(element) {
-      $(element).toggleClass('darkmode', isNightMode);
+    elementsToToggle.forEach(function (element) {
+      $(element).toggleClass("darkmode", isNightMode);
     });
   }
-});
+  // END NIGHT MODE //
 
-// Removes any empty script tags from html
-$(document).ready(function () {
-  $("script").each(function () {
-    if (!$(this).attr("src") && !$(this).text().trim()) {
-      $(this).remove();
-    }
-  });
-
-  // use the session lookup api to check if the user is logged in
-  $.get("/api/user/session/lookup", function (data) {
-    if (data) {
-      // get the avatar info for the users avatar_id
-      $.get(`/api/avatars/${data.avatar_id}`, function (avatarData) {
-        // if the user is logged in, make the text in the logout dropdown your username and your avatar picture src
-        $("#user-profile-pic").attr("src", avatarData.avatarsImage);
-        $("#user-username").text(`Hi, ${data.username}`);
-      });
-    }
-  });
+  // Load the username and avatar to the navbar.  Only do this if the element is loaded
+  if ($("#nav-user-dropdown").length) {
+    // get the user's session data
+    $.ajax({
+      url: "/api/user/session/lookup",
+      method: "GET",
+    }).then(function (data) {
+      if (data) {
+        // get the avatar info for the users avatar_id
+        $.ajax({
+          url: `/api/avatars/${data.avatar_id}`,
+          method: "GET",
+        }).then(function (avatarData) {
+          // if the user is logged in, make the text in the logout dropdown your username and your avatar picture src
+          $("#user-profile-pic").attr("src", avatarData.avatarsImage);
+          $("#user-username").text(`Hi, ${data.username}`);
+        });
+      }
+    });
+  }
 });
