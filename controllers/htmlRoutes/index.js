@@ -194,7 +194,7 @@ router.get("/pins/user/:username", async (req, res) => {
 
     // Render the personal page with the pinsData and savedPinsData
     res.render("personal-page", {
-      styles: ["personal-page"],
+      styles: ["personal-page", "discovery-page"],
       scripts: ["personal-page", "discovery-page", "search-pin"],
       mypins: pinsData,
       discoveryPins: savedPinsData,
