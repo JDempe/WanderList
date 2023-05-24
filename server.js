@@ -36,8 +36,8 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", (req, res) => {
   res.render("landing-page", {
     layout: "main",
-    style: "./css/landing-page.css",
-    script: "./js/landing-page.js",
+    styles: ["landing-page"],
+    scripts: ["landing-page"],
     user: {
       id: req.session.user_id,
       isLoggedIn: req.session.logged_in
@@ -51,7 +51,7 @@ app.use(routes);
 app.use((req, res) => {
   res.status(404).render('404page', {
     layout: 'main',
-    style: './css/404.css',
+    styles: ['404'],
     title: 'Page Not Found'
   });
 });

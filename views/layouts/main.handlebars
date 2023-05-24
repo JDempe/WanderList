@@ -18,9 +18,10 @@
   <link href="./css/reset.css" rel="stylesheet" />
   <link href="./css/modal.css" rel="stylesheet" />
   <link href="./css/style.css" rel="stylesheet" />
-  <link href="./css/discovery-page.css" rel="stylesheet" /> 
-  <link href="./css/personal-page.css" rel="stylesheet" />
-  <link href="{{style}}" rel="stylesheet" />
+  {{!-- load each style in --}}
+  {{#each styles}}
+  <link href="./css/{{this}}.css" rel="stylesheet" />
+  {{/each}}
 </head>
 
 <body>
@@ -299,6 +300,7 @@
           </p>
         </form>
 
+{{!-- PASSWORD RESET FIELD (DISABLED) --}}
         {{!-- <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your
             password?</a></p> --}}
       </div>
@@ -347,6 +349,7 @@
               appreciate your understanding.</span>
           </p>
 
+{{!-- ACCEPT TERMS SECTION (DISABLED) --}}
           {{! <p class="cd-signin-modal__fieldset">
             <input type="checkbox" id="accept-terms" class="cd-signin-modal__input" />
             <label for="accept-terms">I agree to the
@@ -383,7 +386,7 @@
           </p>
         </form>
 
-        <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to
+        <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="login" data-signin="login">Back to
             log-in</a></p>
       </div>
       <!-- cd-signin-modal__block -->
@@ -403,8 +406,9 @@
 <script src="./handlers/user-auth.js"></script>
 <script src="./js/script.js"></script>
 <script src="./js/modal.js"></script>
-<script src="{{script}}"></script>
-<script src="{{scriptSecond}}"></script>
-<script src="{{scriptThird}}"></script>
+{{!-- load each script in --}}
+{{#each scripts}}
+<script src="./js/{{this}}.js"></script>
+{{/each}}
 
 </html>
