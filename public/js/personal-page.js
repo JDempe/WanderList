@@ -10,36 +10,33 @@ $(document).ready(function () {
 
   $("form").submit(preventDefault);
 
-  // make the discover something button invisible but maintain its place in the DOM
-  $("#discover-something-button").css("visibility", "hidden");
-
   // EVENT LISTENERS //
   // ========================================================== //
 
-  // Check mark button
-  $(".card-icon-section .bi-check-square").click(async function (e) {
-    if ($(this).hasClass("disabled")) {
-      return;
-    }
+  // Check mark button DISABLED
+  // $(".card-icon-section .bi-check-square").click(async function (e) {
+  //   if ($(this).hasClass("disabled")) {
+  //     return;
+  //   }
 
-    const pin = $(this).closest(".card");
-    const currentStatus = pin.data("pinCompletion");
-    const newStatus = !currentStatus;
-    try {
-      const data = await fetchWrapper("/pins/:id", {
-        method: "PUT",
-        body: JSON.stringify({ pinCompletion: newStatus }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  //   const pin = $(this).closest(".card");
+  //   const currentStatus = pin.data("pinCompletion");
+  //   const newStatus = !currentStatus;
+  //   try {
+  //     const data = await fetchWrapper("/pins/:id", {
+  //       method: "PUT",
+  //       body: JSON.stringify({ pinCompletion: newStatus }),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
 
-      console.log("public>>js>>personal-page.js", data);
-    } catch (error) {
-      console.log("public>>js>>personal-page.js", error);
-    }
-    e.stopPropagation();
-  });
+  //     console.log("public>>js>>personal-page.js", data);
+  //   } catch (error) {
+  //     console.log("public>>js>>personal-page.js", error);
+  //   }
+  //   e.stopPropagation();
+  // });
 
   // Edit Button
   $(".card-icon-section .bi-pencil").click(async function (e) {
@@ -47,13 +44,12 @@ $(document).ready(function () {
     if ($(this).hasClass("disabled")) {
       return;
     }
+
     const pin = $(this).closest(".pin");
     const pinId = pin.data("id");
-    console.log(pinId);
 
     const pinTextInput = pin.find(".card-text");
     const pinTitleInput = pin.find(".card-title");
-    console.log("pin", pin, "oriText", pinTextInput, "oriTitle", pinTitleInput);
 
     try {
       const response = await fetch(`/api/pins/${pinId}`);
@@ -180,11 +176,13 @@ $(document).ready(function () {
   $("textarea").on("input", autoResizeText);
 
   // add event listener to the new card button
-  $("#create-new-pin").click(function () {
+  $("#create-new-pin-btn").click(function () {
     // disabled the create new pin button
-    $("#create-new-pin").addClass("disabled");
+    $("#create-new-pin-btn").addClass("disabled");
 
+    // TODO Pull this from the handlebars template
     const newPinEl = $("#template-card-hidden").clone(true, true);
+
     newPinEl.removeAttr("id");
     // remove the hidden attr
     newPinEl.removeAttr("hidden");
@@ -209,16 +207,14 @@ $(document).ready(function () {
     console.log(newPinEl.find(".card-title"));
 
     // insert the new element to the page after the no results container
-    $(".no-results-container").after(newPinEl);
+    $("#nav-mine").prepend(newPinEl);
   });
 
   // save button event listener
   //   TODO need to only get the new pin one
   $(document).on("click", ".save-btn", function (event) {
-
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var form = $(".needs-validation")[0];
-
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var form = $(".needs-validation")[0];
 
     // If there is an invalid form, prevent the submit button from working and show the validation notes
     if (!form.checkValidity()) {
@@ -228,76 +224,75 @@ $(document).ready(function () {
     }
     // Otherwise, if the form is valid, send a PUT request with the info
     else {
+      const pinEl = $(this).closest(".pin");
+      const titleEl = pinEl.find(".card-title");
+      const textEl = pinEl.find(".card-text");
+      const title = titleEl.val();
+      const text = textEl.val();
+      const saveBtn = $(this);
+      const discardBtn = pinEl.find(".discard-btn");
+      // hide the noPinPage
+      $("#personal-no-pin").css("display", "none");
 
-    const pinEl = $(this).closest(".pin");
-    const titleEl = pinEl.find(".card-title");
-    const textEl = pinEl.find(".card-text");
-    const title = titleEl.val();
-    const text = textEl.val();
-    const saveBtn = $(this);
-    const discardBtn = pinEl.find(".discard-btn");
-    // hide the noPinPage
-    $("#personal-no-pin").css("display", "none");
-
-    $.ajax({
-      url: "/api/user/session/lookup",
-      type: "GET",
-    }).then(function (response) {
-      console.log(response);
-      var id = response.id;
-      const pinId = pinEl.data("id"); // Get pin id
-
-      // based on whether pin exists or not set the method and url(put or post)
-      const method = pinId ? "PUT" : "POST";
-      const url = pinId ? `/api/pins/update/${pinId}` : `/api/pins/create/${id}`;
-
-      // Send request to the server
       $.ajax({
-        url: url,
-        type: method,
-        data: {
-          pinTitle: title,
-          pinDescription: text,
-        },
+        url: "/api/user/session/lookup",
+        type: "GET",
       }).then(function (response) {
-        console.log(response);
-        $("#create-new-pin").removeClass("disabled");
-        pinEl.removeClass("create-pin-flag");
-        titleEl.prop("readonly", true);
-        titleEl.addClass("no-visibility");
-        textEl.prop("readonly", true);
-        textEl.addClass("no-visibility");
-        saveBtn.removeAttr("style");
-        discardBtn.removeAttr("style");
+        var id = response.id;
+        const pinId = pinEl.data("id"); // Get pin id
 
-        if (!pinId) {
-          // If it was a new pin
-          pinEl.data("id", response.id); // Set the received id to the pin
-        }
+        // based on whether pin exists or not set the method and url(put or post)
+        const method = pinId ? "PUT" : "POST";
+        const url = pinId
+          ? `/api/pins/update/${pinId}`
+          : `/api/pins/create/${id}`;
+
+        // Send request to the server
+        $.ajax({
+          url: url,
+          type: method,
+          data: {
+            pinTitle: title,
+            pinDescription: text,
+          },
+        }).then(function (response) {
+          $("#create-new-pin").removeClass("disabled");
+          pinEl.removeClass("create-pin-flag");
+          titleEl.prop("readonly", true);
+          titleEl.addClass("no-visibility");
+          textEl.prop("readonly", true);
+          textEl.addClass("no-visibility");
+          saveBtn.removeAttr("style");
+          discardBtn.removeAttr("style");
+
+
+            // If it was a new pin
+            pinEl.data("id", response.id); // Set the received id to the pin
+
+        });
       });
-    });
-  }
+    }
   });
 
-  // discard button event listener
-  // if discard is clicked, read the id from the data-id attribute, if it doesnt exist remove the element, if it does exist send a request to get pinTitle and pinDescription and set the values of the title and text to those values
+  // Discard Button Event Listener
   $(document).on("click", ".discard-btn", function () {
+    // read the id from the data-id attribute
     const pinEl = $(this).closest(".pin");
-    const titleEl = pinEl.find(".card-title");
-    const textEl = pinEl.find(".card-text");
-    const saveBtn = $(this).siblings(".save-btn");
-    const discardBtn = $(this);
 
     // get the id from the data-id attribute
     const id = pinEl.data("id");
-    console.log(id);
 
-    // if the id is empty, remove the element
+    // if it doesnt exist it was the new pin template so just remove the element and enable the create new pin button
     if (id === "") {
       pinEl.remove();
       // make the create new pin button not disabled
-      $("#create-new-pin").removeClass("disabled");
+      $("#create-new-pin-btn").removeClass("disabled");
     } else {
+      const titleEl = pinEl.find(".card-title");
+      const textEl = pinEl.find(".card-text");
+      const saveBtn = $(this).siblings(".save-btn");
+      const discardBtn = $(this);
+
       // if the id is not empty, send a request to get the pinTitle and pinDescription
       $.ajax({
         url: `/api/pins/${id}`,
@@ -316,6 +311,32 @@ $(document).ready(function () {
         discardBtn.removeAttr("style");
       });
     }
+  });
+
+  $("#nav-tab-personal-pins").on("click", function (e) {
+    // if the tab that was clicked is the nav-savedpin-tab, delete the create-pin-flag element
+
+   
+  });
+
+// Tabs event listener
+  $("#nav-tab-personal-pins").on("show.bs.tab", function (e) {
+    // Get the target tab pane and show it while hiding the other tab panes
+    let target = $(e.target).data("bs-target");
+    $(target)
+      .addClass("active show")
+      .siblings(".tab-pane.active")
+      .removeClass("active show");
+
+// If the tab is the saved pin tab, remove the create-pin-flag element
+      if (e.target.id === "nav-savedpin-tab") {
+        if ($(".create-pin-flag").length) {
+          $(".create-pin-flag").remove();
+        }
+      } else {
+        // make sure the create new pin button is not disabled
+        $("#create-new-pin-btn").removeClass("disabled");
+      }
   });
 
   // ========================================================== //

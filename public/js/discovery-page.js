@@ -2,47 +2,48 @@ $(document).ready(function () {
   const pinnedIcon = "bi-pin-angle-fill";
   const unpinnedIcon = "bi-pin";
 
-  // Get the user's pinned cards by looking up the session id
+  // On load, get the user's pinned cards by looking up the session id
   $.ajax({
     url: "/api/user/session/lookup",
     method: "GET",
-}).then(function (response) {
+  }).then(function (response) {
+    // if not logged in, do nothing
     if (response.logged_in === false) {
-      console.log("not logged in");
       return;
     }
-    if (response.saved_pins === null || response.saved_pins === "") {
-      console.log("no pins");
+    // if logged in but no pinned cards, do nothing
+    else if (response.saved_pins === null || response.saved_pins === "") {
       return;
     }
     // take the string and JSON parse it
-    var pinnedCards = JSON.parse(response.saved_pins);
-    console.log(pinnedCards);
-    checkPinnedCards(pinnedCards);
+    else {
+      var pinnedCards = JSON.parse(response.saved_pins);
+      checkPinnedCards(pinnedCards);
+    }
   });
 
+  // EVENT LISTENERS //
+  // Refresh the page when the refresh button is clicked
   $(".btn-refresh").click(function () {
     location.reload();
   });
 
-  // Create a click event listener on anything with the class of card-pinning
+  // Create a click event listener on the pin icons of every card
+  // When the pin icon is clicked, toggle the icon between the filled pin and the empty pin and save the card to the user's pinned cards
   $(".card-icon-pin").click(function (e) {
     e.preventDefault();
     var pinIconEl = $(this);
 
-    // if not logged in, do nothing except show a red popover that says "You must be logged in to pin a card"
-    // if logged in, do the following:
-    // Get the user's pinned cards by looking up the session id
     $.ajax({
       url: "/api/user/session/lookup",
       method: "GET",
     }).then(function (response) {
+      // if not logged in, do nothing except show a red popover that says "You must be logged in to pin a card"
       if (response.logged_in === false) {
-        console.log(this)
-        pinIconEl.popover('show');
+        pinIconEl.popover("show");
         return;
       } else {
-        // Look at the pin, if it has a class of bi-pin-angle-fill, remove that class and add the class of bi-pin-angle, otherwise do the opposite
+        // Toggle the pin icon between the filled pin and the empty pin
         if (pinIconEl.hasClass(pinnedIcon)) {
           pinIconEl.removeClass(pinnedIcon);
           pinIconEl.addClass(unpinnedIcon);
@@ -51,8 +52,8 @@ $(document).ready(function () {
           pinIconEl.removeClass(unpinnedIcon);
         }
 
-        // Get the id of the card that was clicked by looking for data-pinid in the parent element that has the class of card-container
-        var cardId = pinIconEl.closest(".card-container").attr("data-pinid");
+        // Get the id of the card that was clicked by looking for data-pinid in the parent element that has the class of pin
+        var cardId = pinIconEl.closest(".pin").attr("data-pinid");
 
         // Add the card to the user's pinned cards
         $.ajax({
@@ -61,17 +62,17 @@ $(document).ready(function () {
           data: {
             pinId: cardId,
           },
-        }).then(function (response) {
-          // console.log(response);
         });
       }
     });
   });
+  // END EVENT LISTENERS //
 
+  // FUNCTIONS //
   // function to check each key in the pinnedCards array against the cardId
   function checkPinnedCards(pinnedCards) {
     $(".card-icon-pin").each(function () {
-      var cardId = $(this).closest(".card-container").attr("data-pinid");
+      var cardId = $(this).closest(".pin").attr("data-pinid");
       // if the pinnedCards JSON array includes the cardId, add the class of pinned to the card
       if (pinnedCards.some((e) => e.pinId === cardId)) {
         $(this).addClass(pinnedIcon);
@@ -79,4 +80,5 @@ $(document).ready(function () {
       }
     });
   }
+  // END FUNCTIONS //
 });

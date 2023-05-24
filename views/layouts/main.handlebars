@@ -59,7 +59,7 @@
             <!-- PROFILE ICON / navigates to edit_profile.handlebars -->
             <i class="bi bi-pin-angle-fill navIcon"></i>
           </a>
-          <div class="dropdown d-flex">
+          <div id="nav-user-dropdown" class="dropdown d-flex">
             <img src="" class="nav-item nav-link active dropdown-toggle user-avatar"
               href="#" role="button" id="user-profile-pic" data-bs-toggle="dropdown" data-toggle="tooltip" title="Profile" aria-expanded="false" width="50px" />
             <a class="nav-item nav-link active dropdown-toggle" href="#" role="button" id="user-username"
@@ -268,14 +268,14 @@
             <input
               class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border login-input"
                 id="signin-password"
-                type="text"
+                type="password"
                 placeholder="Password"
                 autocomplete="off"
               />
               <a
                 href="#0"
                 class="cd-signin-modal__hide-password js-hide-password"
-              >Hide</a>
+              >Show</a>
             <span class="cd-signin-modal__error error-404">The email or
               password provided is incorrect. Please try again.
             </span>

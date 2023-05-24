@@ -1,5 +1,5 @@
 {{#each discoveryPins}}
-    <div class="pin">
+    <div class="pin" data-pinid="{{pinID}}">
     <!-- CONTAINS DATE -->
         <div class="date-container">
             <hr class="hr date-hr" />
@@ -7,7 +7,7 @@
             <hr class="hr date-hr" />
         </div>
         <!-- CONTAINS CARD -->
-        <div class="card-container" data-pinid="{{pinID}}">
+        <div class="card-container">
             <div class="card card-pin-color">
                 <div class="card-body was-validated">
                     <div class="card-top-section">

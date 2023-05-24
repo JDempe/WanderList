@@ -61,8 +61,6 @@ router.get("/discover", async (req, res) => {
 
 // GET navigation to user's pin page
 // Navigate to /pins/user and then redirect to /pins/user/:username once the username is known
-// TODO Convert to /user/pins
-// TODO Pass the ID info?
 router.get("/pins/user", async (req, res) => {
   try {
     // Log in Check, if not logged in, redirect to home page
@@ -86,7 +84,6 @@ router.get("/pins/user", async (req, res) => {
 
 // GET navigation to user's editprofile page
 // Navigate to /editprofile and then redirect to /editprofile/:username once the username is known
-// TODO Pass the ID Info?
 router.get("/editprofile", async (req, res) => {
   try {
     // Lookup username by session userId
@@ -124,27 +121,21 @@ router.get("/pins/user/:username", async (req, res) => {
     }
 
     // Find the user's pins
-    const { page = 1 } = req.query; // Get the page number from the query parameters
-    const limit = 10; // Number of pins per page
-    const offset = (page - 1) * limit; // Calculate the offset based on the page number
-
-    const pins = await Pins.findAndCountAll({
+    const pins = await Pins.findAll({
       where: { user_id: user.id },
-      limit,
-      offset,
     });
 
-    // Create an array of the pins data
-    const pinsData = pins.rows.map((pin) => ({
-      id: pin.id,
-      pinTitle: pin.pinTitle,
-      pinDescription: pin.pinDescription,
-      pinLocation: pin.pinLocation,
-      // take the pin.updatedAt and cut it off at the 4th space and only take the first half (formatting)
-      pinDate: pin.updatedAt
-        ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
-        : pin.updatedAt,
-    }));
+      // Create an array of the pins data
+      var pinsData = pins.map((pin) => ({
+        pinID: pin.id,
+        pinTitle: pin.pinTitle,
+        pinDescription: pin.pinDescription,
+        // Take the pin.updatedAt and cut it off at the 4th space and only take the first half
+        pinDate: pin.updatedAt
+          ? pin.updatedAt.toString().split(" ").slice(0, 4).join(" ")
+          : pin.updatedAt,
+      }));
+    
 
     // Break the saved_pins json object down and take only the pinId and put it into savedPinsData
     const savedPins = user.saved_pins;
@@ -198,8 +189,8 @@ router.get("/pins/user/:username", async (req, res) => {
 
     // Render the personal page with the pinsData and savedPinsData
     res.render("personal-page", {
-      styles: ["personal-page"],
-      scripts: ["personal-page","discovery-page","search-pin"],
+      styles: ["personal-page", "discovery-page"],
+      scripts: ["personal-page", "discovery-page", "search-pin"],
       mypins: pinsData,
       discoveryPins: savedPinsData,
       user: {
